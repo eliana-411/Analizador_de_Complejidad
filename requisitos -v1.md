@@ -714,96 +714,8 @@ CREATE TABLE analyses (
 
 ## 8. TÉCNICAS DE ANÁLISIS
 
-### 8.1 Divide y Vencerás (divide-venceras.md)
+El agente resolvedor revisara los .md de tecnicas para saber como resolver los problemas
 
-**Cuándo aplicar:**
-Cuando el algoritmo:
-- Divide el problema en sub-problemas
-- Resuelve recursivamente cada sub-problema
-- Combina las soluciones
-
-**Patrón que activa:**
-- Presencia de llamadas recursivas que reducen tamaño del problema
-- División del input en partes más pequeñas
-- Paso de conquista/combinación
-
-**Qué resuelve:**
-Relaciones de recurrencia de la forma:
-```
-T(n) = a*T(n/b) + f(n)
-```
-
-**Output esperado:**
-- Identificación de: a (número de llamadas), b (factor de división), f(n) (costo de combinación)
-- Aplicación de teorema maestro O análisis de árbol
-- Solución final en notación asintótica
-
-**¿Es un sub-agente o el agente principal la aplica?**
-**DECISIÓN PENDIENTE** - Ver sección 9.4
-
----
-
-### 8.2 Teorema Maestro (teorema-maestro.md)
-
-**Cuándo aplicar:**
-Cuando la recurrencia cumple EXACTAMENTE:
-```
-T(n) = a*T(n/b) + Θ(n^k * log^p(n))
-```
-
-**Patrón que activa:**
-- Recurrencia en forma estándar
-- División uniforme del problema
-- Función de combinación polinómica
-
-**Qué resuelve:**
-Clasificación directa en uno de 3 casos:
-- **Caso 1**: f(n) < n^(log_b(a)) → T(n) = Θ(n^(log_b(a)))
-- **Caso 2**: f(n) = n^(log_b(a)) → T(n) = Θ(n^(log_b(a)) * log n)
-- **Caso 3**: f(n) > n^(log_b(a)) → T(n) = Θ(f(n))
-
-**Output esperado:**
-- Identificación del caso aplicable
-- Solución directa
-- Justificación de por qué ese caso
-
-**¿Es un sub-agente o el agente principal la aplica?**
-**DECISIÓN PENDIENTE** - Ver sección 9.4
-
----
-
-### 8.3 Árbol de Recursión (arbol-recursion.md)
-
-**Cuándo aplicar:**
-Cuando:
-- Teorema maestro NO aplica
-- Se necesita análisis más visual
-- La recurrencia tiene múltiples términos recursivos
-
-**Patrón que activa:**
-- Recurrencia no estándar
-- Necesidad de contar niveles y nodos
-- Análisis paso a paso requerido
-
-**Qué resuelve:**
-Visualiza la estructura de las llamadas recursivas y suma el costo total.
-
-**Proceso:**
-1. Dibujar árbol de llamadas
-2. Calcular costo por nivel
-3. Contar número de niveles
-4. Sumar todos los niveles
-
-**Output esperado:**
-- Representación del árbol (Mermaid/ASCII)
-- Costo por nivel
-- Suma total
-- Complejidad final
-
-**¿Es un sub-agente o el agente principal la aplica?**
-**DECISIÓN PENDIENTE** - Ver sección 9.4
-
----
 
 ## 9. PUNTOS DE DECISIÓN ARQUITECTÓNICA
 
@@ -837,6 +749,9 @@ Opción A inicialmente, Opción B como mejora futura.
 **Decisión Recomendada:**
 Opción B inicialmente. Usar AST solo si validación textual no es suficiente.
 
+**Decisión Recomendada Over:**
+Es posible intentar hacer uan simplificacion del AST y llevarlo a mermaid sino directamente la opcion B.
+
 ---
 
 ### 9.3 ¿Cómo Representar los 3 Escenarios?
@@ -853,6 +768,9 @@ Opción B inicialmente. Usar AST solo si validación textual no es suficiente.
 **Decisión Recomendada:**
 Opción A para simplicidad.
 
+**Decisión Recomendada Over:**
+Por el principio de encapsulamiento utilizaria la opcion B de forma que enviand los 3 objetos de los escenarios durante todo el proceso según los necesiten.
+
 ---
 
 ### 9.4 ¿Agente Resolver: Uno Solo o Sub-Agentes?
@@ -868,6 +786,9 @@ Opción A para simplicidad.
 
 **Decisión Recomendada:**
 **OPCIÓN B** - Sub-agentes especializados con un router que decide cuál invocar.
+
+**Decisión Recomendada Over:**
+A nivel de implementacion es mas facil hacer primero la opcion A, ya si ven que no es capaz de resolver, si partan a multiples agentes.
 
 **Justificación:**
 - Las técnicas son suficientemente complejas que merecen especialización
@@ -912,9 +833,9 @@ Opción A. El objetivo académico requiere transparencia.
 - [ ] Sintaxis correcta según archivos en `Backend/data/gramatica/`
 
 **Salida Esperada:**
-- [ ] Notación O (peor caso) con cota fuerte
-- [ ] Notación Ω (mejor caso) con cota fuerte
-- [ ] Notación Θ (caso promedio) con cota fuerte
+- [ ] Notación (peor caso) con cota fuerte
+- [ ] Notación (mejor caso) con cota fuerte
+- [ ] Notación (caso promedio) con cota fuerte
 - [ ] Justificación detallada de cada paso
 - [ ] Diagramas claros (cuando aplique)
 
