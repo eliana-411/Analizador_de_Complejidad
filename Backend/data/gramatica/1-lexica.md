@@ -5,13 +5,15 @@
 PALABRAS_RESERVADAS = {
     "begin", "end", "for", "to", "do", "while", "repeat", "until",
     "if", "then", "else", "CALL", "return", "length", "NULL",
-    "T", "F", "and", "or", "not", "mod", "div"
+    "T", "F", "and", "or", "not", "mod", "div",
+    "int", "real", "bool"
 }
 ```
 
 **Reglas:**
 - Las palabras reservadas NO pueden usarse como identificadores
 - Son case-sensitive (excepto begin/END que tienen variantes)
+- Los tipos de datos (`int`, `real`, `bool`) son palabras reservadas
 
 ---
 

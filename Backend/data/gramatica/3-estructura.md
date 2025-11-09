@@ -35,10 +35,11 @@
 
 **Ejemplo:**
 ```
-algoritmoOrdenamiento(A[], n)
+algoritmoOrdenamiento(int A[], int n)
 begin
     ► Declaraciones locales
-    temp[n]
+    int temp[n]
+    int i
 
     ► Sentencias
     for i 🡨 1 to n do
@@ -68,8 +69,10 @@ end
 
 **Ejemplo:**
 ```
-buscarMaximo(A[], n)
+buscarMaximo(int A[], int n)
 begin
+    int max, i
+
     max 🡨 A[1]
 
     for i 🡨 2 to n do
