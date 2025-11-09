@@ -1,0 +1,28 @@
+Nodo {int valor, Nodo izquierdo, Nodo derecho}
+
+insertar(Nodo raiz, int valor)
+begin
+    Nodo nuevo
+
+    if (raiz = NULL) then
+    begin
+        nuevo.valor 🡨 valor
+        nuevo.izquierdo 🡨 NULL
+        nuevo.derecho 🡨 NULL
+        return nuevo
+    end
+
+    if (valor < raiz.valor) then
+    begin
+        raiz.izquierdo 🡨 insertar(raiz.izquierdo, valor)
+    end
+    else
+    begin
+        if (valor > raiz.valor) then
+        begin
+            raiz.derecho 🡨 insertar(raiz.derecho, valor)
+        end
+    end
+
+    return raiz
+end
