@@ -1,0 +1,13 @@
+hanoi(n, int origen, int destino, int auxiliar)
+begin
+    if (n > 0) then
+    begin
+        hanoi(n - 1, origen, auxiliar, destino)
+        moverDisco(origen, destino)
+        hanoi(n - 1, auxiliar, destino, origen)
+    end
+end
+
+moverDisco(int desde, int hacia)
+begin
+    return
