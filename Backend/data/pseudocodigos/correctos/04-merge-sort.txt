@@ -1,0 +1,65 @@
+mergeSort(int A[], int izq, int der)
+begin
+    int medio
+
+    if (izq < der) then
+    begin
+        medio 🡨 └(izq + der) / 2┘
+
+        CALL mergeSort(A, izq, medio)
+        CALL mergeSort(A, medio + 1, der)
+        CALL merge(A, izq, medio, der)
+    end
+end
+
+merge(int A[], int izq, int medio, int der)
+begin
+    int n1, n2, i, j, k
+    int L[100], R[100]
+
+    n1 🡨 medio - izq + 1
+    n2 🡨 der - medio
+
+    for i 🡨 1 to n1 do
+    begin
+        L[i] 🡨 A[izq + i - 1]
+    end
+
+    for j 🡨 1 to n2 do
+    begin
+        R[j] 🡨 A[medio + j]
+    end
+
+    i 🡨 1
+    j 🡨 1
+    k 🡨 izq
+
+    while (i ≤ n1 and j ≤ n2) do
+    begin
+        if (L[i] ≤ R[j]) then
+        begin
+            A[k] 🡨 L[i]
+            i 🡨 i + 1
+        end
+        else
+        begin
+            A[k] 🡨 R[j]
+            j 🡨 j + 1
+        end
+        k 🡨 k + 1
+    end
+
+    while (i ≤ n1) do
+    begin
+        A[k] 🡨 L[i]
+        i 🡨 i + 1
+        k 🡨 k + 1
+    end
+
+    while (j ≤ n2) do
+    begin
+        A[k] 🡨 R[j]
+        j 🡨 j + 1
+        k 🡨 k + 1
+    end
+end

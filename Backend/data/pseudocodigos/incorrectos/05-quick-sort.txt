@@ -1,0 +1,34 @@
+quickSort(int A[], int izq, int der)
+begin
+    pivote
+
+    if izq < der then
+    begin
+        pivote 🡨 particionar(A, izq, der)
+        quickSort(A, izq, pivote - 1)
+        quickSort(A, pivote + 1, der)
+    end
+
+particionar(int A[], int izq, int der)
+begin
+    int pivote, i, j, temp
+
+    pivote 🡨 A[der]
+    i 🡨 izq - 1
+
+    for j 🡨 izq to der - 1 do
+    begin
+        if (A[j] ≤ pivote) then
+        begin
+            i 🡨 i + 1
+            temp 🡨 A[i]
+            A[i] 🡨 A[j]
+            A[j] 🡨 temp
+    end
+
+    temp 🡨 A[i + 1]
+    A[i + 1] 🡨 A[der]
+    A[der] 🡨 temp
+
+    return i + 1
+end
