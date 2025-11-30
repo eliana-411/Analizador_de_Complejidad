@@ -1,0 +1,14 @@
+hanoi(int n, int origen, int destino, int auxiliar)
+begin
+    if (n > 0) then
+    begin
+        CALL hanoi(n - 1, origen, auxiliar, destino)
+        CALL moverDisco(origen, destino)
+        CALL hanoi(n - 1, auxiliar, destino, origen)
+    end
+end
+
+moverDisco(int desde, int hacia)
+begin
+    return
+end
