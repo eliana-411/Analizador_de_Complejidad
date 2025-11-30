@@ -1,0 +1,18 @@
+bubbleSort(int A[], n)
+begin
+    int i, j
+    temp
+
+    for i 🡨 1 to n - 1 do
+    begin
+        for j 🡨 1 to n - i do
+        begin
+            if A[j] > A[j + 1] then
+            begin
+                temp 🡨 A[j]
+                A[j] 🡨 A[j + 1]
+                A[j + 1] = temp
+            end
+        end
+    end
+end
