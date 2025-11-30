@@ -1,16 +1,22 @@
-# backend/lector_archivos.py
-
 class LectorArchivos:
     def __init__(self, ruta_archivo):
         self.ruta_archivo = ruta_archivo
+        # cada elemento será {"num_linea": int, "texto": str}
         self.lineas = []
     
-    #* Se encarga de leer el archivo y almacenar las líneas, ignorando las líneas en blanco
-    #* strip() quita espacios/saltos de línea, y filtramos las vacías
+   
     def leer_archivo(self):
+        """
+        Lee el archivo y almacena:
+        - número de línea original (empezando en 1)
+        - texto de la línea SIN eliminar líneas en blanco
+        """
         try:
             with open(self.ruta_archivo, 'r', encoding='utf-8') as archivo:
-                self.lineas = [linea for linea in archivo.readlines() if linea.strip()]
+                self.lineas = [
+                    {"num_linea": idx, "texto": linea.rstrip('\n')} 
+                    for idx, linea in enumerate(archivo, start=1)
+                    ]
             return True
         except FileNotFoundError:
             print(f"Error: El archivo '{self.ruta_archivo}' no existe")
@@ -19,12 +25,20 @@ class LectorArchivos:
             print(f"Error al leer el archivo: {e}")
             return False
     
-    def obtener_lineas(self):
-        """Retorna todas las líneas leídas"""
+    def obtener_lineas(self, ignorar_vacias=False):
+        """Retorna todas las líneas leídas
+        Si ignorar_vacias es True, se omiten las líneas que están vacías o solo contienen espacios
+        """
+        if ignorar_vacias:
+            return [
+                linea for linea in self.lineas 
+                if linea["texto"].strip()
+                ]
         return self.lineas
     
     def obtener_linea(self, numero_linea):
-        """Retorna una línea específica (empezando desde 0)"""
-        if 0 <= numero_linea < len(self.lineas):
-            return self.lineas[numero_linea]
+        """Retorna una línea específica"""
+        for linea in self.lineas:
+            if linea["num_linea"] == numero_linea:
+                return linea
         return None
