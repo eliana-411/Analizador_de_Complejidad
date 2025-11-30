@@ -1,0 +1,15 @@
+fibonacci(int n)
+begin
+    int result
+
+    if (n ≤ 1) then
+    begin
+        result 🡨 n
+    end
+    else
+    begin
+        result 🡨 fibonacci(n - 1) + fibonacci(n - 2)
+    end
+
+    return result
+end

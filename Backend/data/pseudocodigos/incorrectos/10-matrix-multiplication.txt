@@ -1,0 +1,19 @@
+multiplicarMatrices(A[][], B[][], C[][], int n)
+begin
+    int i, j, k
+    suma
+
+    for i 🡨 1 to n do
+    begin
+        for j 🡨 1 to n do
+        begin
+            suma 🡨 0
+
+            for k 🡨 1 to n
+            begin
+                suma 🡨 suma + A[i][k] * B[k][j]
+            end
+
+            C[i][j] 🡨 suma
+        end
+end
