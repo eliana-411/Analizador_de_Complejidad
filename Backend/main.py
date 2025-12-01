@@ -19,10 +19,10 @@ def main():
         lineas = lector.obtener_lineas()
         
         # Muestra cada línea con su número
-        for i, linea in enumerate(lineas, start=1):
-            print(f"{i}: {linea}", end="")  # end="" porque readlines() ya incluye \n
+        for linea in lineas:
+            print(f"{linea['num_linea']}: {linea['texto']}")
         
-        print(f"\n\nTotal de líneas: {len(lineas)}")
+        print(f"\nTotal de líneas: {len(lineas)}")
     else:
         print("\n✗ No se pudo leer el archivo")
 
