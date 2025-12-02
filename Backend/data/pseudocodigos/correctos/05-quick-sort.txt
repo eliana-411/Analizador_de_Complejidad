@@ -1,18 +1,18 @@
-quickSort(int A[], int izq, int der)
+quickSort(A[], izq, der)
 begin
-    int pivote
+    pivote
 
     if (izq < der) then
     begin
-        pivote 🡨 particionar(A, izq, der)
-        CALL quickSort(A, izq, pivote - 1)
-        CALL quickSort(A, pivote + 1, der)
+        pivote 🡨 CALL particionar(A[], izq, der)
+        CALL quickSort(A[], izq, pivote - 1)
+        CALL quickSort(A[], pivote + 1, der)
     end
 end
 
-particionar(int A[], int izq, int der)
+particionar(A[], izq, der)
 begin
-    int pivote, i, j, temp
+    pivote, i, j, temp
 
     pivote 🡨 A[der]
     i 🡨 izq - 1

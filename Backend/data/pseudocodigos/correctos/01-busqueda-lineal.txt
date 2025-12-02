@@ -1,7 +1,7 @@
-busquedaLineal(int A[], int n, int x)
+busquedaLineal(A[], n, x)
 begin
-    int i
-    bool encontrado
+    i
+    encontrado
 
     encontrado 🡨 F
     i 🡨 1

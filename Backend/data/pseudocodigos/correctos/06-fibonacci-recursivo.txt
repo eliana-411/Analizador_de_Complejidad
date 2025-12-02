@@ -1,15 +1,11 @@
-fibonacci(int n)
+fibonacci(n)
 begin
-    int result
-
     if (n ≤ 1) then
     begin
-        result 🡨 n
+        return n
     end
     else
     begin
-        result 🡨 fibonacci(n - 1) + fibonacci(n - 2)
+        return CALL fibonacci(n - 1) + CALL fibonacci(n - 2)
     end
-
-    return result
 end
