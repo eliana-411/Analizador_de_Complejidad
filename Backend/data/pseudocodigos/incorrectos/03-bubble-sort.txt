@@ -1,18 +1,26 @@
-bubbleSort(int A[], n)
+bubbleSort(A[], n)
 begin
-    int i, j
-    temp
+    i, j, temp
+    intercambio
 
     for i 🡨 1 to n - 1 do
     begin
+        intercambio 🡨 F
+
         for j 🡨 1 to n - i do
         begin
-            if A[j] > A[j + 1] then
+            if (A[j] > A[j + 1]) then
             begin
-                temp 🡨 A[j]
+                temp 🡨 A[j] 🡨 10
                 A[j] 🡨 A[j + 1]
-                A[j + 1] = temp
+                A[j + 1] 🡨 temp
+                intercambio 🡨 T
             end
         end
-    end
+
+        if (not intercambio) then
+        begin
+            return
+        end
+    
 end

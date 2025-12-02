@@ -36,6 +36,13 @@ class LectorArchivos:
                 ]
         return self.lineas
     
+    def obtener_contenido_completo(self):
+        """
+        Retorna el contenido completo del archivo como un solo string.
+        Útil para pasar al AgenteValidador.
+        """
+        return '\n'.join([linea["texto"] for linea in self.lineas])
+    
     def obtener_linea(self, numero_linea):
         """Retorna una línea específica"""
         for linea in self.lineas:
