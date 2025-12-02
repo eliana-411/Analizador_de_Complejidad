@@ -4,3 +4,5 @@ __pycache__/
 .env
 *.env
 Backend/.env
+test_core.py
+test_connection.py
