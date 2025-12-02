@@ -1,6 +1,6 @@
-Nodo {int valor, Nodo izquierdo, Nodo derecho}
+Nodo {valor izquierdo derecho}
 
-insertar(Nodo raiz, int valor)
+insertar(Nodo raiz, valor)
 begin
     Nodo nuevo
 
@@ -14,13 +14,13 @@ begin
 
     if (valor < raiz.valor) then
     begin
-        raiz.izquierdo 🡨 insertar(raiz.izquierdo, valor)
+        raiz.izquierdo 🡨 CALL insertar(raiz.izquierdo, valor)
     end
     else
     begin
         if (valor > raiz.valor) then
         begin
-            raiz.derecho 🡨 insertar(raiz.derecho, valor)
+            raiz.derecho 🡨 CALL insertar(raiz.derecho, valor)
         end
     end
 
