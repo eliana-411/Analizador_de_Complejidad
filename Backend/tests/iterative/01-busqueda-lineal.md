@@ -49,97 +49,63 @@ macroalgoritmo
 ```
 
 
-## Analisis de complejidad
+## Derivación Sistemática de Escenarios (Agente Analizador de complejidad)
 
-> Agente-Analizador:
+> Objetivo: Mapear exhaustivamente los flujos de ejecución posibles basados en las condiciones de parada del bucle.
 
-### Entrada
+### 1. Identificación de Variables de Control
+El flujo del algoritmo está controlado por la condición del `while`:
+$$ C_{bucle}: (i \le n) \land (\neg encontrado) $$
 
-#### Memoria
+El estado `encontrado` depende estrictamente de la condición:
+$$ C_{match}: A[i] == x $$
 
-```json
-{
-    "pseudocodigo": "busquedaLineal(int A[], int n, int x)...",
-    "es_iterativo": true
-}
-```
+### 2. Espacio de Escenarios ($\Omega$)
+Definimos el conjunto de escenarios posibles $\Omega$ basándonos en el índice $k$ donde se cumple $C_{match}$ por primera vez.
 
-### Respuesta
-```json
-{
-    "analisis_linea_a_linea": [
-        {"linea": 9, "costo": "c1", "veces": 1, "descripcion": "Asignación inicial"},
-        {"linea": 10, "costo": "c2", "veces": 1, "descripcion": "Asignación índice"},
-        {"linea": 12, "costo": "c3", "veces": "k + 1", "descripcion": "Comparación bucle (k iteraciones)"},
-        {"linea": 14, "costo": "c4", "veces": "k", "descripcion": "Comparación elemento"},
-        {"linea": 16, "costo": "c5", "veces": "1 o 0", "descripcion": "Asignación éxito"},
-        {"linea": 18, "costo": "c6", "veces": "k", "descripcion": "Incremento índice"},
-        {"linea": 21, "costo": "c7", "veces": 1, "descripcion": "Retorno"}
-    ],
-    "complejidad_temporal": "O(n)",
-    "complejidad_espacial": "O(1)"
-}
-```
+| ID Escenario ($S_k$) | Condición Definitoria | Iteraciones Realizadas ($I$) | Probabilidad Asumida ($P(S_k)$) |
+| :--- | :--- | :--- | :--- |
+| $S_1$ | $A[1] = x$ | 1 | $1/n$ (si existe) |
+| $S_2$ | $A[2] = x$ | 2 | $1/n$ (si existe) |
+| ... | ... | ... | ... |
+| $S_k$ | $A[k] = x$ | $k$ | $1/n$ (si existe) |
+| ... | ... | ... | ... |
+| $S_n$ | $A[n] = x$ | $n$ | $1/n$ (si existe) |
+| $S_{\emptyset}$ | $\forall i, A[i] \neq x$ | $n$ | $0$ (para análisis de éxito) |
 
+### 3. Función de Costo por Escenario
+Definimos la función de costo $T(S)$ como una transformación lineal de las iteraciones:
+$$ T(S_k) = C_{init} + (k \cdot C_{iter}) + C_{exit} $$
+Para fines asintóticos, simplificamos a pasos proporcionales a $k$:
+$$ T(k) \approx k $$
 
-## Despeje de la Función de eficiencia
+## Cálculo de Cotas y Eficiencia
 
-Para determinar la función de eficiencia $T(n)$, analizamos el número de operaciones elementales en función del tamaño de la entrada $n$.
+Una vez mapeado $\Omega$, derivamos los límites naturales del conjunto.
 
-Sea $k$ el número de iteraciones del bucle `while`.
-La función de costo detallada es:
-$$T(n) = c_{init} + c_{bucle} \cdot (k+1) + c_{cuerpo} \cdot k + c_{final}$$
+### Límite Inferior (Best Case Analysis)
+Buscamos el escenario $S_{min}$ tal que minimice $T(S)$.
+$$ S_{min} = \arg \min_{k \in \{1..n\}} T(S_k) \implies k=1 $$
+$$ T(best) = T(1) = O(1) $$
 
-Agrupando términos constantes:
-$$T(n) = A \cdot k + B$$
+### Límite Superior (Worst Case Analysis)
+Buscamos el escenario $S_{max}$ tal que maximice $T(S)$.
+El conjunto de parada es $I = \{1, 2, ..., n\}$.
+$$ S_{max} = \max(I) \implies k=n $$
+$$ T(worst) = T(n) = O(n) $$
 
-Donde $A$ representa el costo constante por iteración y $B$ el costo de inicialización y finalización.
+### Esperanza Matemática (Average Case Derivation)
+Calculamos el valor esperado $E[T]$ iterando sobre todo el espacio $\Omega$ mapeado anteriormente.
 
-### 1. Mejor Caso (Best Case)
-Ocurre cuando el elemento $x$ se encuentra en la primera posición ($A[1] = x$).
-- Iteraciones $k = 1$.
-- $T_{best}(n) = A(1) + B = C_{best}$
-- **Conclusión:** El tiempo es constante.
+$$ E[T] = \sum_{S \in \Omega} P(S) \cdot T(S) $$
 
-### 2. Peor Caso (Worst Case)
-Ocurre cuando el elemento $x$ no está en el arreglo o está en la última posición.
-- El bucle se ejecuta completo: $k = n$.
-- $T_{worst}(n) = A \cdot n + B$
-- **Conclusión:** La función crece linealmente con $n$.
+Dado que definimos $P(S_k) = \frac{1}{n}$ para una distribución uniforme de éxito:
 
-### 3. Caso Promedio (Average Case) - Esperanza Matemática
-Asumimos que la probabilidad de que $x$ esté en cualquier posición $i$ del arreglo es uniforme y el elemento está presente.
-- Probabilidad de encontrar $x$ en la posición $i$: $P(pos=i) = \frac{1}{n}$.
-- Si está en la posición $i$, el algoritmo realiza $i$ iteraciones ($k=i$).
+$$ E[T] = \sum_{k=1}^{n} \frac{1}{n} \cdot (C \cdot k) $$
+$$ E[T] = \frac{C}{n} \sum_{k=1}^{n} k $$
 
-La esperanza matemática de las iteraciones $\mathbb{E}[k]$ es:
+Aplicando la identidad de la suma aritmética (Gauss):
+$$ E[T] = \frac{C}{n} \cdot \frac{n(n+1)}{2} = \frac{C(n+1)}{2} $$
 
-$$ \mathbb{E}[k] = \sum_{i=1}^{n} P(pos=i) \cdot i = \sum_{i=1}^{n} \frac{1}{n} \cdot i $$
-$$ \mathbb{E}[k] = \frac{1}{n} \sum_{i=1}^{n} i = \frac{1}{n} \cdot \frac{n(n+1)}{2} $$
-$$ \mathbb{E}[k] = \frac{n+1}{2} $$
-
-Sustituyendo en la función de eficiencia:
-$$ T_{avg}(n) = A \cdot \left( \frac{n+1}{2} \right) + B = \frac{A}{2}n + \left(\frac{A}{2} + B\right) $$
-
-- **Conclusión:** En promedio, se recorre la mitad del arreglo, manteniendo un comportamiento lineal.
-
-
-## Asociación con Notación asintótica
-
-Dada la función de eficiencia del peor caso $T(n) = A \cdot n + B$:
-
-### Big-O ($O$) - Cota Superior
-Para demostrar que $T(n) \in O(n)$, buscamos constantes $c > 0$ y $n_0$ tales que $T(n) \leq c \cdot n$ para todo $n \geq n_0$.
-$$\lim_{n \to \infty} \frac{An + B}{n} = A$$
-Como el límite es una constante $A > 0$, concluimos que $T(n) \in O(n)$.
-
-### Big-Omega ($\Omega$) - Cota Inferior
-- Para el **peor caso**: $T(n)$ crece al menos linealmente, $\Omega(n)$.
-- Para el **mejor caso**: $T(n)$ es constante, $\Omega(1)$.
-- Generalmente para el algoritmo sin condiciones (lower bound universal): $\Omega(1)$.
-
-### Big-Theta ($\Theta$) - Cota Ajustada (Caso Promedio/Peor)
-Dado que tanto el peor caso como el caso promedio son lineales:
-$$T_{avg}(n) \approx \frac{1}{2} T_{worst}(n)$$
-Ambos pertenecen a la clase lineal.
-$$\therefore T(n) \in \Theta(n)$$
+### Conclusión Asintótica
+$$ T(n) \approx \frac{n}{2} \implies O(n) $$

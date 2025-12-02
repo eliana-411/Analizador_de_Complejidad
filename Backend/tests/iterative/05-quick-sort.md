@@ -5,7 +5,6 @@
 quickSort(int A[], int izq, int der)
 begin
     int pivote
-
     if (izq < der) then
     begin
         pivote 🡨 particionar(A, izq, der)
@@ -15,163 +14,94 @@ begin
 end
 
 particionar(int A[], int izq, int der)
-begin
-    int pivote, i, j, temp
-
-    pivote 🡨 A[der]
-    i 🡨 izq - 1
-
-    for j 🡨 izq to der - 1 do
-    begin
-        if (A[j] ≤ pivote) then
-        begin
-            i 🡨 i + 1
-            temp 🡨 A[i]
-            A[i] 🡨 A[j]
-            A[j] 🡨 temp
-        end
-    end
-
-    temp 🡨 A[i + 1]
-    A[i + 1] 🡨 A[der]
-    A[der] 🡨 temp
-
-    return i + 1
+... (lógica de partición O(n)) ...
+return i + 1
 end
-
 ```
 
 ## Validacion
 
-> Por qué existe?
-> Se valida el algoritmo y todo salio bien.
-
-
 Agente-Validador:
-
-### Entrada
-
-#### Memoria
-
-```json
-macroalgoritmo
-```
-
-
 ### Respuesta
 ```json
 {
     "corrrect": true,
-    "corrected_version": null,
     "es_iterativo": false
 }
 ```
 
+## Derivación Sistemática de Escenarios
 
-## Analisis de complejidad
+> Objetivo: Mapear los escenarios basándonos en la topología del Árbol de Recursión generado por la elección del pivote.
 
-> Agente-Analizador:
+### 1. Variable de Control Crítica
+La eficiencia depende exclusivamente de la posición final del `pivote` ($p$) devuelta por `particionar`. Esta posición determina el tamaño de los subproblemas siguientes.
+$$ n_{left} = p - 1, \quad n_{right} = n - p $$
 
-### Entrada
+### 2. Espacio de Escenarios ($\Omega$) - Topologías de Árbol
+Cada ejecución genera un árbol de recursión distinto. Definimos los escenarios extremos basándonos en el **Balanceo del Árbol**.
 
-#### Memoria
+| ID Escenario ($S$) | Característica de Partición | Estructura del Árbol | Altura del Árbol ($h$) |
+| :--- | :--- | :--- | :--- |
+| $S_{balanced}$ | $p \approx n/2$ (Mediana) | Binario Balanceado | $\log_2 n$ |
+| $S_{skewed}$ | $p = 0$ o $p = n$ (Extremo) | Degenerado (Lista) | $n$ |
+| $S_{random}$ | $p$ es aleatorio uniforme | Promedio Estocástico | $\approx 1.39 \log_2 n$ |
 
-```json
-{
-    "pseudocodigo": "quickSort(int A[], int izq, int der)...",
-    "es_iterativo": false
-}
-```
+### 3. Función de Recurrencia Genérica
+Para cualquier escenario, el costo total es la suma del costo en cada nodo del árbol. El costo de particionar es siempre lineal ($Cn$).
+$$ T(n) = T(p) + T(n-p-1) + Cn $$
 
-### Respuesta
-```json
-{
-    "analisis_estructura": {
-        "metodo_particionar": {
-            "costo": "O(n)",
-            "descripcion": "Recorre el sub-arreglo una vez para ubicar el pivote."
-        },
-        "metodo_quickSort": {
-            "tipo": "Recursivo",
-            "relacion_recurrencia": "T(n) = T(k) + T(n-k-1) + O(n)"
-        }
-    },
-    "complejidad_temporal": "O(n log n)",
-    "complejidad_espacial": "O(log n)"
-}
-```
+---
 
+## Cálculo de Cotas y Eficiencia
 
-## Despeje de la Función de eficiencia
+### Límite Inferior (Best Case Analysis) - $S_{balanced}$
+**Condición:** En cada nivel, el pivote divide el set en dos mitades exactas.
+**Recurrencia:**
+$$ T(n) = 2T(n/2) + Cn $$
+**Resolución (Teorema Maestro Caso 2):**
+$$ \log_b a = \log_2 2 = 1 = d \implies T(n) \in \Theta(n \log n) $$
 
-La función de eficiencia $T(n)$ depende de cómo el pivote divide el arreglo en cada paso. El costo de la función `particionar` es lineal, $C \cdot n$, donde $n = der - izq + 1$.
+### Límite Superior (Worst Case Analysis) - $S_{skewed}$
+**Condición:** En cada nivel, el pivote seleccionado es el mínimo o máximo del set restante.
+**Recurrencia:**
+$$ T(n) = T(0) + T(n-1) + Cn \approx T(n-1) + Cn $$
+**Desarrollo de Sumatoria:**
+Al desenrollar la recursión, obtenemos una suma aritmética:
+$$ T(n) = \sum_{i=1}^{n} C \cdot i = C \frac{n(n+1)}{2} $$
+**Conclusión:**
+$$ T(n) \in O(n^2) $$
 
-La recurrencia general es:
-$$ T(n) = T(i) + T(n - i - 1) + C \cdot n $$
-Donde $i$ es el número de elementos en el sub-arreglo izquierdo (menores al pivote).
+---
 
-### 1. Mejor Caso (Best Case)
-Ocurre cuando el pivote siempre divide el arreglo en dos mitades iguales (la partición es balanceada).
-- $i \approx n/2$
-- Recurrencia: $T(n) = 2T(n/2) + Cn$
-- Resolviendo por Teorema Maestro (Caso 2):
-  $$ T(n) \in O(n \log n) $$
+## Derivación del Caso Promedio (Esperanza Matemática)
 
-### 2. Peor Caso (Worst Case)
-Ocurre cuando el arreglo ya está ordenado (o inversamente ordenado) y el pivote elegido es siempre un extremo (mínimo o máximo).
-- $i = 0$ o $i = n-1$ en cada llamada.
-- El árbol de recursión se degenera en una lista.
-- Recurrencia: $T(n) = T(n-1) + T(0) + Cn = T(n-1) + Cn$
-- Sumatoria: $\sum_{i=1}^{n} C \cdot i = C \frac{n(n+1)}{2}$
-- $$ T(n) \in O(n^2) $$
+En lugar de asumir un resultado, calculamos la **Esperanza del Costo** $E[T(n)]$ asumiendo que cualquier posición del pivote $p \in [0, n-1]$ es equiprobable con probabilidad $1/n$.
 
-### 3. Caso Promedio (Average Case) - Esperanza Matemática
-Suponemos que cualquier posición del pivote es equiprobable (probabilidad $\frac{1}{n}$).
-La función de eficiencia promedio $T_{avg}(n)$ es el promedio de todas las posibles divisiones:
+$$ E[T(n)] = \frac{1}{n} \sum_{p=0}^{n-1} [T(p) + T(n-p-1)] + Cn $$
 
-$$ T_{avg}(n) = \frac{1}{n} \sum_{i=0}^{n-1} [T(i) + T(n - 1 - i)] + Cn $$
+Debido a la simetría de la suma ($\sum T(p)$ es igual a $\sum T(n-p-1)$):
 
-Dado que $\sum T(i)$ y $\sum T(n-1-i)$ suman los mismos términos en orden inverso:
-$$ T_{avg}(n) = \frac{2}{n} \sum_{i=0}^{n-1} T(i) + Cn $$
+$$ E[T(n)] = \frac{2}{n} \sum_{p=0}^{n-1} T(p) + Cn $$
 
-#### Resolución de la Recurrencia
-Multiplicamos por $n$:
-$$ n T_{avg}(n) = 2 \sum_{i=0}^{n-1} T(i) + Cn^2 \quad \text{--- (Ec. 1)} $$
+### Resolución Algebraica Sistemática
 
-Escribimos la misma ecuación para $n-1$:
-$$ (n-1) T_{avg}(n-1) = 2 \sum_{i=0}^{n-2} T(i) + C(n-1)^2 \quad \text{--- (Ec. 2)} $$
+1.  **Multiplicar por $n$ para eliminar fracción:**
+    $$ n T(n) = 2 \sum_{p=0}^{n-1} T(p) + Cn^2 $$
 
-Restamos (Ec. 2) de (Ec. 1):
-$$ n T(n) - (n-1) T(n-1) = 2 T(n-1) + C(2n - 1) $$
+2.  **Instanciar para $n-1$ (para crear sistema telescópico):**
+    $$ (n-1) T(n-1) = 2 \sum_{p=0}^{n-2} T(p) + C(n-1)^2 $$
 
-Reordenando términos (ignorando constantes menores para la asintótica):
-$$ n T(n) = (n+1) T(n-1) + 2Cn $$
+3.  **Restar ecuaciones (1) - (2):**
+    $$ nT(n) - (n-1)T(n-1) = 2T(n-1) + 2Cn - C $$
 
-Dividimos todo por $n(n+1)$:
-$$ \frac{T(n)}{n+1} = \frac{T(n-1)}{n} + \frac{2C}{n+1} $$
+4.  **Simplificar y Reorganizar:**
+    $$ nT(n) = (n+1)T(n-1) + 2Cn $$
+    $$ \frac{T(n)}{n+1} = \frac{T(n-1)}{n} + \frac{2C}{n+1} $$
 
-Realizamos una sustitución telescópica:
-$$ \sum_{k=1}^{n} \frac{2C}{k+1} \approx 2C \sum_{k=1}^{n} \frac{1}{k} \approx 2C \ln n $$
+5.  **Resolver Sumatoria (Serie Armónica):**
+    $$ \sum \frac{2C}{k} \approx 2C \ln n $$
 
-Por lo tanto:
-$$ \frac{T(n)}{n+1} \approx 2C \ln n $$
-$$ T(n) \approx 2Cn \ln n $$
-$$ T(n) \approx 1.39 Cn \log_2 n $$
-
-**Conclusión:** El caso promedio es asintóticamente igual al mejor caso (salvo constantes).
-
-
-## Asociación con Notación asintótica
-
-### Big-O ($O$) - Cota Superior
-- En el peor escenario, el algoritmo no supera el comportamiento cuadrático.
-- $$ T(n) \in O(n^2) $$
-- Sin embargo, para el caso promedio (y mejor caso), se comporta como $$ O(n \log n) $$.
-
-### Big-Omega ($\Omega$) - Cota Inferior
-- Debido a que es un algoritmo de ordenamiento basado en comparaciones, no puede ser más rápido que $n \log n$ en el caso promedio/mejor.
-- $$ T(n) \in \Omega(n \log n) $$
-
-### Big-Theta ($\Theta$) - Cota Ajustada
-- No existe un $\Theta$ único para todos los casos porque el peor caso ($n^2$) difiere del promedio ($n \log n$).
-- Normalmente se dice que QuickSort es $\Theta(n \log n)$ en el **caso promedio**.
+### Conclusión Asintótica
+$$ T(n) \approx 2n \ln n \approx 1.39 n \log_2 n \implies \Theta(n \log n) $$
+El costo promedio es solo un 39% mayor que el mejor caso, y muy alejado del peor caso cuadrático.
