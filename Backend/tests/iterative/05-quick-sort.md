@@ -1,5 +1,7 @@
 
-# Pseudocódigo
+# Ejecución
+
+Se inicia el sistema con un macroalgoritmo.
 
 ```
 quickSort(int A[], int izq, int der)
@@ -12,96 +14,95 @@ begin
         CALL quickSort(A, pivote + 1, der)
     end
 end
-
 particionar(int A[], int izq, int der)
-... (lógica de partición O(n)) ...
-return i + 1
+begin
+    int pivote, i, j, temp
+
+    pivote 🡨 A[der]
+    i 🡨 izq - 1
+
+    for j 🡨 izq to der - 1 do
+    begin
+        if (A[j] ≤ pivote) then
+        begin
+            i 🡨 i + 1
+            temp 🡨 A[i]
+            A[i] 🡨 A[j]
+            A[j] 🡨 temp
+        end
+    end
+
+    temp 🡨 A[i + 1]
+    A[i + 1] 🡨 A[der]
+    A[der] 🡨 temp
+
+    return i + 1
 end
 ```
 
 ## Validacion
+
+Se valida por cada una de las reglas del lenguaje.
+Se corrige si es necesario.
+Se define si es iterativo o recursivo.
 
 Agente-Validador:
 ### Respuesta
 ```json
 {
     "corrrect": true,
-    "es_iterativo": false
+    "es_iterativo": false,
+    "pseudocodigo": "quickSort..."
 }
 ```
 
-## Derivación Sistemática de Escenarios
+## Análisis Sistemático de Escenarios
 
-> Objetivo: Mapear los escenarios basándonos en la topología del Árbol de Recursión generado por la elección del pivote.
+La eficiencia depende de la partición $p$ seleccionada. Listamos los escenarios posibles como configuraciones recursivas.
 
-### 1. Variable de Control Crítica
-La eficiencia depende exclusivamente de la posición final del `pivote` ($p$) devuelta por `particionar`. Esta posición determina el tamaño de los subproblemas siguientes.
-$$ n_{left} = p - 1, \quad n_{right} = n - p $$
+### 1. Mapeo de Eventos
 
-### 2. Espacio de Escenarios ($\Omega$) - Topologías de Árbol
-Cada ejecución genera un árbol de recursión distinto. Definimos los escenarios extremos basándonos en el **Balanceo del Árbol**.
+Definimos el espacio muestral $\Omega$, categorizando cada escenario por la posición del pivote $p$.
 
-| ID Escenario ($S$) | Característica de Partición | Estructura del Árbol | Altura del Árbol ($h$) |
+| ID Escenario ($S_p$) | Condición Definitoria | Estado Global | Tamaño Subs ($L, R$) | $T(n)$ Recurrencia Local | Probabilidad ($P$) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| $S_0$ | $p=0$ | Desbalanceado | $0, n-1$ | $T(0) + T(n-1) + Cn$ | $1/n$ |
+| $S_1$ | $p=1$ | Desbalanceado | $1, n-2$ | $T(1) + T(n-2) + Cn$ | $1/n$ |
+| ... | ... | ... | ... | ... | ... |
+| $S_{n/2}$ | $p \approx n/2$ | Balanceado | $n/2, n/2$ | $2T(n/2) + Cn$ | $1/n$ |
+| ... | ... | ... | ... | ... | ... |
+| $S_{n-2}$ | $p=n-2$ | Desbalanceado | $n-2, 1$ | $T(n-2) + T(1) + Cn$ | $1/n$ |
+| $S_{n-1}$ | $p=n-1$ | Desbalanceado | $n-1, 0$ | $T(n-1) + T(0) + Cn$ | $1/n$ |
+
+### 2. Cálculo del Costo Promedio (Esperanza Matemática)
+
+La función promedio $T_{avg}(n)$ se calcula sumando las recurrencias de todos los escenarios ponderadas.
+
+$$ T_{avg}(n) = \mathbb{E}[T] = \sum_{p=0}^{n-1} T(S_p) \cdot P(S_p) $$
+$$ T_{avg}(n) = \frac{1}{n} \sum_{p=0}^{n-1} [ T(p) + T(n-p-1) + Cn ] $$
+
+Por simetría de las ramas izquierda y derecha:
+$$ T_{avg}(n) = Cn + \frac{2}{n} \sum_{p=0}^{n-1} T(p) $$
+
+#### Resolución Algebraica
+Usando sustracción telescópica para resolver la sumatoria:
+
+1.  $n T(n) = nCn + 2 \sum_{p=0}^{n-1} T(p)$
+2.  $(n-1) T(n-1) = (n-1)C(n-1) + 2 \sum_{p=0}^{n-2} T(p)$
+3.  Restando ambas:
+    $$ nT(n) - (n-1)T(n-1) \approx 2T(n-1) + 2Cn $$
+4.  Simplificando:
+    $$ \frac{T(n)}{n+1} \approx 2C \sum \frac{1}{k} \approx 2C \ln n $$
+
+Resultado final para la esperanza:
+$$ T_{avg}(n) \approx 1.39 C n \log_2 n $$
+
+---
+
+## Cotas Asintóticas (Resumen Final)
+
+| Cota | Escenario ID | Valor $T(n)$ | Notación |
 | :--- | :--- | :--- | :--- |
-| $S_{balanced}$ | $p \approx n/2$ (Mediana) | Binario Balanceado | $\log_2 n$ |
-| $S_{skewed}$ | $p = 0$ o $p = n$ (Extremo) | Degenerado (Lista) | $n$ |
-| $S_{random}$ | $p$ es aleatorio uniforme | Promedio Estocástico | $\approx 1.39 \log_2 n$ |
-
-### 3. Función de Recurrencia Genérica
-Para cualquier escenario, el costo total es la suma del costo en cada nodo del árbol. El costo de particionar es siempre lineal ($Cn$).
-$$ T(n) = T(p) + T(n-p-1) + Cn $$
-
----
-
-## Cálculo de Cotas y Eficiencia
-
-### Límite Inferior (Best Case Analysis) - $S_{balanced}$
-**Condición:** En cada nivel, el pivote divide el set en dos mitades exactas.
-**Recurrencia:**
-$$ T(n) = 2T(n/2) + Cn $$
-**Resolución (Teorema Maestro Caso 2):**
-$$ \log_b a = \log_2 2 = 1 = d \implies T(n) \in \Theta(n \log n) $$
-
-### Límite Superior (Worst Case Analysis) - $S_{skewed}$
-**Condición:** En cada nivel, el pivote seleccionado es el mínimo o máximo del set restante.
-**Recurrencia:**
-$$ T(n) = T(0) + T(n-1) + Cn \approx T(n-1) + Cn $$
-**Desarrollo de Sumatoria:**
-Al desenrollar la recursión, obtenemos una suma aritmética:
-$$ T(n) = \sum_{i=1}^{n} C \cdot i = C \frac{n(n+1)}{2} $$
-**Conclusión:**
-$$ T(n) \in O(n^2) $$
-
----
-
-## Derivación del Caso Promedio (Esperanza Matemática)
-
-En lugar de asumir un resultado, calculamos la **Esperanza del Costo** $E[T(n)]$ asumiendo que cualquier posición del pivote $p \in [0, n-1]$ es equiprobable con probabilidad $1/n$.
-
-$$ E[T(n)] = \frac{1}{n} \sum_{p=0}^{n-1} [T(p) + T(n-p-1)] + Cn $$
-
-Debido a la simetría de la suma ($\sum T(p)$ es igual a $\sum T(n-p-1)$):
-
-$$ E[T(n)] = \frac{2}{n} \sum_{p=0}^{n-1} T(p) + Cn $$
-
-### Resolución Algebraica Sistemática
-
-1.  **Multiplicar por $n$ para eliminar fracción:**
-    $$ n T(n) = 2 \sum_{p=0}^{n-1} T(p) + Cn^2 $$
-
-2.  **Instanciar para $n-1$ (para crear sistema telescópico):**
-    $$ (n-1) T(n-1) = 2 \sum_{p=0}^{n-2} T(p) + C(n-1)^2 $$
-
-3.  **Restar ecuaciones (1) - (2):**
-    $$ nT(n) - (n-1)T(n-1) = 2T(n-1) + 2Cn - C $$
-
-4.  **Simplificar y Reorganizar:**
-    $$ nT(n) = (n+1)T(n-1) + 2Cn $$
-    $$ \frac{T(n)}{n+1} = \frac{T(n-1)}{n} + \frac{2C}{n+1} $$
-
-5.  **Resolver Sumatoria (Serie Armónica):**
-    $$ \sum \frac{2C}{k} \approx 2C \ln n $$
-
-### Conclusión Asintótica
-$$ T(n) \approx 2n \ln n \approx 1.39 n \log_2 n \implies \Theta(n \log n) $$
-El costo promedio es solo un 39% mayor que el mejor caso, y muy alejado del peor caso cuadrático.
+| **Inferior ($\Omega$)** | $S_{n/2}$ | $n \log n$ | $\Omega(n \log n)$ |
+| **Superior ($O$)** | $S_0$ o $S_{n-1}$ | $n^2$ | $O(n^2)$ |
+| **Promedio ($\Theta$)** | - | $\approx 1.39 n \log n$ | $\Theta(n \log n)$ |

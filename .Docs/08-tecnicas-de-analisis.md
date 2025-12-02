@@ -1,2 +1,3 @@
 # 8. TÉCNICAS DE ANÁLISIS
-// ... content from section 8 ...
+
+El agente resolvedor revisara los .md de tecnicas para saber como resolver los problemas.

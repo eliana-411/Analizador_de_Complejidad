@@ -1,4 +1,6 @@
-# Pseudocódigo
+# Ejecución
+
+Se inicia el sistema con un macroalgoritmo.
 
 ```
 busquedaLineal(int A[], int n, int x)
@@ -24,88 +26,64 @@ end
 
 ## Validacion
 
-> Por qué existe?
-> Se valida el algoritmo y todo salio bien.
-
+Se valida por cada una de las reglas del lenguaje.
+Se corrige si es necesario.
+Se define si es iterativo o recursivo.
 
 Agente-Validador:
-
-### Entrada
-
-#### Memoria
-
-```json
-macroalgoritmo
-```
-
-
 ### Respuesta
 ```json
 {
     "corrrect": true,
-    "corrected_version": null,
-    "es_iterativo": true
+    "es_iterativo": true,
+    "pseudocodigo": "busquedaLineal..."
 }
 ```
 
+## Análisis Sistemático de Escenarios
 
-## Derivación Sistemática de Escenarios (Agente Analizador de complejidad)
+Para determinar el comportamiento del algoritmo, primero listamos **todos** los eventos posibles que detienen el ciclo en una tabla estructurada.
 
-> Objetivo: Mapear exhaustivamente los flujos de ejecución posibles basados en las condiciones de parada del bucle.
+### 1. Mapeo de Eventos
 
-### 1. Identificación de Variables de Control
-El flujo del algoritmo está controlado por la condición del `while`:
-$$ C_{bucle}: (i \le n) \land (\neg encontrado) $$
+Definimos el espacio muestral $\Omega$, categorizando cada escenario.
 
-El estado `encontrado` depende estrictamente de la condición:
-$$ C_{match}: A[i] == x $$
+| ID Escenario ($S$) | Condición Definitoria | Estado Global | Iteraciones ($k$) | $T(n)$ Escenario | Probabilidad ($P$) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| $S_1$ | $A[1] = x$ | Exito | 1 | $1$ | $1/n \cdot q$ |
+| $S_2$ | $A[2] = x$ | Exito | 2 | $2$ | $1/n \cdot q$ |
+| ... | ... | ... | ... | ... | ... |
+| $S_k$ | $A[k] = x$ | Exito | $k$ | $k$ | $1/n \cdot q$ |
+| ... | ... | ... | ... | ... | ... |
+| $S_n$ | $A[n] = x$ | Exito | $n$ | $n$ | $1/n \cdot q$ |
+| $S_{\emptyset}$ | $\forall i, A[i] \neq x$ | Fallo | $n$ | $n$ | $1-q$ |
 
-### 2. Espacio de Escenarios ($\Omega$)
-Definimos el conjunto de escenarios posibles $\Omega$ basándonos en el índice $k$ donde se cumple $C_{match}$ por primera vez.
+*Nota: $q$ representa la probabilidad de que el elemento esté presente en el arreglo.*
 
-| ID Escenario ($S_k$) | Condición Definitoria | Iteraciones Realizadas ($I$) | Probabilidad Asumida ($P(S_k)$) |
+### 2. Cálculo del Costo Promedio (Esperanza Matemática)
+
+La función de eficiencia promedio $T_{avg}(n)$ es la suma ponderada de los escenarios listados.
+
+$$ T_{avg}(n) = \mathbb{E}[T] = \sum_{S \in \Omega} T(S) \cdot P(S) $$
+
+Separando por el **Estado Global**:
+
+$$ T_{avg}(n) = \underbrace{\sum_{k=1}^{n} \left( k \cdot \frac{q}{n} \right)}_{\text{Casos de Éxito}} + \underbrace{\left( n \cdot (1-q) \right)}_{\text{Caso de Fallo}} $$
+
+Factorizando los términos de éxito:
+$$ T_{avg}(n) = \frac{q}{n} \sum_{k=1}^{n} k + n(1-q) $$
+$$ T_{avg}(n) = \frac{q}{n} \frac{n(n+1)}{2} + n(1-q) $$
+$$ T_{avg}(n) = q \frac{n+1}{2} + n(1-q) $$
+
+Si asumimos $q=1$ (siempre existe):
+$$ T_{avg}(n) = \frac{n+1}{2} $$
+
+---
+
+## Cotas Asintóticas (Resumen Final)
+
+| Cota | Escenario ID | Valor $T(n)$ | Notación |
 | :--- | :--- | :--- | :--- |
-| $S_1$ | $A[1] = x$ | 1 | $1/n$ (si existe) |
-| $S_2$ | $A[2] = x$ | 2 | $1/n$ (si existe) |
-| ... | ... | ... | ... |
-| $S_k$ | $A[k] = x$ | $k$ | $1/n$ (si existe) |
-| ... | ... | ... | ... |
-| $S_n$ | $A[n] = x$ | $n$ | $1/n$ (si existe) |
-| $S_{\emptyset}$ | $\forall i, A[i] \neq x$ | $n$ | $0$ (para análisis de éxito) |
-
-### 3. Función de Costo por Escenario
-Definimos la función de costo $T(S)$ como una transformación lineal de las iteraciones:
-$$ T(S_k) = C_{init} + (k \cdot C_{iter}) + C_{exit} $$
-Para fines asintóticos, simplificamos a pasos proporcionales a $k$:
-$$ T(k) \approx k $$
-
-## Cálculo de Cotas y Eficiencia
-
-Una vez mapeado $\Omega$, derivamos los límites naturales del conjunto.
-
-### Límite Inferior (Best Case Analysis)
-Buscamos el escenario $S_{min}$ tal que minimice $T(S)$.
-$$ S_{min} = \arg \min_{k \in \{1..n\}} T(S_k) \implies k=1 $$
-$$ T(best) = T(1) = O(1) $$
-
-### Límite Superior (Worst Case Analysis)
-Buscamos el escenario $S_{max}$ tal que maximice $T(S)$.
-El conjunto de parada es $I = \{1, 2, ..., n\}$.
-$$ S_{max} = \max(I) \implies k=n $$
-$$ T(worst) = T(n) = O(n) $$
-
-### Esperanza Matemática (Average Case Derivation)
-Calculamos el valor esperado $E[T]$ iterando sobre todo el espacio $\Omega$ mapeado anteriormente.
-
-$$ E[T] = \sum_{S \in \Omega} P(S) \cdot T(S) $$
-
-Dado que definimos $P(S_k) = \frac{1}{n}$ para una distribución uniforme de éxito:
-
-$$ E[T] = \sum_{k=1}^{n} \frac{1}{n} \cdot (C \cdot k) $$
-$$ E[T] = \frac{C}{n} \sum_{k=1}^{n} k $$
-
-Aplicando la identidad de la suma aritmética (Gauss):
-$$ E[T] = \frac{C}{n} \cdot \frac{n(n+1)}{2} = \frac{C(n+1)}{2} $$
-
-### Conclusión Asintótica
-$$ T(n) \approx \frac{n}{2} \implies O(n) $$
+| **Inferior ($\Omega$)** | $S_1$ | $1$ | $\Omega(1)$ |
+| **Superior ($O$)** | $S_n$ o $S_{\emptyset}$ | $n$ | $O(n)$ |
+| **Promedio ($\Theta$)** | - | $\approx n/2$ | $\Theta(n)$ |

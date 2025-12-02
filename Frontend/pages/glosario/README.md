@@ -1,0 +1,1 @@
+Aca poner las ecuaciones y cosas utiles para el proyecto que solo Dios se acuerda, como la definición de la esperanza matematica y descripción de las variables.
