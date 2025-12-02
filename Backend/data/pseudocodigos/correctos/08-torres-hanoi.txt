@@ -1,4 +1,4 @@
-hanoi(int n, int origen, int destino, int auxiliar)
+hanoi(n, origen, destino, auxiliar)
 begin
     if (n > 0) then
     begin
@@ -8,7 +8,7 @@ begin
     end
 end
 
-moverDisco(int desde, int hacia)
+moverDisco(desde, hacia)
 begin
-    return
+    ► Acción de mover disco
 end

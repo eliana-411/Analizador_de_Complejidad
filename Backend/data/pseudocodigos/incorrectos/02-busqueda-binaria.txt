@@ -1,18 +1,20 @@
-busquedaBinaria(int A[], int n, int x)
+busquedaBinaria(A[], n, x)
 begin
-    int izq, der, medio
+    izq, der medio
+    encontrado
 
     izq 🡨 1
     der 🡨 n
+    encontrado 🡨 F
 
-    while (izq ≤ der) do
+    while (izq ≤ der and not encontrado) do
     begin
-        medio 🡨 (izq + der) / 2
+        medio 🡨 └(izq + der) / 2┘
 
         if (A[medio] = x) then
         begin
-            return T
-        end
+            encontrado 🡨 T
+        
         else
         begin
             if (A[medio] < x) then
@@ -20,9 +22,11 @@ begin
                 izq 🡨 medio + 1
             end
             else
+            begin
                 der 🡨 medio - 1
+            end
         end
     end
 
-    return F
+    return encontrado
 end
