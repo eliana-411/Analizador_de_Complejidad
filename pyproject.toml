@@ -1,0 +1,22 @@
+[project]
+name = "analizador-complejidad"
+version = "0.1.0"
+description = "Analizador de Complejidad Algorítmica - Análisis de pseudocódigo para determinar complejidad Big-O"
+readme = "documentos/README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "streamlit>=1.40.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-cov>=4.1.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
