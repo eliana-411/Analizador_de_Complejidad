@@ -1,3 +1,9 @@
 .venv/
 venv/
+
 __pycache__/
+*.py[codz]
+*$py.class
+
+CLAUDE.md
+settings.local.json
