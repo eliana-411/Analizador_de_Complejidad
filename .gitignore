@@ -11,3 +11,6 @@ settings.local.json
 .env
 *.env
 Backend/.env
+test_core.py
+test_connection.py
+test_agente_matematico.py

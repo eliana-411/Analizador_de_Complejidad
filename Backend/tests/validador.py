@@ -3,7 +3,7 @@ from core.validador.services.orchestrator import ValidationOrchestrator
 
 def main():
     print("=" * 80)
-    print("  🎓 ANALIZADOR DE COMPLEJIDAD - Validador por Capas de la Gramática")
+    print("  🎓 ANALIZADOR DE COMPLEJIDAD - Validador y Corrector con RAG")
     print("=" * 80)
     print()
     
@@ -141,14 +141,14 @@ def main():
         print()
     
     print("=" * 80)
-    print("  📋 RESULTADO FINAL")
+    print("  📋 RESULTADO VALIDACIÓN")
     print("=" * 80)
     print()
     
     if resultado['valido_general']:
         print("  ✅ ¡PSEUDOCÓDIGO VÁLIDO!")
         print(f"  ✅ Tipo: {resultado['tipo_algoritmo']}")
-        print("  ✅ Cumple con todas las capas de la gramática")
+        print("  ✅ Cumple con todas las capas de la gramática v2.0")
     else:
         print("  ❌ PSEUDOCÓDIGO INVÁLIDO")
         print(f"  ❌ Se encontraron {resultado['resumen']['errores_totales']} errores")
