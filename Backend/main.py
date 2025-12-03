@@ -1,149 +1,94 @@
-from services.lectorArchivos import LectorArchivos
+from services.servicioTraductor import ServicioTraductor
 from services.servicioValidador import servicioValidador
-from services.servicioCorrector import ServicioCorrector
-from shared.services.lectorArchivos import LectorArchivos
-from core.validador.services.orchestrator import ValidationOrchestrator
 
 def main():
     print("=" * 80)
-    print("  🎓 ANALIZADOR DE COMPLEJIDAD - Validador y Corrector con RAG")
+    print("  🎓 ANALIZADOR DE COMPLEJIDAD - Traductor de Lenguaje Natural")
     print("=" * 80)
     print()
     
-    # ==================== CONFIGURACIÓN ====================
-    print("📋 Selecciona el archivo a validar:")
+    print("📝 Describe el algoritmo que deseas crear en lenguaje natural")
     print()
-    print("  ✅ CORRECTOS (Iterativos):")
-    print("    1. Búsqueda Lineal")
-    print("    2. Búsqueda Binaria")
-    print("    3. Bubble Sort")
-    print("   10. Multiplicación de Matrices")
+    print("💡 Ejemplos:")
+    print("   • 'Buscar un elemento en un arreglo recorriendo uno por uno'")
+    print("   • 'Ordenar números intercambiando adyacentes si están desordenados'")
+    print("   • 'Calcular factorial de un número multiplicándolo recursivamente'")
+    print("   • 'Contar cuántos números pares hay en un arreglo'")
     print()
-    print("  ✅ CORRECTOS (Recursivos):")
-    print("    4. Merge Sort")
-    print("    5. Quick Sort")
-    print("    6. Fibonacci Recursivo")
-    print("    7. Factorial Recursivo")
-    print("    8. Torres de Hanoi")
-    print("    9. BST Insert")
-    print()
-    print("  ❌ INCORRECTOS (con errores):")
-    print("   11. Búsqueda Lineal (errores)")
-    print("   12. Búsqueda Binaria (errores)")
-    print("   13. Bubble Sort (errores)")
-    print("   14. Merge Sort (errores)")
-    print("   15. Quick Sort (errores)")
-    print("   16. Fibonacci (errores)")
-    print("   17. Factorial (errores)")
-    print("   18. Torres de Hanoi (errores)")
-    print("   19. BST Insert (errores)")
-    print("   20. Multiplicación de Matrices (errores)")
-    print()
-    print("  📝 PERSONALIZADO:")
-    print("    0. Ingresar ruta manualmente")
-    print()
-    
-    opcion = input("Selecciona [0-20] ").strip()
-    
-    # Mapeo de opciones
-    base_path = "C:/Users/egriv/OneDrive/Documentos/Analizador de Complejidad/Backend/data/pseudocodigos/"
-    archivos = {
-        "1": "correctos/01-busqueda-lineal.txt",
-        "2": "correctos/02-busqueda-binaria.txt",
-        "3": "correctos/03-bubble-sort.txt",
-        "4": "correctos/04-merge-sort.txt",
-        "5": "correctos/05-quick-sort.txt",
-        "6": "correctos/06-fibonacci-recursivo.txt",
-        "7": "correctos/07-factorial-recursivo.txt",
-        "8": "correctos/08-torres-hanoi.txt",
-        "9": "correctos/09-bst-insert.txt",
-        "10": "correctos/10-matrix-multiplication.txt",
-        "11": "incorrectos/01-busqueda-lineal.txt",
-        "12": "incorrectos/02-busqueda-binaria.txt",
-        "13": "incorrectos/03-bubble-sort.txt",
-        "14": "incorrectos/04-merge-sort.txt",
-        "15": "incorrectos/05-quick-sort.txt",
-        "16": "incorrectos/06-fibonacci-recursivo.txt",
-        "17": "incorrectos/07-factorial-recursivo.txt",
-        "18": "incorrectos/08-torres-hanoi.txt",
-        "19": "incorrectos/09-bst-insert.txt",
-        "20": "incorrectos/10-matrix-multiplication.txt",
-    }
-    
-    if opcion == "0":
-        ruta = input("\n📂 Ingresa la ruta completa del archivo: ").strip()
-    else:
-        if not opcion:
-            opcion = "6"
-        ruta = base_path + archivos.get(opcion)
-    
-    print()
-    print(f"📂 Archivo: {ruta.split('/')[-1]}")
     print("─" * 80)
-    print()
     
-    # ==================== LECTURA ====================
-    lector = LectorArchivos(ruta)
+    # Obtener descripción del usuario
+    print("\n✏️  Escribe tu descripción (presiona ENTER dos veces para terminar):")
+    print("─" * 80)
     
-    if not lector.leer_archivo():
-        print("\n✗ No se pudo leer el archivo")
+    lineas = []
+    while True:
+        linea = input()
+        if linea == "" and lineas:  # ENTER vacío y ya hay algo escrito
+            break
+        if linea:
+            lineas.append(linea)
+    
+    descripcion = " ".join(lineas).strip()
+    
+    if not descripcion:
+        print("\n❌ No se ingresó ninguna descripción")
         return
     
-    pseudocodigo = lector.obtener_contenido_completo()
-    
-    print("📄 PSEUDOCÓDIGO:")
-    print("─" * 80)
-    print(pseudocodigo)
-    print("─" * 80)
     print()
-    
-    # ==================== VALIDADOR POR CAPAS ====================
     print("=" * 80)
-    print("  🎓 VALIDACIÓN ORGANIZADA POR CAPAS DE LA GRAMÁTICA")
+    print("  🤖 TRADUCCIÓN CON RAG")
     print("=" * 80)
     print()
     
-    agente = AgenteValidador()
-    resultado = agente.validar(pseudocodigo)
+    # Inicializar traductor
+    print("📚 Cargando base de conocimiento...")
+    traductor = ServicioTraductor()
+    
+    # Mostrar estadísticas
+    stats = traductor.obtener_estadisticas_base()
+    print(f"✅ {stats['total_ejemplos']} ejemplos cargados")
+    print(f"   • Iterativos: {stats['iterativos']}")
+    print(f"   • Recursivos: {stats['recursivos']}")
+    print()
+    
+    # Traducir
+    print("⚙️  Analizando descripción y generando pseudocódigo...")
+    print()
+    
+    resultado = traductor.traducir(descripcion)
+    
+    print("=" * 80)
+    print("  ✨ RESULTADO DE LA TRADUCCIÓN")
+    print("=" * 80)
+    print()
+    
+    servicio = servicioValidador()
+    resultado = servicio.validar(pseudocodigo)
     
     print(f"✓ Válido General:  {'SÍ ✅' if resultado['valido_general'] else 'NO ❌'}")
     print(f"✓ Tipo Algoritmo:  {resultado['tipo_algoritmo']}")
     print(f"✓ Total Errores:   {resultado['resumen']['errores_totales']}")
     print()
     
-    # Mostrar resumen
-    print("📊 RESUMEN:")
-    print(f"  • Líneas totales:         {resultado['resumen']['total_lineas']}")
-    print(f"  • Clases encontradas:     {resultado['resumen']['clases_encontradas']}")
-    print(f"  • Subrutinas encontradas: {resultado['resumen']['subrutinas_encontradas']}")
-    print()
-    
-    # Mostrar cada capa
-    print("🔍 VALIDACIÓN POR CAPAS:")
-    print()
-    for capa_nombre, capa_datos in resultado['capas'].items():
-        nombre_limpio = capa_nombre.replace('_', ' ').title()
-        estado = "✅" if capa_datos['valido'] else "❌"
-        
-        print(f"{nombre_limpio}: {estado}")
-        
-        # Mostrar detalles positivos (máximo 5)
-        if capa_datos['detalles'][:5]:
-            for detalle in capa_datos['detalles'][:5]:
-                print(f"  {detalle}")
-            if len(capa_datos['detalles']) > 5:
-                print(f"  ... y {len(capa_datos['detalles']) - 5} detalles más")
-        
-        # Mostrar errores (todos)
-        if capa_datos['errores']:
-            print(f"\n  ❌ ERRORES EN {nombre_limpio}:")
-            for error in capa_datos['errores']:
-                print(f"     • {error}")
-        
+    if resultado['ejemplos_usados']:
+        print("📖 Ejemplos usados como referencia:")
+        for ejemplo in resultado['ejemplos_usados']:
+            print(f"   • {ejemplo}")
         print()
     
+    print(f"🏷️  Tipo detectado: {resultado['tipo_detectado']}")
+    print()
+    
+    print("💻 PSEUDOCÓDIGO GENERADO:")
+    print("─" * 80)
+    print(resultado['pseudocodigo'])
+    print("─" * 80)
+    print()
+    
+    # Preguntar si quiere validar
     print("=" * 80)
-    print("  📋 RESULTADO VALIDACIÓN")
+    print("  🔍 VALIDACIÓN")
     print("=" * 80)
     print()
     
@@ -154,9 +99,87 @@ def main():
     else:
         print("  ❌ PSEUDOCÓDIGO INVÁLIDO")
         print(f"  ❌ Se encontraron {resultado['resumen']['errores_totales']} errores")
-        print("  ❌ Revisa los errores por capa arriba indicados")
+        print()
+        
+        # ==================== CORRECCIÓN AUTOMÁTICA CON RAG ====================
+        print("=" * 80)
+        print("  🤖 CORRECCIÓN AUTOMÁTICA CON RAG")
+        print("=" * 80)
+        print()
+        
+        respuesta = input("¿Deseas que el sistema corrija automáticamente los errores? (s/n): ").strip().lower()
+        
+        if respuesta == 's':
+            print("\n🔍 Analizando errores y buscando ejemplos similares...")
+            print()
+            
+            corrector = ServicioCorrector()
+            
+            # Mostrar estadísticas de la base de conocimiento
+            stats = corrector.obtener_estadisticas_base()
+            print(f"📚 Base de conocimiento: {stats['total_ejemplos']} ejemplos")
+            print(f"   • Iterativos: {stats['iterativos']}")
+            print(f"   • Recursivos: {stats['recursivos']}")
+            print()
+            
+            # Corregir usando RAG
+            print("⚙️ Generando corrección con IA...")
+            resultado_correccion = corrector.corregir(pseudocodigo, resultado)
+            
+            print()
+            print("=" * 80)
+            print("  ✨ RESULTADO DE LA CORRECCIÓN")
+            print("=" * 80)
+            print()
+            
+            if resultado_correccion['corregido']:
+                print("  ✅ Corrección exitosa")
+                print()
+                print(f"  📖 Ejemplos usados como referencia:")
+                for ejemplo in resultado_correccion['ejemplos_usados']:
+                    print(f"     • {ejemplo}")
+                print()
+                
+                print("  📝 EXPLICACIÓN:")
+                print("  " + "─" * 76)
+                # Mostrar solo la parte de correcciones, no todo el pseudocódigo
+                explicacion_lineas = resultado_correccion['explicacion'].split('\n')
+                for linea in explicacion_lineas[:15]:  # Primeras 15 líneas
+                    print(f"  {linea}")
+                print()
+                
+                print("  💻 PSEUDOCÓDIGO CORREGIDO:")
+                print("  " + "─" * 76)
+                print(resultado_correccion['pseudocodigo'])
+                print("  " + "─" * 76)
+                print()
+                
+                # Preguntar si quiere validar la corrección
+                validar_correccion = input("¿Validar pseudocódigo corregido? (s/n): ").strip().lower()
+                
+                if validar_correccion == 's':
+                    print("\n🔍 Validando pseudocódigo corregido...\n")
+                    
+                    validador2 = servicioValidador()
+                    resultado2 = validador2.validar(resultado_correccion['pseudocodigo'])
+                    
+                    if resultado2['valido_general']:
+                        print("  🎉 ¡PSEUDOCÓDIGO CORREGIDO ES VÁLIDO!")
+                        print(f"  ✅ Tipo: {resultado2['tipo_algoritmo']}")
+                        print("  ✅ Sin errores")
+                    else:
+                        print("  ⚠️ El pseudocódigo corregido aún tiene errores:")
+                        print(f"  ❌ {resultado2['resumen']['errores_totales']} errores restantes")
+                        print("  💡 Puede requerir ajustes manuales adicionales")
+            else:
+                print("  ❌ No se pudo corregir automáticamente")
+                print(f"  📝 Razón: {resultado_correccion['explicacion']}")
+        else:
+            print("\n  💡 Puedes revisar y corregir los errores manualmente")
     
     print()
+    print("=" * 80)
+    print("  🏁 FIN DEL PROCESO")
     print("=" * 80)
 
 if __name__ == "__main__":
