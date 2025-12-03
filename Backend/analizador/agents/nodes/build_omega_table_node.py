@@ -4,8 +4,8 @@ Nodo: Build Omega Table - Ensambla la Tabla Ω final
 Convierte raw_scenarios en estructura OmegaTable con ScenarioEntry.
 """
 
-from Backend.mapeo.models.scenario_state import ScenarioState
-from Backend.mapeo.models.omega_table import OmegaTable, ScenarioEntry
+from Backend.analizador.models.scenario_state import ScenarioState
+from Backend.analizador.models.omega_table import OmegaTable, ScenarioEntry
 
 
 def build_omega_table_node(state: ScenarioState) -> ScenarioState:

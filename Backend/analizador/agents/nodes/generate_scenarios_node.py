@@ -5,7 +5,7 @@ Para MVP: Un solo escenario de ejecución completa.
 Versión completa generará múltiples escenarios basados en variables de control.
 """
 
-from Backend.mapeo.models.scenario_state import ScenarioState
+from Backend.analizador.models.scenario_state import ScenarioState
 
 
 def generate_scenarios_node(state: ScenarioState) -> ScenarioState:

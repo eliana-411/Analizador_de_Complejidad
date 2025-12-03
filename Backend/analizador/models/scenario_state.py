@@ -7,7 +7,7 @@ para el análisis de escenarios.
 
 from pydantic import BaseModel, Field
 from typing import List, Dict, Optional
-from Backend.mapeo.models.omega_table import OmegaTable
+from Backend.analizador.models.omega_table import OmegaTable
 
 
 class ControlVariable(BaseModel):

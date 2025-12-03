@@ -5,7 +5,7 @@ Usa el LoopCounter existente para extraer información de loops.
 """
 
 from typing import List
-from Backend.mapeo.models.scenario_state import ScenarioState, LoopInfo
+from Backend.analizador.models.scenario_state import ScenarioState, LoopInfo
 from Backend.tools.loop_counter import LoopCounter
 
 
