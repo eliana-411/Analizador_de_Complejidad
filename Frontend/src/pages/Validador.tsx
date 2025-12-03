@@ -31,10 +31,14 @@ export default function Validador() {
         <H1 class="text-center">Analizador de complejidad de un algoritmo</H1>
 
         {/* Status Indicators Row */}
-        <div class="flex justify-center gap-12">
-          <StatusIndicator label="léxica" status={mockValidation.lexica} />
-          <StatusIndicator label="sintaxis" status={mockValidation.sintaxis} />
-          <StatusIndicator label="estructuras" status={mockValidation.estructuras} />
+        <div class="flex flex-wrap justify-center gap-8 py-4">
+          <StatusIndicator label="Léxica" status={mockValidation.lexica} />
+          <StatusIndicator label="Declaraciones" status="pending" />
+          <StatusIndicator label="Estructuras" status={mockValidation.estructuras} />
+          <StatusIndicator label="Expresiones" status="pending" />
+          <StatusIndicator label="Sentencias" status="pending" />
+          <StatusIndicator label="Sintaxis" status={mockValidation.sintaxis} />
+          <StatusIndicator label="Semántica" status="pending" />
         </div>
 
         {/* Toggle Buttons Row */}
@@ -60,27 +64,26 @@ export default function Validador() {
         </div>
 
         {/* Main Content: Textarea + Analyze Button */}
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Textarea - takes up most space */}
-          <div class="lg:col-span-9">
+        <div class="flex flex-col gap-6">
+          {/* Textarea - takes up full width */}
+          <div class="w-full">
             <Textarea
               placeholder="IN(pseudocodigo)"
               value={macroalgorith()}
               onChange={setMacroalgorith}
               rows={16}
+              class="font-mono text-sm"
             />
           </div>
 
-          {/* Analyze Button - vertical on the right */}
-          <div class="lg:col-span-3 flex items-stretch">
+          {/* Analyze Button - below textarea */}
+          <div class="flex justify-end">
             <Button
               variant="warning"
               onClick={handleAnalyze}
-              class="w-full h-full flex items-center justify-center text-xl font-bold"
+              class="px-12 py-4 text-lg font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
             >
-              <span class="writing-mode-vertical-rl rotate-180 py-8">
-                ANALYZE
-              </span>
+              ANALIZAR CÓDIGO
             </Button>
           </div>
         </div>

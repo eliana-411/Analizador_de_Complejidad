@@ -9,7 +9,7 @@ import videoBackground from '../../assets/cobija.mp4';
  */
 export default function MainLayout(props: ParentProps) {
   return (
-    <div class="min-h-screen relative overflow-hidden">
+    <div class="min-h-screen relative">
       {/* Video background */}
       <video
         autoplay

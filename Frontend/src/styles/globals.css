@@ -35,7 +35,7 @@
 
 @layer components {
   .glass {
-    @apply bg-white/15 backdrop-blur-xl border-2 border-gray-300;
+    @apply bg-white border border-gray-100 shadow-sm;
   }
 
   .glass-hover {
@@ -43,15 +43,15 @@
   }
 
   .glass-hover:hover {
-    @apply bg-white/20 border-white-400;
+    @apply shadow-md border-gray-200 transform -translate-y-0.5;
   }
 
   .glass-light {
-    @apply bg-white/8 backdrop-blur-sm border border-gray-200;
+    @apply bg-white border border-gray-100 shadow-sm;
   }
 
   .glass-strong {
-    @apply bg-white/25 backdrop-blur-xl border-2 border-gray-400;
+    @apply bg-white shadow-md border border-gray-200;
   }
 
   .gradient-text {
