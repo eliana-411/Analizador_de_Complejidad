@@ -6,16 +6,16 @@ Transforma pseudocodigo validado en Tabla Universal Omega.
 """
 
 from langgraph.graph import StateGraph, END
-from Backend.mapeo.models.scenario_state import ScenarioState
+from Backend.analizador.models.scenario_state import ScenarioState
 
 # Importar nodos
-from Backend.mapeo.agents.nodes.parse_lines_node import parse_lines_node
-from Backend.mapeo.agents.nodes.analyze_loops_node import analyze_loops_node
-from Backend.mapeo.agents.nodes.identify_control_vars_node import identify_control_vars_node
-from Backend.mapeo.agents.nodes.generate_scenarios_node import generate_scenarios_node
-from Backend.mapeo.agents.nodes.calculate_costs_node import calculate_costs_node
-from Backend.mapeo.agents.nodes.calculate_probabilities_node import calculate_probabilities_node
-from Backend.mapeo.agents.nodes.build_omega_table_node import build_omega_table_node
+from Backend.analizador.agents.nodes.parse_lines_node import parse_lines_node
+from Backend.analizador.agents.nodes.analyze_loops_node import analyze_loops_node
+from Backend.analizador.agents.nodes.identify_control_vars_node import identify_control_vars_node
+from Backend.analizador.agents.nodes.generate_scenarios_node import generate_scenarios_node
+from Backend.analizador.agents.nodes.calculate_costs_node import calculate_costs_node
+from Backend.analizador.agents.nodes.calculate_probabilities_node import calculate_probabilities_node
+from Backend.analizador.agents.nodes.build_omega_table_node import build_omega_table_node
 
 
 def create_mapeo_workflow():

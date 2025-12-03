@@ -5,7 +5,7 @@ Para MVP: Solo identifica variables índice de loops (PRIMARY).
 Versión completa identificará banderas y variables que afectan terminación.
 """
 
-from Backend.mapeo.models.scenario_state import ScenarioState, ControlVariable
+from Backend.analizador.models.scenario_state import ScenarioState, ControlVariable
 
 
 def identify_control_vars_node(state: ScenarioState) -> ScenarioState:

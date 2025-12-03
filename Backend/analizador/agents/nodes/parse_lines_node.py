@@ -5,7 +5,7 @@ Primer nodo del workflow que divide el pseudocódigo en líneas
 para procesamiento posterior.
 """
 
-from Backend.mapeo.models.scenario_state import ScenarioState
+from Backend.analizador.models.scenario_state import ScenarioState
 
 
 def parse_lines_node(state: ScenarioState) -> ScenarioState:
