@@ -1,23 +1,46 @@
-import { createSignal } from 'solid-js';
+import { createSignal, Show } from 'solid-js';
 import { H1 } from '../components/ui/Typography';
 import Button from '../components/ui/Button';
 import Textarea from '../components/ui/Textarea';
-import StatusIndicator from '../components/ui/StatusIndicator';
+import StatusIndicator, { type ValidationStatus } from '../components/ui/StatusIndicator';
 import ToggleButtonGroup from '../components/ui/ToggleButtonGroup';
 import ContentContainer from '../components/layout/ContentContainer';
-import { mockPseudocode, mockValidation } from '../mock-data/validador';
-import { validatePseudocode } from '../api/validator';
+import Toast from '../components/ui/Toast';
+import { mockPseudocode } from '../mock-data/validador';
+import { validatePseudocode, type ValidationResponse } from '../api/validator';
 
 /**
  * Validador page - Pseudocode validation interface
- * Shows validation status with static indicators and text input
+ * Shows validation status with dynamic indicators and text input
  */
 export default function Validador() {
   const [macroalgorith, setMacroalgorith] = createSignal(mockPseudocode);
   const [visualization, setVisualization] = createSignal(false);
   const [algorithmType, setAlgorithmType] = createSignal('iterativo');
 
+  // Validation state
+  const [validationResult, setValidationResult] = createSignal<ValidationResponse | null>(null);
+  const [isValidating, setIsValidating] = createSignal(false);
+  const [errorMessage, setErrorMessage] = createSignal<string | null>(null);
+  const [showToast, setShowToast] = createSignal(false);
+
+  // Helper function para obtener el status de una capa
+  const getLayerStatus = (layerKey: string): ValidationStatus => {
+    const result = validationResult();
+    if (!result) return 'pending';
+
+    const layer = result.capas[layerKey];
+    if (!layer) return 'pending';
+
+    return layer.valido ? 'valid' : 'invalid';
+  };
+
   const handleAnalyze = async () => {
+    setIsValidating(true);
+    setErrorMessage(null);
+    setValidationResult(null);
+    setShowToast(false);
+
     try {
       console.log('Analyzing pseudocode...');
 
@@ -28,12 +51,29 @@ export default function Validador() {
 
       console.log('Resultado de validación:', resultado);
 
-      // TODO: Actualizar estado de los StatusIndicators con resultado.capas
-      // TODO: Mostrar sugerencias al usuario si hay errores
+      // Guardar resultado
+      setValidationResult(resultado);
+
+      // Actualizar tipo de algoritmo si se detectó
+      if (resultado.tipo_algoritmo) {
+        setAlgorithmType(resultado.tipo_algoritmo.toLowerCase());
+      }
+
+      // Mostrar toast
+      setShowToast(true);
+
+      // Auto-cerrar toast después de 8 segundos
+      setTimeout(() => setShowToast(false), 8000);
 
     } catch (error) {
       console.error('Error al validar:', error);
-      // TODO: Mostrar error al usuario
+      setErrorMessage(error instanceof Error ? error.message : 'Error desconocido al validar');
+      setShowToast(true);
+
+      // Auto-cerrar toast de error después de 5 segundos
+      setTimeout(() => setShowToast(false), 5000);
+    } finally {
+      setIsValidating(false);
     }
   };
 
@@ -45,13 +85,13 @@ export default function Validador() {
 
         {/* Status Indicators Row */}
         <div class="flex flex-wrap justify-center gap-8 py-4">
-          <StatusIndicator label="Léxica" status={mockValidation.lexica} />
-          <StatusIndicator label="Declaraciones" status="pending" />
-          <StatusIndicator label="Estructuras" status={mockValidation.estructuras} />
-          <StatusIndicator label="Expresiones" status="pending" />
-          <StatusIndicator label="Sentencias" status="pending" />
-          <StatusIndicator label="Sintaxis" status={mockValidation.sintaxis} />
-          <StatusIndicator label="Semántica" status="pending" />
+          <StatusIndicator label="Léxica" status={getLayerStatus('1_LEXICA')} />
+          <StatusIndicator label="Declaraciones" status={getLayerStatus('2_DECLARACIONES')} />
+          <StatusIndicator label="Estructuras" status={getLayerStatus('3_ESTRUCTURA')} />
+          <StatusIndicator label="Expresiones" status={getLayerStatus('4_EXPRESIONES')} />
+          <StatusIndicator label="Sentencias" status={getLayerStatus('5_SENTENCIAS')} />
+          <StatusIndicator label="Subrutinas" status={getLayerStatus('6_SUBRUTINAS')} />
+          <StatusIndicator label="Semántica" status={getLayerStatus('7_SEMANTICA')} />
         </div>
 
         {/* Toggle Buttons Row */}
@@ -94,12 +134,42 @@ export default function Validador() {
             <Button
               variant="warning"
               onClick={handleAnalyze}
-              class="px-12 py-4 text-lg font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
+              disabled={isValidating()}
+              class="px-12 py-4 text-lg font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              ANALIZAR CÓDIGO
+              {isValidating() ? 'ANALIZANDO...' : 'ANALIZAR CÓDIGO'}
             </Button>
           </div>
         </div>
+
+        {/* Toast Notifications */}
+        <Show when={showToast()}>
+          {/* Success/Error Toast */}
+          <Show when={validationResult()} fallback={
+            <Show when={errorMessage()}>
+              <Toast
+                type="error"
+                title="Error de conexión"
+                message={errorMessage()!}
+                onClose={() => setShowToast(false)}
+              />
+            </Show>
+          }>
+            {(result) => (
+              <Toast
+                type={result().valido_general ? 'success' : 'error'}
+                title={result().valido_general ? 'Código válido' : 'Código inválido'}
+                message={result().tipo_algoritmo ? `Algoritmo ${result().tipo_algoritmo}` : undefined}
+                details={[
+                  `${result().resumen.total_lineas} líneas analizadas`,
+                  `${result().resumen.errores_totales} error${result().resumen.errores_totales !== 1 ? 'es' : ''} encontrado${result().resumen.errores_totales !== 1 ? 's' : ''}`
+                ]}
+                suggestions={result().sugerencias}
+                onClose={() => setShowToast(false)}
+              />
+            )}
+          </Show>
+        </Show>
       </div>
     </ContentContainer>
   );

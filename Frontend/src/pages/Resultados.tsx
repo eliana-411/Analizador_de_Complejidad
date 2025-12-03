@@ -11,7 +11,7 @@ export default function Resultados() {
     <ContentContainer>
       <div class="space-y-8 animate-fade-in-up">
         {/* Header */}
-        <H1 class="text-center">Analizador de complejidad de un algoritmo</H1>
+        <H2 class="text-center">Resultadas</H2>
 
         {/* Dashboard Layout: Sidebar + Main Content */}
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">

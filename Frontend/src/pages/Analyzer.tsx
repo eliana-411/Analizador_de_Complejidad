@@ -61,7 +61,7 @@ export default function Analyzer() {
     <ContentContainer>
       <div class="space-y-8 animate-fade-in-up">
         {/* Header */}
-        <H1 class="text-center">Analizador de complejidad de un algoritmo</H1>
+        <H2 class="text-center">Analizador de complejidad</H2>
 
         {/* Grid Layout: Table + Notes Panel */}
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
