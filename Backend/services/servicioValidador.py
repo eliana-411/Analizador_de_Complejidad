@@ -1,6 +1,6 @@
 import re
 
-class AgenteValidador:
+class servicioValidador:
     """
     Validador de pseudocódigo organizado por capas de la gramática.
     Sigue el orden exacto de la documentación en data/gramatica/
