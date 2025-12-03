@@ -5,7 +5,7 @@ Primer nodo del workflow que divide el pseudocódigo en líneas
 para procesamiento posterior.
 """
 
-from models.scenario_state import ScenarioState
+from core.analizador.models.scenario_state import ScenarioState
 
 
 def parse_lines_node(state: ScenarioState) -> ScenarioState:

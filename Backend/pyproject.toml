@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "analizador-complejidad"
+version = "0.1.0"
+description = "Analizador de Complejidad Algorítmica - Análisis de pseudocódigo para determinar complejidad Big-O"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "langgraph>=0.2.0",
+    "langchain>=0.3.0",
+    "langchain-anthropic>=0.2.0",
+    "pydantic>=2.9.0",
+    "sympy>=1.13.0",
+    "fastapi>=0.115.0",
+    "uvicorn>=0.32.0",
+]
+
+[tool.setuptools]
+packages = ["core", "core.analizador", "core.analizador.agents", "core.analizador.agents.nodes", "core.analizador.models", "core.analizador.tools", "core.analizador.tests"]
+package-dir = {"" = "."}
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-cov>=4.1.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
