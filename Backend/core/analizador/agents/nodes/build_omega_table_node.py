@@ -4,8 +4,8 @@ Nodo: Build Omega Table - Ensambla la Tabla Ω final
 Convierte raw_scenarios en estructura OmegaTable con ScenarioEntry.
 """
 
-from Backend.analizador.models.omega_table import OmegaTable, ScenarioEntry
-from Backend.analizador.models.scenario_state import ScenarioState
+from models.omega_table import OmegaTable, ScenarioEntry
+from models.scenario_state import ScenarioState
 
 
 def build_omega_table_node(state: ScenarioState) -> ScenarioState:

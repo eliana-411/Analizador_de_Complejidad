@@ -5,7 +5,7 @@ Para MVP: P(S) = 1 (un solo escenario).
 Versión completa calculará probabilidades según distribución de casos.
 """
 
-from Backend.analizador.models.scenario_state import ScenarioState
+from models.scenario_state import ScenarioState
 
 
 def calculate_probabilities_node(state: ScenarioState) -> ScenarioState:
