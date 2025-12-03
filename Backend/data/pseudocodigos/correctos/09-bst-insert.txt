@@ -1,6 +1,6 @@
 Nodo {valor izquierdo derecho}
 
-insertar(Nodo raiz, valor)
+insertar(Nodo raiz, int valor)
 begin
     Nodo nuevo
 

@@ -1,4 +1,4 @@
-factorial(n)
+factorial(int n)
 begin
     if (n ≤ 1) then
     begin
