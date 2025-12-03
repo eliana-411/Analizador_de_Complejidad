@@ -4,8 +4,8 @@ Nodo: Calculate Costs - Calcula T(S) para cada escenario
 Usa LineCostCalculator para obtener costeo línea por línea.
 """
 
-from models.scenario_state import ScenarioState
-from tools.line_cost_calculator import LineCostCalculator
+from core.analizador.models.scenario_state import ScenarioState
+from core.analizador.tools.line_cost_calculator import LineCostCalculator
 
 
 def calculate_costs_node(state: ScenarioState) -> ScenarioState:

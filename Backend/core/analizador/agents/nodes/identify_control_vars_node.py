@@ -5,7 +5,7 @@ Para MVP: Solo identifica variables índice de loops (PRIMARY).
 Versión completa identificará banderas y variables que afectan terminación.
 """
 
-from models.scenario_state import ControlVariable, ScenarioState
+from core.analizador.models.scenario_state import ControlVariable, ScenarioState
 
 
 def identify_control_vars_node(state: ScenarioState) -> ScenarioState:

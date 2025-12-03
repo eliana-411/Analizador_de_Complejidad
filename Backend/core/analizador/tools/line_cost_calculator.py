@@ -10,8 +10,8 @@ Implementa la fórmula: T(S) = Σ (C_op × Freq) para cada línea del pseudocód
 import re
 import sympy as sp
 from typing import List, Dict, Tuple
-from Backend.analizador.models.omega_table import LineCost
-from Backend.analizador.models.scenario_state import LoopInfo
+from core.analizador.models.omega_table import LineCost
+from core.analizador.models.scenario_state import LoopInfo
 
 
 class LineCostCalculator:

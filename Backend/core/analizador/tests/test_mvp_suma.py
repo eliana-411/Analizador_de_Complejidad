@@ -10,17 +10,20 @@ Verifica que el workflow completo funcione con un algoritmo simple:
 
 import pytest
 
-from Backend.analizador.agents.workflow import create_mapeo_workflow
-from Backend.analizador.models.scenario_state import ScenarioState
+from core.analizador.agents.workflow import create_mapeo_workflow
+from core.analizador.models.scenario_state import ScenarioState
 
 # Pseudocódigo de prueba: suma de elementos de un array
-PSEUDOCODE_SUMA = """suma ← 0
+PSEUDOCODE_SUMA = """
+int suma ← 0
 for i ← 1 to n do
 begin
     suma ← suma + A[i]
 end
-return suma"""
-
+begin
+    return suma
+end
+"""
 
 def test_suma_workflow_completo():
     """
@@ -99,7 +102,7 @@ def test_parse_lines():
         parameters={"A[]": "array", "n": "int"},
     )
 
-    from Backend.analizador.agents.nodes.parse_lines_node import parse_lines_node
+    from core.analizador.agents.nodes.parse_lines_node import parse_lines_node
 
     result = parse_lines_node(initial_state)
 
@@ -117,7 +120,7 @@ def test_analyze_loops():
         lines=PSEUDOCODE_SUMA.split("\n"),
     )
 
-    from Backend.analizador.agents.nodes.analyze_loops_node import analyze_loops_node
+    from core.analizador.agents.nodes.analyze_loops_node import analyze_loops_node
 
     result = analyze_loops_node(initial_state)
 

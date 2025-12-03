@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "analizador-complejidad"
 version = "0.1.0"
@@ -13,6 +17,10 @@ dependencies = [
     "fastapi>=0.115.0",
     "uvicorn>=0.32.0",
 ]
+
+[tool.setuptools]
+packages = ["core", "core.analizador", "core.analizador.agents", "core.analizador.agents.nodes", "core.analizador.models", "core.analizador.tools", "core.analizador.tests"]
+package-dir = {"" = "."}
 
 [dependency-groups]
 dev = [

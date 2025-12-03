@@ -4,25 +4,24 @@ Workflow de Fase 2: Mapeo de Escenarios
 Orquesta el proceso de analisis de escenarios usando LangGraph.
 Transforma pseudocodigo validado en Tabla Universal Omega.
 """
-
-from Backend.analizador.agents.nodes.analyze_loops_node import analyze_loops_node
-from Backend.analizador.agents.nodes.build_omega_table_node import (
+from core.analizador.agents.nodes.analyze_loops_node import analyze_loops_node
+from core.analizador.agents.nodes.build_omega_table_node import (
     build_omega_table_node,
 )
-from Backend.analizador.agents.nodes.calculate_costs_node import calculate_costs_node
-from Backend.analizador.agents.nodes.calculate_probabilities_node import (
+from core.analizador.agents.nodes.calculate_costs_node import calculate_costs_node
+from core.analizador.agents.nodes.calculate_probabilities_node import (
     calculate_probabilities_node,
 )
-from Backend.analizador.agents.nodes.generate_scenarios_node import (
+from core.analizador.agents.nodes.generate_scenarios_node import (
     generate_scenarios_node,
 )
-from Backend.analizador.agents.nodes.identify_control_vars_node import (
+from core.analizador.agents.nodes.identify_control_vars_node import (
     identify_control_vars_node,
 )
 
 # Importar nodos
-from Backend.analizador.agents.nodes.parse_lines_node import parse_lines_node
-from Backend.analizador.models.scenario_state import ScenarioState
+from core.analizador.agents.nodes.parse_lines_node import parse_lines_node
+from core.analizador.models.scenario_state import ScenarioState
 from langgraph.graph import END, StateGraph
 
 
