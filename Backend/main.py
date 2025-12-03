@@ -1,9 +1,12 @@
+from services.lectorArchivos import LectorArchivos
+from services.servicioValidador import servicioValidador
+from services.servicioCorrector import ServicioCorrector
 from shared.services.lectorArchivos import LectorArchivos
 from core.validador.services.orchestrator import ValidationOrchestrator
 
 def main():
     print("=" * 80)
-    print("  🎓 ANALIZADOR DE COMPLEJIDAD - Validador por Capas de la Gramática")
+    print("  🎓 ANALIZADOR DE COMPLEJIDAD - Validador y Corrector con RAG")
     print("=" * 80)
     print()
     
@@ -99,10 +102,9 @@ def main():
     print("  🎓 VALIDACIÓN ORGANIZADA POR CAPAS DE LA GRAMÁTICA")
     print("=" * 80)
     print()
-
-    orchestrator = ValidationOrchestrator()
-    resultado_obj = orchestrator.validar(pseudocodigo, return_suggestions=True)
-    resultado = resultado_obj.model_dump()  # Convertir Pydantic model a dict
+    
+    agente = AgenteValidador()
+    resultado = agente.validar(pseudocodigo)
     
     print(f"✓ Válido General:  {'SÍ ✅' if resultado['valido_general'] else 'NO ❌'}")
     print(f"✓ Tipo Algoritmo:  {resultado['tipo_algoritmo']}")
@@ -141,26 +143,19 @@ def main():
         print()
     
     print("=" * 80)
-    print("  📋 RESULTADO FINAL")
+    print("  📋 RESULTADO VALIDACIÓN")
     print("=" * 80)
     print()
     
     if resultado['valido_general']:
         print("  ✅ ¡PSEUDOCÓDIGO VÁLIDO!")
         print(f"  ✅ Tipo: {resultado['tipo_algoritmo']}")
-        print("  ✅ Cumple con todas las capas de la gramática")
+        print("  ✅ Cumple con todas las capas de la gramática v2.0")
     else:
         print("  ❌ PSEUDOCÓDIGO INVÁLIDO")
         print(f"  ❌ Se encontraron {resultado['resumen']['errores_totales']} errores")
         print("  ❌ Revisa los errores por capa arriba indicados")
-
-        # Mostrar sugerencias si existen
-        if resultado.get('sugerencias'):
-            print()
-            print("💡 SUGERENCIAS DE CORRECCIÓN:")
-            for sugerencia in resultado['sugerencias']:
-                print(f"  • {sugerencia}")
-
+    
     print()
     print("=" * 80)
 
