@@ -18,7 +18,7 @@ def parse_lines_node(state: ScenarioState) -> ScenarioState:
     Returns:
         Estado actualizado con campo 'lines' poblado
     """
-    lines = state.pseudocode.strip().split('\n')
+    lines = state.pseudocode.strip().split("\n")
 
     # Actualizar estado usando model_copy (Pydantic V2)
     return state.model_copy(update={"lines": lines})

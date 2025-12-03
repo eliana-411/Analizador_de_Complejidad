@@ -36,10 +36,7 @@ def calculate_probabilities_node(state: ScenarioState) -> ScenarioState:
         # - P(S_fallo) = depende del dominio (elemento no está)
         # - Considerar distribuciones no uniformes
 
-        scenario_with_prob = {
-            **scenario,
-            "probability_P": probability
-        }
+        scenario_with_prob = {**scenario, "probability_P": probability}
 
         updated_scenarios.append(scenario_with_prob)
 

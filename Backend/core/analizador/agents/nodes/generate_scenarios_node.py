@@ -25,22 +25,26 @@ def generate_scenarios_node(state: ScenarioState) -> ScenarioState:
     # MVP: Escenario único - ejecución completa
     if state.is_iterative and state.loops:
         # Para algoritmos con loops simples
-        scenarios.append({
-            "id": "S_estandar",
-            "condition": "Ejecución completa sin interrupciones",
-            "state": "EJECUCION_COMPLETA",
-            "iteration_value": "n",  # Sin salida temprana
-            "early_exit": False
-        })
+        scenarios.append(
+            {
+                "id": "S_estandar",
+                "condition": "Ejecución completa sin interrupciones",
+                "state": "EJECUCION_COMPLETA",
+                "iteration_value": "n",  # Sin salida temprana
+                "early_exit": False,
+            }
+        )
     else:
         # Para algoritmos sin loops (casos triviales)
-        scenarios.append({
-            "id": "S_base",
-            "condition": "Caso base",
-            "state": "EJECUCION_SIMPLE",
-            "iteration_value": "1",
-            "early_exit": False
-        })
+        scenarios.append(
+            {
+                "id": "S_base",
+                "condition": "Caso base",
+                "state": "EJECUCION_SIMPLE",
+                "iteration_value": "1",
+                "early_exit": False,
+            }
+        )
 
     # TODO: Versión completa generará:
     # - S_k=1 (éxito temprano)

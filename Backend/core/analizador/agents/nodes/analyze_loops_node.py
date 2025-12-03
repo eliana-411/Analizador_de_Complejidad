@@ -5,13 +5,9 @@ Usa el LoopCounter existente para extraer información de loops.
 """
 
 from typing import List
-<<<<<<< HEAD
-from Backend.analizador.models.scenario_state import ScenarioState, LoopInfo
-from Backend.tools.loop_counter import LoopCounter
-=======
-from analizador.models.scenario_state import ScenarioState, LoopInfo
-from tools.loop_counter import LoopCounter
->>>>>>> origin/integracionVersiones
+
+from Backend.analizador.models.scenario_state import LoopInfo, ScenarioState
+from Backend.analizador.tools.loop_counter import LoopCounter
 
 
 def analyze_loops_node(state: ScenarioState) -> ScenarioState:
@@ -39,30 +35,34 @@ def analyze_loops_node(state: ScenarioState) -> ScenarioState:
                 # Encontrar línea de cierre (end)
                 end_line = find_loop_end(state.lines, i)
 
-                loops_data.append(LoopInfo(
-                    loop_id=f"loop_{i}",
-                    loop_type="for",
-                    start_line=i,
-                    end_line=end_line,
-                    nesting_level=0,  # Simplificado MVP
-                    control_variable=result.get("variable", ""),
-                    iterations=result.get("iteraciones", "n")
-                ))
+                loops_data.append(
+                    LoopInfo(
+                        loop_id=f"loop_{i}",
+                        loop_type="for",
+                        start_line=i,
+                        end_line=end_line,
+                        nesting_level=0,  # Simplificado MVP
+                        control_variable=result.get("variable", ""),
+                        iterations=result.get("iteraciones", "n"),
+                    )
+                )
 
         # Detectar WHILE loops
         elif line.startswith("while"):
             # Para MVP, asumir iteraciones = n
             end_line = find_loop_end(state.lines, i)
 
-            loops_data.append(LoopInfo(
-                loop_id=f"loop_{i}",
-                loop_type="while",
-                start_line=i,
-                end_line=end_line,
-                nesting_level=0,  # Simplificado MVP
-                control_variable="i",  # Simplificado
-                iterations="n"
-            ))
+            loops_data.append(
+                LoopInfo(
+                    loop_id=f"loop_{i}",
+                    loop_type="while",
+                    start_line=i,
+                    end_line=end_line,
+                    nesting_level=0,  # Simplificado MVP
+                    control_variable="i",  # Simplificado
+                    iterations="n",
+                )
+            )
 
         i += 1
 
@@ -83,9 +83,9 @@ def find_loop_end(lines: List[str], start: int) -> int:
     depth = 0
     for i in range(start, len(lines)):
         line = lines[i].strip()
-        if line in ['begin', 'do']:
+        if line in ["begin", "do"]:
             depth += 1
-        elif line == 'end':
+        elif line == "end":
             depth -= 1
             if depth == 0:
                 return i

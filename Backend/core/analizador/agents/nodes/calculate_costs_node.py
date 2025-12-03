@@ -25,16 +25,14 @@ def calculate_costs_node(state: ScenarioState) -> ScenarioState:
         # Calcular T(S) y obtener desglose línea por línea
         try:
             cost_formula, line_costs = calculator.calculate_scenario_cost(
-                lines=state.lines,
-                scenario=scenario,
-                loops=state.loops
+                lines=state.lines, scenario=scenario, loops=state.loops
             )
 
             # Actualizar escenario con costo calculado
             scenario_with_cost = {
                 **scenario,
                 "cost_T": cost_formula,
-                "line_costs": line_costs  # Lista de LineCost objects
+                "line_costs": line_costs,  # Lista de LineCost objects
             }
 
             updated_scenarios.append(scenario_with_cost)

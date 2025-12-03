@@ -4,8 +4,8 @@ Nodo: Build Omega Table - Ensambla la Tabla Ω final
 Convierte raw_scenarios en estructura OmegaTable con ScenarioEntry.
 """
 
-from Backend.analizador.models.scenario_state import ScenarioState
 from Backend.analizador.models.omega_table import OmegaTable, ScenarioEntry
+from Backend.analizador.models.scenario_state import ScenarioState
 
 
 def build_omega_table_node(state: ScenarioState) -> ScenarioState:
@@ -28,7 +28,7 @@ def build_omega_table_node(state: ScenarioState) -> ScenarioState:
             state=raw_scenario["state"],
             cost_T=raw_scenario.get("cost_T", "0"),
             probability_P=raw_scenario.get("probability_P", "0"),
-            line_costs=raw_scenario.get("line_costs", [])
+            line_costs=raw_scenario.get("line_costs", []),
         )
 
         scenario_entries.append(entry)
@@ -40,10 +40,12 @@ def build_omega_table_node(state: ScenarioState) -> ScenarioState:
         control_variables=[cv.name for cv in state.control_variables],
         metadata={
             "loop_count": len(state.loops),
-            "nesting_level": max([loop.nesting_level for loop in state.loops], default=0),
+            "nesting_level": max(
+                [loop.nesting_level for loop in state.loops], default=0
+            ),
             "is_iterative": state.is_iterative,
-            "parameters": state.parameters
-        }
+            "parameters": state.parameters,
+        },
     )
 
     return state.model_copy(update={"omega_table": omega_table})

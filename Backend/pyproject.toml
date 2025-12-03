@@ -2,7 +2,7 @@
 name = "analizador-complejidad"
 version = "0.1.0"
 description = "Analizador de Complejidad Algorítmica - Análisis de pseudocódigo para determinar complejidad Big-O"
-readme = "documentos/README.md"
+readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "langgraph>=0.2.0",
