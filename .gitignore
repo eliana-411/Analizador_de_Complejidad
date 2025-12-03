@@ -1,0 +1,16 @@
+.venv/
+venv/
+*.lock
+
+__pycache__/
+*.py[codz]
+*$py.class
+
+CLAUDE.md
+settings.local.json
+.env
+*.env
+Backend/.env
+test_core.py
+test_connection.py
+test_agente_matematico.py
