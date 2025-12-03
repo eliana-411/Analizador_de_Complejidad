@@ -1,9 +1,11 @@
-fibonacci(n)
+fibonacci(int n)
 begin
     if (n ≤ 1) then
     begin
         return n
     end
-
-    return fibonacci(n - 1) + fibonacci(n - 2)
+    else
+    begin
+        return fibonacci(n - 1) + fibonacci(n - 2)
+    end
 end

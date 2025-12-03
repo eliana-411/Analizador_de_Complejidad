@@ -10,5 +10,5 @@ end
 
 moverDisco(int desde, int hacia)
 begin
-    return
+    ► Acción de mover disco
 end

@@ -6,9 +6,9 @@ begin
     begin
         medio 🡨 └(izq + der) / 2┘
 
-        CALL mergeSort(A, izq, medio)
-        CALL mergeSort(A, medio + 1, der)
-        CALL merge(A, izq, medio, der)
+        CALL mergeSort(A[], izq, medio)
+        CALL mergeSort(A[], medio + 1, der)
+        CALL merge(A[], izq, medio, der)
     end
 end
 

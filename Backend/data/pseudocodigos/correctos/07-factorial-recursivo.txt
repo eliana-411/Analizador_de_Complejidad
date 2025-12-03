@@ -1,15 +1,11 @@
 factorial(int n)
 begin
-    int result
-
     if (n ≤ 1) then
     begin
-        result 🡨 1
+        return 1
     end
     else
     begin
-        result 🡨 n * factorial(n - 1)
+        return n * CALL factorial(n - 1)
     end
-
-    return result
 end

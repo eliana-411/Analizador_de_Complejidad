@@ -4,9 +4,9 @@ begin
 
     if (izq < der) then
     begin
-        pivote 🡨 particionar(A, izq, der)
-        CALL quickSort(A, izq, pivote - 1)
-        CALL quickSort(A, pivote + 1, der)
+        pivote 🡨 CALL particionar(A[], izq, der)
+        CALL quickSort(A[], izq, pivote - 1)
+        CALL quickSort(A[], pivote + 1, der)
     end
 end
 

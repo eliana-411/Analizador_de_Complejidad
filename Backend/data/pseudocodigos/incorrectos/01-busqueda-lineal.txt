@@ -1,14 +1,14 @@
-busquedaLineal(A[], n, x)
+busquedaLineal(int A[], int n, int x)
 begin
     i
-    encontrado
+    bool encontrado
 
     encontrado 🡨 F
     i 🡨 1
 
     while (i ≤ n and not encontrado) do
     begin
-        if A[i] = x then
+        if (A[i] = x) then
         begin
             encontrado 🡨 T
         end
