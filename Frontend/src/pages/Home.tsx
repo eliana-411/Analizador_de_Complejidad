@@ -213,7 +213,7 @@ export default function Home() {
       </ComponentSection>
 
       {/* Footer */}
-      <div class="mt-16 pt-8 border-t border-white/10">
+      <div class="mt-16 pt-8 border-t border-gray-300">
         <Body class="text-center text-gray-500">
           Algorithm Complexity Analyzer v1.0.0 - Built with SolidJS & Tailwind CSS
         </Body>

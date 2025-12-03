@@ -1,4 +1,4 @@
-import { Home, Code, BarChart3 } from 'lucide-solid';
+import { Home, CheckCircle, Activity, Pi, BarChart3 } from 'lucide-solid';
 import { For } from 'solid-js';
 import { A, useLocation } from '@solidjs/router';
 
@@ -10,9 +10,9 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { path: '/', label: 'Inicio', icon: Home },
-  { path: '/validador', label: 'Validador', icon: Code },
-  { path: '/analizador', label: 'Analizador', icon: Code },
-  { path: '/notaciones', label: 'Notaciones', icon: Code },
+  { path: '/validador', label: 'Validador', icon: CheckCircle },
+  { path: '/analizador', label: 'Analizador', icon: Activity },
+  { path: '/notaciones', label: 'Notaciones', icon: Pi },
   { path: '/resultados', label: 'Resultados', icon: BarChart3 },
 ];
 
@@ -32,7 +32,7 @@ export default function Sidenav() {
 
   return (
     <aside class="fixed left-4 top-1/2 -translate-y-1/2 z-20 animate-slide-in-left">
-      <div class="bg-white/10 backdrop-blur-xl rounded-full p-4 flex flex-col items-center space-y-6 border border-white/20">
+      <div class="bg-white/20 backdrop-blur-xl rounded-full p-4 flex flex-col items-center space-y-6 border-2 border-gray-300 elevation-2">
         {/* Navigation links - icon only */}
         <For each={navItems}>
           {(item) => (
@@ -40,8 +40,8 @@ export default function Sidenav() {
               href={item.path}
               class={`p-3 rounded-full transition-all duration-200 group relative
                       ${isActive(item.path)
-                        ? 'bg-purple-500/30 text-purple-300'
-                        : 'text-white/70 hover:bg-white/20 hover:text-white'
+                        ? 'bg-purple-500/20 text-purple-600 border-2 border-purple-300'
+                        : 'text-gray-600 hover:bg-white/25 hover:text-gray-900 border-2 border-transparent hover:border-gray-300'
                       }`}
               title={item.label}
             >

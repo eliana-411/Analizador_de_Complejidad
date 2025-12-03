@@ -28,7 +28,7 @@ export default function Results() {
           <div class="space-y-4">
             <H1 class="text-2xl">Coming Soon</H1>
             <Body>Results features in development:</Body>
-            <ul class="text-left space-y-2 text-gray-300">
+            <ul class="text-left space-y-2 text-gray-700">
               <li>• Complete Omega (Ω) table display</li>
               <li>• Line-by-line cost breakdown</li>
               <li>• Scenario taxonomy with probabilities</li>

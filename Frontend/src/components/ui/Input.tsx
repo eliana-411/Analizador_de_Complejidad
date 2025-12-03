@@ -31,14 +31,14 @@ export default function Input(props: InputProps) {
         onBlur={() => setIsFocused(false)}
         placeholder={props.placeholder}
         class={`w-full px-4 py-3 rounded-lg
-                bg-white/5 border transition-all duration-200
-                text-white placeholder-transparent
-                focus:outline-none focus:bg-white/10
+                bg-white/90 border-2 transition-all duration-200
+                text-gray-900 placeholder-transparent
+                focus:outline-none focus:bg-white elevation-1
                 ${props.error
-                  ? 'border-red-500'
+                  ? 'border-red-500 focus:border-red-600'
                   : isFocused()
-                  ? 'border-purple-400'
-                  : 'border-white/10'
+                  ? 'border-purple-500 elevation-2'
+                  : 'border-gray-300'
                 }
                 ${props.label ? 'pt-6 pb-2' : ''}`}
       />
@@ -48,8 +48,8 @@ export default function Input(props: InputProps) {
         <label
           class={`absolute left-4 transition-all duration-200 pointer-events-none
                   ${labelFloating()
-                    ? 'top-2 text-xs text-purple-400'
-                    : 'top-3.5 text-base text-gray-400'
+                    ? 'top-2 text-xs text-purple-600 font-medium'
+                    : 'top-3.5 text-base text-gray-500'
                   }`}
         >
           {props.label}

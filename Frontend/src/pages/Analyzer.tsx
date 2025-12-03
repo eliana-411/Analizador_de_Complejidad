@@ -27,7 +27,7 @@ export default function Analyzer() {
           <div class="space-y-4">
             <H1 class="text-2xl">Coming Soon</H1>
             <Body>Features in development:</Body>
-            <ul class="text-left space-y-2 text-gray-300">
+            <ul class="text-left space-y-2 text-gray-700">
               <li>• Monaco code editor with syntax highlighting</li>
               <li>• Real-time pseudocode validation</li>
               <li>• Algorithm type detection (iterative/recursive)</li>

@@ -1,5 +1,5 @@
 import type { JSX } from 'solid-js';
-import { ButtonVariant } from '../../types';
+import type { ButtonVariant } from '../../types';
 
 interface ButtonProps {
   variant?: ButtonVariant;
@@ -25,13 +25,13 @@ export default function Button(props: ButtonProps) {
   const variantClasses = () => {
     switch (variant()) {
       case 'primary':
-        return 'gradient-primary text-white hover:shadow-lg hover:-translate-y-0.5';
+        return 'gradient-primary text-white elevation-2 hover:elevation-3 hover:-translate-y-0.5';
       case 'secondary':
-        return 'glass border-2 border-transparent bg-clip-padding hover:border-purple-400 text-white hover:shadow-lg';
+        return 'bg-white/15 border-2 border-gray-300 hover:border-purple-500 text-gray-900 elevation-1 hover:elevation-2 hover:bg-white/20';
       case 'ghost':
-        return 'bg-transparent text-gray-300 hover:bg-white/10 hover:text-white';
+        return 'bg-transparent text-gray-700 hover:bg-white/15 hover:text-gray-900 border border-transparent hover:border-gray-300';
       case 'danger':
-        return 'gradient-danger text-white hover:shadow-lg hover:-translate-y-0.5';
+        return 'gradient-danger text-white elevation-2 hover:elevation-3 hover:-translate-y-0.5';
       default:
         return '';
     }

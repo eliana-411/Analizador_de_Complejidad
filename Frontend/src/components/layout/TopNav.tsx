@@ -15,13 +15,13 @@ export default function TopNav() {
   };
 
   return (
-    <nav class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl mx-4 mt-4 px-8 py-4 animate-fade-in-down">
+    <nav class="bg-white/20 backdrop-blur-xl border-2 border-gray-300 rounded-2xl mx-4 mt-4 px-8 py-4 elevation-2 animate-fade-in-down">
       <div class="flex items-center justify-between">
         {/* Breadcrumbs */}
         <div class="flex items-center space-x-2 text-sm">
-          <span class="text-white/70">Inicio</span>
-          <span class="text-white/40">/</span>
-          <span class="text-white font-medium">Dashboard</span>
+          <span class="text-gray-600">Inicio</span>
+          <span class="text-gray-400">/</span>
+          <span class="text-gray-900 font-medium">Dashboard</span>
         </div>
 
         {/* Right side: Search + Avatar */}
@@ -33,17 +33,17 @@ export default function TopNav() {
               value={searchQuery()}
               onInput={(e) => setSearchQuery(e.currentTarget.value)}
               placeholder="Search..."
-              class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 pl-10
-                     text-sm text-white placeholder-gray-500
-                     focus:outline-none focus:border-white/20 focus:bg-white/10
+              class="bg-white/90 border-2 border-gray-300 rounded-lg px-4 py-2 pl-10
+                     text-sm text-gray-900 placeholder-gray-500
+                     focus:outline-none focus:border-purple-500 focus:bg-white focus:elevation-1
                      transition-all duration-200 w-64"
             />
             <Search class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
           </form>
 
           {/* User avatar */}
-          <button class="glass-hover rounded-full p-2 transition-all">
-            <User class="w-5 h-5 text-gray-300" />
+          <button class="bg-white/20 hover:bg-white/25 border border-gray-300 rounded-full p-2 transition-all elevation-1">
+            <User class="w-5 h-5 text-gray-600" />
           </button>
         </div>
       </div>

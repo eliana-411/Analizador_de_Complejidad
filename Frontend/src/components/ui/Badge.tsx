@@ -15,13 +15,13 @@ export default function Badge(props: BadgeProps) {
   const variantClasses = () => {
     switch (props.variant) {
       case 'success':
-        return 'bg-green-500/20 text-green-400 border-green-500/30';
+        return 'bg-green-100 text-green-700 border-2 border-green-300';
       case 'warning':
-        return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
+        return 'bg-yellow-100 text-yellow-700 border-2 border-yellow-300';
       case 'danger':
-        return 'bg-red-500/20 text-red-400 border-red-500/30';
+        return 'bg-red-100 text-red-700 border-2 border-red-300';
       case 'info':
-        return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
+        return 'bg-blue-100 text-blue-700 border-2 border-blue-300';
       default:
         return '';
     }
@@ -30,7 +30,7 @@ export default function Badge(props: BadgeProps) {
   return (
     <span
       class={`inline-flex items-center px-3 py-1 rounded-full
-              text-xs font-medium border backdrop-blur-sm
+              text-xs font-medium
               ${variantClasses()} ${props.class || ''}`}
     >
       {props.children}

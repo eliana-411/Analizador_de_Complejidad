@@ -25,6 +25,9 @@ export default function MainLayout(props: MainLayoutProps) {
         <source src={videoBackground} type="video/mp4" />
       </video>
 
+      {/* White overlay for light theme visibility */}
+      <div class="fixed inset-0 bg-white/75 z-[1]" />
+
       {/* Floating sidebar */}
       <Sidenav />
 
