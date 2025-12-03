@@ -6,6 +6,7 @@ import StatusIndicator from '../components/ui/StatusIndicator';
 import ToggleButtonGroup from '../components/ui/ToggleButtonGroup';
 import ContentContainer from '../components/layout/ContentContainer';
 import { mockPseudocode, mockValidation } from '../mock-data/validador';
+import { validatePseudocode } from '../api/validator';
 
 /**
  * Validador page - Pseudocode validation interface
@@ -16,12 +17,24 @@ export default function Validador() {
   const [visualization, setVisualization] = createSignal(false);
   const [algorithmType, setAlgorithmType] = createSignal('iterativo');
 
-  const handleAnalyze = () => {
-    console.log('Analyzing pseudocode...', {
-      pseudocode: macroalgorith(),
-      visualization: visualization(),
-      algorithmType: algorithmType()
-    });
+  const handleAnalyze = async () => {
+    try {
+      console.log('Analyzing pseudocode...');
+
+      const resultado = await validatePseudocode({
+        pseudocodigo: macroalgorith(),
+        return_suggestions: true
+      });
+
+      console.log('Resultado de validación:', resultado);
+
+      // TODO: Actualizar estado de los StatusIndicators con resultado.capas
+      // TODO: Mostrar sugerencias al usuario si hay errores
+
+    } catch (error) {
+      console.error('Error al validar:', error);
+      // TODO: Mostrar error al usuario
+    }
   };
 
   return (

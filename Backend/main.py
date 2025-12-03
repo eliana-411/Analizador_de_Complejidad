@@ -1,5 +1,5 @@
-from services.lectorArchivos import LectorArchivos
-from agentes.agenteValidador import ServicioValidador
+from shared.services.lectorArchivos import LectorArchivos
+from core.validador.services.orchestrator import ValidationOrchestrator
 
 def main():
     print("=" * 80)
@@ -99,9 +99,10 @@ def main():
     print("  🎓 VALIDACIÓN ORGANIZADA POR CAPAS DE LA GRAMÁTICA")
     print("=" * 80)
     print()
-    
-    servo = ServicioValidador()
-    resultado = servo.validar(pseudocodigo)
+
+    orchestrator = ValidationOrchestrator()
+    resultado_obj = orchestrator.validar(pseudocodigo, return_suggestions=True)
+    resultado = resultado_obj.model_dump()  # Convertir Pydantic model a dict
     
     print(f"✓ Válido General:  {'SÍ ✅' if resultado['valido_general'] else 'NO ❌'}")
     print(f"✓ Tipo Algoritmo:  {resultado['tipo_algoritmo']}")
@@ -152,7 +153,14 @@ def main():
         print("  ❌ PSEUDOCÓDIGO INVÁLIDO")
         print(f"  ❌ Se encontraron {resultado['resumen']['errores_totales']} errores")
         print("  ❌ Revisa los errores por capa arriba indicados")
-    
+
+        # Mostrar sugerencias si existen
+        if resultado.get('sugerencias'):
+            print()
+            print("💡 SUGERENCIAS DE CORRECCIÓN:")
+            for sugerencia in resultado['sugerencias']:
+                print(f"  • {sugerencia}")
+
     print()
     print("=" * 80)
 

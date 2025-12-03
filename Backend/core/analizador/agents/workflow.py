@@ -5,8 +5,6 @@ Orquesta el proceso de analisis de escenarios usando LangGraph.
 Transforma pseudocodigo validado en Tabla Universal Omega.
 """
 
-from langgraph.graph import END, StateGraph
-
 from Backend.analizador.agents.nodes.analyze_loops_node import analyze_loops_node
 from Backend.analizador.agents.nodes.build_omega_table_node import (
     build_omega_table_node,
@@ -25,6 +23,7 @@ from Backend.analizador.agents.nodes.identify_control_vars_node import (
 # Importar nodos
 from Backend.analizador.agents.nodes.parse_lines_node import parse_lines_node
 from Backend.analizador.models.scenario_state import ScenarioState
+from langgraph.graph import END, StateGraph
 
 
 def create_mapeo_workflow():
