@@ -1,6 +1,6 @@
-quickSort(A[], izq, der)
+quickSort(int A[], int izq, int der)
 begin
-    pivote
+    int pivote
 
     if (izq < der) then
     begin
@@ -10,9 +10,9 @@ begin
     end
 end
 
-particionar(A[], izq, der)
+particionar(int A[], int izq, int der)
 begin
-    pivote, i, j, temp
+    int pivote, i, j, temp
 
     pivote 🡨 A[der]
     i 🡨 izq - 1

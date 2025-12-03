@@ -1,7 +1,7 @@
-busquedaBinaria(A[], n, x)
+busquedaBinaria(int A[], int n, int x)
 begin
-    izq, der, medio
-    encontrado
+    int izq, der, medio
+    bool encontrado
 
     izq 🡨 1
     der 🡨 n

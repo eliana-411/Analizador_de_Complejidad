@@ -1,6 +1,6 @@
 busquedaLineal(int A[], int n, int x)
 begin
-    int i
+    i
     bool encontrado
 
     encontrado 🡨 F

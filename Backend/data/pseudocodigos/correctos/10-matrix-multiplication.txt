@@ -1,6 +1,6 @@
-multiplicarMatrices(A[][], B[][], C[][], n)
+multiplicarMatrices(int A[][], int B[][], int C[][], int n)
 begin
-    i, j, k, suma
+    int i, j, k, suma
 
     for i 🡨 1 to n do
     begin
