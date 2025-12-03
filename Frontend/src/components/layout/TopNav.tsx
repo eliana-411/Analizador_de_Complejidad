@@ -15,12 +15,12 @@ export default function TopNav() {
   };
 
   return (
-    <nav class="glass border-b border-white/10 px-6 py-4 animate-fade-in-down">
+    <nav class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl mx-4 mt-4 px-8 py-4 animate-fade-in-down">
       <div class="flex items-center justify-between">
         {/* Breadcrumbs */}
         <div class="flex items-center space-x-2 text-sm">
-          <span class="text-gray-400">Home</span>
-          <span class="text-gray-600">/</span>
+          <span class="text-white/70">Inicio</span>
+          <span class="text-white/40">/</span>
           <span class="text-white font-medium">Dashboard</span>
         </div>
 

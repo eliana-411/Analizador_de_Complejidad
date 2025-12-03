@@ -1,10 +1,10 @@
 import type { JSX } from 'solid-js';
 import Sidenav from './Sidenav';
 import TopNav from './TopNav';
-import videoBackground from '../../assets/cobija.webm';
+import videoBackground from '../../assets/cobija.mp4';
 
 interface MainLayoutProps {
-  children: JSX.Element;
+  children?: JSX.Element;
 }
 
 /**
@@ -22,27 +22,21 @@ export default function MainLayout(props: MainLayoutProps) {
         playsinline
         class="fixed inset-0 w-full h-full object-cover z-0"
       >
-        <source src={videoBackground} type="video/webm" />
+        <source src={videoBackground} type="video/mp4" />
       </video>
 
-      {/* Dark overlay for better glass effect visibility */}
-      <div class="fixed inset-0 bg-black/40 z-0" />
+      {/* Floating sidebar */}
+      <Sidenav />
 
       {/* Main content with glass effect */}
-      <div class="relative z-10 flex min-h-screen">
-        {/* Sidebar */}
-        <Sidenav />
+      <div class="relative z-10 flex flex-col min-h-screen">
+        {/* Top navigation */}
+        <TopNav />
 
-        {/* Main content area */}
-        <div class="flex-1 flex flex-col min-h-screen">
-          {/* Top navigation */}
-          <TopNav />
-
-          {/* Page content */}
-          <main class="flex-1 p-6">
-            {props.children}
-          </main>
-        </div>
+        {/* Page content */}
+        <main class="flex-1 p-8">
+          {props.children}
+        </main>
       </div>
     </div>
   );

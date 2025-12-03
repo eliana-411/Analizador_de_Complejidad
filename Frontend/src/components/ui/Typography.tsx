@@ -1,8 +1,6 @@
 import type { JSX } from 'solid-js';
-import { TypographyVariant } from '../../types';
 
 interface TypographyProps {
-  variant?: TypographyVariant;
   gradient?: boolean;
   children: JSX.Element | string;
   class?: string;
