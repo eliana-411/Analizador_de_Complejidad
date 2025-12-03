@@ -1,9 +1,10 @@
 from services.lectorArchivos import LectorArchivos
-from agentes.agenteValidador import AgenteValidador
+from services.servicioValidador import servicioValidador
+from services.servicioCorrector import ServicioCorrector
 
 def main():
     print("=" * 80)
-    print("  🎓 ANALIZADOR DE COMPLEJIDAD - Validador por Capas de la Gramática")
+    print("  🎓 ANALIZADOR DE COMPLEJIDAD - Validador y Corrector con RAG")
     print("=" * 80)
     print()
     
@@ -100,8 +101,8 @@ def main():
     print("=" * 80)
     print()
     
-    agente = AgenteValidador()
-    resultado = agente.validar(pseudocodigo)
+    servicio = servicioValidador()
+    resultado = servicio.validar(pseudocodigo)
     
     print(f"✓ Válido General:  {'SÍ ✅' if resultado['valido_general'] else 'NO ❌'}")
     print(f"✓ Tipo Algoritmo:  {resultado['tipo_algoritmo']}")
@@ -140,18 +141,94 @@ def main():
         print()
     
     print("=" * 80)
-    print("  📋 RESULTADO FINAL")
+    print("  📋 RESULTADO VALIDACIÓN")
     print("=" * 80)
     print()
     
     if resultado['valido_general']:
         print("  ✅ ¡PSEUDOCÓDIGO VÁLIDO!")
         print(f"  ✅ Tipo: {resultado['tipo_algoritmo']}")
-        print("  ✅ Cumple con todas las capas de la gramática")
+        print("  ✅ Cumple con todas las capas de la gramática v2.0")
     else:
         print("  ❌ PSEUDOCÓDIGO INVÁLIDO")
         print(f"  ❌ Se encontraron {resultado['resumen']['errores_totales']} errores")
-        print("  ❌ Revisa los errores por capa arriba indicados")
+        print()
+        
+        # ==================== CORRECCIÓN AUTOMÁTICA CON RAG ====================
+        print("=" * 80)
+        print("  🤖 CORRECCIÓN AUTOMÁTICA CON RAG")
+        print("=" * 80)
+        print()
+        
+        respuesta = input("¿Deseas que el sistema corrija automáticamente los errores? (s/n): ").strip().lower()
+        
+        if respuesta == 's':
+            print("\n🔍 Analizando errores y buscando ejemplos similares...")
+            print()
+            
+            corrector = ServicioCorrector()
+            
+            # Mostrar estadísticas de la base de conocimiento
+            stats = corrector.obtener_estadisticas_base()
+            print(f"📚 Base de conocimiento: {stats['total_ejemplos']} ejemplos")
+            print(f"   • Iterativos: {stats['iterativos']}")
+            print(f"   • Recursivos: {stats['recursivos']}")
+            print()
+            
+            # Corregir usando RAG
+            print("⚙️ Generando corrección con IA...")
+            resultado_correccion = corrector.corregir(pseudocodigo, resultado)
+            
+            print()
+            print("=" * 80)
+            print("  ✨ RESULTADO DE LA CORRECCIÓN")
+            print("=" * 80)
+            print()
+            
+            if resultado_correccion['corregido']:
+                print("  ✅ Corrección exitosa")
+                print()
+                print(f"  📖 Ejemplos usados como referencia:")
+                for ejemplo in resultado_correccion['ejemplos_usados']:
+                    print(f"     • {ejemplo}")
+                print()
+                
+                print("  📝 EXPLICACIÓN:")
+                print("  " + "─" * 76)
+                # Mostrar solo la parte de correcciones, no todo el pseudocódigo
+                explicacion_lineas = resultado_correccion['explicacion'].split('\n')
+                for linea in explicacion_lineas[:15]:  # Primeras 15 líneas
+                    print(f"  {linea}")
+                print()
+                
+                print("  💻 PSEUDOCÓDIGO CORREGIDO:")
+                print("  " + "─" * 76)
+                print(resultado_correccion['pseudocodigo'])
+                print("  " + "─" * 76)
+                print()
+                
+                # Preguntar si quiere validar la corrección
+                validar_correccion = input("¿Validar pseudocódigo corregido? (s/n): ").strip().lower()
+                
+                if validar_correccion == 's':
+                    print("\n🔍 Validando pseudocódigo corregido...\n")
+                    
+                    validador2 = servicioValidador()
+                    resultado2 = validador2.validar(resultado_correccion['pseudocodigo'])
+                    
+                    if resultado2['valido_general']:
+                        print("  🎉 ¡PSEUDOCÓDIGO CORREGIDO ES VÁLIDO!")
+                        print(f"  ✅ Tipo: {resultado2['tipo_algoritmo']}")
+                        print("  ✅ Sin errores")
+                    else:
+                        print("  ⚠️ El pseudocódigo corregido aún tiene errores:")
+                        print(f"  ❌ {resultado2['resumen']['errores_totales']} errores restantes")
+                        print("  💡 Puede requerir ajustes manuales adicionales")
+            else:
+                print("  ❌ No se pudo corregir automáticamente")
+                print(f"  📝 Razón: {resultado_correccion['explicacion']}")
+        else:
+            print("\n  💡 Puedes revisar y corregir los errores manualmente")
     
     print()
     print("=" * 80)
