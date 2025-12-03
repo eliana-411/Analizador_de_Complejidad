@@ -1,5 +1,5 @@
 from services.lectorArchivos import LectorArchivos
-from agentes.agenteValidador import AgenteValidador
+from agentes.agenteValidador import ServicioValidador
 
 def main():
     print("=" * 80)
@@ -100,8 +100,8 @@ def main():
     print("=" * 80)
     print()
     
-    agente = AgenteValidador()
-    resultado = agente.validar(pseudocodigo)
+    servo = ServicioValidador()
+    resultado = servo.validar(pseudocodigo)
     
     print(f"✓ Válido General:  {'SÍ ✅' if resultado['valido_general'] else 'NO ❌'}")
     print(f"✓ Tipo Algoritmo:  {resultado['tipo_algoritmo']}")
