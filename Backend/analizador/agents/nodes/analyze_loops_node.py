@@ -5,8 +5,13 @@ Usa el LoopCounter existente para extraer información de loops.
 """
 
 from typing import List
+<<<<<<< HEAD
 from Backend.analizador.models.scenario_state import ScenarioState, LoopInfo
 from Backend.tools.loop_counter import LoopCounter
+=======
+from analizador.models.scenario_state import ScenarioState, LoopInfo
+from tools.loop_counter import LoopCounter
+>>>>>>> origin/integracionVersiones
 
 
 def analyze_loops_node(state: ScenarioState) -> ScenarioState:

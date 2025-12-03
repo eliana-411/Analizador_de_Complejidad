@@ -1,10 +1,3 @@
-**FRONTEND: Instalar paquetes**
-pip install streamlit
-
-
-**Correr Frontend**
-streamlit run Frontend/ui.py
-
 # 📊 Proyecto: Análisis y Diseño de Algoritmos
 ## Analizador de Complejidad Computacional
 
