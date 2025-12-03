@@ -1,5 +1,5 @@
 import type { JSX } from 'solid-js';
-import { BadgeVariant } from '../../types';
+import type { BadgeVariant } from '../../types';
 
 interface BadgeProps {
   children: string | JSX.Element;

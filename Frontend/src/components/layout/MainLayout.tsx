@@ -1,17 +1,13 @@
-import type { JSX } from 'solid-js';
+import type { ParentProps } from 'solid-js';
 import Sidenav from './Sidenav';
 import TopNav from './TopNav';
 import videoBackground from '../../assets/cobija.mp4';
-
-interface MainLayoutProps {
-  children?: JSX.Element;
-}
 
 /**
  * Main layout component with video background and glassomorphic UI
  * Features animated video background with overlay for better glass effect visibility
  */
-export default function MainLayout(props: MainLayoutProps) {
+export default function MainLayout(props: ParentProps) {
   return (
     <div class="min-h-screen relative overflow-hidden">
       {/* Video background */}
@@ -36,11 +32,11 @@ export default function MainLayout(props: MainLayoutProps) {
         {/* Top navigation */}
         <TopNav />
 
-        {/* Page content */}
-        <main class="flex-1 p-8">
-          {props.children}
-        </main>
-      </div>
+      {/* Page content */}
+      <main class="flex-1 p-8">
+        {props.children}
+      </main>
     </div>
-  );
+  </div>
+);
 }

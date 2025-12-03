@@ -15,8 +15,8 @@ export default function TopNav() {
   };
 
   return (
-    <nav class="bg-white/20 backdrop-blur-xl border-2 border-gray-300 rounded-2xl mx-4 mt-4 px-8 py-4 elevation-2 animate-fade-in-down">
-      <div class="flex items-center justify-between">
+    <header class="sticky top-0 z-40 w-full bg-white/30 backdrop-blur-md border-b border-white/40 shadow-sm transition-all duration-300">
+      <div class="px-8 py-4 flex items-center justify-between">
         {/* Breadcrumbs */}
         <div class="flex items-center space-x-2 text-sm">
           <span class="text-gray-600">Inicio</span>
@@ -47,6 +47,6 @@ export default function TopNav() {
           </button>
         </div>
       </div>
-    </nav>
+    </header>
   );
 }

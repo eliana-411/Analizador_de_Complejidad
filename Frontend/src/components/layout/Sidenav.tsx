@@ -1,5 +1,5 @@
 import { Home, CheckCircle, Activity, Pi, BarChart3 } from 'lucide-solid';
-import { For } from 'solid-js';
+import { For, createSignal } from 'solid-js';
 import { A, useLocation } from '@solidjs/router';
 
 interface NavItem {
@@ -18,10 +18,11 @@ const navItems: NavItem[] = [
 
 /**
  * Floating icon-only sidebar navigation with glassomorphic effect
- * Rounded pill design matching reference image
+ * Auto-hides when mouse is away, slides out on hover
  */
 export default function Sidenav() {
   const location = useLocation();
+  const [isHovered, setIsHovered] = createSignal(false);
 
   const isActive = (path: string) => {
     if (path === '/') {
@@ -31,8 +32,17 @@ export default function Sidenav() {
   };
 
   return (
-    <aside class="fixed left-4 top-1/2 -translate-y-1/2 z-20 animate-slide-in-left">
-      <div class="bg-white/20 backdrop-blur-xl rounded-full p-4 flex flex-col items-center space-y-6 border-2 border-gray-300 elevation-2">
+    <aside
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      class={`fixed top-1/2 -translate-y-1/2 z-20
+              transition-all duration-300 ease-in-out
+              ${isHovered() ? 'left-4' : 'left-[-56px]'}
+              animate-slide-in-left`}
+    >
+      <div class={`bg-white/20 backdrop-blur-xl rounded-full p-4 flex flex-col items-center space-y-6 border-2 border-gray-300 elevation-2
+                   transition-shadow duration-300
+                   ${isHovered() ? 'elevation-3' : ''}`}>
         {/* Navigation links - icon only */}
         <For each={navItems}>
           {(item) => (

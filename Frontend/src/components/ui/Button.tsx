@@ -11,11 +11,14 @@ interface ButtonProps {
 }
 
 /**
- * Button component with 4 style variants
+ * Button component with 7 style variants
  * - primary: Gradient background with hover lift
  * - secondary: Glass background with gradient border
  * - ghost: Transparent with hover glass effect
  * - danger: Red gradient for destructive actions
+ * - blue: Blue solid background
+ * - orange: Orange solid background
+ * - warning: Yellow to orange gradient
  */
 export default function Button(props: ButtonProps) {
   const variant = () => props.variant || 'primary';
@@ -32,6 +35,12 @@ export default function Button(props: ButtonProps) {
         return 'bg-transparent text-gray-700 hover:bg-white/15 hover:text-gray-900 border border-transparent hover:border-gray-300';
       case 'danger':
         return 'gradient-danger text-white elevation-2 hover:elevation-3 hover:-translate-y-0.5';
+      case 'blue':
+        return 'bg-blue-500 text-white hover:bg-blue-600 elevation-2';
+      case 'orange':
+        return 'bg-orange-500 text-white hover:bg-orange-600 elevation-2';
+      case 'warning':
+        return 'bg-gradient-to-br from-yellow-400 to-orange-500 text-white elevation-2 hover:elevation-3';
       default:
         return '';
     }

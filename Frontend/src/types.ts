@@ -1,12 +1,14 @@
 // Shared TypeScript types for the application
 
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
+export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'blue' | 'orange' | 'warning';
 
 export type BadgeVariant = 'success' | 'warning' | 'danger' | 'info';
 
 export type TypographyVariant = 'h1' | 'h2' | 'h3' | 'body';
 
 export type InputType = 'text' | 'number' | 'email' | 'password';
+
+export type ValidationStatus = 'valid' | 'invalid' | 'pending';
 
 export interface ComponentSectionProps {
   title: string;
@@ -46,4 +48,52 @@ export interface OmegaTable {
   complexity_O?: string;
   complexity_Omega?: string;
   complexity_Theta?: string;
+}
+
+// Additional types for mocked UI
+
+export interface ScenarioRow {
+  id: string;
+  s0: string;
+  A0: string;
+  exito: string;
+  k: string;
+  lineCosts: LineCost[];
+  justification: string;
+  cost: string;
+}
+
+export interface BoundAnalysis {
+  cota: string;
+  escenario: string;
+  valor: string;
+  notacion: string;
+  expanded: {
+    analysis: string;
+    formula: string;
+  };
+}
+
+export interface AlgorithmClassification {
+  type: string;
+  category: string;
+  complexity: string;
+}
+
+export interface RecurrenceSolution {
+  formula: string;
+  result: string;
+  steps: string[];
+}
+
+export interface AlgorithmSolution {
+  algorithm: string;
+  timeComplexity: {
+    best: string;
+    average: string;
+    worst: string;
+  };
+  spaceComplexity: string;
+  characteristics: string[];
+  optimizations: string[];
 }

@@ -126,4 +126,13 @@
   .animate-delay-500 {
     animation-delay: 500ms;
   }
+
+  /* Chevron rotation for expandable rows */
+  .rotate-chevron {
+    transition: transform 200ms ease;
+  }
+
+  .rotate-chevron.expanded {
+    transform: rotate(180deg);
+  }
 }
