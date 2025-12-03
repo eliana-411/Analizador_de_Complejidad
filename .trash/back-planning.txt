@@ -35,7 +35,7 @@
      Versión completa identificará banderas y variables que afectan 
      terminación.
      """
-     from Backend.mapeo.models.scenario_state import ScenarioState,
+     from Backend.analizador.models.scenario_state import ScenarioState,
      ControlVariable
      … +33 lines (ctrl+o to expand)
 
@@ -48,7 +48,7 @@
      Versión completa generará múltiples escenarios basados en variables de 
      control.
      """
-     from Backend.mapeo.models.scenario_state import ScenarioState
+     from Backend.analizador.models.scenario_state import ScenarioState
 
      … +45 lines (ctrl+o to expand)
 
@@ -58,8 +58,8 @@
      Nodo: Calculate Costs - Calcula T(S) para cada escenario
      Usa LineCostCalculator para obtener costeo línea por línea.
      """
-     from Backend.mapeo.models.scenario_state import ScenarioState
-     from Backend.mapeo.tools.line_cost_calculator import LineCostCalculator
+     from Backend.analizador.models.scenario_state import ScenarioState
+     from Backend.analizador.tools.line_cost_calculator import LineCostCalculator
 
      … +41 lines (ctrl+o to expand)
 
@@ -71,7 +71,7 @@
      Para MVP: P(S) = 1 (un solo escenario).
      Versión completa calculará probabilidades según distribución de casos.
      """
-     from Backend.mapeo.models.scenario_state import ScenarioState
+     from Backend.analizador.models.scenario_state import ScenarioState
 
      … +40 lines (ctrl+o to expand)
 
@@ -81,8 +81,8 @@
      Nodo: Build Omega Table - Ensambla la Tabla Ω final
      Convierte raw_scenarios en estructura OmegaTable con ScenarioEntry.
      """
-     from Backend.mapeo.models.scenario_state import ScenarioState
-     from Backend.mapeo.models.omega_table import OmegaTable, ScenarioEntry
+     from Backend.analizador.models.scenario_state import ScenarioState
+     from Backend.analizador.models.omega_table import OmegaTable, ScenarioEntry
      … +43 lines (ctrl+o to expand)
 
 ⏺ Perfect! Now let me create the main workflow orchestrator that ties all
@@ -106,7 +106,7 @@
      Transforma pseudocódigo validado en Tabla Universal Ω.
      """
      from langgraph.graph import StateGraph, END
-     from Backend.mapeo.models.scenario_state import ScenarioState
+     from Backend.analizador.models.scenario_state import ScenarioState
      … +68 lines (ctrl+o to expand)
 
 ⏺ Great! The workflow is complete. Now let me create the __init__.py files
