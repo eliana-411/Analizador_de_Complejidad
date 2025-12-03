@@ -1,0 +1,131 @@
+/* Import Inter font - must be first */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Tailwind CSS v3 directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-[#0a0a0f] text-gray-100 font-sans antialiased;
+    @apply min-h-screen overflow-x-hidden;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-black/20;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-white/10 rounded;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-white/20;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-[rgba(15,15,25,0.7)] backdrop-blur-md border border-white/10;
+    @apply shadow-[0_8px_32px_rgba(0,0,0,0.3)];
+  }
+
+  .glass-hover {
+    transition: all 250ms ease;
+  }
+
+  .glass-hover:hover {
+    @apply bg-[rgba(20,20,30,0.8)] border-white/20;
+    @apply shadow-[0_12px_48px_rgba(0,0,0,0.4)];
+  }
+
+  .glass-light {
+    @apply bg-white/5 backdrop-blur-sm border border-white/8;
+  }
+
+  .glass-strong {
+    @apply bg-[rgba(15,15,25,0.9)] backdrop-blur-lg border border-white/15;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  }
+
+  .gradient-bg {
+    position: relative;
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  }
+
+  .gradient-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  }
+
+  .gradient-danger {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  }
+
+  .elevation-1 {
+    @apply shadow-[0_2px_8px_rgba(0,0,0,0.15)];
+  }
+
+  .elevation-2 {
+    @apply shadow-[0_4px_16px_rgba(0,0,0,0.2)];
+  }
+
+  .elevation-3 {
+    @apply shadow-[0_8px_32px_rgba(0,0,0,0.3)];
+  }
+
+  .elevation-4 {
+    @apply shadow-[0_12px_48px_rgba(0,0,0,0.4)];
+  }
+
+  .glass-panel {
+    @apply glass rounded-lg p-6;
+  }
+
+  .frosted {
+    @apply bg-[rgba(10,10,15,0.8)];
+    backdrop-filter: blur(40px) saturate(180%);
+  }
+
+  .hover-lift {
+    transition: all 250ms ease;
+  }
+
+  .hover-lift:hover {
+    @apply -translate-y-1;
+  }
+}
+
+@layer utilities {
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animate-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animate-delay-500 {
+    animation-delay: 500ms;
+  }
+}
