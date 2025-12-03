@@ -6,3 +6,4 @@ __pycache__/
 Backend/.env
 test_core.py
 test_connection.py
+test_agente_matematico.py
