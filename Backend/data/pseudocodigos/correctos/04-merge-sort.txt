@@ -1,6 +1,6 @@
-mergeSort(A[], izq, der)
+mergeSort(int A[], int izq, int der)
 begin
-    medio
+    int medio
 
     if (izq < der) then
     begin
@@ -12,10 +12,10 @@ begin
     end
 end
 
-merge(A[], izq, medio, der)
+merge(int A[], int izq, int medio, int der)
 begin
-    n1, n2, i, j, k
-    L[100], R[100]
+    int n1, n2, i, j, k
+    int L[100], R[100]
 
     n1 🡨 medio - izq + 1
     n2 🡨 der - medio

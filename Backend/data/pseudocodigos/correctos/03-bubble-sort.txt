@@ -1,7 +1,7 @@
-bubbleSort(A[], n)
+bubbleSort(int A[], int n)
 begin
-    i, j, temp
-    intercambio
+    int i, j, temp
+    bool intercambio
 
     for i 🡨 1 to n - 1 do
     begin
