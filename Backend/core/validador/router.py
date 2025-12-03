@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException, status
 import logging
 
-from core.validador.models.request_models import ValidationRequest
-from core.validador.models.response_models import ValidationResponse
+from core.validador.models.request_models import ValidationRequest, CorrectionRequest
+from core.validador.models.response_models import ValidationResponse, CorrectionResponse
 from core.validador.services.orchestrator import ValidationOrchestrator
 
 router = APIRouter(prefix="/validador", tags=["validador"])
@@ -60,6 +60,63 @@ async def validar_pseudocodigo(request: ValidationRequest) -> ValidationResponse
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Error interno en el servidor. Contacte al administrador.",
+        )
+
+
+@router.post("/corregir", response_model=CorrectionResponse, status_code=status.HTTP_200_OK)
+async def corregir_pseudocodigo(request: CorrectionRequest) -> CorrectionResponse:
+    """
+    Corrige pseudocódigo inválido usando RAG (Retrieval-Augmented Generation).
+
+    Usa ejemplos correctos de la base de conocimiento para:
+    - Agregar tipos faltantes a variables y parámetros
+    - Corregir palabras clave (then, do, to, CALL)
+    - Mantener la lógica del algoritmo original
+
+    **Requiere:**
+    - `pseudocodigo`: Código con errores
+    - `resultado_validacion`: Resultado completo de `/validar` (para extraer errores)
+
+    **Returns:**
+    - `corregido`: Si se pudo corregir exitosamente
+    - `pseudocodigo`: Código corregido
+    - `explicacion`: Explicación detallada de las correcciones realizadas
+    - `ejemplos_usados`: Nombres de los ejemplos de la base de conocimiento usados como referencia
+
+    **Metodología RAG:**
+    1. Busca ejemplos similares en la base de conocimiento (por tipo y estructuras)
+    2. Genera prompt para LLM con ejemplos correctos como contexto
+    3. LLM corrige siguiendo EXACTAMENTE la sintaxis de los ejemplos
+    4. No inventa sintaxis - usa solo patrones validados
+    """
+    try:
+        logger.info(f"Corrección iniciada - longitud: {len(request.pseudocodigo)} chars")
+
+        # Inicializar servicio corrector
+        from shared.services.servicio_corrector import ServicioCorrector
+
+        corrector = ServicioCorrector()
+
+        # Corregir usando RAG
+        resultado = corrector.corregir(
+            request.pseudocodigo, request.resultado_validacion
+        )
+
+        logger.info(f"Corrección completada - éxito: {resultado['corregido']}")
+
+        return CorrectionResponse(**resultado)
+
+    except ValueError as e:
+        logger.warning(f"Input inválido para corrección: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Input inválido: {str(e)}",
+        )
+    except Exception as e:
+        logger.error(f"Error al corregir: {str(e)}", exc_info=True)
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Error interno al generar corrección. Contacte al administrador.",
         )
 
 

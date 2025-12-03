@@ -7,7 +7,7 @@ import ToggleButtonGroup from '../components/ui/ToggleButtonGroup';
 import ContentContainer from '../components/layout/ContentContainer';
 import Toast from '../components/ui/Toast';
 import { mockPseudocode } from '../mock-data/validador';
-import { validatePseudocode, type ValidationResponse } from '../api/validator';
+import { validatePseudocode, correctPseudocode, type ValidationResponse, type CorrectionResponse } from '../api/validator';
 
 /**
  * Validador page - Pseudocode validation interface
@@ -23,6 +23,11 @@ export default function Validador() {
   const [isValidating, setIsValidating] = createSignal(false);
   const [errorMessage, setErrorMessage] = createSignal<string | null>(null);
   const [showToast, setShowToast] = createSignal(false);
+
+  // Correction state
+  const [correctedCode, setCorrectedCode] = createSignal<string | null>(null);
+  const [isCorrecting, setIsCorrecting] = createSignal(false);
+  const [correctionExplanation, setCorrectionExplanation] = createSignal<string | null>(null);
 
   // Helper function para obtener el status de una capa
   const getLayerStatus = (layerKey: string): ValidationStatus => {
@@ -40,6 +45,8 @@ export default function Validador() {
     setErrorMessage(null);
     setValidationResult(null);
     setShowToast(false);
+    setCorrectedCode(null);
+    setCorrectionExplanation(null);
 
     try {
       console.log('Analyzing pseudocode...');
@@ -74,6 +81,53 @@ export default function Validador() {
       setTimeout(() => setShowToast(false), 5000);
     } finally {
       setIsValidating(false);
+    }
+  };
+
+  const handleCorrect = async () => {
+    const result = validationResult();
+    if (!result || result.valido_general) return;
+
+    setIsCorrecting(true);
+    setErrorMessage(null);
+    setShowToast(false);
+
+    try {
+      console.log('Correcting pseudocode...');
+
+      const correccion = await correctPseudocode({
+        pseudocodigo: macroalgorith(),
+        resultado_validacion: result
+      });
+
+      console.log('Resultado de corrección:', correccion);
+
+      if (correccion.corregido) {
+        setCorrectedCode(correccion.pseudocodigo);
+        setCorrectionExplanation(correccion.explicacion);
+
+        // Mostrar toast de éxito
+        setShowToast(true);
+        setTimeout(() => setShowToast(false), 8000);
+      }
+    } catch (error) {
+      console.error('Error al corregir:', error);
+      setErrorMessage(error instanceof Error ? error.message : 'Error desconocido al corregir');
+      setShowToast(true);
+
+      // Auto-cerrar toast de error después de 5 segundos
+      setTimeout(() => setShowToast(false), 5000);
+    } finally {
+      setIsCorrecting(false);
+    }
+  };
+
+  const applyCorrection = () => {
+    const code = correctedCode();
+    if (code) {
+      setMacroalgorith(code);
+      setCorrectedCode(null);
+      setCorrectionExplanation(null);
     }
   };
 
@@ -130,7 +184,17 @@ export default function Validador() {
           </div>
 
           {/* Analyze Button - below textarea */}
-          <div class="flex justify-end">
+          <div class="flex justify-end gap-4">
+            <Show when={validationResult() && !validationResult()!.valido_general}>
+              <Button
+                variant="primary"
+                onClick={handleCorrect}
+                disabled={isCorrecting() || isValidating()}
+                class="px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isCorrecting() ? 'CORRIGIENDO...' : '🤖 CORREGIR AUTOMÁTICAMENTE'}
+              </Button>
+            </Show>
             <Button
               variant="warning"
               onClick={handleAnalyze}
@@ -141,6 +205,46 @@ export default function Validador() {
             </Button>
           </div>
         </div>
+
+        {/* Corrected Code Display */}
+        <Show when={correctedCode()}>
+          <div class="mt-6 p-6 bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-300 rounded-lg shadow-lg animate-fade-in-up">
+            <h4 class="font-bold text-blue-900 text-xl mb-4 flex items-center gap-2">
+              <span>✨</span> Código Corregido
+            </h4>
+
+            <pre class="text-sm font-mono bg-white p-4 rounded-lg overflow-x-auto border border-blue-200 shadow-inner mb-4 whitespace-pre-wrap">
+              {correctedCode()}
+            </pre>
+
+            <Show when={correctionExplanation()}>
+              <div class="mb-4 p-4 bg-blue-100 rounded-lg border border-blue-200">
+                <h5 class="font-semibold text-blue-900 mb-2">Explicación:</h5>
+                <p class="text-sm text-blue-800 whitespace-pre-wrap">{correctionExplanation()}</p>
+              </div>
+            </Show>
+
+            <div class="flex justify-end gap-3">
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setCorrectedCode(null);
+                  setCorrectionExplanation(null);
+                }}
+                class="px-6 py-2"
+              >
+                Descartar
+              </Button>
+              <Button
+                variant="primary"
+                onClick={applyCorrection}
+                class="px-6 py-2 font-bold"
+              >
+                ✓ Aplicar Corrección
+              </Button>
+            </div>
+          </div>
+        </Show>
 
         {/* Toast Notifications */}
         <Show when={showToast()}>

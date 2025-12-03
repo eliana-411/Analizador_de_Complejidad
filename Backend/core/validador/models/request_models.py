@@ -19,3 +19,18 @@ class ValidationRequest(BaseModel):
 
         # Normalizar espacios pero no modificar el contenido
         return v.strip()
+
+
+class CorrectionRequest(BaseModel):
+    """Request model para corrección de pseudocódigo usando RAG"""
+
+    pseudocodigo: str = Field(..., min_length=1, max_length=50000)
+    resultado_validacion: dict  # Resultado completo de /validar
+
+    @field_validator("pseudocodigo")
+    @classmethod
+    def sanitize_pseudocode(cls, v: str) -> str:
+        """Sanitizar pseudocódigo antes de corregir"""
+        if not v or not v.strip():
+            raise ValueError("Pseudocódigo no puede estar vacío")
+        return v.strip()

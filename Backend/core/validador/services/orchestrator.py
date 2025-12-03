@@ -41,10 +41,13 @@ class ValidationOrchestrator:
         resultado_basico, state = validador_basico.validar(pseudocodigo)
 
         # 3. Si capa léxica falla, retornar early con sugerencias
+        # IMPORTANTE: Detectar tipo de algoritmo antes de retornar
         if not resultado_basico["1_LEXICA"]["valido"]:
+            tipo_preliminar = validador_basico.detectar_tipo_preliminar()
             return self._construir_respuesta(
                 {"1_LEXICA": resultado_basico["1_LEXICA"]},
                 valido_general=False,
+                tipo_algoritmo=tipo_preliminar,  # ✅ Siempre retorna tipo
                 resumen=self._calcular_resumen({"1_LEXICA": resultado_basico["1_LEXICA"]}, state),
                 return_suggestions=return_suggestions,
             )

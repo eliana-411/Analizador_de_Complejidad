@@ -22,6 +22,18 @@ export interface ValidationResponse {
   sugerencias?: string[];
 }
 
+export interface CorrectionRequest {
+  pseudocodigo: string;
+  resultado_validacion: ValidationResponse;
+}
+
+export interface CorrectionResponse {
+  corregido: boolean;
+  pseudocodigo: string;
+  explicacion: string;
+  ejemplos_usados: string[];
+}
+
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 export async function validatePseudocode(
@@ -38,6 +50,25 @@ export async function validatePseudocode(
   if (!response.ok) {
     const error = await response.json().catch(() => ({ detail: response.statusText }));
     throw new Error(error.detail || `Validation failed: ${response.statusText}`);
+  }
+
+  return response.json();
+}
+
+export async function correctPseudocode(
+  request: CorrectionRequest
+): Promise<CorrectionResponse> {
+  const response = await fetch(`${API_BASE_URL}/validador/corregir`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(request),
+  });
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ detail: response.statusText }));
+    throw new Error(error.detail || `Correction failed: ${response.statusText}`);
   }
 
   return response.json();

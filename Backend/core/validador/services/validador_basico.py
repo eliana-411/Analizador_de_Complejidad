@@ -46,6 +46,32 @@ class ValidadorBasico:
             "variables_declaradas": self.variables_declaradas,
         }
 
+    def detectar_tipo_preliminar(self) -> str:
+        """
+        Detecta tipo de algoritmo antes de validación completa.
+        Útil cuando falla validación temprana (léxica) y no se ejecuta
+        la capa 6 (Subrutinas) que normalmente detecta recursión.
+
+        Returns:
+            "Iterativo" o "Recursivo"
+        """
+        # Buscar CALL en el código limpio
+        tiene_call = any("CALL" in linea for linea in self.codigo_limpio)
+
+        if not tiene_call:
+            return "Iterativo"
+
+        # Buscar recursión: nombre_funcion y luego CALL nombre_funcion
+        for linea in self.codigo_limpio:
+            match = re.match(r"^(\w+)\s*\(", linea.strip())
+            if match:
+                nombre_funcion = match.group(1)
+                # Buscar si se llama a sí misma
+                if any(f"CALL {nombre_funcion}" in l for l in self.codigo_limpio):
+                    return "Recursivo"
+
+        return "Iterativo"
+
     def _validar_capa_lexica(self, pseudocodigo: str) -> dict:
         """Valida que todos los caracteres y tokens sean reconocidos"""
         capa = {"valido": True, "errores": [], "detalles": []}

@@ -35,3 +35,12 @@ class ValidationResponse(BaseModel):
     capas: Dict[str, LayerResult]
     resumen: ResumenValidacion
     sugerencias: Optional[List[str]] = None
+
+
+class CorrectionResponse(BaseModel):
+    """Response model de corrección con RAG"""
+
+    corregido: bool
+    pseudocodigo: str
+    explicacion: str
+    ejemplos_usados: List[str]
