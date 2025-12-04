@@ -1,6 +1,13 @@
 .venv/
 venv/
+*.lock
+
 __pycache__/
+*.py[codz]
+*$py.class
+
+CLAUDE.md
+settings.local.json
 .env
 *.env
 Backend/.env

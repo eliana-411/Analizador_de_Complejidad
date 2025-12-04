@@ -1,0 +1,25 @@
+Metadata-Version: 2.4
+Name: analizador-complejidad
+Version: 0.1.0
+Summary: Analizador de Complejidad Algorítmica - Análisis de pseudocódigo para determinar complejidad Big-O
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: langgraph>=0.2.0
+Requires-Dist: langchain>=0.3.0
+Requires-Dist: langchain-anthropic>=0.2.0
+Requires-Dist: pydantic>=2.9.0
+Requires-Dist: sympy>=1.13.0
+Requires-Dist: fastapi>=0.115.0
+Requires-Dist: uvicorn>=0.32.0
+
+# Para instalar dependencias para el backend, seguir el paso a paso:
+
+## Instalar uv, en powershell ejecutar:
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+## Reiniciar visual studio code
+
+## Ejecutar dentro de Backend\:
+uv sync
+
+## Se creará un .venv. De esta forma se instalaran los paquetes utilizados para correr el backend.
