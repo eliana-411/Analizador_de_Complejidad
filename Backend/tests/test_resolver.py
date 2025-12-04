@@ -1,4 +1,8 @@
-# Backend/test_resolver.py
+# Backend/tests/test_resolver.py
+
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 from agentes.agenteResolver import AgenteResolver
 
