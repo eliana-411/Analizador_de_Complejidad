@@ -6,8 +6,8 @@ Traduce descripciones en lenguaje natural a pseudocódigo válido.
 import re
 from pathlib import Path
 from typing import Dict, List
-from services.llm_service import LLMService
-from services.lectorArchivos import LectorArchivos
+from shared.services.llm_servicio import LLMService
+from shared.services.lectorArchivos import LectorArchivos
 
 
 class ServicioTraductor:

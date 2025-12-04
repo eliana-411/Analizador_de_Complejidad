@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     """
 
     # API Keys
-    anthropic_api_key: str
+    anthropic_api_key: Optional[str] = None
 
     # Model Configuration
     model_name: str = "claude-sonnet-4-5-20250929"

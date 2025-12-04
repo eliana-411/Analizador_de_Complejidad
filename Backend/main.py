@@ -1,5 +1,6 @@
-from services.servicioTraductor import ServicioTraductor
-from services.servicioValidador import servicioValidador
+from shared.services.servicioTraductor import ServicioTraductor
+from shared.services.servicioValidador import servicioValidador
+from shared.services.servicioCorrector import ServicioCorrector
 
 def main():
     print("=" * 80)
@@ -63,14 +64,6 @@ def main():
     print("=" * 80)
     print()
     
-    servicio = servicioValidador()
-    resultado = servicio.validar(pseudocodigo)
-    
-    print(f"✓ Válido General:  {'SÍ ✅' if resultado['valido_general'] else 'NO ❌'}")
-    print(f"✓ Tipo Algoritmo:  {resultado['tipo_algoritmo']}")
-    print(f"✓ Total Errores:   {resultado['resumen']['errores_totales']}")
-    print()
-    
     if resultado['ejemplos_usados']:
         print("📖 Ejemplos usados como referencia:")
         for ejemplo in resultado['ejemplos_usados']:
@@ -92,13 +85,21 @@ def main():
     print("=" * 80)
     print()
     
-    if resultado['valido_general']:
+    validador = servicioValidador()
+    resultado_validacion = validador.validar(resultado['pseudocodigo'])
+    
+    print(f"✓ Válido General:  {'SÍ ✅' if resultado_validacion['valido_general'] else 'NO ❌'}")
+    print(f"✓ Tipo Algoritmo:  {resultado_validacion['tipo_algoritmo']}")
+    print(f"✓ Total Errores:   {resultado_validacion['resumen']['errores_totales']}")
+    print()
+    
+    if resultado_validacion['valido_general']:
         print("  ✅ ¡PSEUDOCÓDIGO VÁLIDO!")
-        print(f"  ✅ Tipo: {resultado['tipo_algoritmo']}")
+        print(f"  ✅ Tipo: {resultado_validacion['tipo_algoritmo']}")
         print("  ✅ Cumple con todas las capas de la gramática v2.0")
     else:
         print("  ❌ PSEUDOCÓDIGO INVÁLIDO")
-        print(f"  ❌ Se encontraron {resultado['resumen']['errores_totales']} errores")
+        print(f"  ❌ Se encontraron {resultado_validacion['resumen']['errores_totales']} errores")
         print()
         
         # ==================== CORRECCIÓN AUTOMÁTICA CON RAG ====================
@@ -124,7 +125,7 @@ def main():
             
             # Corregir usando RAG
             print("⚙️ Generando corrección con IA...")
-            resultado_correccion = corrector.corregir(pseudocodigo, resultado)
+            resultado_correccion = corrector.corregir(resultado['pseudocodigo'], resultado_validacion)
             
             print()
             print("=" * 80)
