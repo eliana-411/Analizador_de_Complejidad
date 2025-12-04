@@ -63,12 +63,12 @@ def main():
     print("=" * 80)
     print()
     
-    if not resultado['traducido']:
-        print("❌ No se pudo traducir")
-        print(f"📝 Razón: {resultado['explicacion']}")
-        return
+    servicio = servicioValidador()
+    resultado = servicio.validar(pseudocodigo)
     
-    print("✅ Traducción exitosa")
+    print(f"✓ Válido General:  {'SÍ ✅' if resultado['valido_general'] else 'NO ❌'}")
+    print(f"✓ Tipo Algoritmo:  {resultado['tipo_algoritmo']}")
+    print(f"✓ Total Errores:   {resultado['resumen']['errores_totales']}")
     print()
     
     if resultado['ejemplos_usados']:
@@ -92,46 +92,90 @@ def main():
     print("=" * 80)
     print()
     
-    validar = input("¿Validar el pseudocódigo generado? (s/n): ").strip().lower()
-    
-    if validar == 's':
+    if resultado['valido_general']:
+        print("  ✅ ¡PSEUDOCÓDIGO VÁLIDO!")
+        print(f"  ✅ Tipo: {resultado['tipo_algoritmo']}")
+        print("  ✅ Cumple con todas las capas de la gramática v2.0")
+    else:
+        print("  ❌ PSEUDOCÓDIGO INVÁLIDO")
+        print(f"  ❌ Se encontraron {resultado['resumen']['errores_totales']} errores")
         print()
-        print("🔍 Validando pseudocódigo...\n")
         
-        validador = servicioValidador()
-        resultado_validacion = validador.validar(resultado['pseudocodigo'])
-        
+        # ==================== CORRECCIÓN AUTOMÁTICA CON RAG ====================
         print("=" * 80)
-        print("  📊 RESULTADO VALIDACIÓN")
+        print("  🤖 CORRECCIÓN AUTOMÁTICA CON RAG")
         print("=" * 80)
         print()
         
-        print(f"✓ Válido:         {'SÍ ✅' if resultado_validacion['valido_general'] else 'NO ❌'}")
-        print(f"✓ Tipo:           {resultado_validacion['tipo_algoritmo']}")
-        print(f"✓ Total Errores:  {resultado_validacion['resumen']['errores_totales']}")
-        print()
+        respuesta = input("¿Deseas que el sistema corrija automáticamente los errores? (s/n): ").strip().lower()
         
-        # Mostrar resumen
-        print("📊 RESUMEN:")
-        print(f"  • Líneas totales:         {resultado_validacion['resumen']['total_lineas']}")
-        print(f"  • Clases encontradas:     {resultado_validacion['resumen']['clases_encontradas']}")
-        print(f"  • Subrutinas encontradas: {resultado_validacion['resumen']['subrutinas_encontradas']}")
-        print()
-        
-        if not resultado_validacion['valido_general']:
-            print("🔍 ERRORES ENCONTRADOS:")
+        if respuesta == 's':
+            print("\n🔍 Analizando errores y buscando ejemplos similares...")
             print()
             
-            for capa_nombre, capa_datos in resultado_validacion['capas'].items():
-                if capa_datos['errores']:
-                    nombre_limpio = capa_nombre.replace('_', ' ').title()
-                    print(f"❌ {nombre_limpio}:")
-                    for error in capa_datos['errores']:
-                        print(f"   • {error}")
-                    print()
+            corrector = ServicioCorrector()
+            
+            # Mostrar estadísticas de la base de conocimiento
+            stats = corrector.obtener_estadisticas_base()
+            print(f"📚 Base de conocimiento: {stats['total_ejemplos']} ejemplos")
+            print(f"   • Iterativos: {stats['iterativos']}")
+            print(f"   • Recursivos: {stats['recursivos']}")
+            print()
+            
+            # Corregir usando RAG
+            print("⚙️ Generando corrección con IA...")
+            resultado_correccion = corrector.corregir(pseudocodigo, resultado)
+            
+            print()
+            print("=" * 80)
+            print("  ✨ RESULTADO DE LA CORRECCIÓN")
+            print("=" * 80)
+            print()
+            
+            if resultado_correccion['corregido']:
+                print("  ✅ Corrección exitosa")
+                print()
+                print(f"  📖 Ejemplos usados como referencia:")
+                for ejemplo in resultado_correccion['ejemplos_usados']:
+                    print(f"     • {ejemplo}")
+                print()
+                
+                print("  📝 EXPLICACIÓN:")
+                print("  " + "─" * 76)
+                # Mostrar solo la parte de correcciones, no todo el pseudocódigo
+                explicacion_lineas = resultado_correccion['explicacion'].split('\n')
+                for linea in explicacion_lineas[:15]:  # Primeras 15 líneas
+                    print(f"  {linea}")
+                print()
+                
+                print("  💻 PSEUDOCÓDIGO CORREGIDO:")
+                print("  " + "─" * 76)
+                print(resultado_correccion['pseudocodigo'])
+                print("  " + "─" * 76)
+                print()
+                
+                # Preguntar si quiere validar la corrección
+                validar_correccion = input("¿Validar pseudocódigo corregido? (s/n): ").strip().lower()
+                
+                if validar_correccion == 's':
+                    print("\n🔍 Validando pseudocódigo corregido...\n")
+                    
+                    validador2 = servicioValidador()
+                    resultado2 = validador2.validar(resultado_correccion['pseudocodigo'])
+                    
+                    if resultado2['valido_general']:
+                        print("  🎉 ¡PSEUDOCÓDIGO CORREGIDO ES VÁLIDO!")
+                        print(f"  ✅ Tipo: {resultado2['tipo_algoritmo']}")
+                        print("  ✅ Sin errores")
+                    else:
+                        print("  ⚠️ El pseudocódigo corregido aún tiene errores:")
+                        print(f"  ❌ {resultado2['resumen']['errores_totales']} errores restantes")
+                        print("  💡 Puede requerir ajustes manuales adicionales")
+            else:
+                print("  ❌ No se pudo corregir automáticamente")
+                print(f"  📝 Razón: {resultado_correccion['explicacion']}")
         else:
-            print("🎉 ¡EL PSEUDOCÓDIGO GENERADO ES VÁLIDO!")
-            print("✅ Cumple con todas las capas de la gramática")
+            print("\n  💡 Puedes revisar y corregir los errores manualmente")
     
     print()
     print("=" * 80)

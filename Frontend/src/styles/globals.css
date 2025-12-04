@@ -1,0 +1,138 @@
+/* Import Inter font - must be first */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Tailwind CSS v3 directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-white text-gray-900 font-sans antialiased;
+    @apply min-h-screen overflow-x-hidden;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white border border-gray-100 shadow-sm;
+  }
+
+  .glass-hover {
+    transition: all 250ms ease;
+  }
+
+  .glass-hover:hover {
+    @apply shadow-md border-gray-200 transform -translate-y-0.5;
+  }
+
+  .glass-light {
+    @apply bg-white border border-gray-100 shadow-sm;
+  }
+
+  .glass-strong {
+    @apply bg-white shadow-md border border-gray-200;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  }
+
+  .gradient-bg {
+    position: relative;
+    background: linear-gradient(180deg, #f5f7fa 0%, #e8ecf1 50%, #dce2e9 100%);
+  }
+
+  .gradient-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  }
+
+  .gradient-danger {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  }
+
+  .elevation-1 {
+    @apply shadow-[2px_2px_8px_rgba(0,0,0,0.12)];
+  }
+
+  .elevation-2 {
+    @apply shadow-[3px_3px_16px_rgba(0,0,0,0.15)];
+  }
+
+  .elevation-3 {
+    @apply shadow-[4px_4px_24px_rgba(0,0,0,0.18)];
+  }
+
+  .elevation-4 {
+    @apply shadow-[6px_6px_32px_rgba(0,0,0,0.22)];
+  }
+
+  .glass-panel {
+    @apply glass rounded-lg p-6 elevation-2;
+  }
+
+  .frosted {
+    @apply bg-white/85;
+    backdrop-filter: blur(40px) saturate(120%);
+  }
+
+  .hover-lift {
+    transition: all 250ms ease;
+  }
+
+  .hover-lift:hover {
+    @apply -translate-y-1;
+  }
+}
+
+@layer utilities {
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animate-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animate-delay-500 {
+    animation-delay: 500ms;
+  }
+
+  /* Chevron rotation for expandable rows */
+  .rotate-chevron {
+    transition: transform 200ms ease;
+  }
+
+  .rotate-chevron.expanded {
+    transform: rotate(180deg);
+  }
+}
