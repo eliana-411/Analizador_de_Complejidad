@@ -4,6 +4,8 @@ from .resolvers.metodo_sumas import MetodoSumas
 from .resolvers.metodo_iteracion import MetodoIteracion
 from .resolvers.ecuacion_caracteristica import EcuacionCaracteristica
 from .resolvers.arbol_recursion import ArbolRecursion
+from .resolvers.analizador_directo import AnalizadorDirecto
+from .normalizador import NormalizadorEcuaciones
 
 class AgenteResolver:
     """
@@ -24,9 +26,7 @@ class AgenteResolver:
             EcuacionCaracteristica(),
             MetodoIteracion(),
             ArbolRecursion(),  # Para divisiones asimétricas y múltiples términos
-            
-            # Aquí se agregarán más métodos después:
-            # AkraBazzi(),
+            AnalizadorDirecto(),  # Para expresiones directas (iterativos)
         ]
     
     def resolver_ecuacion(self, ecuacion_str):
@@ -40,6 +40,8 @@ class AgenteResolver:
         - dict con:
             - exito: bool
             - ecuacion_original: str
+            - ecuacion_normalizada: str (si se aplicaron transformaciones)
+            - transformaciones: list (transformaciones aplicadas)
             - ecuacion_parseada: dict
             - metodo_usado: str
             - solucion: str
@@ -50,6 +52,8 @@ class AgenteResolver:
         resultado = {
             'exito': False,
             'ecuacion_original': ecuacion_str,
+            'ecuacion_normalizada': None,
+            'transformaciones': [],
             'ecuacion_parseada': None,
             'metodo_usado': None,
             'solucion': None,
@@ -58,19 +62,21 @@ class AgenteResolver:
             'intentos': []
         }
         
-        # Paso 1: Parsear la ecuación
-        ecuacion_parseada = self._parsear_ecuacion(ecuacion_str)
+        # NUEVO: Normalizar ecuación antes de parsear
+        normalizacion = NormalizadorEcuaciones.normalizar(ecuacion_str)
+        ecuacion_a_parsear = normalizacion['ecuacion_normalizada']
         
-        if not ecuacion_parseada:
-            resultado['explicacion'] = (
-                f"❌ No se pudo parsear la ecuación: '{ecuacion_str}'\n\n"
-                f"Formatos soportados:\n"
-                f"  • T(n) = aT(n/b) + f(n)  (Divide y Conquista)\n"
-                f"  • T(n) = T(n-c) + f(n)   (Decrementación)\n"
-                f"  • T(n) = aT(n-c) + f(n)  (Decrementación múltiple)"
-            )
-            return resultado
+        if normalizacion['transformaciones']:
+            resultado['ecuacion_normalizada'] = ecuacion_a_parsear
+            resultado['transformaciones'] = normalizacion['transformaciones']
+            print(f"  >> Normalizaciones aplicadas:")
+            for trans in normalizacion['transformaciones']:
+                print(f"     - {trans}")
         
+        # Paso 1: Parsear la ecuación (ahora la normalizada)
+        ecuacion_parseada = self._parsear_ecuacion(ecuacion_a_parsear)
+        
+        # Siempre debería retornar algo (al menos expresion_directa)
         resultado['ecuacion_parseada'] = ecuacion_parseada
         
         # Paso 2: Intentar resolver con cada método
@@ -80,7 +86,7 @@ class AgenteResolver:
             
             # Verificar si el método puede resolver esta ecuación
             if metodo.puede_resolver(ecuacion_parseada):
-                print(f"  ✓ Intentando con {nombre_metodo}...")
+                print(f"  >> Intentando con {nombre_metodo}...")
                 
                 # Intentar resolver
                 res_metodo = metodo.resolver(ecuacion_parseada)
@@ -150,7 +156,12 @@ class AgenteResolver:
         if resultado:
             return resultado
         
-        return None
+        # Si no es ninguna recurrencia conocida, asumir expresión directa
+        # Para el AnalizadorDirecto
+        return {
+            'forma': 'expresion_directa',
+            'ecuacion_original': ecuacion_str
+        }
     
     def _parsear_division_multiple(self, ecuacion):
         """
@@ -482,3 +493,186 @@ class AgenteResolver:
             'exito': False,
             'explicacion': f"Método '{nombre_metodo}' no encontrado"
         }
+    
+    def resolver_casos(self, casos):
+        """
+        Resuelve ecuaciones para los 3 casos: mejor, promedio y peor.
+        
+        Parámetros:
+        - casos: dict con las claves:
+            - 'mejor_caso': str con la ecuación del mejor caso
+            - 'caso_promedio': str con la ecuación del caso promedio
+            - 'peor_caso': str con la ecuación del peor caso
+        
+        Retorna:
+        - dict con:
+            - 'mejor_caso': dict con resultado del mejor caso
+            - 'caso_promedio': dict con resultado del caso promedio
+            - 'peor_caso': dict con resultado del peor caso
+            - 'complejidades': dict con las complejidades con notación aplicada
+            - 'son_iguales': bool indicando si las 3 complejidades son iguales
+            - 'observacion': str con observación sobre los resultados
+        """
+        resultados = {
+            'mejor_caso': None,
+            'caso_promedio': None,
+            'peor_caso': None,
+            'complejidades': {},
+            'son_iguales': False,
+            'observacion': ''
+        }
+        
+        # Resolver cada caso
+        print("\n🔍 Resolviendo mejor caso...")
+        resultado_mejor = self.resolver_ecuacion(casos['mejor_caso'])
+        resultados['mejor_caso'] = resultado_mejor
+        
+        print("\n🔍 Resolviendo caso promedio...")
+        resultado_promedio = self.resolver_ecuacion(casos['caso_promedio'])
+        resultados['caso_promedio'] = resultado_promedio
+        
+        print("\n🔍 Resolviendo peor caso...")
+        resultado_peor = self.resolver_ecuacion(casos['peor_caso'])
+        resultados['peor_caso'] = resultado_peor
+        
+        # Aplicar notaciones asintóticas
+        if resultado_mejor['exito']:
+            resultados['complejidades']['mejor_caso'] = self._aplicar_notacion(
+                resultado_mejor['solucion'],
+                'mejor_caso',
+                resultado_mejor['metodo_usado']
+            )
+        
+        if resultado_promedio['exito']:
+            resultados['complejidades']['caso_promedio'] = self._aplicar_notacion(
+                resultado_promedio['solucion'],
+                'caso_promedio',
+                resultado_promedio['metodo_usado']
+            )
+        
+        if resultado_peor['exito']:
+            resultados['complejidades']['peor_caso'] = self._aplicar_notacion(
+                resultado_peor['solucion'],
+                'peor_caso',
+                resultado_peor['metodo_usado']
+            )
+        
+        # Verificar si las complejidades son iguales
+        if len(resultados['complejidades']) == 3:
+            son_iguales = self._complejidades_iguales(resultados['complejidades'])
+            resultados['son_iguales'] = son_iguales
+            
+            if son_iguales:
+                # Usar Θ para todos si son iguales
+                complejidad_base = self._extraer_complejidad_base(
+                    resultados['complejidades']['caso_promedio']
+                )
+                resultados['observacion'] = f"⚠️ Complejidad constante: Θ({complejidad_base}) en todos los casos"
+                
+                # Actualizar todas con Θ
+                resultados['complejidades']['mejor_caso'] = f"Θ({complejidad_base})"
+                resultados['complejidades']['caso_promedio'] = f"Θ({complejidad_base})"
+                resultados['complejidades']['peor_caso'] = f"Θ({complejidad_base})"
+            else:
+                # Si son diferentes, forzar la aplicación de notaciones específicas
+                resultados['observacion'] = ">> Complejidad variable según la entrada"
+                
+                # Reaplica notaciones con forzar_cambio=True para casos diferentes
+                if resultado_mejor['exito']:
+                    resultados['complejidades']['mejor_caso'] = self._aplicar_notacion(
+                        resultado_mejor['solucion'],
+                        'mejor_caso',
+                        resultado_mejor['metodo_usado'],
+                        forzar_cambio=True
+                    )
+                
+                if resultado_promedio['exito']:
+                    resultados['complejidades']['caso_promedio'] = self._aplicar_notacion(
+                        resultado_promedio['solucion'],
+                        'caso_promedio',
+                        resultado_promedio['metodo_usado'],
+                        forzar_cambio=True
+                    )
+                
+                if resultado_peor['exito']:
+                    resultados['complejidades']['peor_caso'] = self._aplicar_notacion(
+                        resultado_peor['solucion'],
+                        'peor_caso',
+                        resultado_peor['metodo_usado'],
+                        forzar_cambio=True
+                    )
+        
+        return resultados
+    
+    def _aplicar_notacion(self, solucion, caso_tipo, metodo_usado, forzar_cambio=False):
+        """
+        Aplica la notación asintótica según el tipo de caso.
+        
+        Excepción: TeoremaMAestro retorna con Θ, se mantiene a menos que forzar_cambio=True
+        
+        Parámetros:
+        - solucion: str con la solución (ej: "n log n", "n²")
+        - caso_tipo: 'mejor_caso', 'caso_promedio' o 'peor_caso'
+        - metodo_usado: nombre del método que resolvió
+        - forzar_cambio: bool, si True cambia incluso las que tienen Θ del Teorema Maestro
+        
+        Retorna:
+        - str con la notación aplicada
+        """
+        # Teorema Maestro ya incluye Θ, mantener si no se fuerza cambio
+        if metodo_usado == 'TeoremaMAestro' and not forzar_cambio:
+            return solucion  # Ya tiene Θ incluida
+        
+        # Extraer la complejidad base (sin notación previa)
+        complejidad_base = self._extraer_complejidad_base(solucion)
+        
+        # Aplicar notación según caso
+        if caso_tipo == 'mejor_caso':
+            return f"Ω({complejidad_base})"
+        elif caso_tipo == 'caso_promedio':
+            return f"Θ({complejidad_base})"
+        elif caso_tipo == 'peor_caso':
+            return f"O({complejidad_base})"
+        
+        return solucion
+    
+    def _extraer_complejidad_base(self, solucion):
+        """
+        Extrae la complejidad sin notación asintótica.
+        
+        Ejemplos:
+        - "Θ(n log n)" → "n log n"
+        - "O(n²)" → "n²"
+        - "n log n" → "n log n"
+        """
+        import re
+        # Buscar patrón Θ(...), O(...), Ω(...)
+        match = re.search(r'[ΘOΩ]\((.+)\)', solucion)
+        if match:
+            return match.group(1)
+        return solucion
+    
+    def _complejidades_iguales(self, complejidades):
+        """
+        Verifica si las 3 complejidades son iguales (ignorando la notación).
+        
+        Parámetros:
+        - complejidades: dict con 'mejor_caso', 'caso_promedio', 'peor_caso'
+        
+        Retorna:
+        - bool
+        """
+        if len(complejidades) != 3:
+            return False
+        
+        # Extraer bases sin notación
+        mejor = self._extraer_complejidad_base(complejidades['mejor_caso'])
+        promedio = self._extraer_complejidad_base(complejidades['caso_promedio'])
+        peor = self._extraer_complejidad_base(complejidades['peor_caso'])
+        
+        # Normalizar espacios
+        mejor = mejor.replace(' ', '')
+        promedio = promedio.replace(' ', '')
+        peor = peor.replace(' ', '')
+        
+        return mejor == promedio == peor
