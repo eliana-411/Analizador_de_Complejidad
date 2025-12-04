@@ -8,6 +8,7 @@ para el análisis de escenarios.
 from pydantic import BaseModel, Field
 from typing import List, Dict, Optional
 from core.analizador.models.omega_table import OmegaTable
+from core.analizador.models.recursion_info import RecursionInfo
 
 
 class ControlVariable(BaseModel):
@@ -81,6 +82,11 @@ class ScenarioState(BaseModel):
 
     # Paso 2: Análisis de Loops
     loops: List[LoopInfo] = Field(default_factory=list)  # Info de todos los loops
+
+    # Paso 2b: Análisis de Recursión (para algoritmos recursivos)
+    recursive_calls: List[Dict] = Field(default_factory=list)  # Llamadas recursivas detectadas
+    is_recursive: bool = False  # True si se detectaron llamadas recursivas
+    recursion_info: Optional[RecursionInfo] = None  # Estructura de recursión analizada
 
     # Paso 3: Identificación de Variables de Control
     control_variables: List[ControlVariable] = Field(default_factory=list)

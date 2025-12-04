@@ -9,9 +9,10 @@ Implementa la fórmula: T(S) = Σ (C_op × Freq) para cada línea del pseudocód
 
 import re
 import sympy as sp
-from typing import List, Dict, Tuple
+from typing import List, Dict, Tuple, Optional
 from core.analizador.models.omega_table import LineCost
 from core.analizador.models.scenario_state import LoopInfo
+from core.analizador.models.recursion_info import RecursionInfo
 
 
 class LineCostCalculator:
@@ -30,19 +31,29 @@ class LineCostCalculator:
         self,
         lines: List[str],
         scenario: Dict,
-        loops: List[LoopInfo]
+        loops: List[LoopInfo],
+        recursion_info: Optional[RecursionInfo] = None
     ) -> Tuple[str, List[LineCost]]:
         """
         Calcula T(S) para un escenario específico.
+
+        Para algoritmos iterativos: retorna fórmula cerrada (ej: "2*n + 2")
+        Para algoritmos recursivos: retorna relación de recurrencia (ej: "T(n) = T(n-1) + 2")
 
         Args:
             lines: Líneas del pseudocódigo
             scenario: Dict con info del escenario (id, condition, early_exit, iteration_value)
             loops: Información de todos los loops del algoritmo
+            recursion_info: Información de recursión (si es recursivo)
 
         Returns:
             (formula_total, list_of_line_costs)
         """
+        # CASO RECURSIVO
+        if recursion_info:
+            return self._calculate_recursive_cost(lines, scenario, recursion_info)
+
+        # CASO ITERATIVO (lógica existente)
         total = 0
         line_costs = []
 
@@ -212,3 +223,89 @@ class LineCostCalculator:
                 return True
 
         return False
+
+    def _calculate_recursive_cost(
+        self,
+        lines: List[str],
+        scenario: Dict,
+        recursion_info: RecursionInfo
+    ) -> Tuple[str, List[LineCost]]:
+        """
+        Calcula la relación de recurrencia para un algoritmo recursivo.
+
+        NO resuelve la recurrencia, solo la expresa como string.
+
+        Ejemplos de output:
+        - Factorial: "T(n) = T(n-1) + 2"
+        - Binary search: "T(n) = T(n/2) + 3"
+        - Merge sort: "T(n) = 2*T(n/2) + n"
+
+        Args:
+            lines: Líneas del pseudocódigo
+            scenario: Info del escenario
+            recursion_info: Estructura de recursión
+
+        Returns:
+            (recurrence_relation, line_costs)
+        """
+        line_costs = []
+        non_recursive_cost = 0
+
+        # 1. Calcular costo del trabajo NO recursivo (C)
+        for line_num, line in enumerate(lines):
+            # Saltar llamadas recursivas (no se cuentan en C, van en el T())
+            if self._is_recursive_call(line):
+                continue
+
+            # Contar operaciones
+            c_op = self._count_operations(line)
+
+            # Acumular costo no recursivo
+            non_recursive_cost += c_op
+
+            # Agregar a justificación
+            if c_op > 0:
+                line_costs.append(LineCost(
+                    line_number=line_num + 1,
+                    code=line.strip(),
+                    C_op=c_op,
+                    Freq="1",
+                    Total=str(c_op)
+                ))
+
+        # 2. Construir relación de recurrencia
+        num_calls = recursion_info.num_calls
+        pattern = recursion_info.call_pattern[0] if recursion_info.call_pattern else "n-1"
+
+        # Ajustar patrón según escenario (balanced vs skewed)
+        recursion_pattern = scenario.get("recursion_pattern", "standard")
+        if recursion_pattern == "skewed" and "divide" in recursion_info.recurrence_type:
+            # Peor caso: división desbalanceada
+            pattern = "n-1"
+            num_calls = 1
+
+        # Formatear relación de recurrencia
+        if num_calls == 1:
+            # T(n) = T(pattern) + C
+            recurrence = f"T(n) = T({pattern}) + {non_recursive_cost}"
+        else:
+            # T(n) = num_calls*T(pattern) + C
+            recurrence = f"T(n) = {num_calls}*T({pattern}) + {non_recursive_cost}"
+
+        # Simplificaciones comunes
+        recurrence = recurrence.replace("+ 0", "").replace(" + 1", " + C").strip()
+
+        return recurrence, line_costs
+
+    def _is_recursive_call(self, line: str) -> bool:
+        """
+        Determina si una línea contiene una llamada recursiva.
+
+        Args:
+            line: Línea de código
+
+        Returns:
+            True si la línea contiene CALL
+        """
+        line_clean = line.strip()
+        return "CALL" in line_clean or "call" in line_clean.lower()
