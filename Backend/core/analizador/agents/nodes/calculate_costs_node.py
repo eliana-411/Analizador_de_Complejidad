@@ -12,6 +12,9 @@ def calculate_costs_node(state: ScenarioState) -> ScenarioState:
     """
     Calcula el costo T(S) para cada escenario usando análisis línea por línea.
 
+    Para algoritmos iterativos: genera fórmulas cerradas (ej: "2*n + 2")
+    Para algoritmos recursivos: genera relaciones de recurrencia (ej: "T(n) = T(n-1) + 2")
+
     Args:
         state: Estado actual con 'raw_scenarios' poblado
 
@@ -25,7 +28,10 @@ def calculate_costs_node(state: ScenarioState) -> ScenarioState:
         # Calcular T(S) y obtener desglose línea por línea
         try:
             cost_formula, line_costs = calculator.calculate_scenario_cost(
-                lines=state.lines, scenario=scenario, loops=state.loops
+                lines=state.lines,
+                scenario=scenario,
+                loops=state.loops,
+                recursion_info=state.recursion_info  # Pasar info de recursión
             )
 
             # Actualizar escenario con costo calculado
