@@ -95,6 +95,14 @@ class ScenarioState(BaseModel):
     raw_scenarios: List[Dict] = Field(default_factory=list)
     # Lista de diccionarios con {id, condition, state, iteration_value}
 
+    # Paso 4b: Análisis LLM de características de entrada
+    llm_analysis: Optional[Dict] = None
+    # Resultado del análisis LLM: {is_sensitive, sensitivity_type, best_case_input, worst_case_input, parameter_q_applicable, parameter_q_meaning}
+
+    # Paso 5: Resumen de Casos (mejor/peor/promedio)
+    summary: Optional[Dict] = None
+    # Resumen calculado: {best_case, worst_case, average_case}
+
     # ===== OUTPUT PRINCIPAL =====
     omega_table: Optional[OmegaTable] = None  # Tabla Ω completa con todos los escenarios
 
