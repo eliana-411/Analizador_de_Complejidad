@@ -4,6 +4,8 @@ import logging
 from core.validador.models.request_models import ValidationRequest
 from core.validador.models.response_models import ValidationResponse
 from core.validador.services.orchestrator import ValidationOrchestrator
+from core.analizador.agents.workflow import get_workflow
+from core.analizador.models.scenario_state import ScenarioState
 
 router = APIRouter(prefix="/validador", tags=["validador"])
 logger = logging.getLogger(__name__)

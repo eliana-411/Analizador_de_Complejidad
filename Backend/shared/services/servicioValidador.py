@@ -29,6 +29,8 @@ class servicioValidador:
         self._resultado = {
             'valido_general': True,
             'tipo_algoritmo': None,  # 'Iterativo' o 'Recursivo'
+            'algorithm_name': None,  # Nombre del algoritmo principal
+            'parameters': {},  # Parámetros del algoritmo con tipos
             'capas': {
                 '1_LEXICA': {'valido': True, 'errores': [], 'detalles': []},
                 '2_DECLARACIONES': {'valido': True, 'errores': [], 'detalles': []},
@@ -196,6 +198,7 @@ class servicioValidador:
         """
         Valida declaraciones de clases, parámetros y variables (TIPADO).
         Corresponde a: data/gramatica/2-declaraciones.md
+
         """
         capa = self._resultado['capas']['2_DECLARACIONES']
         capa['detalles'].append('Validando declaraciones con tipado')
@@ -234,6 +237,10 @@ class servicioValidador:
                 self._subrutinas_definidas.append(nombre)
                 self._variables_declaradas[nombre] = []
                 
+                # Si es la primera subrutina, es el algoritmo principal
+                if not self._resultado['algorithm_name']:
+                    self._resultado['algorithm_name'] = nombre
+                
                 if params_str:
                     parametros = [p.strip() for p in params_str.split(',')]
                     
@@ -241,8 +248,14 @@ class servicioValidador:
                         # Validar que tenga tipo
                         if re.match(self.patron_param_con_tipo, param):
                             capa['detalles'].append(f'✓ Parámetro {idx} de {nombre}: {param}')
+                            # Extraer parámetros del algoritmo principal
+                            if nombre == self._resultado['algorithm_name']:
+                                self._extraer_parametro(param)
                         elif re.match(self.patron_param_objeto, param):
                             capa['detalles'].append(f'✓ Parámetro objeto {idx} de {nombre}: {param}')
+                            # Extraer parámetros del algoritmo principal
+                            if nombre == self._resultado['algorithm_name']:
+                                self._extraer_parametro(param)
                         else:
                             # Detectar error específico
                             if re.match(r'^\w+(\[\d*\])*$', param):
@@ -261,6 +274,27 @@ class servicioValidador:
                 self._validar_variables_locales(nombre, subrutina, capa)
         
         self._resultado['resumen']['subrutinas_encontradas'] = len(self._subrutinas_definidas)
+    
+    def _extraer_parametro(self, param):
+        """Extrae el nombre y tipo de un parámetro para el workflow del analizador"""
+        # Patrón para int A[], real x, bool flag, etc.
+        match_tipo = re.match(r'^(int|real|bool)\s+(\w+)(\[\d*\])?$', param)
+        if match_tipo:
+            tipo = match_tipo.group(1)
+            nombre_var = match_tipo.group(2)
+            es_array = match_tipo.group(3) is not None
+            
+            if es_array:
+                self._resultado['parameters'][f"{nombre_var}[]"] = "array"
+            else:
+                self._resultado['parameters'][nombre_var] = tipo
+        else:
+            # Patrón para objetos: Nodo raiz
+            match_obj = re.match(r'^([A-Z]\w*)\s+(\w+)$', param)
+            if match_obj:
+                tipo_obj = match_obj.group(1)
+                nombre_var = match_obj.group(2)
+                self._resultado['parameters'][nombre_var] = tipo_obj.lower()
     
     def _validar_variables_locales(self, nombre_subrutina, lineas_subrutina, capa):
         """Valida declaraciones de variables locales con tipado """
