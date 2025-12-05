@@ -366,10 +366,23 @@ class AgenteRepresentacionMatematica:
         return "\n".join(lineas)
 
 
-# Instancia singleton del agente
-# Instancias globales del agente (con y sin LLM)
-agente_representacion = AgenteRepresentacionMatematica(use_llm=False)  # Tradicional por defecto
-agente_representacion_llm = AgenteRepresentacionMatematica(use_llm=True)  # Con LLM
+# Instancias globales del agente (creación lazy para evitar errores de importación)
+_agente_representacion = None
+_agente_representacion_llm = None
+
+
+def _get_agente_representacion(use_llm: bool = False):
+    """Obtiene instancia del agente (lazy initialization)"""
+    global _agente_representacion, _agente_representacion_llm
+    
+    if use_llm:
+        if _agente_representacion_llm is None:
+            _agente_representacion_llm = AgenteRepresentacionMatematica(use_llm=True)
+        return _agente_representacion_llm
+    else:
+        if _agente_representacion is None:
+            _agente_representacion = AgenteRepresentacionMatematica(use_llm=False)
+        return _agente_representacion
 
 
 def generar_ecuaciones_complejidad(
@@ -416,7 +429,7 @@ def generar_ecuaciones_complejidad(
         is_iterative=is_iterative
     )
     
-    # Seleccionar agente según configuración
-    agente = agente_representacion_llm if use_llm else agente_representacion
+    # Obtener agente según configuración (lazy initialization)
+    agente = _get_agente_representacion(use_llm=use_llm)
     
     return agente.generar_ecuaciones(request)
