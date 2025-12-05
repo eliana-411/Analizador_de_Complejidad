@@ -1,17 +1,17 @@
-selectionSort(arr, n)
+selectionSort(int arr[], int n)
 begin
-    for i ← 0 to n-2 do
+    for i 🡨 0 to n-2 do
     begin
-        minIdx ← i
-        for j ← i+1 to n-1 do
+        minIdx 🡨 i
+        for j 🡨 i+1 to n-1 do
         begin
             if (arr[j] < arr[minIdx]) then
             begin
-                minIdx ← j
+                minIdx 🡨 j
             end
         end
-        temp ← arr[i]
-        arr[i] ← arr[minIdx]
-        arr[minIdx] ← temp
+        temp 🡨 arr[i]
+        arr[i] 🡨 arr[minIdx]
+        arr[minIdx] 🡨 temp
     end
 end

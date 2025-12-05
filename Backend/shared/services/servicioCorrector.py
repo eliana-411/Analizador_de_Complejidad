@@ -9,6 +9,8 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 from shared.services.llm_servicio import LLMService
 from shared.services.lectorArchivos import LectorArchivos
+from tools.metricas import registrar_tokens
+from config.settings import settings
 
 
 class ServicioCorrector:
@@ -220,6 +222,15 @@ class ServicioCorrector:
         try:
             llm = LLMService.get_llm(temperature=0.3)  # Baja temperatura para ser más preciso
             respuesta = llm.invoke(prompt)
+            
+            # Registrar tokens
+            if hasattr(respuesta, 'response_metadata') and 'usage' in respuesta.response_metadata:
+                usage = respuesta.response_metadata['usage']
+                registrar_tokens(
+                    input_tokens=usage.get('input_tokens', 0),
+                    output_tokens=usage.get('output_tokens', 0),
+                    modelo=settings.model_name
+                )
             
             # Extraer pseudocódigo corregido de la respuesta
             pseudocodigo_corregido = self._extraer_pseudocodigo(respuesta.content)
