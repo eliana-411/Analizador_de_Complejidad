@@ -13,7 +13,7 @@ from core.validador.models.response_models import (
 )
 
 
-class ValidationOrchestrator:
+class ValidationOrchestrator: 
     """
     Coordinador principal del pipeline de validación.
     Orquesta ValidadorBasico y ValidadorSemantico, genera sugerencias,

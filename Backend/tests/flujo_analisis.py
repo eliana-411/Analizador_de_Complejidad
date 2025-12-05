@@ -35,6 +35,10 @@ from shared.services.detectorTipoEntrada import DetectorTipoEntrada
 from agentes.agenteResolver import AgenteResolver
 from agentes.agenteFlowchart import AgenteFlowchart
 from ml.clasificador import obtener_clasificador
+from core.analizador.agents.workflow import get_workflow
+from core.analizador.models.scenario_state import ScenarioState
+from representacion.agents.math_representation_agent import AgenteRepresentacionMatematica
+from representacion.models.math_request import MathRepresentationRequest
 
 
 class FlujoAnalisis:
@@ -56,6 +60,7 @@ class FlujoAnalisis:
         self.corrector = ServicioCorrector()
         self.resolver = AgenteResolver()
         self.generador_flowchart = AgenteFlowchart()
+        self.agente_matematicas = AgenteRepresentacionMatematica(use_llm=True)
         
         # Inicializar clasificador ML
         try:
@@ -236,43 +241,98 @@ class FlujoAnalisis:
             self._log("FASE 6: ANÁLISIS DE COSTOS POR LÍNEA")
             self._log("="*80)
             
-            self._log("⏭️ Pendiente implementación de AgenteAnalizador")
-            resultado['fase_actual'] = 'analisis_costos_pendiente'
+            # Ejecutar workflow del analizador si el código es válido
+            try:
+                # Preparar estado inicial para el workflow
+                is_iterative = validacion['tipo_algoritmo'] == 'Iterativo'
+                algorithm_name = validacion.get('algorithm_name', 'algoritmo')
+                parameters = validacion.get('parameters', {})
+                
+                self._log(f"[INFO] Algoritmo: {algorithm_name}")
+                self._log(f"[INFO] Tipo: {validacion['tipo_algoritmo']}")
+                self._log(f"[INFO] Parámetros: {parameters}")
+                
+                # Crear estado inicial
+                initial_state = ScenarioState(
+                    pseudocode=pseudocodigo,
+                    algorithm_name=algorithm_name,
+                    is_iterative=is_iterative,
+                    parameters=parameters
+                )
+                
+                # Obtener y ejecutar workflow
+                self._log("[WAIT] Ejecutando workflow de análisis de costos...")
+                workflow = get_workflow()
+                workflow_result = workflow.invoke(initial_state)
+                
+                # Extraer tabla omega del resultado
+                if workflow_result.get('omega_table'):
+                    resultado['omega_table'] = workflow_result['omega_table']
+                    resultado['costos_por_linea'] = workflow_result['omega_table'].model_dump()
+                    self._log("[OK] Tabla Omega generada exitosamente")
+                    self._log(f"[STATS] Escenarios analizados: {len(workflow_result['omega_table'].scenarios)}")
+                else:
+                    self._log("[WARN] No se pudo generar tabla Omega")
+                    
+                resultado['fase_actual'] = 'analisis_costos_completado'
+                
+            except Exception as e:
+                self._log(f"[ERROR] Error en análisis de costos: {str(e)}")
+                resultado['errores'].append(f"Error en análisis de costos: {str(e)}")
+                resultado['fase_actual'] = 'analisis_costos_error'
             
             # ==================== FASE 7: REPRESENTACIÓN MATEMÁTICA ====================
             self._log("\n" + "="*80)
             self._log("FASE 7: REPRESENTACIÓN MATEMÁTICA")
             self._log("="*80)
             
-            self._log("⏭️ Pendiente implementación de AgenteRepresentacionMatematica")
-            resultado['fase_actual'] = 'representacion_matematica_pendiente'
+            # Generar ecuaciones matemáticas desde la tabla omega
+            if resultado.get('omega_table'):
+                try:
+                    # Crear request con la tabla omega del workflow
+                    math_request = MathRepresentationRequest(
+                        omega_table=resultado['omega_table'],
+                        algorithm_name=algorithm_name,
+                        is_iterative=is_iterative
+                    )
+                    
+                    self._log("[WAIT] Generando ecuaciones matemáticas desde Tabla Omega...")
+                    math_response = self.agente_matematicas.generar_ecuaciones(math_request)
+                    
+                    # Guardar ecuaciones para FASE 8
+                    ecuaciones = {
+                        'mejor_caso': math_response.mejor_caso,
+                        'caso_promedio': math_response.caso_promedio,
+                        'peor_caso': math_response.peor_caso
+                    }
+                    
+                    resultado['ecuaciones'] = ecuaciones
+                    resultado['ecuaciones_detalle'] = math_response.model_dump()
+                    
+                    self._log("[OK] Ecuaciones generadas exitosamente")
+                    self._log(f"[OUTPUT] Mejor caso: {math_response.mejor_caso}")
+                    self._log(f"[OUTPUT] Caso promedio: {math_response.caso_promedio}")
+                    self._log(f"[OUTPUT] Peor caso: {math_response.peor_caso}")
+                    
+                    resultado['fase_actual'] = 'representacion_matematica_completada'
+                    
+                except Exception as e:
+                    self._log(f"[ERROR] Error en representación matemática: {str(e)}")
+                    resultado['errores'].append(f"Error en representación matemática: {str(e)}")
+                    ecuaciones = self._generar_ecuaciones_fallback(validacion['tipo_algoritmo'])
+                    resultado['fase_actual'] = 'representacion_matematica_error'
+            else:
+                self._log("[WARN] No hay tabla omega, usando ecuaciones de fallback")
+                ecuaciones = self._generar_ecuaciones_fallback(validacion['tipo_algoritmo'])
+                resultado['fase_actual'] = 'omega_no_disponible'
             
             # ==================== FASE 8: RESOLUCIÓN ====================
             self._log("\n" + "="*80)
             self._log("FASE 8: RESOLUCIÓN DE ECUACIONES")
             self._log("="*80)
             
-            # Determinar ecuaciones según el tipo de algoritmo
-            if validacion['tipo_algoritmo'] == 'Recursivo':
-                ecuacion_ejemplo = "T(n) = 2T(n/2) + n"
-                self._log(f"[INPUT] Ecuación de ejemplo (temporal): {ecuacion_ejemplo}")
-                
-                ecuaciones = {
-                    'mejor_caso': ecuacion_ejemplo,
-                    'caso_promedio': ecuacion_ejemplo,
-                    'peor_caso': ecuacion_ejemplo
-                }
-            else:
-                # Para iterativos, usar AnalizadorDirecto
-                self._log(f"[INPUT] Ecuaciones de ejemplo (temporal - iterativo)")
-                
-                ecuaciones = {
-                    'mejor_caso': "T(n) = 1",
-                    'caso_promedio': "T(n) = n/2",
-                    'peor_caso': "T(n) = n"
-                }
-            
-            # Resolver casos
+            # Resolver las ecuaciones generadas en FASE 7
+            self._log(f"[INFO] Resolviendo ecuaciones...")
             complejidades = self.resolver.resolver_casos(ecuaciones)
             
             # Extraer pasos de resolución para el reporte
@@ -435,6 +495,21 @@ class FlujoAnalisis:
         lineas.append("="*80)
         
         return "\n".join(lineas)
+    
+    def _generar_ecuaciones_fallback(self, tipo_algoritmo: str) -> Dict[str, str]:
+        """Genera ecuaciones de ejemplo cuando falla el análisis real"""
+        if tipo_algoritmo == 'Recursivo':
+            return {
+                'mejor_caso': "T(n) = T(n-1) + 1",
+                'caso_promedio': "T(n) = T(n-1) + n",
+                'peor_caso': "T(n) = T(n-1) + n"
+            }
+        else:
+            return {
+                'mejor_caso': "T(n) = 1",
+                'caso_promedio': "T(n) = n/2",
+                'peor_caso': "T(n) = n"
+            }
 
 
 # ==================== FUNCIÓN DE EJEMPLO ====================

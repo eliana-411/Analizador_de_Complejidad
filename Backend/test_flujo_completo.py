@@ -1,316 +1,134 @@
 """
-Test de Flujo Completo - Workflow de 5 Nodos
+Test del Flujo Completo de Análisis de Complejidad
 
-Script simple para probar el workflow completo.
-Solo necesitas definir el pseudocódigo y si es iterativo/recursivo.
-
-Muestra el output de cada nodo en tiempo real.
-
-Uso:
-    python test_flujo_completo.py
+Prueba la integración completa:
+1. Validación → extrae metadatos
+2. Workflow → genera Tabla Omega
+3. Agente Matemáticas → genera Ecuaciones
+4. Resolver → genera Complejidades
 """
 
-from core.analizador.models.scenario_state import ScenarioState
-from core.analizador.agents.workflow import get_workflow
+import sys
+import os
 
+# Agregar Backend al path
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-# ==========================================
-# CONFIGURACIÓN: Cambia estos valores
-# ==========================================
+from tests.flujo_analisis import FlujoAnalisis
 
-# Opción 1: Búsqueda Lineal (Iterativo)
-ALGORITMO = """busquedaLineal(int A[], int n, int x)
+# Pseudocódigo de prueba: Búsqueda Lineal Simple
+pseudocodigo_test = """busquedaLineal(int A[], int n, int x)
 begin
     int i
-    bool encontrado
-
-    encontrado <- F
-    i <- 1
-
-    while (i <= n and not encontrado) do
+    i ��� 1
+    while (i <= n) do
     begin
         if (A[i] = x) then
         begin
-            encontrado <- T
+            return i
         end
-        i <- i + 1
+        i ��� i + 1
     end
-
-    return encontrado
+    return -1
 end"""
 
-ES_ITERATIVO = True
-NOMBRE_ALGORITMO = "busquedaLineal"
-
-
-# Opción 2: Factorial (Recursivo) - Descomenta para probar
-# ALGORITMO = """factorial(int n)
-# begin
-#     if (n = 0) then
-#     begin
-#         return 1
-#     end
-#     else
-#     begin
-#         return n * factorial(n-1)
-#     end
-# end"""
-#
-# ES_ITERATIVO = False
-# NOMBRE_ALGORITMO = "factorial"
-
-
-# Opción 3: Suma (Iterativo simple) - Descomenta para probar
-# ALGORITMO = """suma(int A[], int n)
-# begin
-#     int s
-#     int i
-#
-#     s <- 0
-#     i <- 1
-#
-#     while (i <= n) do
-#     begin
-#         s <- s + A[i]
-#         i <- i + 1
-#     end
-#
-#     return s
-# end"""
-#
-# ES_ITERATIVO = True
-# NOMBRE_ALGORITMO = "suma"
-
-
-# ==========================================
-# EJECUCIÓN DEL WORKFLOW
-# ==========================================
-
 def main():
-    """Ejecuta el workflow completo y muestra resultados"""
-
-    print("\n" + "=" * 80)
-    print("TEST DE FLUJO COMPLETO - WORKFLOW DE 5 NODOS")
     print("=" * 80)
-    print(f"\nAlgoritmo: {NOMBRE_ALGORITMO}")
-    print(f"Tipo: {'Iterativo' if ES_ITERATIVO else 'Recursivo'}")
+    print("TEST DE FLUJO COMPLETO DE ANÁLISIS")
     print("=" * 80)
     print()
-
-    # Crear estado inicial
-    estado_inicial = ScenarioState(
-        pseudocode=ALGORITMO,
-        algorithm_name=NOMBRE_ALGORITMO,
-        is_iterative=ES_ITERATIVO,
-        parameters={}
-    )
-
-    # Obtener workflow
-    print("Obteniendo workflow...")
-    workflow = get_workflow()
-    print()
-
-    # Ejecutar workflow (los nodos imprimen automáticamente)
-    print("INICIANDO EJECUCIÓN DEL WORKFLOW:")
-    print("=" * 80)
-    print()
-
-    resultado_final = workflow.invoke(estado_inicial)
-
-    # ==========================================
-    # MOSTRAR RESULTADOS FINALES
-    # ==========================================
-
-    print("\n" + "=" * 80)
-    print("RESULTADOS FINALES")
-    print("=" * 80)
-
-    # Verificar si se generó tabla
-    if not resultado_final.get("omega_table"):
-        print("\n[ERROR] No se generó omega_table")
-
-        # Mostrar errores
-        if resultado_final.get("errors"):
-            print("\nERRORES DETECTADOS:")
-            for i, error in enumerate(resultado_final["errors"], 1):
-                print(f"  {i}. {error}")
-
-        return
-
-    omega_table = resultado_final["omega_table"]
-
-    # ==========================================
-    # 1. INFORMACIÓN GENERAL
-    # ==========================================
-    print("\n1. INFORMACIÓN GENERAL")
+    
+    # Crear flujo con verbose activado
+    flujo = FlujoAnalisis(modo_verbose=True)
+    
+    print("��� PSEUDOCÓDIGO A ANALIZAR:")
     print("-" * 80)
-    print(f"   Algoritmo: {omega_table.algorithm_name}")
-    print(f"   Tipo: {omega_table.metadata.get('algorithm_type', 'N/A')}")
-    print(f"   Control variables: {', '.join(omega_table.control_variables) if omega_table.control_variables else 'N/A'}")
-    print(f"   Loops detectados: {omega_table.metadata.get('loop_count', 0)}")
-    print(f"   Nivel de anidamiento: {omega_table.metadata.get('nesting_level', 0)}")
-
-    # ==========================================
-    # 2. ESCENARIOS GENERADOS
-    # ==========================================
-    print("\n2. ESCENARIOS GENERADOS")
+    print(pseudocodigo_test)
     print("-" * 80)
-    print(f"   Total de escenarios: {len(omega_table.scenarios)}")
     print()
-
-    for i, scenario in enumerate(omega_table.scenarios, 1):
-        print(f"   Escenario {i}: {scenario.id}")
-        print(f"      Tipo semántico: {scenario.semantic_id}")
-        print(f"      Condición: {scenario.condition[:80]}...")
-        print(f"      Estado: {scenario.state}")
-        print(f"      Costo T(S): {scenario.cost_T}")
-        print(f"      Probabilidad P(S): {scenario.probability_P}")
-        print()
-
-    # ==========================================
-    # 3. RESUMEN DE CASOS
-    # ==========================================
-    print("3. RESUMEN DE CASOS")
-    print("-" * 80)
-
-    if 'best_case' in omega_table.metadata and omega_table.metadata['best_case']:
-        best = omega_table.metadata['best_case']
-        print(f"   MEJOR CASO:")
-        print(f"      T(S) = {best.get('T', 'N/A')}")
-        print(f"      P(S) = {best.get('P', 'N/A')}")
-        print(f"      Descripción: {best.get('description', 'N/A')[:60]}...")
-        print()
-
-    if 'worst_case' in omega_table.metadata and omega_table.metadata['worst_case']:
-        worst = omega_table.metadata['worst_case']
-        print(f"   PEOR CASO:")
-        print(f"      T(S) = {worst.get('T', 'N/A')}")
-        print(f"      P(S) = {worst.get('P', 'N/A')}")
-        print(f"      Descripción: {worst.get('description', 'N/A')[:60]}...")
-        print()
-
-    if 'average_case' in omega_table.metadata and omega_table.metadata['average_case']:
-        avg = omega_table.metadata['average_case']
-        print(f"   CASO PROMEDIO:")
-        print(f"      E[T] = {avg.get('T_avg', 'N/A')}")
-        print(f"      Fórmula: {avg.get('formula', 'N/A')[:60]}...")
-        if 'scenarios_breakdown' in avg and avg['scenarios_breakdown']:
-            print(f"      Escenarios intermedios: {len(avg['scenarios_breakdown'])}")
-        print()
-
-    # ==========================================
-    # 4. ANÁLISIS LÍNEA POR LÍNEA (si existe)
-    # ==========================================
-    if 'llm_analysis' in omega_table.metadata:
-        print("4. ANÁLISIS LÍNEA POR LÍNEA")
-        print("-" * 80)
-
-        # Mejor caso
-        if 'best_case' in omega_table.metadata['llm_analysis']:
-            best_llm = omega_table.metadata['llm_analysis']['best_case']
-
-            if 'line_by_line_analysis' in best_llm and best_llm['line_by_line_analysis']:
-                print("\n   MEJOR CASO - Desglose línea por línea:")
-                print("   " + "-" * 76)
-                print(f"   {'#':<4} {'C_op':<6} {'Freq':<12} {'Total':<12} {'Código':<40}")
-                print("   " + "-" * 76)
-
-                for line in best_llm['line_by_line_analysis']:
-                    line_num = line.get('line_number', 0)
-                    c_op = line.get('C_op', 0)
-                    freq = str(line.get('Freq', '1'))
-                    total = str(line.get('Total', '0'))
-                    code = line.get('code', '')[:40]
-
-                    print(f"   {line_num:<4} {c_op:<6} {freq:<12} {total:<12} {code}")
-
-                print("   " + "-" * 76)
-                print(f"   TOTAL: {best_llm.get('total_cost_T', 'N/A')}")
-                print()
-
-            # Para recursivos, mostrar recurrencia
-            if not ES_ITERATIVO and 'recurrence_relation' in best_llm:
-                print("\n   MEJOR CASO - Relación de recurrencia:")
-                print(f"      {best_llm['recurrence_relation']}")
-                if 'base_case_cost' in best_llm:
-                    print(f"      Caso base: {best_llm['base_case_condition']} → {best_llm['base_case_cost']}")
-                print()
-
-        # Peor caso (opcional, solo si es diferente)
-        if 'worst_case' in omega_table.metadata['llm_analysis']:
-            worst_llm = omega_table.metadata['llm_analysis']['worst_case']
-
-            if 'line_by_line_analysis' in worst_llm and worst_llm['line_by_line_analysis']:
-                print("\n   PEOR CASO - Desglose línea por línea:")
-                print("   " + "-" * 76)
-                print(f"   {'#':<4} {'C_op':<6} {'Freq':<12} {'Total':<12} {'Código':<40}")
-                print("   " + "-" * 76)
-
-                for line in worst_llm['line_by_line_analysis'][:5]:  # Primeras 5 líneas
-                    line_num = line.get('line_number', 0)
-                    c_op = line.get('C_op', 0)
-                    freq = str(line.get('Freq', '1'))
-                    total = str(line.get('Total', '0'))
-                    code = line.get('code', '')[:40]
-
-                    print(f"   {line_num:<4} {c_op:<6} {freq:<12} {total:<12} {code}")
-
-                if len(worst_llm['line_by_line_analysis']) > 5:
-                    print(f"   ... ({len(worst_llm['line_by_line_analysis']) - 5} líneas más)")
-
-                print("   " + "-" * 76)
-                print(f"   TOTAL: {worst_llm.get('total_cost_T', 'N/A')}")
-                print()
-
-    # ==========================================
-    # 5. TABLA OMEGA SIMPLIFICADA
-    # ==========================================
-    print("\n5. TABLA OMEGA SIMPLIFICADA")
-    print("-" * 80)
-    print("\n   | ID | Condición | T(S) | P(S) |")
-    print("   |----|-----------| -----|------|")
-
-    for scenario in omega_table.scenarios:
-        condition_short = scenario.condition[:30] + "..." if len(scenario.condition) > 30 else scenario.condition
-        print(f"   | {scenario.id:<8} | {condition_short:<30} | {scenario.cost_T:<15} | {scenario.probability_P:<10} |")
-
-    print()
-
-    # ==========================================
-    # VERIFICAR ERRORES
-    # ==========================================
-    if resultado_final.get("errors"):
-        print("\n" + "=" * 80)
-        print("ADVERTENCIAS/ERRORES DURANTE LA EJECUCIÓN")
-        print("=" * 80)
-        for i, error in enumerate(resultado_final["errors"], 1):
-            print(f"   {i}. {error}")
-        print()
-
-    # ==========================================
-    # RESUMEN FINAL
-    # ==========================================
-    print("=" * 80)
-    print("FLUJO COMPLETADO EXITOSAMENTE")
-    print("=" * 80)
-    print(f"\nEscenarios generados: {len(omega_table.scenarios)}")
-    print(f"Tipo de análisis: {'LLM' if 'llm_analysis' in omega_table.metadata else 'Fallback'}")
-
-    # Verificar si usó fallback
-    if any('fallback' in s.semantic_id for s in omega_table.scenarios):
-        print("\n[AVISO] Se usaron escenarios de fallback (LLM pudo haber fallado)")
-    else:
-        print("\n[OK] Análisis LLM exitoso")
-
-    print()
-
-
-if __name__ == "__main__":
+    
     try:
-        main()
-    except KeyboardInterrupt:
-        print("\n\n[INTERRUMPIDO] Ejecución cancelada por el usuario")
+        # Ejecutar análisis completo
+        print("��� INICIANDO ANÁLISIS COMPLETO...")
+        print()
+        
+        resultado = flujo.analizar(
+            entrada=pseudocodigo_test,
+            tipo_entrada="pseudocodigo",
+            auto_corregir=True
+        )
+        
+        print("\n" + "=" * 80)
+        print("��� RESULTADOS DEL ANÁLISIS")
+        print("=" * 80)
+        print()
+        
+        # Mostrar resultados clave
+        print(f"✅ Éxito: {resultado['exito']}")
+        print(f"��� Fase actual: {resultado['fase_actual']}")
+        print()
+        
+        # Validación
+        if resultado.get('validacion'):
+            val = resultado['validacion']
+            print("��� VALIDACIÓN:")
+            print(f"   - Válido: {val['valido_general']}")
+            print(f"   - Tipo: {val.get('tipo_algoritmo', 'N/A')}")
+            print(f"   - Algoritmo: {val.get('algorithm_name', 'N/A')}")
+            print(f"   - Parámetros: {val.get('parameters', {})}")
+            print(f"   - Errores: {val['resumen']['errores_totales']}")
+            print()
+        
+        # Tabla Omega
+        if resultado.get('omega_table'):
+            print("��� TABLA OMEGA:")
+            omega = resultado['omega_table']
+            print(f"   - Escenarios: {len(omega.scenarios)}")
+            print(f"   - Variables de control: {omega.control_variables}")
+            print()
+        
+        # Ecuaciones
+        if resultado.get('ecuaciones'):
+            print("��� ECUACIONES GENERADAS:")
+            ecuaciones = resultado['ecuaciones']
+            print(f"   - Mejor caso: {ecuaciones.get('mejor_caso', 'N/A')}")
+            print(f"   - Caso promedio: {ecuaciones.get('caso_promedio', 'N/A')}")
+            print(f"   - Peor caso: {ecuaciones.get('peor_caso', 'N/A')}")
+            print()
+        
+        # Complejidades
+        if resultado.get('complejidades'):
+            print("��� COMPLEJIDADES RESUELTAS:")
+            comp = resultado['complejidades'].get('complejidades', {})
+            print(f"   - Mejor caso: {comp.get('mejor_caso', 'N/A')}")
+            print(f"   - Caso promedio: {comp.get('caso_promedio', 'N/A')}")
+            print(f"   - Peor caso: {comp.get('peor_caso', 'N/A')}")
+            print()
+        
+        # Errores
+        if resultado.get('errores'):
+            print("❌ ERRORES:")
+            for error in resultado['errores']:
+                print(f"   - {error}")
+            print()
+        
+        print("=" * 80)
+        print("✅ TEST COMPLETADO")
+        print("=" * 80)
+        
+        return resultado
+        
     except Exception as e:
-        print(f"\n\n[ERROR CRÍTICO] {type(e).__name__}: {str(e)}")
+        print(f"\n❌ ERROR EN TEST: {str(e)}")
         import traceback
         traceback.print_exc()
+        return None
+
+if __name__ == "__main__":
+    resultado = main()
+    
+    # Código de salida
+    if resultado and resultado['exito']:
+        sys.exit(0)
+    else:
+        sys.exit(1)
