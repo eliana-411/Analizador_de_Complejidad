@@ -3,6 +3,9 @@ from pathlib import Path
 
 from pydantic_settings import BaseSettings
 
+# Obtener la ruta del directorio Backend
+BACKEND_DIR = Path(__file__).parent.parent
+
 
 class Settings(BaseSettings):
     """
