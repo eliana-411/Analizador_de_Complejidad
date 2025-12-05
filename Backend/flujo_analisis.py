@@ -35,7 +35,6 @@ from shared.services.lectorArchivos import LectorArchivos
 from shared.services.detectorTipoEntrada import DetectorTipoEntrada
 from agentes.agenteResolver import AgenteResolver
 from agentes.agenteFlowchart import AgenteFlowchart
-from agentes.agenteReportador import AgenteReportador
 from ml.clasificador import obtener_clasificador
 from core.analizador.agents.workflow import get_workflow
 from core.analizador.models.scenario_state import ScenarioState
@@ -63,7 +62,6 @@ class FlujoAnalisis:
         self.resolver = AgenteResolver()
         self.generador_flowchart = AgenteFlowchart()
         self.agente_matematicas = AgenteRepresentacionMatematica(use_llm=True)
-        self.reportador = AgenteReportador()
         
         # Inicializar clasificador ML
         try:
@@ -366,7 +364,9 @@ class FlujoAnalisis:
             
             # ==================== FASE 8: GENERACIÓN DE REPORTE ====================
             self._log("\n" + "="*80)
-            self._log("FASE 8: GENERACIÓN DE REPORTE FINAL")
+            # ==================== FASE 8: GENERACIÓN DE REPORTE ====================
+            self._log("\n" + "="*80)
+            self._log("FASE 9: GENERACIÓN DE REPORTE FINAL")
             self._log("="*80)
             
             try:

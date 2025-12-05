@@ -10,7 +10,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from tests.flujo_analisis import FlujoAnalisis
+from flujo_analisis import FlujoAnalisis
 
 def test_integracion():
     print("="*80)
