@@ -3,10 +3,12 @@ import { H1 } from '../components/ui/Typography';
 import Button from '../components/ui/Button';
 import Textarea from '../components/ui/Textarea';
 import StatusIndicator from '../components/ui/StatusIndicator';
-import ToggleButtonGroup from '../components/ui/ToggleButtonGroup';
 import ContentContainer from '../components/layout/ContentContainer';
-import { mockPseudocode, mockValidation } from '../mock-data/validador';
-import { validatePseudocode } from '../api/validator';
+import ClassificationPanel from '../components/ui/ClassificationPanel';
+import ErrorModal from '../components/ui/ErrorModal';
+import { mockPseudocode } from '../mock-data/validador';
+import { validatePseudocode, type ValidationResponse } from '../api/validator';
+import type { ValidationStatus } from '../types';
 
 /**
  * Validador page - Pseudocode validation interface
@@ -14,10 +16,41 @@ import { validatePseudocode } from '../api/validator';
  */
 export default function Validador() {
   const [macroalgorith, setMacroalgorith] = createSignal(mockPseudocode);
-  const [visualization, setVisualization] = createSignal(false);
-  const [algorithmType, setAlgorithmType] = createSignal('iterativo');
+  const [validationResult, setValidationResult] = createSignal<ValidationResponse | null>(null);
+  const [isAnalyzing, setIsAnalyzing] = createSignal(false);
+  const [errorModal, setErrorModal] = createSignal<{
+    isOpen: boolean;
+    layer: string;
+    errors: string[];
+  }>({
+    isOpen: false,
+    layer: '',
+    errors: []
+  });
+
+  const getLayerStatus = (layerKey: string): ValidationStatus => {
+    const result = validationResult();
+    if (!result) return 'pending';
+    const layer = result.capas[layerKey];
+    return layer?.valido ? 'valid' : 'invalid';
+  };
+
+  const handleStatusClick = (layerKey: string) => {
+    const result = validationResult();
+    if (!result) return;
+
+    const layer = result.capas[layerKey];
+    if (!layer.valido && layer.errores.length > 0) {
+      setErrorModal({
+        isOpen: true,
+        layer: layerKey,
+        errors: layer.errores
+      });
+    }
+  };
 
   const handleAnalyze = async () => {
+    setIsAnalyzing(true);
     try {
       console.log('Analyzing pseudocode...');
 
@@ -27,13 +60,13 @@ export default function Validador() {
       });
 
       console.log('Resultado de validación:', resultado);
-
-      // TODO: Actualizar estado de los StatusIndicators con resultado.capas
-      // TODO: Mostrar sugerencias al usuario si hay errores
+      setValidationResult(resultado);
 
     } catch (error) {
       console.error('Error al validar:', error);
-      // TODO: Mostrar error al usuario
+      // TODO: Mostrar error al usuario con un toast/notification
+    } finally {
+      setIsAnalyzing(false);
     }
   };
 
@@ -43,63 +76,76 @@ export default function Validador() {
         {/* Header */}
         <H1 class="text-center">Analizador de complejidad de un algoritmo</H1>
 
-        {/* Status Indicators Row */}
+        {/* Status Indicators Row - Clickable */}
         <div class="flex flex-wrap justify-center gap-8 py-4">
-          <StatusIndicator label="Léxica" status={mockValidation.lexica} />
-          <StatusIndicator label="Declaraciones" status="pending" />
-          <StatusIndicator label="Estructuras" status={mockValidation.estructuras} />
-          <StatusIndicator label="Expresiones" status="pending" />
-          <StatusIndicator label="Sentencias" status="pending" />
-          <StatusIndicator label="Sintaxis" status={mockValidation.sintaxis} />
-          <StatusIndicator label="Semántica" status="pending" />
+          <div onClick={() => handleStatusClick('1_LEXICA')} class="cursor-pointer">
+            <StatusIndicator label="Léxica" status={getLayerStatus('1_LEXICA')} />
+          </div>
+          <div onClick={() => handleStatusClick('2_DECLARACIONES')} class="cursor-pointer">
+            <StatusIndicator label="Declaraciones" status={getLayerStatus('2_DECLARACIONES')} />
+          </div>
+          <div onClick={() => handleStatusClick('3_ESTRUCTURA')} class="cursor-pointer">
+            <StatusIndicator label="Estructura" status={getLayerStatus('3_ESTRUCTURA')} />
+          </div>
+          <div onClick={() => handleStatusClick('4_EXPRESIONES')} class="cursor-pointer">
+            <StatusIndicator label="Expresiones" status={getLayerStatus('4_EXPRESIONES')} />
+          </div>
+          <div onClick={() => handleStatusClick('5_SENTENCIAS')} class="cursor-pointer">
+            <StatusIndicator label="Sentencias" status={getLayerStatus('5_SENTENCIAS')} />
+          </div>
+          <div onClick={() => handleStatusClick('6_SUBRUTINAS')} class="cursor-pointer">
+            <StatusIndicator label="Subrutinas" status={getLayerStatus('6_SUBRUTINAS')} />
+          </div>
+          <div onClick={() => handleStatusClick('7_SEMANTICA')} class="cursor-pointer">
+            <StatusIndicator label="Semántica" status={getLayerStatus('7_SEMANTICA')} />
+          </div>
         </div>
 
-        {/* Toggle Buttons Row */}
-        <div class="flex justify-center gap-4">
-          <ToggleButtonGroup
-            options={[
-              { value: 'false', label: 'Visualiza tu pseudocódigo' },
-              { value: 'true', label: 'Ocultar visualización' }
-            ]}
-            value={String(visualization())}
-            onChange={(val) => setVisualization(val === 'true')}
-            color="blue"
-          />
-          <ToggleButtonGroup
-            options={[
-              { value: 'iterativo', label: 'iterativo' },
-              { value: 'recursivo', label: 'recursivo' }
-            ]}
-            value={algorithmType()}
-            onChange={setAlgorithmType}
-            color="orange"
-          />
-        </div>
-
-        {/* Main Content: Textarea + Analyze Button */}
-        <div class="flex flex-col gap-6">
-          {/* Textarea - takes up full width */}
-          <div class="w-full">
+        {/* Main Content: Two-Column Layout */}
+        <div class="grid grid-cols-12 gap-6">
+          {/* Left Column: Textarea (60%) */}
+          <div class="col-span-7">
             <Textarea
               placeholder="IN(pseudocodigo)"
               value={macroalgorith()}
               onChange={setMacroalgorith}
-              rows={16}
+              onFileUpload={(content, filename) => {
+                setMacroalgorith(content);
+                console.log(`Archivo cargado: ${filename}`);
+              }}
+              rows={20}
               class="font-mono text-sm"
             />
+
+            {/* Analyze Button - below textarea */}
+            <div class="flex justify-end mt-4">
+              <Button
+                variant="warning"
+                onClick={handleAnalyze}
+                disabled={isAnalyzing()}
+                class="px-12 py-4 text-lg font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
+              >
+                {isAnalyzing() ? 'ANALIZANDO...' : 'ANALIZAR CÓDIGO'}
+              </Button>
+            </div>
           </div>
 
-          {/* Analyze Button - below textarea */}
-          <div class="flex justify-end">
-            <Button
-              variant="warning"
-              onClick={handleAnalyze}
-              class="px-12 py-4 text-lg font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
-            >
-              ANALIZAR CÓDIGO
-            </Button>
+          {/* Right Column: Classification Panel (40%) */}
+          <div class="col-span-5">
+            <ClassificationPanel
+              classification={validationResult()?.clasificacion}
+              isLoading={isAnalyzing()}
+            />
           </div>
         </div>
+
+        {/* Error Modal */}
+        <ErrorModal
+          isOpen={errorModal().isOpen}
+          onClose={() => setErrorModal({ isOpen: false, layer: '', errors: [] })}
+          layerName={errorModal().layer}
+          errors={errorModal().errors}
+        />
       </div>
     </ContentContainer>
   );

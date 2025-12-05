@@ -27,6 +27,21 @@ class ResumenValidacion(BaseModel):
     errores_totales: int
 
 
+class ClasificacionPrediccion(BaseModel):
+    """Predicción individual del clasificador ML"""
+
+    categoria: str
+    probabilidad: float
+
+
+class ClasificacionResult(BaseModel):
+    """Resultado de clasificación ML del algoritmo"""
+
+    categoria_principal: str
+    confianza: float
+    top_predicciones: List[ClasificacionPrediccion]
+
+
 class ValidationResponse(BaseModel):
     """Response model con resultados de validación completa"""
 
@@ -35,3 +50,4 @@ class ValidationResponse(BaseModel):
     capas: Dict[str, LayerResult]
     resumen: ResumenValidacion
     sugerencias: Optional[List[str]] = None
+    clasificacion: Optional[ClasificacionResult] = None
