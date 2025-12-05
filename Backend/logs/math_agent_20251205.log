@@ -184,3 +184,138 @@ anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type':
 2025-12-05 07:48:13 - MathAgent - INFO -   Misses: 1
 2025-12-05 07:48:13 - MathAgent - INFO -   Size: 1
 2025-12-05 07:48:13 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-05 08:18:26 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-05 08:18:26 - MathAgent - INFO - Algoritmo: busquedaLineal
+2025-12-05 08:18:26 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-05 08:18:26 - MathAgent - INFO - Escenarios: 2
+2025-12-05 08:18:26 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-05 08:18:26 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-05 08:18:27 - MathAgent - ERROR - ❌ ERROR: Connection error.
+2025-12-05 08:18:27 - MathAgent - ERROR -   Contexto: Error procesando busquedaLineal
+2025-12-05 08:18:27 - MathAgent - ERROR - Connection error.
+Traceback (most recent call last):
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\_base_client.py", line 1049, in request
+    response = self._client.send(
+        request,
+        stream=stream or self._should_stream_response_body(request=request),
+        **kwargs,
+    )
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\egriv\OneDrive\Documentos\Analizador de Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+  File "C:\Users\egriv\OneDrive\Documentos\Analizador de Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+        request.omega_table,
+        request.is_iterative
+    )
+  File "C:\Users\egriv\OneDrive\Documentos\Analizador de Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+  File "C:\Users\egriv\OneDrive\Documentos\Analizador de Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+    ~~~~~~~~~~~~~~~~~~~~^
+        [self._convert_input(input)],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ).generations[0][0],
+    ^
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        m,
+        ^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+        messages, stop=stop, run_manager=run_manager, **kwargs
+    )
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/v1/messages",
+        ^^^^^^^^^^^^^^^
+    ...<26 lines>...
+        stream_cls=Stream[RawMessageStreamEvent],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\_base_client.py", line 1081, in request
+    raise APIConnectionError(request=request) from err
+anthropic.APIConnectionError: Connection error.

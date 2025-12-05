@@ -8,7 +8,7 @@ from pathlib import Path
 # Agregar Backend al path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from Backend.tests.flujo_analisis import FlujoAnalisis
+from flujo_analisis import FlujoAnalisis
 from agentes.agenteReportador import AgenteReportador
 
 
