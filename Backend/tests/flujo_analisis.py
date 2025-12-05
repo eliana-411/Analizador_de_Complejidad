@@ -151,7 +151,7 @@ class FlujoAnalisis:
                     resultado['fase_actual'] = 'clasificacion_completada'
                     
                     self._log(f"\n[SEARCH] Clasificación detectada:")
-                    self._log(f"   • Principal: {clasificacion['categoria']} ({clasificacion['confianza']:.1%})")
+                    self._log(f"   • Principal: {clasificacion['categoria_principal']} ({clasificacion['confianza']:.1%})")
                     alternativas = ', '.join([f"{p['categoria']} ({p['probabilidad']:.1%})" for p in clasificacion['top_predicciones'][:2]])
                     self._log(f"   • Alternativas: {alternativas}")
                 except Exception as e:

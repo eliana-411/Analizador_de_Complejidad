@@ -5,7 +5,7 @@ import tempfile
 from pathlib import Path
 
 from pydantic import BaseModel, Field
-from flujo_analisis import FlujoAnalisis
+from Backend.tests.flujo_analisis import FlujoAnalisis
 
 router = APIRouter(prefix="/analisis", tags=["analisis"])
 logger = logging.getLogger(__name__)

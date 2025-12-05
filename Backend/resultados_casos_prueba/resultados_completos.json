@@ -3,7 +3,24 @@
     "archivo": "01-busqueda-lineal.txt",
     "tipo": "Pseudocódigo",
     "exito": true,
-    "clasificacion": null,
+    "clasificacion": {
+      "categoria_principal": "ordenamiento",
+      "confianza": 0.16560161825491754,
+      "top_predicciones": [
+        {
+          "categoria": "busqueda",
+          "probabilidad": 0.36555067104551975
+        },
+        {
+          "categoria": "iterativo",
+          "probabilidad": 0.19010054061924703
+        },
+        {
+          "categoria": "ordenamiento",
+          "probabilidad": 0.16560161825491754
+        }
+      ]
+    },
     "complejidades": {
       "mejor_caso": "Ω(1)",
       "caso_promedio": "Θ(n)",
@@ -15,7 +32,24 @@
     "archivo": "02-busqueda-binaria.txt",
     "tipo": "Pseudocódigo",
     "exito": true,
-    "clasificacion": null,
+    "clasificacion": {
+      "categoria_principal": "ordenamiento",
+      "confianza": 0.19472337848305685,
+      "top_predicciones": [
+        {
+          "categoria": "recursivo_divide_conquista",
+          "probabilidad": 0.3546880749485172
+        },
+        {
+          "categoria": "busqueda",
+          "probabilidad": 0.3130966296491768
+        },
+        {
+          "categoria": "ordenamiento",
+          "probabilidad": 0.19472337848305685
+        }
+      ]
+    },
     "complejidades": {
       "mejor_caso": "Ω(1)",
       "caso_promedio": "Θ(n)",
@@ -27,7 +61,24 @@
     "archivo": "03-bubble-sort.txt",
     "tipo": "Pseudocódigo",
     "exito": true,
-    "clasificacion": null,
+    "clasificacion": {
+      "categoria_principal": "ordenamiento",
+      "confianza": 0.9474630371736612,
+      "top_predicciones": [
+        {
+          "categoria": "ordenamiento",
+          "probabilidad": 0.9474630371736612
+        },
+        {
+          "categoria": "iterativo",
+          "probabilidad": 0.01842231658897759
+        },
+        {
+          "categoria": "programacion_dinamica",
+          "probabilidad": 0.010619564306470779
+        }
+      ]
+    },
     "complejidades": {
       "mejor_caso": "Ω(1)",
       "caso_promedio": "Θ(n)",
@@ -39,7 +90,24 @@
     "archivo": "04-merge-sort.txt",
     "tipo": "Pseudocódigo",
     "exito": true,
-    "clasificacion": null,
+    "clasificacion": {
+      "categoria_principal": "ordenamiento",
+      "confianza": 0.9354089008554297,
+      "top_predicciones": [
+        {
+          "categoria": "ordenamiento",
+          "probabilidad": 0.9354089008554297
+        },
+        {
+          "categoria": "programacion_dinamica",
+          "probabilidad": 0.021426167573713472
+        },
+        {
+          "categoria": "iterativo",
+          "probabilidad": 0.017890758561293192
+        }
+      ]
+    },
     "complejidades": {
       "mejor_caso": "Θ(n log n)",
       "caso_promedio": "Θ(n log n)",
@@ -51,7 +119,24 @@
     "archivo": "05-quick-sort.txt",
     "tipo": "Pseudocódigo",
     "exito": true,
-    "clasificacion": null,
+    "clasificacion": {
+      "categoria_principal": "ordenamiento",
+      "confianza": 0.9357665822978208,
+      "top_predicciones": [
+        {
+          "categoria": "ordenamiento",
+          "probabilidad": 0.9357665822978208
+        },
+        {
+          "categoria": "iterativo",
+          "probabilidad": 0.02702960815869268
+        },
+        {
+          "categoria": "recursivo_divide_conquista",
+          "probabilidad": 0.011169651622243579
+        }
+      ]
+    },
     "complejidades": {
       "mejor_caso": "Θ(n log n)",
       "caso_promedio": "Θ(n log n)",
@@ -63,7 +148,24 @@
     "archivo": "06-fibonacci-recursivo.txt",
     "tipo": "Pseudocódigo",
     "exito": true,
-    "clasificacion": null,
+    "clasificacion": {
+      "categoria_principal": "recursivo_divide_conquista",
+      "confianza": 0.9413269794715377,
+      "top_predicciones": [
+        {
+          "categoria": "recursivo_divide_conquista",
+          "probabilidad": 0.9413269794715377
+        },
+        {
+          "categoria": "greedy",
+          "probabilidad": 0.021325142879573513
+        },
+        {
+          "categoria": "programacion_dinamica",
+          "probabilidad": 0.010123616507921433
+        }
+      ]
+    },
     "complejidades": {
       "mejor_caso": "Θ(n log n)",
       "caso_promedio": "Θ(n log n)",
@@ -75,7 +177,24 @@
     "archivo": "07-factorial-recursivo.txt",
     "tipo": "Pseudocódigo",
     "exito": true,
-    "clasificacion": null,
+    "clasificacion": {
+      "categoria_principal": "recursivo_divide_conquista",
+      "confianza": 0.8981669480096178,
+      "top_predicciones": [
+        {
+          "categoria": "recursivo_divide_conquista",
+          "probabilidad": 0.8981669480096178
+        },
+        {
+          "categoria": "greedy",
+          "probabilidad": 0.03242554486544591
+        },
+        {
+          "categoria": "programacion_dinamica",
+          "probabilidad": 0.024344048313105084
+        }
+      ]
+    },
     "complejidades": {
       "mejor_caso": "Θ(n log n)",
       "caso_promedio": "Θ(n log n)",
@@ -87,7 +206,24 @@
     "archivo": "08-torres-hanoi.txt",
     "tipo": "Pseudocódigo",
     "exito": true,
-    "clasificacion": null,
+    "clasificacion": {
+      "categoria_principal": "recursivo_divide_conquista",
+      "confianza": 0.4716079432689286,
+      "top_predicciones": [
+        {
+          "categoria": "recursivo_divide_conquista",
+          "probabilidad": 0.4716079432689286
+        },
+        {
+          "categoria": "grafos",
+          "probabilidad": 0.29597666843172127
+        },
+        {
+          "categoria": "greedy",
+          "probabilidad": 0.07218238444799031
+        }
+      ]
+    },
     "complejidades": {
       "mejor_caso": "Θ(n log n)",
       "caso_promedio": "Θ(n log n)",
@@ -99,7 +235,24 @@
     "archivo": "09-bst-insert.txt",
     "tipo": "Pseudocódigo",
     "exito": true,
-    "clasificacion": null,
+    "clasificacion": {
+      "categoria_principal": "ordenamiento",
+      "confianza": 0.09413627905484347,
+      "top_predicciones": [
+        {
+          "categoria": "greedy",
+          "probabilidad": 0.2907547012188177
+        },
+        {
+          "categoria": "recursivo_divide_conquista",
+          "probabilidad": 0.2083776933170143
+        },
+        {
+          "categoria": "programacion_dinamica",
+          "probabilidad": 0.12693915561614216
+        }
+      ]
+    },
     "complejidades": {
       "mejor_caso": "Θ(n log n)",
       "caso_promedio": "Θ(n log n)",
@@ -111,7 +264,24 @@
     "archivo": "10-matrix-multiplication.txt",
     "tipo": "Pseudocódigo",
     "exito": true,
-    "clasificacion": null,
+    "clasificacion": {
+      "categoria_principal": "ordenamiento",
+      "confianza": 0.2502403299233756,
+      "top_predicciones": [
+        {
+          "categoria": "greedy",
+          "probabilidad": 0.252435436513202
+        },
+        {
+          "categoria": "ordenamiento",
+          "probabilidad": 0.2502403299233756
+        },
+        {
+          "categoria": "iterativo",
+          "probabilidad": 0.21248568528345238
+        }
+      ]
+    },
     "complejidades": {
       "mejor_caso": "Ω(1)",
       "caso_promedio": "Θ(n)",
@@ -123,7 +293,24 @@
     "archivo": "11-selection-sort.txt",
     "tipo": "Pseudocódigo",
     "exito": true,
-    "clasificacion": null,
+    "clasificacion": {
+      "categoria_principal": "ordenamiento",
+      "confianza": 0.8470504032400693,
+      "top_predicciones": [
+        {
+          "categoria": "ordenamiento",
+          "probabilidad": 0.8470504032400693
+        },
+        {
+          "categoria": "iterativo",
+          "probabilidad": 0.09286059197382729
+        },
+        {
+          "categoria": "greedy",
+          "probabilidad": 0.022880783682772403
+        }
+      ]
+    },
     "complejidades": {
       "mejor_caso": "Ω(1)",
       "caso_promedio": "Θ(n)",
@@ -135,7 +322,24 @@
     "archivo": "12-insertion-sort.txt",
     "tipo": "Pseudocódigo",
     "exito": true,
-    "clasificacion": null,
+    "clasificacion": {
+      "categoria_principal": "ordenamiento",
+      "confianza": 0.8500434445475971,
+      "top_predicciones": [
+        {
+          "categoria": "ordenamiento",
+          "probabilidad": 0.8500434445475971
+        },
+        {
+          "categoria": "iterativo",
+          "probabilidad": 0.07793917275348933
+        },
+        {
+          "categoria": "programacion_dinamica",
+          "probabilidad": 0.038242210660711005
+        }
+      ]
+    },
     "complejidades": {
       "mejor_caso": "Ω(1)",
       "caso_promedio": "Θ(n)",
@@ -147,7 +351,24 @@
     "archivo": "13-potencia-recursiva.txt",
     "tipo": "Pseudocódigo",
     "exito": true,
-    "clasificacion": null,
+    "clasificacion": {
+      "categoria_principal": "recursivo_divide_conquista",
+      "confianza": 0.7007669850052382,
+      "top_predicciones": [
+        {
+          "categoria": "recursivo_divide_conquista",
+          "probabilidad": 0.7007669850052382
+        },
+        {
+          "categoria": "programacion_dinamica",
+          "probabilidad": 0.11737338052200223
+        },
+        {
+          "categoria": "ordenamiento",
+          "probabilidad": 0.06879703808885128
+        }
+      ]
+    },
     "complejidades": {
       "mejor_caso": "Θ(n log n)",
       "caso_promedio": "Θ(n log n)",
@@ -158,18 +379,54 @@
   {
     "archivo": "14-suma-recursiva.txt",
     "tipo": "Pseudocódigo",
-    "exito": false,
-    "clasificacion": null,
-    "complejidades": null,
-    "errores": [
-      "Pseudocódigo inválido: 1 errores"
-    ]
+    "exito": true,
+    "clasificacion": {
+      "categoria_principal": "recursivo_divide_conquista",
+      "confianza": 0.45095626141830414,
+      "top_predicciones": [
+        {
+          "categoria": "recursivo_divide_conquista",
+          "probabilidad": 0.45095626141830414
+        },
+        {
+          "categoria": "greedy",
+          "probabilidad": 0.31375323792935744
+        },
+        {
+          "categoria": "iterativo",
+          "probabilidad": 0.06233883649283234
+        }
+      ]
+    },
+    "complejidades": {
+      "mejor_caso": "Θ(n log n)",
+      "caso_promedio": "Θ(n log n)",
+      "peor_caso": "Θ(n log n)"
+    },
+    "errores": []
   },
   {
     "archivo": "15-maximo-array.txt",
     "tipo": "Pseudocódigo",
     "exito": true,
-    "clasificacion": null,
+    "clasificacion": {
+      "categoria_principal": "ordenamiento",
+      "confianza": 0.5570932397581454,
+      "top_predicciones": [
+        {
+          "categoria": "ordenamiento",
+          "probabilidad": 0.5570932397581454
+        },
+        {
+          "categoria": "iterativo",
+          "probabilidad": 0.2708860050005288
+        },
+        {
+          "categoria": "busqueda",
+          "probabilidad": 0.05172551976765881
+        }
+      ]
+    },
     "complejidades": {
       "mejor_caso": "Ω(1)",
       "caso_promedio": "Θ(n)",
@@ -181,7 +438,24 @@
     "archivo": "01-maximo-array.txt",
     "tipo": "Lenguaje Natural",
     "exito": true,
-    "clasificacion": null,
+    "clasificacion": {
+      "categoria_principal": "ordenamiento",
+      "confianza": 0.28151699554039533,
+      "top_predicciones": [
+        {
+          "categoria": "ordenamiento",
+          "probabilidad": 0.28151699554039533
+        },
+        {
+          "categoria": "recursivo_divide_conquista",
+          "probabilidad": 0.16367474873788054
+        },
+        {
+          "categoria": "greedy",
+          "probabilidad": 0.16024811039248674
+        }
+      ]
+    },
     "complejidades": {
       "mejor_caso": "Ω(1)",
       "caso_promedio": "Θ(n)",
@@ -193,11 +467,28 @@
     "archivo": "02-merge-sort.txt",
     "tipo": "Lenguaje Natural",
     "exito": true,
-    "clasificacion": null,
+    "clasificacion": {
+      "categoria_principal": "ordenamiento",
+      "confianza": 0.28151699554039533,
+      "top_predicciones": [
+        {
+          "categoria": "ordenamiento",
+          "probabilidad": 0.28151699554039533
+        },
+        {
+          "categoria": "recursivo_divide_conquista",
+          "probabilidad": 0.16367474873788054
+        },
+        {
+          "categoria": "greedy",
+          "probabilidad": 0.16024811039248674
+        }
+      ]
+    },
     "complejidades": {
-      "mejor_caso": "Θ(n log n)",
-      "caso_promedio": "Θ(n log n)",
-      "peor_caso": "Θ(n log n)"
+      "mejor_caso": "Ω(1)",
+      "caso_promedio": "Θ(n)",
+      "peor_caso": "O(n)"
     },
     "errores": []
   },
@@ -205,7 +496,24 @@
     "archivo": "03-suma-n-numeros.txt",
     "tipo": "Lenguaje Natural",
     "exito": true,
-    "clasificacion": null,
+    "clasificacion": {
+      "categoria_principal": "ordenamiento",
+      "confianza": 0.28151699554039533,
+      "top_predicciones": [
+        {
+          "categoria": "ordenamiento",
+          "probabilidad": 0.28151699554039533
+        },
+        {
+          "categoria": "recursivo_divide_conquista",
+          "probabilidad": 0.16367474873788054
+        },
+        {
+          "categoria": "greedy",
+          "probabilidad": 0.16024811039248674
+        }
+      ]
+    },
     "complejidades": {
       "mejor_caso": "Ω(1)",
       "caso_promedio": "Θ(n)",
@@ -216,18 +524,54 @@
   {
     "archivo": "04-numero-primo.txt",
     "tipo": "Lenguaje Natural",
-    "exito": false,
-    "clasificacion": null,
-    "complejidades": null,
-    "errores": [
-      "Pseudocódigo inválido: 5 errores"
-    ]
+    "exito": true,
+    "clasificacion": {
+      "categoria_principal": "ordenamiento",
+      "confianza": 0.28151699554039533,
+      "top_predicciones": [
+        {
+          "categoria": "ordenamiento",
+          "probabilidad": 0.28151699554039533
+        },
+        {
+          "categoria": "recursivo_divide_conquista",
+          "probabilidad": 0.16367474873788054
+        },
+        {
+          "categoria": "greedy",
+          "probabilidad": 0.16024811039248674
+        }
+      ]
+    },
+    "complejidades": {
+      "mejor_caso": "Ω(1)",
+      "caso_promedio": "Θ(n)",
+      "peor_caso": "O(n)"
+    },
+    "errores": []
   },
   {
     "archivo": "05-invertir-array.txt",
     "tipo": "Lenguaje Natural",
     "exito": true,
-    "clasificacion": null,
+    "clasificacion": {
+      "categoria_principal": "ordenamiento",
+      "confianza": 0.28151699554039533,
+      "top_predicciones": [
+        {
+          "categoria": "ordenamiento",
+          "probabilidad": 0.28151699554039533
+        },
+        {
+          "categoria": "recursivo_divide_conquista",
+          "probabilidad": 0.16367474873788054
+        },
+        {
+          "categoria": "greedy",
+          "probabilidad": 0.16024811039248674
+        }
+      ]
+    },
     "complejidades": {
       "mejor_caso": "Ω(1)",
       "caso_promedio": "Θ(n)",
