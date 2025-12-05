@@ -14,20 +14,20 @@ import os
 # Agregar Backend al path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from tests.flujo_analisis import FlujoAnalisis
+from flujo_analisis import FlujoAnalisis
 
 # Pseudoc√≥digo de prueba: B√∫squeda Lineal Simple
 pseudocodigo_test = """busquedaLineal(int A[], int n, int x)
 begin
     int i
-    i Ì±® 1
+    i <- 1
     while (i <= n) do
     begin
         if (A[i] = x) then
         begin
             return i
         end
-        i Ì±® i + 1
+        i <- i + 1
     end
     return -1
 end"""
@@ -41,7 +41,7 @@ def main():
     # Crear flujo con verbose activado
     flujo = FlujoAnalisis(modo_verbose=True)
     
-    print("Ì≥ù PSEUDOC√ìDIGO A ANALIZAR:")
+    print("PSEUDOCODIGO A ANALIZAR:")
     print("-" * 80)
     print(pseudocodigo_test)
     print("-" * 80)
@@ -49,7 +49,7 @@ def main():
     
     try:
         # Ejecutar an√°lisis completo
-        print("Ì∫Ä INICIANDO AN√ÅLISIS COMPLETO...")
+        print("INICIANDO AN√ÅLISIS COMPLETO...")
         print()
         
         resultado = flujo.analizar(
@@ -59,29 +59,29 @@ def main():
         )
         
         print("\n" + "=" * 80)
-        print("Ì≥ä RESULTADOS DEL AN√ÅLISIS")
+        print("RESULTADOS DEL ANALISIS")
         print("=" * 80)
         print()
         
         # Mostrar resultados clave
-        print(f"‚úÖ √âxito: {resultado['exito']}")
-        print(f"Ì≥ç Fase actual: {resultado['fase_actual']}")
+        print(f"[OK] Exito: {resultado['exito']}")
+        print(f"[INFO] Fase actual: {resultado['fase_actual']}")
         print()
         
-        # Validaci√≥n
+        # Validacion
         if resultado.get('validacion'):
             val = resultado['validacion']
-            print("Ì¥ç VALIDACI√ìN:")
+            print("VALIDACION:")
             print(f"   - V√°lido: {val['valido_general']}")
             print(f"   - Tipo: {val.get('tipo_algoritmo', 'N/A')}")
             print(f"   - Algoritmo: {val.get('algorithm_name', 'N/A')}")
-            print(f"   - Par√°metros: {val.get('parameters', {})}")
+            print(f"   - Parametros: {val.get('parameters', {})}")
             print(f"   - Errores: {val['resumen']['errores_totales']}")
             print()
         
         # Tabla Omega
         if resultado.get('omega_table'):
-            print("Ì≥ã TABLA OMEGA:")
+            print("TABLA OMEGA:")
             omega = resultado['omega_table']
             print(f"   - Escenarios: {len(omega.scenarios)}")
             print(f"   - Variables de control: {omega.control_variables}")
@@ -89,7 +89,7 @@ def main():
         
         # Ecuaciones
         if resultado.get('ecuaciones'):
-            print("Ì¥¢ ECUACIONES GENERADAS:")
+            print("ECUACIONES GENERADAS:")
             ecuaciones = resultado['ecuaciones']
             print(f"   - Mejor caso: {ecuaciones.get('mejor_caso', 'N/A')}")
             print(f"   - Caso promedio: {ecuaciones.get('caso_promedio', 'N/A')}")
@@ -98,7 +98,7 @@ def main():
         
         # Complejidades
         if resultado.get('complejidades'):
-            print("ÌæØ COMPLEJIDADES RESUELTAS:")
+            print("COMPLEJIDADES RESUELTAS:")
             comp = resultado['complejidades'].get('complejidades', {})
             print(f"   - Mejor caso: {comp.get('mejor_caso', 'N/A')}")
             print(f"   - Caso promedio: {comp.get('caso_promedio', 'N/A')}")
@@ -107,19 +107,19 @@ def main():
         
         # Errores
         if resultado.get('errores'):
-            print("‚ùå ERRORES:")
+            print("[ERROR] ERRORES:")
             for error in resultado['errores']:
                 print(f"   - {error}")
             print()
         
         print("=" * 80)
-        print("‚úÖ TEST COMPLETADO")
+        print("[OK] TEST COMPLETADO")
         print("=" * 80)
         
         return resultado
         
     except Exception as e:
-        print(f"\n‚ùå ERROR EN TEST: {str(e)}")
+        print(f"\n[ERROR] ERROR EN TEST: {str(e)}")
         import traceback
         traceback.print_exc()
         return None
