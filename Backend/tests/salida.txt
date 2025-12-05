@@ -1,0 +1,46 @@
+======================================================================
+TEST: Árbol de Recursión DESBALANCEADO
+Ecuación: T(n) = T(n/3) + T(2n/3) + n
+======================================================================
+
+✓ ¿Puede resolver? True
+
+✓ ¿Éxito? True
+✓ Solución: c·n·log(n)
+✓ Método: Árbol de Recursión
+
+✓ Diagrama generado: 2528 caracteres
+
+======================================================================
+PASOS DE RESOLUCIÓN:
+======================================================================
+📝 Ecuación: T(n) = T(n/3) + T(2n/3) + n
+
+🔹 MÉTODO DEL ÁRBOL DE RECURSIÓN (División Asimétrica)
+   ⚠️  Esta ecuación NO puede resolverse con Teorema Maestro
+   porque tiene divisores diferentes o coeficientes no estándar
+
+🔹 PASO 1: Construir el árbol de recursión
+
+   Nivel 0 (raíz):
+      T(n)
+      Costo: n
+
+   Nivel 1:
+      T(n/3)
+      T(2n/3)
+      Costo por nodo: n evaluado en cada tamaño
+      Suma nivel 1: 0.667·n
+
+   Nivel 2:
+      Cada T(n/3) genera 2 llamadas
+... (24 pasos más)
+
+✓ Reporte exportado a: arbol_desbalanceado.md
+
+======================================================================
+✅ TEST COMPLETADO
+======================================================================
+
+Abre el archivo con: code arbol_desbalanceado.md
+Y presiona Ctrl+Shift+V para ver el preview con el diagrama renderizado
