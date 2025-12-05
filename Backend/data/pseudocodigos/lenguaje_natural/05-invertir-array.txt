@@ -1,0 +1,12 @@
+Iniciar un contador llamado i en 0.
+
+Iniciar otro contador llamado j con el índice del último elemento del arreglo.
+
+Mientras i sea menor que j:
+  - Guardar temporalmente el elemento en la posición i.
+  - Copiar el elemento de la posición j a la posición i.
+  - Copiar el elemento temporal a la posición j.
+  - Incrementar i en 1.
+  - Decrementar j en 1.
+
+Cuando i y j se crucen, el arreglo estará invertido.

@@ -1,0 +1,15 @@
+================================================================================
+  EJECUCIÓN AUTOMATIZADA DE CASOS DE PRUEBA
+================================================================================
+
+Traceback (most recent call last):
+  File "C:\Users\egriv\OneDrive\Documentos\Analizador de Complejidad\Backend\ejecutar_todos_casos.py", line 339, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\egriv\OneDrive\Documentos\Analizador de Complejidad\Backend\ejecutar_todos_casos.py", line 241, in main
+    print(f"\U0001f4c2 Pseudocódigo: {len(CASOS_PSEUDOCODIGO)} casos")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\egriv\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f4c2' in position 0: character maps to <undefined>

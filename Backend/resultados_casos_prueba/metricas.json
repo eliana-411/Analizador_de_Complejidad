@@ -1,0 +1,18 @@
+{
+  "metadata": {
+    "inicio": "2025-12-05T05:01:19.040949",
+    "fase_actual": null,
+    "fin": "2025-12-05T05:02:56.456633",
+    "duracion_total_segundos": 97.416
+  },
+  "tiempos": {},
+  "tokens": {
+    "llamadas_llm": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0,
+    "costo_total_usd": 0
+  },
+  "tokens_por_modelo": {},
+  "detalle_llamadas": []
+}

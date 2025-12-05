@@ -1,0 +1,9 @@
+Iniciar una variable llamada max con el primer elemento del arreglo.
+
+Recorrer cada elemento del arreglo, uno por uno, desde el segundo hasta el último.
+
+En cada paso, comparar el elemento actual con la variable max.
+
+Si el elemento actual es mayor que max, actualizar max con ese valor.
+
+Cuando ya no queden más elementos por recorrer, devolver el valor de max.
