@@ -1,0 +1,212 @@
+[
+  {
+    "id": "greedy_cambio_monedas_1",
+    "categoria": "greedy",
+    "subcategoria": "cambio_monedas",
+    "pseudocodigo": "funcion cambioMonedas(cantidad, denominaciones)\n    resultado = []\n    ordenarDescendente(denominaciones)\n    para cada moneda en denominaciones hacer\n        mientras cantidad >= moneda hacer\n            resultado.agregar(moneda)\n            cantidad = cantidad - moneda\n        fin mientras\n    fin para\n    retornar resultado\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_cambio_monedas_2",
+    "categoria": "greedy",
+    "subcategoria": "cambio_monedas",
+    "pseudocodigo": "funcion calcularCambio(monto)\n    // Denominaciones fijas: 100, 50, 25, 10, 5, 1\n    monedas = [100, 50, 25, 10, 5, 1]\n    cambio = []\n    indice = 0\n    mientras monto > 0 hacer\n        si monto >= monedas[indice] entonces\n            monto = monto - monedas[indice]\n            cambio.agregar(monedas[indice])\n        sino\n            indice = indice + 1\n        fin si\n    fin mientras\n    retornar cambio\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_cambio_monedas_3",
+    "categoria": "greedy",
+    "subcategoria": "cambio_monedas",
+    "pseudocodigo": "funcion devolverCambioOptimo(valorTotal, listaValores)\n    contadorMonedas = 0\n    posicion = 0\n    temp = valorTotal\n    mientras temp > 0 y posicion < longitud(listaValores) hacer\n        si temp >= listaValores[posicion] entonces\n            temp = temp - listaValores[posicion]\n            contadorMonedas = contadorMonedas + 1\n        sino\n            posicion = posicion + 1\n        fin si\n    fin mientras\n    retornar contadorMonedas\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_cambio_monedas_4",
+    "categoria": "greedy",
+    "subcategoria": "cambio_monedas",
+    "pseudocodigo": "funcion greedy_cambio(n, coins)\n    solucion = diccionario_vacio()\n    coins.ordenar(reverso=verdadero)\n    para i desde 0 hasta longitud(coins)-1 hacer\n        cantidad_monedas = n dividido_entero coins[i]\n        si cantidad_monedas > 0 entonces\n            solucion[coins[i]] = cantidad_monedas\n            n = n modulo coins[i]\n        fin si\n    fin para\n    retornar solucion\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_cambio_monedas_5",
+    "categoria": "greedy",
+    "subcategoria": "cambio_monedas",
+    "pseudocodigo": "funcion obtenerCambioMinimo(dinero, arrayDenominaciones)\n    respuesta = lista_vacia()\n    arrayDenominaciones = ordenar_mayor_a_menor(arrayDenominaciones)\n    restante = dinero\n    para cada valor en arrayDenominaciones hacer\n        repetir mientras restante >= valor\n            respuesta.añadir(valor)\n            restante = restante - valor\n        fin repetir\n    fin para\n    si restante == 0 entonces\n        retornar respuesta\n    sino\n        retornar \"No es posible dar cambio exacto\"\n    fin si\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_cambio_monedas_6",
+    "categoria": "greedy",
+    "subcategoria": "cambio_monedas",
+    "pseudocodigo": "funcion cambioGreedy(importe)\n    billetes = [200, 100, 50, 20, 10, 5, 2, 1]\n    desglose = []\n    idx = 0\n    mientras importe > 0 hacer\n        numBilletes = importe dividido_entero billetes[idx]\n        para j desde 1 hasta numBilletes hacer\n            desglose.agregar(billetes[idx])\n        fin para\n        importe = importe modulo billetes[idx]\n        idx = idx + 1\n    fin mientras\n    retornar desglose\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_cambio_monedas_7",
+    "categoria": "greedy",
+    "subcategoria": "cambio_monedas",
+    "pseudocodigo": "funcion minimoMonedas(cantidad_a_cambiar, vector_monedas)\n    ordenar_descendente(vector_monedas)\n    total_monedas = 0\n    k = 0\n    mientras cantidad_a_cambiar != 0 hacer\n        si vector_monedas[k] <= cantidad_a_cambiar entonces\n            cantidad_a_cambiar = cantidad_a_cambiar - vector_monedas[k]\n            total_monedas = total_monedas + 1\n        sino\n            k = k + 1\n        fin si\n    fin mientras\n    retornar total_monedas\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_cambio_monedas_8",
+    "categoria": "greedy",
+    "subcategoria": "cambio_monedas",
+    "pseudocodigo": "funcion algoritmo_voraz_cambio(suma, conjunto_denominaciones)\n    // Algoritmo voraz para cambio de monedas\n    conjunto_denominaciones.ordenar_decreciente()\n    resultado_final = diccionario()\n    valor_actual = suma\n    \n    para cada denominacion en conjunto_denominaciones hacer\n        si valor_actual >= denominacion entonces\n            cuantas = valor_actual dividido_entero denominacion\n            resultado_final.insertar(denominacion, cuantas)\n            valor_actual = valor_actual - (denominacion * cuantas)\n        fin si\n    fin para\n    \n    retornar resultado_final\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_cambio_monedas_9",
+    "categoria": "greedy",
+    "subcategoria": "cambio_monedas",
+    "pseudocodigo": "funcion repartirCambio(precio, tipos)\n    salida = arreglo_vacio()\n    tipos = invertir_orden(ordenar(tipos))\n    p = 0\n    mientras precio > 0 y p < tamaño(tipos) hacer\n        moneda_actual = tipos[p]\n        si precio >= moneda_actual entonces\n            precio = precio - moneda_actual\n            salida.push(moneda_actual)\n        sino\n            p = p + 1\n        fin si\n    fin mientras\n    retornar salida\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_cambio_monedas_10",
+    "categoria": "greedy",
+    "subcategoria": "cambio_monedas",
+    "pseudocodigo": "funcion cambioOptimo(monto_total, denominaciones_disponibles)\n    lista_cambio = nueva_lista()\n    denominaciones_disponibles = ordenar_forma_descendente(denominaciones_disponibles)\n    \n    para i = 0 hasta longitud(denominaciones_disponibles) - 1 hacer\n        moneda = denominaciones_disponibles[i]\n        mientras monto_total >= moneda hacer\n            lista_cambio.agregar_elemento(moneda)\n            monto_total = monto_total - moneda\n        fin mientras\n    fin para\n    \n    si monto_total == 0 entonces\n        retornar lista_cambio\n    sino\n        retornar nulo\n    fin si\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_mochila_fraccionaria_1",
+    "categoria": "greedy",
+    "subcategoria": "mochila_fraccionaria",
+    "pseudocodigo": "funcion mochilaFraccionaria(pesos, valores, capacidad)\n    n = longitud(pesos)\n    relacion = arreglo de tamaño n\n    \n    para i desde 0 hasta n-1\n        relacion[i] = valores[i] / pesos[i]\n    fin para\n    \n    ordenarDescendente(relacion, pesos, valores)\n    \n    beneficio = 0\n    para i desde 0 hasta n-1\n        si capacidad >= pesos[i] entonces\n            beneficio = beneficio + valores[i]\n            capacidad = capacidad - pesos[i]\n        sino\n            beneficio = beneficio + (relacion[i] * capacidad)\n            capacidad = 0\n            romper\n        fin si\n    fin para\n    \n    retornar beneficio\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_mochila_fraccionaria_2",
+    "categoria": "greedy",
+    "subcategoria": "mochila_fraccionaria",
+    "pseudocodigo": "funcion resolverMochila(W, p, v, numObjetos)\n    // Crear estructura de objetos con valor/peso\n    objetos = nuevo arreglo[numObjetos]\n    \n    para j desde 1 hasta numObjetos\n        objetos[j].peso = p[j]\n        objetos[j].valor = v[j]\n        objetos[j].ratio = v[j] / p[j]\n    fin para\n    \n    ordenarPorRatioDecreciente(objetos)\n    \n    pesoActual = 0\n    gananciaTotal = 0\n    \n    para j desde 1 hasta numObjetos\n        si pesoActual + objetos[j].peso <= W entonces\n            pesoActual = pesoActual + objetos[j].peso\n            gananciaTotal = gananciaTotal + objetos[j].valor\n        sino\n            fraccion = (W - pesoActual) / objetos[j].peso\n            gananciaTotal = gananciaTotal + (objetos[j].valor * fraccion)\n            romper\n        fin si\n    fin para\n    \n    retornar gananciaTotal\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_mochila_fraccionaria_3",
+    "categoria": "greedy",
+    "subcategoria": "mochila_fraccionaria",
+    "pseudocodigo": "funcion mochila_greedy(capacidadMax, arrayPesos, arrayValores)\n    cantidad = tamaño(arrayPesos)\n    densidades = crearArreglo(cantidad)\n    indices = crearArreglo(cantidad)\n    \n    para idx desde 0 hasta cantidad-1\n        densidades[idx] = arrayValores[idx] / arrayPesos[idx]\n        indices[idx] = idx\n    fin para\n    \n    ordenarIndicesPorDensidad(indices, densidades)\n    \n    espacio = capacidadMax\n    resultado = 0\n    i = 0\n    \n    mientras espacio > 0 y i < cantidad\n        posicion = indices[i]\n        si arrayPesos[posicion] <= espacio entonces\n            resultado = resultado + arrayValores[posicion]\n            espacio = espacio - arrayPesos[posicion]\n        sino\n            resultado = resultado + (densidades[posicion] * espacio)\n            espacio = 0\n        fin si\n        i = i + 1\n    fin mientras\n    \n    retornar resultado\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_mochila_fraccionaria_4",
+    "categoria": "greedy",
+    "subcategoria": "mochila_fraccionaria",
+    "pseudocodigo": "funcion optimizarMochila(C, w, v, n)\n    valorPorUnidad = arregloVacio(n)\n    \n    para k desde 0 hasta n-1\n        valorPorUnidad[k] = v[k] / w[k]\n    fin para\n    \n    ordenarDescendentemente(valorPorUnidad, w, v, n)\n    \n    capacidadRestante = C\n    beneficioAcumulado = 0\n    k = 0\n    \n    mientras k < n y capacidadRestante > 0\n        si w[k] <= capacidadRestante entonces\n            beneficioAcumulado = beneficioAcumulado + v[k]\n            capacidadRestante = capacidadRestante - w[k]\n        sino\n            proporcion = capacidadRestante / w[k]\n            beneficioAcumulado = beneficioAcumulado + (v[k] * proporcion)\n            capacidadRestante = 0\n        fin si\n        k = k + 1\n    fin mientras\n    \n    retornar beneficioAcumulado\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_mochila_fraccionaria_5",
+    "categoria": "greedy",
+    "subcategoria": "mochila_fraccionaria",
+    "pseudocodigo": "funcion knapsackFraccionario(limitePeso, masas, beneficios, total)\n    tasas = nuevo arreglo de tamaño total\n    seleccion = nuevo arreglo de tamaño total\n    \n    para elemento desde 0 hasta total-1\n        tasas[elemento] = beneficios[elemento] / masas[elemento]\n        seleccion[elemento] = 0\n    fin para\n    \n    ordenarDecreciente(tasas, masas, beneficios)\n    \n    cargaActual = 0\n    valorFinal = 0\n    elemento = 0\n    \n    mientras elemento < total\n        si cargaActual + masas[elemento] <= limitePeso entonces\n            seleccion[elemento] = 1\n            cargaActual = cargaActual + masas[elemento]\n            valorFinal = valorFinal + beneficios[elemento]\n        sino\n            cantidadDisponible = limitePeso - cargaActual\n            seleccion[elemento] = cantidadDisponible / masas[elemento]\n            valorFinal = valorFinal + (beneficios[elemento] * seleccion[elemento])\n            cargaActual = limitePeso\n        fin si\n        elemento = elemento + 1\n    fin mientras\n    \n    retornar valorFinal\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_mochila_fraccionaria_6",
+    "categoria": "greedy",
+    "subcategoria": "mochila_fraccionaria",
+    "pseudocodigo": "funcion calcularMochilaOptima(pesoMaximo, listaPesos, listaValores)\n    numeroItems = longitud(listaPesos)\n    eficiencia = arreglo[numeroItems]\n    \n    para pos desde 1 hasta numeroItems\n        eficiencia[pos] = listaValores[pos] / listaPesos[pos]\n    fin para\n    \n    ordenarPorEficiencia(eficiencia, listaPesos, listaValores, numeroItems)\n    \n    valorTotal = 0\n    pesoUsado = 0\n    \n    para pos desde 1 hasta numeroItems\n        pesoDisponible = pesoMaximo - pesoUsado\n        \n        si pesoDisponible >= listaPesos[pos] entonces\n            valorTotal = valorTotal + listaValores[pos]\n            pesoUsado = pesoUsado + listaPesos[pos]\n        sino\n            si pesoDisponible > 0 entonces\n                fraccionTomada = pesoDisponible / listaPesos[pos]\n                valorTotal = valorTotal + (listaValores[pos] * fraccionTomada)\n                pesoUsado = pesoMaximo\n            fin si\n        fin si\n    fin para\n    \n    retornar valorTotal\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_mochila_fraccionaria_7",
+    "categoria": "greedy",
+    "subcategoria": "mochila_fraccionaria",
+    "pseudocodigo": "funcion mochila_voraz(cap, P, V, N)\n    R = arreglo de tamaño N\n    O = arreglo de tamaño N\n    \n    para x desde 0 hasta N-1\n        R[x] = V[x] / P[x]\n        O[x] = x\n    fin para\n    \n    ordenarIndicePorRatio(O, R)\n    \n    ganancia = 0\n    peso_actual = 0\n    x = 0\n    \n    mientras x < N\n        indice_original = O[x]\n        \n        si peso_actual + P[indice_original] <= cap entonces\n            ganancia = ganancia + V[indice_original]\n            peso_actual = peso_actual + P[indice_original]\n        sino\n            resto = cap - peso_actual\n            si resto > 0 entonces\n                ganancia = ganancia + (R[indice_original] * resto)\n            fin si\n            peso_actual = cap\n        fin si\n        \n        x = x + 1\n    fin mientras\n    \n    retornar ganancia\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_mochila_fraccionaria_8",
+    "categoria": "greedy",
+    "subcategoria": "mochila_fraccionaria",
+    "pseudocodigo": "funcion solucionMochilaFraccionada(capacidadTotal, vectorPesos, vectorValores, cantidadElementos)\n    // Calcular densidad de valor\n    densidad = nuevoVector(cantidadElementos)\n    para m desde 0 hasta cantidadElementos-1\n        densidad[m] = vectorValores[m] / vectorPesos[m]\n    fin para\n    \n    // Ordenar por densidad mayor a menor\n    burbuja(densidad, vectorPesos, vectorValores, cantidadElementos)\n    \n    // Llenar mochila\n    espacioLibre = capacidadTotal\n    valorObtenido = 0\n    \n    para m desde 0 hasta cantidadElementos-1\n        si espacioLibre = 0 entonces\n            romper\n        fin si\n        \n        si vectorPesos[m] <= espacioLibre entonces\n            valorObtenido = valorObtenido + vectorValores[m]\n            espacioLibre = espacioLibre - vectorPesos[m]\n        sino\n            parteUsada = espacioLibre / vectorPesos[m]\n            valorObtenido = valorObtenido + (vectorValores[m] * parteUsada)\n            espacioLibre = 0\n        fin si\n    fin para\n    \n    retornar valorObtenido\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_mochila_fraccionaria_9",
+    "categoria": "greedy",
+    "subcategoria": "mochila_fraccionaria",
+    "pseudocodigo": "funcion algoritmoMochilaFraccional(W_max, arreglo_p, arreglo_v, num)\n    coeficientes = crearArreglo(num)\n    \n    para t desde 0 hasta num-1\n        coeficientes[t] = arreglo_v[t] / arreglo_p[t]\n    fin para\n    \n    ordenar_descendente(coeficientes, arreglo_p, arreglo_v)\n    \n    peso_restante = W_max\n    valor_acumulado = 0\n    indice = 0\n    \n    mientras indice < num y peso_restante > 0\n        si arreglo_p[indice] <= peso_restante entonces\n            valor_acumulado = valor_acumulado + arreglo_v[indice]\n            peso_restante = peso_restante - arreglo_p[indice]\n        sino\n            fragmento = peso_restante / arreglo_p[indice]\n            valor_acumulado = valor_acumulado + (arreglo_v[indice] * fragmento)\n            peso_restante = 0\n        fin si\n        indice = indice + 1\n    fin mientras\n    \n    retornar valor_acumulado\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_mochila_fraccionaria_10",
+    "categoria": "greedy",
+    "subcategoria": "mochila_fraccionaria",
+    "pseudocodigo": "funcion procesarMochila(limite, pesos, valores, elementos)\n    ratios = nuevo arreglo[elementos]\n    orden = nuevo arreglo[elementos]\n    fracciones = nuevo arreglo[elementos]\n    \n    para z desde 1 hasta elementos\n        ratios[z] = valores[z] / pesos[z]\n        orden[z] = z\n        fracciones[z] = 0\n    fin para\n    \n    ordenarPorRatios(orden, ratios)\n    \n    capacidad_usada = 0\n    beneficio_total = 0\n    \n    para z desde 1 hasta elementos\n        item = orden[z]\n        \n        si capacidad_usada + pesos[item] <= limite entonces\n            fracciones[item] = 1.0\n            capacidad_usada = capacidad_usada + pesos[item]\n            beneficio_total = beneficio_total + valores[item]\n        sino\n            espacio_sobrante = limite - capacidad_usada\n            si espacio_sobrante > 0 entonces\n                fracciones[item] = espacio_sobrante / pesos[item]\n                beneficio_total = beneficio_total + (valores[item] * fracciones[item])\n                capacidad_usada = limite\n            fin si\n        fin si\n        \n        si capacidad_usada >= limite entonces\n            romper\n        fin si\n    fin para\n    \n    retornar beneficio_total\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_planificacion_tareas_1",
+    "categoria": "greedy",
+    "subcategoria": "planificacion_tareas",
+    "pseudocodigo": "funcion planificar_tareas(tareas)\n    ordenar tareas por beneficio descendente\n    cronograma = lista_vacia\n    tiempo_actual = 0\n    \n    para cada tarea en tareas hacer\n        si tiempo_actual + tarea.duracion <= limite_tiempo entonces\n            agregar tarea a cronograma\n            tiempo_actual = tiempo_actual + tarea.duracion\n        fin si\n    fin para\n    \n    retornar cronograma\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_planificacion_tareas_2",
+    "categoria": "greedy",
+    "subcategoria": "planificacion_tareas",
+    "pseudocodigo": "funcion seleccionar_actividades(lista_actividades, tiempo_disponible)\n    // Ordenar por ratio beneficio/tiempo\n    para i desde 0 hasta longitud(lista_actividades) hacer\n        lista_actividades[i].ratio = lista_actividades[i].ganancia / lista_actividades[i].tiempo\n    fin para\n    \n    ordenar_descendente(lista_actividades, por_ratio)\n    \n    resultado = []\n    t = 0\n    \n    mientras t < tiempo_disponible y lista_actividades no_vacia hacer\n        act = extraer_primero(lista_actividades)\n        si t + act.tiempo <= tiempo_disponible entonces\n            agregar act a resultado\n            t = t + act.tiempo\n        fin si\n    fin mientras\n    \n    retornar resultado\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_planificacion_tareas_3",
+    "categoria": "greedy",
+    "subcategoria": "planificacion_tareas",
+    "pseudocodigo": "funcion asignar_trabajos(trabajos)\n    trabajos_ordenados = ordenar_por_prioridad(trabajos)\n    plan = conjunto_vacio\n    hora = 0\n    beneficio_total = 0\n    \n    para j en trabajos_ordenados hacer\n        si hora + j.horas <= 24 entonces\n            insertar j en plan\n            hora = hora + j.horas\n            beneficio_total = beneficio_total + j.valor\n        fin si\n    fin para\n    \n    retornar plan, beneficio_total\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_planificacion_tareas_4",
+    "categoria": "greedy",
+    "subcategoria": "planificacion_tareas",
+    "pseudocodigo": "funcion optimizar_agenda(eventos, max_duracion)\n    eventos_por_urgencia = clasificar(eventos, urgencia, descendente)\n    agenda_final = crear_lista\n    duracion_acumulada = 0\n    \n    para cada e desde 0 hasta tamaño(eventos_por_urgencia) hacer\n        evento_actual = eventos_por_urgencia[e]\n        si duracion_acumulada + evento_actual.tiempo <= max_duracion entonces\n            añadir evento_actual a agenda_final\n            duracion_acumulada = duracion_acumulada + evento_actual.tiempo\n        fin si\n    fin para\n    \n    retornar agenda_final\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_planificacion_tareas_5",
+    "categoria": "greedy",
+    "subcategoria": "planificacion_tareas",
+    "pseudocodigo": "funcion greedy_scheduling(T, capacidad)\n    ordenar T por valor decreciente\n    S = []\n    suma_tiempo = 0\n    indice = 0\n    \n    mientras indice < longitud(T) hacer\n        tarea_candidata = T[indice]\n        si suma_tiempo + tarea_candidata.duracion <= capacidad entonces\n            S = S + [tarea_candidata]\n            suma_tiempo = suma_tiempo + tarea_candidata.duracion\n        fin si\n        indice = indice + 1\n    fin mientras\n    \n    retornar S\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_planificacion_tareas_6",
+    "categoria": "greedy",
+    "subcategoria": "planificacion_tareas",
+    "pseudocodigo": "funcion distribuir_tareas(conjunto_tareas, deadline)\n    // Estrategia: maximizar utilidad por unidad de tiempo\n    para cada tarea en conjunto_tareas hacer\n        tarea.eficiencia = tarea.utilidad / tarea.costo_temporal\n    fin para\n    \n    conjunto_ordenado = ordenar_por(conjunto_tareas, eficiencia, desc)\n    \n    seleccion = lista_vacia\n    tiempo_usado = 0\n    \n    para tarea en conjunto_ordenado hacer\n        si tiempo_usado + tarea.costo_temporal <= deadline entonces\n            agregar tarea a seleccion\n            tiempo_usado = tiempo_usado + tarea.costo_temporal\n        fin si\n    fin para\n    \n    retornar seleccion, tiempo_usado\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_planificacion_tareas_7",
+    "categoria": "greedy",
+    "subcategoria": "planificacion_tareas",
+    "pseudocodigo": "funcion planificacion_voraz(actividades)\n    ordenar actividades por peso de mayor a menor\n    planificacion = arreglo_vacio\n    tiempo_total = 0\n    max_tiempo = 100\n    pos = 0\n    \n    repetir\n        act = actividades[pos]\n        si tiempo_total + act.extension <= max_tiempo entonces\n            insertar act en planificacion\n            tiempo_total = tiempo_total + act.extension\n        fin si\n        pos = pos + 1\n    hasta que pos >= tamaño(actividades) o tiempo_total >= max_tiempo\n    \n    retornar planificacion\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_planificacion_tareas_8",
+    "categoria": "greedy",
+    "subcategoria": "planificacion_tareas",
+    "pseudocodigo": "funcion organizar_proyectos(proyectos, presupuesto_temporal)\n    calcular_metricas(proyectos)\n    proyectos_rankeados = rankear_por_importancia(proyectos)\n    \n    cola_ejecucion = nueva_cola\n    contador_tiempo = 0\n    i = 0\n    \n    mientras i < cantidad(proyectos_rankeados) hacer\n        p = proyectos_rankeados[i]\n        tiempo_necesario = p.dias\n        \n        si contador_tiempo + tiempo_necesario <= presupuesto_temporal entonces\n            encolar p en cola_ejecucion\n            contador_tiempo = contador_tiempo + tiempo_necesario\n        fin si\n        \n        i = i + 1\n    fin mientras\n    \n    retornar cola_ejecucion\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_planificacion_tareas_9",
+    "categoria": "greedy",
+    "subcategoria": "planificacion_tareas",
+    "pseudocodigo": "funcion seleccion_tareas_optima(lista_t, limite_t)\n    // Greedy por beneficio directo\n    lista_t = ordenar_descendente_por_beneficio(lista_t)\n    \n    solucion = conjunto_vacio\n    acumulador_tiempo = 0\n    acumulador_beneficio = 0\n    \n    para cada elemento en lista_t hacer\n        si acumulador_tiempo + elemento.duracion <= limite_t entonces\n            agregar elemento a solucion\n            acumulador_tiempo = acumulador_tiempo + elemento.duracion\n            acumulador_beneficio = acumulador_beneficio + elemento.beneficio\n        fin si\n    fin para\n    \n    retornar solucion, acumulador_beneficio\nfin funcion",
+    "label": "greedy"
+  },
+  {
+    "id": "greedy_planificacion_tareas_10",
+    "categoria": "greedy",
+    "subcategoria": "planificacion_tareas",
+    "pseudocodigo": "funcion asignacion_greedy(tareas_pendientes)\n    ordenar tareas_pendientes por prioridad descendente\n    tareas_asignadas = []\n    tiempo_disponible = 480\n    tiempo_consumido = 0\n    \n    para idx desde 0 hasta longitud(tareas_pendientes) - 1 hacer\n        t = tareas_pendientes[idx]\n        si tiempo_consumido + t.minutos <= tiempo_disponible entonces\n            añadir t a tareas_asignadas\n            tiempo_consumido = tiempo_consumido + t.minutos\n        fin si\n    fin para\n    \n    retornar tareas_asignadas, tiempo_consumido\nfin funcion",
+    "label": "greedy"
+  }
+]

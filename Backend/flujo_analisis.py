@@ -33,6 +33,7 @@ from shared.services.servicioCorrector import ServicioCorrector
 from shared.services.lectorArchivos import LectorArchivos
 from shared.services.detectorTipoEntrada import DetectorTipoEntrada
 from agentes.agenteResolver import AgenteResolver
+from ml.clasificador import obtener_clasificador
 
 
 class FlujoAnalisis:
@@ -53,6 +54,14 @@ class FlujoAnalisis:
         self.validador = servicioValidador()
         self.corrector = ServicioCorrector()
         self.resolver = AgenteResolver()
+        
+        # Inicializar clasificador ML
+        try:
+            self.clasificador = obtener_clasificador()
+            self._log("✅ Clasificador ML cargado correctamente")
+        except Exception as e:
+            self.clasificador = None
+            self._log(f"⚠️ Clasificador ML no disponible: {e}")
         
         self._log("✅ Flujo de análisis inicializado correctamente")
     
@@ -89,6 +98,7 @@ class FlujoAnalisis:
             'fase_actual': None,
             'pseudocodigo_original': None,
             'pseudocodigo_validado': None,
+            'clasificacion': None,
             'validacion': None,
             'validacion_inicial': None,
             'correccion': None,
@@ -126,9 +136,29 @@ class FlujoAnalisis:
                 self._log(f"✅ Ejemplos usados: {len(resultado_traduccion['ejemplos_usados'])}")
                 resultado['fase_actual'] = 'traduccion_completada'
             
-            # ==================== FASE 3: VALIDACIÓN ====================
+            # ==================== FASE 3: CLASIFICACIÓN ML ====================
+            if self.clasificador:
+                self._log("\n" + "="*80)
+                self._log("FASE 3: CLASIFICACIÓN DE ESTRUCTURA ALGORÍTMICA")
+                self._log("="*80)
+                
+                try:
+                    clasificacion = self.clasificador.clasificar(pseudocodigo, top_n=3)
+                    resultado['clasificacion'] = clasificacion
+                    resultado['fase_actual'] = 'clasificacion_completada'
+                    
+                    self._log(f"\n🔍 Clasificación detectada:")
+                    self._log(f"   ⭐ {clasificacion['categoria_principal'].upper()} ({clasificacion['confianza']*100:.1f}%)")
+                    self._log(f"\n   Otras posibilidades:")
+                    for pred in clasificacion['top_predicciones'][1:3]:
+                        self._log(f"      • {pred['categoria']} ({pred['probabilidad']*100:.1f}%)")
+                except Exception as e:
+                    self._log(f"⚠️ Error en clasificación: {e}")
+                    resultado['clasificacion'] = None
+            
+            # ==================== FASE 4: VALIDACIÓN ====================
             self._log("\n" + "="*80)
-            self._log("FASE 3: VALIDACIÓN DE PSEUDOCÓDIGO")
+            self._log("FASE 4: VALIDACIÓN DE PSEUDOCÓDIGO")
             self._log("="*80)
             
             validacion = self.validador.validar(pseudocodigo)
@@ -148,10 +178,10 @@ class FlujoAnalisis:
                         for error in capa_datos['errores']:
                             self._log(f"      ❌ {error}")
             
-            # ==================== FASE 4: CORRECCIÓN (si hay errores) ====================
+            # ==================== FASE 5: CORRECCIÓN (si hay errores) ====================
             if not validacion['valido_general'] and auto_corregir:
                 self._log("\n" + "="*80)
-                self._log("FASE 4: CORRECCIÓN AUTOMÁTICA")
+                self._log("FASE 5: CORRECCIÓN AUTOMÁTICA")
                 self._log("="*80)
                 
                 resultado_correccion = self.corrector.corregir(pseudocodigo, validacion)
@@ -184,46 +214,67 @@ class FlujoAnalisis:
                 resultado['errores'].append(f"Pseudocódigo inválido: {validacion['resumen']['errores_totales']} errores")
                 return resultado
             
-            # ==================== FASE 5: ANÁLISIS DE COSTOS ====================
+            # ==================== FASE 6: ANÁLISIS DE COSTOS ====================
             self._log("\n" + "="*80)
-            self._log("FASE 5: ANÁLISIS DE COSTOS POR LÍNEA")
+            self._log("FASE 6: ANÁLISIS DE COSTOS POR LÍNEA")
             self._log("="*80)
             
             self._log("⏭️ Pendiente implementación de AgenteAnalizador")
             resultado['fase_actual'] = 'analisis_costos_pendiente'
             
-            # ==================== FASE 6: REPRESENTACIÓN MATEMÁTICA ====================
+            # ==================== FASE 7: REPRESENTACIÓN MATEMÁTICA ====================
             self._log("\n" + "="*80)
-            self._log("FASE 6: REPRESENTACIÓN MATEMÁTICA")
+            self._log("FASE 7: REPRESENTACIÓN MATEMÁTICA")
             self._log("="*80)
             
             self._log("⏭️ Pendiente implementación de AgenteRepresentacionMatematica")
             resultado['fase_actual'] = 'representacion_matematica_pendiente'
             
-            # ==================== FASE 7: RESOLUCIÓN ====================
+            # ==================== FASE 8: RESOLUCIÓN ====================
             self._log("\n" + "="*80)
-            self._log("FASE 7: RESOLUCIÓN DE ECUACIONES")
+            self._log("FASE 8: RESOLUCIÓN DE ECUACIONES")
             self._log("="*80)
             
+            # Determinar ecuaciones según el tipo de algoritmo
             if validacion['tipo_algoritmo'] == 'Recursivo':
                 ecuacion_ejemplo = "T(n) = 2T(n/2) + n"
                 self._log(f"📝 Ecuación de ejemplo (temporal): {ecuacion_ejemplo}")
                 
-                complejidades = self.resolver.resolver_casos({
+                ecuaciones = {
                     'mejor_caso': ecuacion_ejemplo,
                     'caso_promedio': ecuacion_ejemplo,
                     'peor_caso': ecuacion_ejemplo
-                })
+                }
             else:
                 # Para iterativos, usar AnalizadorDirecto
-                ecuacion_ejemplo = "T(n) = K + n*C"  # Lineal típico
-                self._log(f"📝 Ecuación de ejemplo (temporal): {ecuacion_ejemplo}")
+                self._log(f"📝 Ecuaciones de ejemplo (temporal - iterativo)")
                 
-                complejidades = self.resolver.resolver_casos({
+                ecuaciones = {
                     'mejor_caso': "T(n) = 1",
                     'caso_promedio': "T(n) = n/2",
                     'peor_caso': "T(n) = n"
-                })
+                }
+            
+            # Resolver casos
+            complejidades = self.resolver.resolver_casos(ecuaciones)
+            
+            # Extraer pasos de resolución para el reporte
+            pasos_resolucion = {}
+            for caso in ['mejor_caso', 'caso_promedio', 'peor_caso']:
+                if complejidades[caso] and complejidades[caso]['exito']:
+                    pasos_resolucion[caso] = {
+                        'ecuacion': complejidades[caso]['ecuacion_original'],
+                        'metodo': complejidades[caso]['metodo_usado'],
+                        'pasos': complejidades[caso]['pasos'],
+                        'explicacion': complejidades[caso]['explicacion'],
+                        'solucion': complejidades[caso]['solucion'],
+                        'diagrama_mermaid': complejidades[caso].get('diagrama_mermaid')  # Extraer diagrama si existe
+                    }
+            
+            # Guardar ecuaciones y pasos en el resultado
+            complejidades['ecuaciones'] = ecuaciones
+            complejidades['pasos_resolucion'] = pasos_resolucion
+            complejidades['metodo_usado'] = complejidades.get('mejor_caso', {}).get('metodo_usado', 'No especificado')
             
             resultado['complejidades'] = complejidades
             resultado['fase_actual'] = 'resolucion_completada'
@@ -291,7 +342,7 @@ class FlujoAnalisis:
             pseudocodigo = lector.obtener_contenido_completo()
             self._log(f"✅ Archivo leído: {len(pseudocodigo.split(chr(10)))} líneas")
             
-        elif tipo_entrada in ["pseudocodigo", "lenguaje_natural"]:
+        elif tipo_entrada in ["pseudocodigo", "lenguaje_natural", "auto"]:
             if not entrada:
                 raise ValueError(f"entrada requerida cuando tipo_entrada='{tipo_entrada}'")
             

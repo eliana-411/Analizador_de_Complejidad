@@ -1,0 +1,282 @@
+[
+  {
+    "id": "programacion_dinamica_fibonacci_dp_1",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "fibonacci_dp",
+    "pseudocodigo": "funcion fibonacci(n)\n    si n <= 1 entonces\n        retornar n\n    fin si\n    \n    crear arreglo memo de tamaño n+1\n    memo[0] = 0\n    memo[1] = 1\n    \n    para i desde 2 hasta n hacer\n        memo[i] = memo[i-1] + memo[i-2]\n    fin para\n    \n    retornar memo[n]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_fibonacci_dp_2",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "fibonacci_dp",
+    "pseudocodigo": "funcion calcularFib(numero)\n    // Caso base\n    si numero es 0 retornar 0\n    si numero es 1 retornar 1\n    \n    // Crear tabla de memoización\n    tabla = nuevo arreglo[numero + 1]\n    tabla[0] = 0\n    tabla[1] = 1\n    \n    indice = 2\n    mientras indice <= numero hacer\n        tabla[indice] = tabla[indice - 1] + tabla[indice - 2]\n        indice = indice + 1\n    fin mientras\n    \n    retornar tabla[numero]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_fibonacci_dp_3",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "fibonacci_dp",
+    "pseudocodigo": "funcion fib_dinamico(valor)\n    si valor < 2 entonces\n        retornar valor\n    fin si\n    \n    anterior = 0\n    actual = 1\n    \n    para contador desde 2 hasta valor hacer\n        temporal = actual + anterior\n        anterior = actual\n        actual = temporal\n    fin para\n    \n    retornar actual\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_fibonacci_dp_4",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "fibonacci_dp",
+    "pseudocodigo": "funcion obtenerFibonacci(pos)\n    // Validación inicial\n    si pos == 0 entonces retornar 0\n    si pos == 1 entonces retornar 1\n    \n    // Inicializar array dinámico\n    dp = arreglo de tamaño pos+1\n    dp[0] = 0\n    dp[1] = 1\n    \n    // Llenar tabla bottom-up\n    para j = 2 hasta pos hacer\n        dp[j] = dp[j-1] + dp[j-2]\n    fin para\n    \n    retornar dp[pos]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_fibonacci_dp_5",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "fibonacci_dp",
+    "pseudocodigo": "funcion fibonacciOptimizado(limite)\n    si limite <= 1 entonces\n        retornar limite\n    fin si\n    \n    previo = 0\n    siguiente = 1\n    resultado = 0\n    \n    iterador = 2\n    mientras iterador <= limite hacer\n        resultado = previo + siguiente\n        previo = siguiente\n        siguiente = resultado\n        iterador = iterador + 1\n    fin mientras\n    \n    retornar resultado\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_fibonacci_dp_6",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "fibonacci_dp",
+    "pseudocodigo": "funcion calcular_fibonacci_dp(termino)\n    // Manejo de casos triviales\n    si termino es igual a 0 retornar 0\n    si termino es igual a 1 retornar 1\n    \n    // Crear estructura de almacenamiento\n    cache = nuevo arreglo de longitud termino+1\n    cache[0] = 0\n    cache[1] = 1\n    \n    // Computar valores iterativamente\n    para posicion desde 2 hasta termino hacer\n        cache[posicion] = cache[posicion-1] + cache[posicion-2]\n    fin para\n    \n    retornar cache[termino]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_fibonacci_dp_7",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "fibonacci_dp",
+    "pseudocodigo": "funcion fibo(num)\n    si num < 2 entonces retornar num\n    \n    a = 0\n    b = 1\n    c = 0\n    \n    para i desde 2 hasta num hacer\n        c = a + b\n        a = b\n        b = c\n    fin para\n    \n    retornar c\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_fibonacci_dp_8",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "fibonacci_dp",
+    "pseudocodigo": "funcion secuenciaFibonacci(objetivo)\n    // Verificar entrada básica\n    si objetivo <= 0 entonces retornar 0\n    si objetivo == 1 entonces retornar 1\n    \n    // Inicializar variables de trabajo\n    primerValor = 0\n    segundoValor = 1\n    \n    // Iterar hasta alcanzar objetivo\n    cont = 2\n    mientras cont <= objetivo hacer\n        suma = primerValor + segundoValor\n        primerValor = segundoValor\n        segundoValor = suma\n        cont = cont + 1\n    fin mientras\n    \n    retornar segundoValor\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_fibonacci_dp_9",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "fibonacci_dp",
+    "pseudocodigo": "funcion fibonacci_memoizado(entrada)\n    si entrada es 0 o entrada es 1 entonces\n        retornar entrada\n    fin si\n    \n    almacen = arreglo[entrada + 1]\n    almacen[0] = 0\n    almacen[1] = 1\n    \n    idx = 2\n    mientras idx <= entrada hacer\n        almacen[idx] = almacen[idx - 1] + almacen[idx - 2]\n        idx = idx + 1\n    fin mientras\n    \n    retornar almacen[entrada]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_fibonacci_dp_10",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "fibonacci_dp",
+    "pseudocodigo": "funcion fibDP(n_termino)\n    // Casos base directos\n    si n_termino <= 1 entonces\n        retornar n_termino\n    fin si\n    \n    // Variables para optimización de espacio\n    fib_anterior = 0\n    fib_actual = 1\n    fib_nuevo = 0\n    \n    // Calcular iterativamente\n    para paso desde 2 hasta n_termino hacer\n        fib_nuevo = fib_anterior + fib_actual\n        fib_anterior = fib_actual\n        fib_actual = fib_nuevo\n    fin para\n    \n    retornar fib_nuevo\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_mochila_1",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "mochila",
+    "pseudocodigo": "funcion mochila(pesos, valores, capacidad, n)\n    crear tabla[n+1][capacidad+1]\n    \n    para i desde 0 hasta n hacer\n        para w desde 0 hasta capacidad hacer\n            si i == 0 o w == 0 entonces\n                tabla[i][w] = 0\n            sino si pesos[i-1] <= w entonces\n                tabla[i][w] = maximo(valores[i-1] + tabla[i-1][w-pesos[i-1]], tabla[i-1][w])\n            sino\n                tabla[i][w] = tabla[i-1][w]\n            fin si\n        fin para\n    fin para\n    \n    retornar tabla[n][capacidad]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_mochila_2",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "mochila",
+    "pseudocodigo": "funcion resolver_knapsack(w, v, W, items)\n    // Inicializar matriz de programacion dinamica\n    dp = matriz[items+1][W+1] con ceros\n    \n    para item desde 1 hasta items hacer\n        para peso_actual desde 1 hasta W hacer\n            si w[item-1] > peso_actual entonces\n                dp[item][peso_actual] = dp[item-1][peso_actual]\n            sino\n                opcion1 = dp[item-1][peso_actual]\n                opcion2 = v[item-1] + dp[item-1][peso_actual - w[item-1]]\n                dp[item][peso_actual] = max(opcion1, opcion2)\n            fin si\n        fin para\n    fin para\n    \n    retornar dp[items][W]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_mochila_3",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "mochila",
+    "pseudocodigo": "funcion mochila_01(peso_max, lista_pesos, lista_valores, cantidad)\n    M = arreglo_2d[cantidad+1][peso_max+1]\n    \n    para fila desde 0 hasta cantidad hacer\n        M[fila][0] = 0\n    fin para\n    \n    para col desde 0 hasta peso_max hacer\n        M[0][col] = 0\n    fin para\n    \n    para i desde 1 hasta cantidad hacer\n        para p desde 1 hasta peso_max hacer\n            si lista_pesos[i-1] <= p entonces\n                incluir = lista_valores[i-1] + M[i-1][p - lista_pesos[i-1]]\n                excluir = M[i-1][p]\n                M[i][p] = maximo(incluir, excluir)\n            sino\n                M[i][p] = M[i-1][p]\n            fin si\n        fin para\n    fin para\n    \n    retornar M[cantidad][peso_max]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_mochila_4",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "mochila",
+    "pseudocodigo": "funcion optimizar_mochila(capacidad_maxima, objetos, num_objetos)\n    memo = nueva_matriz(num_objetos + 1, capacidad_maxima + 1)\n    \n    para cada i en rango(0, num_objetos + 1) hacer\n        para cada cap en rango(0, capacidad_maxima + 1) hacer\n            si i es 0 o cap es 0 entonces\n                memo[i][cap] = 0\n            sino\n                peso_obj = objetos[i-1].peso\n                valor_obj = objetos[i-1].valor\n                \n                si peso_obj > cap entonces\n                    memo[i][cap] = memo[i-1][cap]\n                sino\n                    con_objeto = valor_obj + memo[i-1][cap - peso_obj]\n                    sin_objeto = memo[i-1][cap]\n                    memo[i][cap] = mayor_entre(con_objeto, sin_objeto)\n                fin si\n            fin si\n        fin para\n    fin para\n    \n    retornar memo[num_objetos][capacidad_maxima]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_mochila_5",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "mochila",
+    "pseudocodigo": "funcion knapsack_dinamico(W_max, pesos_arr, valores_arr, n_elementos)\n    tabla_dp = crear_matriz(n_elementos+1, W_max+1, valor_inicial=0)\n    \n    para elem desde 1 hasta n_elementos hacer\n        para capacidad desde 0 hasta W_max hacer\n            valor_sin_tomar = tabla_dp[elem-1][capacidad]\n            \n            si pesos_arr[elem-1] <= capacidad entonces\n                valor_tomando = valores_arr[elem-1] + tabla_dp[elem-1][capacidad - pesos_arr[elem-1]]\n                tabla_dp[elem][capacidad] = max(valor_sin_tomar, valor_tomando)\n            sino\n                tabla_dp[elem][capacidad] = valor_sin_tomar\n            fin si\n        fin para\n    fin para\n    \n    retornar tabla_dp[n_elementos][W_max]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_mochila_6",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "mochila",
+    "pseudocodigo": "funcion problema_mochila(C, P, V, N)\n    // C: capacidad, P: pesos, V: valores, N: numero de items\n    DP = arreglo[N+1][C+1]\n    \n    inicializar DP con ceros\n    \n    para i desde 1 hasta N hacer\n        para j desde 1 hasta C hacer\n            DP[i][j] = DP[i-1][j]\n            \n            si P[i-1] <= j entonces\n                valor_alternativo = V[i-1] + DP[i-1][j - P[i-1]]\n                si valor_alternativo > DP[i][j] entonces\n                    DP[i][j] = valor_alternativo\n                fin si\n            fin si\n        fin para\n    fin para\n    \n    retornar DP[N][C]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_mochila_7",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "mochila",
+    "pseudocodigo": "funcion calcular_mochila_optima(limite_peso, array_w, array_v, total_items)\n    solucion = matriz_2d(total_items+1, limite_peso+1)\n    \n    para x desde 0 hasta total_items hacer\n        solucion[x][0] = 0\n    fin para\n    \n    para y desde 0 hasta limite_peso hacer\n        solucion[0][y] = 0\n    fin para\n    \n    para indice desde 1 hasta total_items hacer\n        para peso_restante desde 1 hasta limite_peso hacer\n            peso_item_actual = array_w[indice-1]\n            valor_item_actual = array_v[indice-1]\n            \n            si peso_item_actual > peso_restante entonces\n                solucion[indice][peso_restante] = solucion[indice-1][peso_restante]\n            sino\n                tomar = valor_item_actual + solucion[indice-1][peso_restante - peso_item_actual]\n                no_tomar = solucion[indice-1][peso_restante]\n                solucion[indice][peso_restante] = seleccionar_maximo(tomar, no_tomar)\n            fin si\n        fin para\n    fin para\n    \n    retornar solucion[total_items][limite_peso]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_mochila_8",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "mochila",
+    "pseudocodigo": "funcion mochila_pd(cap, w_list, v_list, size)\n    T = tabla[size+1][cap+1]\n    \n    para r desde 0 hasta size hacer\n        para c desde 0 hasta cap hacer\n            si r == 0 o c == 0 entonces\n                T[r][c] = 0\n                continuar\n            fin si\n            \n            peso_elemento = w_list[r-1]\n            valor_elemento = v_list[r-1]\n            \n            si peso_elemento <= c entonces\n                beneficio_con_item = valor_elemento + T[r-1][c - peso_elemento]\n                beneficio_sin_item = T[r-1][c]\n                T[r][c] = maximo_de(beneficio_con_item, beneficio_sin_item)\n            sino\n                T[r][c] = T[r-1][c]\n            fin si\n        fin para\n    fin para\n    \n    retornar T[size][cap]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_mochila_9",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "mochila",
+    "pseudocodigo": "funcion resolver_problema_mochila(peso_limite, pesos, beneficios, cantidad_objetos)\n    mat = nueva_matriz_dinamica(cantidad_objetos+1, peso_limite+1)\n    \n    rellenar mat con 0\n    \n    para obj desde 1 hasta cantidad_objetos hacer\n        para cap_actual desde 1 hasta peso_limite hacer\n            peso_obj = pesos[obj-1]\n            benef_obj = beneficios[obj-1]\n            mejor_anterior = mat[obj-1][cap_actual]\n            \n            si peso_obj > cap_actual entonces\n                mat[obj][cap_actual] = mejor_anterior\n            sino\n                con_actual = benef_obj + mat[obj-1][cap_actual - peso_obj]\n                mat[obj][cap_actual] = maximo(con_actual, mejor_anterior)\n            fin si\n        fin para\n    fin para\n    \n    resultado = mat[cantidad_objetos][peso_limite]\n    retornar resultado\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_mochila_10",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "mochila",
+    "pseudocodigo": "funcion knapsack_programacion_dinamica(W, weights, profits, n)\n    // Crear estructura de datos para almacenar resultados\n    K = arreglo_bidimensional[n+1][W+1]\n    \n    // Inicializacion de casos base\n    para i desde 0 hasta n hacer\n        K[i][0] = 0\n    fin para\n    para j desde 0 hasta W hacer\n        K[0][j] = 0\n    fin para\n    \n    // Llenar la tabla de forma ascendente\n    para item desde 1 hasta n hacer\n        para capacidad desde 1 hasta W hacer\n            peso_actual = weights[item-1]\n            ganancia_actual = profits[item-1]\n            \n            si peso_actual <= capacidad entonces\n                valor_incluyendo = ganancia_actual + K[item-1][capacidad - peso_actual]\n                valor_excluyendo = K[item-1][capacidad]\n                \n                si valor_incluyendo > valor_excluyendo entonces\n                    K[item][capacidad] = valor_incluyendo\n                sino\n                    K[item][capacidad] = valor_excluyendo\n                fin si\n            sino\n                K[item][capacidad] = K[item-1][capacidad]\n            fin si\n        fin para\n    fin para\n    \n    retornar K[n][W]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_lcs_1",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "lcs",
+    "pseudocodigo": "funcion LCS(cadena1, cadena2)\n    n = longitud(cadena1)\n    m = longitud(cadena2)\n    crear matriz[n+1][m+1]\n    \n    para i desde 0 hasta n hacer\n        para j desde 0 hasta m hacer\n            si i == 0 o j == 0 entonces\n                matriz[i][j] = 0\n            sino si cadena1[i-1] == cadena2[j-1] entonces\n                matriz[i][j] = matriz[i-1][j-1] + 1\n            sino\n                matriz[i][j] = maximo(matriz[i-1][j], matriz[i][j-1])\n            fin si\n        fin para\n    fin para\n    \n    retornar matriz[n][m]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_lcs_2",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "lcs",
+    "pseudocodigo": "funcion subsecuenciaComun(texto_a, texto_b)\n    tam_a = tamaño(texto_a)\n    tam_b = tamaño(texto_b)\n    tabla = nueva_matriz(tam_a + 1, tam_b + 1)\n    \n    para fila desde 1 hasta tam_a hacer\n        para columna desde 1 hasta tam_b hacer\n            si texto_a[fila - 1] coincide con texto_b[columna - 1] entonces\n                tabla[fila][columna] = tabla[fila - 1][columna - 1] + 1\n            sino\n                tabla[fila][columna] = max(tabla[fila - 1][columna], tabla[fila][columna - 1])\n            fin si\n        fin para\n    fin para\n    \n    retornar tabla[tam_a][tam_b]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_lcs_3",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "lcs",
+    "pseudocodigo": "funcion calcularLCS(s1, s2)\n    // Inicializar dimensiones\n    largo1 = len(s1)\n    largo2 = len(s2)\n    \n    // Crear tabla DP\n    dp = arreglo_2d(largo1 + 1, largo2 + 1, valor_inicial = 0)\n    \n    // Llenar la tabla\n    para idx1 desde 1 hasta largo1 hacer\n        para idx2 desde 1 hasta largo2 hacer\n            si s1[idx1 - 1] == s2[idx2 - 1] entonces\n                dp[idx1][idx2] = dp[idx1 - 1][idx2 - 1] + 1\n            sino\n                dp[idx1][idx2] = maximo_entre(dp[idx1 - 1][idx2], dp[idx1][idx2 - 1])\n            fin si\n        fin para\n    fin para\n    \n    retornar dp[largo1][largo2]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_lcs_4",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "lcs",
+    "pseudocodigo": "funcion longitudSubsecuencia(secuencia_x, secuencia_y)\n    filas = longitud(secuencia_x)\n    columnas = longitud(secuencia_y)\n    memoria = inicializar_matriz(filas + 1, columnas + 1)\n    \n    para cada i en rango(0, filas) hacer\n        memoria[i][0] = 0\n    fin para\n    \n    para cada j en rango(0, columnas) hacer\n        memoria[0][j] = 0\n    fin para\n    \n    para i desde 1 hasta filas hacer\n        para j desde 1 hasta columnas hacer\n            si secuencia_x[i - 1] es_igual secuencia_y[j - 1] entonces\n                memoria[i][j] = memoria[i - 1][j - 1] + 1\n            sino\n                memoria[i][j] = mayor(memoria[i - 1][j], memoria[i][j - 1])\n            fin si\n        fin para\n    fin para\n    \n    retornar memoria[filas][columnas]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_lcs_5",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "lcs",
+    "pseudocodigo": "funcion encontrarLCS(palabra1, palabra2)\n    dimension1 = tamaño_de(palabra1)\n    dimension2 = tamaño_de(palabra2)\n    \n    tablero = crear_matriz_vacia(dimension1 + 1, dimension2 + 1)\n    \n    para x desde 0 hasta dimension1 hacer\n        tablero[x][0] = 0\n    fin para\n    \n    para y desde 0 hasta dimension2 hacer\n        tablero[0][y] = 0\n    fin para\n    \n    para x desde 1 hasta dimension1 hacer\n        para y desde 1 hasta dimension2 hacer\n            si palabra1[x - 1] == palabra2[y - 1] entonces\n                tablero[x][y] = tablero[x - 1][y - 1] + 1\n            sino\n                tablero[x][y] = max(tablero[x - 1][y], tablero[x][y - 1])\n            fin si\n        fin para\n    fin para\n    \n    retornar tablero[dimension1][dimension2]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_lcs_6",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "lcs",
+    "pseudocodigo": "funcion LCS_longitud(str_primero, str_segundo)\n    len_primero = contar_caracteres(str_primero)\n    len_segundo = contar_caracteres(str_segundo)\n    \n    cache = matriz_nueva((len_primero + 1) x (len_segundo + 1))\n    \n    inicializar cache con ceros\n    \n    para posicion_i desde 1 hasta len_primero hacer\n        para posicion_j desde 1 hasta len_segundo hacer\n            caracter_i = str_primero[posicion_i - 1]\n            caracter_j = str_segundo[posicion_j - 1]\n            \n            si caracter_i == caracter_j entonces\n                cache[posicion_i][posicion_j] = cache[posicion_i - 1][posicion_j - 1] + 1\n            sino\n                opcion1 = cache[posicion_i - 1][posicion_j]\n                opcion2 = cache[posicion_i][posicion_j - 1]\n                cache[posicion_i][posicion_j] = maximo(opcion1, opcion2)\n            fin si\n        fin para\n    fin para\n    \n    retornar cache[len_primero][len_segundo]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_lcs_7",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "lcs",
+    "pseudocodigo": "funcion subsecuencia_mas_larga(A, B)\n    // Obtener longitudes\n    N = tamaño(A)\n    M = tamaño(B)\n    \n    // Tabla de programación dinámica\n    L = nueva_tabla(N + 1, M + 1)\n    \n    // Rellenar primera fila y columna\n    para i desde 0 hasta N hacer\n        L[i][0] = 0\n    fin para\n    para j desde 0 hasta M hacer\n        L[0][j] = 0\n    fin para\n    \n    // Proceso principal\n    para i desde 1 hasta N hacer\n        para j desde 1 hasta M hacer\n            si A[i - 1] coincide_con B[j - 1] entonces\n                L[i][j] = L[i - 1][j - 1] + 1\n            sino\n                L[i][j] = maximo_de(L[i - 1][j], L[i][j - 1])\n            fin si\n        fin para\n    fin para\n    \n    retornar L[N][M]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_lcs_8",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "lcs",
+    "pseudocodigo": "funcion computar_LCS(entrada1, entrada2)\n    size1 = obtener_longitud(entrada1)\n    size2 = obtener_longitud(entrada2)\n    grid = construir_matriz(size1 + 1, size2 + 1)\n    \n    para r desde 0 hasta size1 hacer\n        para c desde 0 hasta size2 hacer\n            si r == 0 o c == 0 entonces\n                grid[r][c] = 0\n                continuar\n            fin si\n            \n            si entrada1[r - 1] == entrada2[c - 1] entonces\n                grid[r][c] = grid[r - 1][c - 1] + 1\n            sino\n                valor_arriba = grid[r - 1][c]\n                valor_izquierda = grid[r][c - 1]\n                grid[r][c] = seleccionar_mayor(valor_arriba, valor_izquierda)\n            fin si\n        fin para\n    fin para\n    \n    resultado = grid[size1][size2]\n    retornar resultado\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_lcs_9",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "lcs",
+    "pseudocodigo": "funcion hallar_longitud_comun(cadena_uno, cadena_dos)\n    n1 = cantidad_elementos(cadena_uno)\n    n2 = cantidad_elementos(cadena_dos)\n    \n    mat = arreglo_bidimensional[n1 + 1][n2 + 1]\n    \n    para indice_i desde 0 hasta n1 hacer\n        mat[indice_i][0] = 0\n    fin para\n    \n    para indice_j desde 0 hasta n2 hacer\n        mat[0][indice_j] = 0\n    fin para\n    \n    para indice_i desde 1 hasta n1 hacer\n        para indice_j desde 1 hasta n2 hacer\n            elemento_i = cadena_uno[indice_i - 1]\n            elemento_j = cadena_dos[indice_j - 1]\n            \n            si elemento_i es_igual_a elemento_j entonces\n                mat[indice_i][indice_j] = mat[indice_i - 1][indice_j - 1] + 1\n            sino\n                mat[indice_i][indice_j] = max(mat[indice_i - 1][indice_j], mat[indice_i][indice_j - 1])\n            fin si\n        fin para\n    fin para\n    \n    retornar mat[n1][n2]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_lcs_10",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "lcs",
+    "pseudocodigo": "funcion LCS_dinamico(seq_a, seq_b)\n    // Determinar tamaños de secuencias\n    largo_a = medir(seq_a)\n    largo_b = medir(seq_b)\n    \n    // Construir estructura de datos\n    estructura = generar_tabla(largo_a + 1, largo_b + 1)\n    \n    // Inicialización de bordes\n    para p desde 0 hasta largo_a hacer\n        estructura[p][0] = 0\n    fin para\n    para q desde 0 hasta largo_b hacer\n        estructura[0][q] = 0\n    fin para\n    \n    // Algoritmo de llenado\n    para p desde 1 hasta largo_a hacer\n        para q desde 1 hasta largo_b hacer\n            si seq_a[p - 1] == seq_b[q - 1] entonces\n                estructura[p][q] = estructura[p - 1][q - 1] + 1\n            sino\n                val_superior = estructura[p - 1][q]\n                val_lateral = estructura[p][q - 1]\n                estructura[p][q] = elegir_maximo(val_superior, val_lateral)\n            fin si\n        fin para\n    fin para\n    \n    longitud_final = estructura[largo_a][largo_b]\n    retornar longitud_final\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_subsecuencia_1",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "subsecuencia",
+    "pseudocodigo": "funcion subsecuenciaComun(texto1, texto2)\n    n = longitud(texto1)\n    m = longitud(texto2)\n    tabla = matriz[n+1][m+1]\n    \n    para i desde 0 hasta n hacer\n        para j desde 0 hasta m hacer\n            si i == 0 o j == 0 entonces\n                tabla[i][j] = 0\n            sino si texto1[i-1] == texto2[j-1] entonces\n                tabla[i][j] = tabla[i-1][j-1] + 1\n            sino\n                tabla[i][j] = maximo(tabla[i-1][j], tabla[i][j-1])\n            fin si\n        fin para\n    fin para\n    \n    retornar tabla[n][m]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_subsecuencia_2",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "subsecuencia",
+    "pseudocodigo": "funcion LCS(cadenaA, cadenaB)\n    tamA = tamaño(cadenaA)\n    tamB = tamaño(cadenaB)\n    dp = crear_matriz(tamA + 1, tamB + 1, 0)\n    \n    para fila desde 1 hasta tamA hacer\n        para col desde 1 hasta tamB hacer\n            si cadenaA[fila - 1] == cadenaB[col - 1] entonces\n                dp[fila][col] = dp[fila - 1][col - 1] + 1\n            sino\n                dp[fila][col] = max(dp[fila - 1][col], dp[fila][col - 1])\n            fin si\n        fin para\n    fin para\n    \n    retornar dp[tamA][tamB]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_subsecuencia_3",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "subsecuencia",
+    "pseudocodigo": "funcion longitudSubsecuencia(s1, s2)\n    largo1 = len(s1)\n    largo2 = len(s2)\n    memo = arreglo2D[largo1 + 1][largo2 + 1]\n    \n    inicializar memo con ceros\n    \n    i = 1\n    mientras i <= largo1 hacer\n        j = 1\n        mientras j <= largo2 hacer\n            si s1[i-1] == s2[j-1] entonces\n                memo[i][j] = memo[i-1][j-1] + 1\n            sino\n                memo[i][j] = mayor(memo[i-1][j], memo[i][j-1])\n            fin si\n            j = j + 1\n        fin mientras\n        i = i + 1\n    fin mientras\n    \n    retornar memo[largo1][largo2]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_subsecuencia_4",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "subsecuencia",
+    "pseudocodigo": "funcion calcularLCS(palabra1, palabra2)\n    filas = longitud(palabra1)\n    columnas = longitud(palabra2)\n    matrizDP = nueva_matriz(filas + 1, columnas + 1)\n    \n    para cada i en rango(0, filas + 1) hacer\n        matrizDP[i][0] = 0\n    fin para\n    \n    para cada j en rango(0, columnas + 1) hacer\n        matrizDP[0][j] = 0\n    fin para\n    \n    para i desde 1 hasta filas hacer\n        para j desde 1 hasta columnas hacer\n            si palabra1[i-1] == palabra2[j-1] entonces\n                matrizDP[i][j] = 1 + matrizDP[i-1][j-1]\n            sino\n                matrizDP[i][j] = maximo(matrizDP[i-1][j], matrizDP[i][j-1])\n            fin si\n        fin para\n    fin para\n    \n    retornar matrizDP[filas][columnas]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_subsecuencia_5",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "subsecuencia",
+    "pseudocodigo": "funcion subsecuenciaMasLarga(str1, str2)\n    n1 = tamaño(str1)\n    n2 = tamaño(str2)\n    \n    cache = matriz_vacia(n1 + 1, n2 + 1)\n    \n    para x desde 0 hasta n1 hacer\n        cache[x][0] = 0\n    fin para\n    \n    para y desde 0 hasta n2 hacer\n        cache[0][y] = 0\n    fin para\n    \n    para x desde 1 hasta n1 hacer\n        para y desde 1 hasta n2 hacer\n            si str1[x - 1] == str2[y - 1] entonces\n                cache[x][y] = cache[x - 1][y - 1] + 1\n            sino\n                opcion1 = cache[x - 1][y]\n                opcion2 = cache[x][y - 1]\n                cache[x][y] = max(opcion1, opcion2)\n            fin si\n        fin para\n    fin para\n    \n    retornar cache[n1][n2]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_subsecuencia_6",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "subsecuencia",
+    "pseudocodigo": "funcion encontrarLCS(secuencia1, secuencia2)\n    len1 = longitud(secuencia1)\n    len2 = longitud(secuencia2)\n    tablaDinamica = crearMatriz(len1 + 1, len2 + 1)\n    \n    inicializarMatrizEnCero(tablaDinamica)\n    \n    indice1 = 1\n    mientras indice1 <= len1 hacer\n        indice2 = 1\n        mientras indice2 <= len2 hacer\n            caracterCoincide = (secuencia1[indice1 - 1] == secuencia2[indice2 - 1])\n            \n            si caracterCoincide entonces\n                tablaDinamica[indice1][indice2] = tablaDinamica[indice1 - 1][indice2 - 1] + 1\n            sino\n                valorArriba = tablaDinamica[indice1 - 1][indice2]\n                valorIzquierda = tablaDinamica[indice1][indice2 - 1]\n                tablaDinamica[indice1][indice2] = maximo(valorArriba, valorIzquierda)\n            fin si\n            \n            indice2 = indice2 + 1\n        fin mientras\n        indice1 = indice1 + 1\n    fin mientras\n    \n    retornar tablaDinamica[len1][len2]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_subsecuencia_7",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "subsecuencia",
+    "pseudocodigo": "funcion LCSLongitud(A, B)\n    m = longitud(A)\n    n = longitud(B)\n    L = matriz[m+1][n+1]\n    \n    para i desde 0 hasta m hacer\n        para j desde 0 hasta n hacer\n            si i == 0 o j == 0 entonces\n                L[i][j] = 0\n            sino\n                si A[i-1] == B[j-1] entonces\n                    L[i][j] = L[i-1][j-1] + 1\n                sino\n                    L[i][j] = max(L[i-1][j], L[i][j-1])\n                fin si\n            fin si\n        fin para\n    fin para\n    \n    retornar L[m][n]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_subsecuencia_8",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "subsecuencia",
+    "pseudocodigo": "funcion subsecuenciaOptima(cad1, cad2)\n    dimension1 = tamaño(cad1)\n    dimension2 = tamaño(cad2)\n    \n    matrizResultados = crearMatrizCeros(dimension1 + 1, dimension2 + 1)\n    \n    para pos1 desde 1 hasta dimension1 hacer\n        para pos2 desde 1 hasta dimension2 hacer\n            caracterActual1 = cad1[pos1 - 1]\n            caracterActual2 = cad2[pos2 - 1]\n            \n            si caracterActual1 == caracterActual2 entonces\n                matrizResultados[pos1][pos2] = matrizResultados[pos1 - 1][pos2 - 1] + 1\n            sino\n                valorSuperior = matrizResultados[pos1 - 1][pos2]\n                valorIzquierdo = matrizResultados[pos1][pos2 - 1]\n                \n                si valorSuperior > valorIzquierdo entonces\n                    matrizResultados[pos1][pos2] = valorSuperior\n                sino\n                    matrizResultados[pos1][pos2] = valorIzquierdo\n                fin si\n            fin si\n        fin para\n    fin para\n    \n    retornar matrizResultados[dimension1][dimension2]\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_subsecuencia_9",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "subsecuencia",
+    "pseudocodigo": "funcion longitudComunMaxima(entrada1, entrada2)\n    tam1 = contar_caracteres(entrada1)\n    tam2 = contar_caracteres(entrada2)\n    \n    dp_tabla = nueva_matriz(tam1 + 1, tam2 + 1)\n    \n    para r desde 0 hasta tam1 hacer\n        dp_tabla[r][0] = 0\n    fin para\n    \n    para c desde 0 hasta tam2 hacer\n        dp_tabla[0][c] = 0\n    fin para\n    \n    r = 1\n    mientras r <= tam1 hacer\n        c = 1\n        mientras c <= tam2 hacer\n            si entrada1[r - 1] == entrada2[c - 1] entonces\n                dp_tabla[r][c] = dp_tabla[r - 1][c - 1] + 1\n            sino\n                val1 = dp_tabla[r - 1][c]\n                val2 = dp_tabla[r][c - 1]\n                dp_tabla[r][c] = maximo_entre(val1, val2)\n            fin si\n            c = c + 1\n        fin mientras\n        r = r + 1\n    fin mientras\n    \n    resultado = dp_tabla[tam1][tam2]\n    retornar resultado\nfin funcion",
+    "label": "programacion_dinamica"
+  },
+  {
+    "id": "programacion_dinamica_subsecuencia_10",
+    "categoria": "programacion_dinamica",
+    "subcategoria": "subsecuencia",
+    "pseudocodigo": "funcion calcularSubsecuencia(X, Y)\n    longitudX = tamaño(X)\n    longitudY = tamaño(Y)\n    \n    matrizC = inicializar_matriz(longitudX + 1, longitudY + 1, 0)\n    \n    para idx_i desde 1 hasta longitudX hacer\n        para idx_j desde 1 hasta longitudY hacer\n            elemento_X = X[idx_i - 1]\n            elemento_Y = Y[idx_j - 1]\n            \n            si elemento_X == elemento_Y entonces\n                matrizC[idx_i][idx_j] = matrizC[idx_i - 1][idx_j - 1] + 1\n            sino\n                candidato_arriba = matrizC[idx_i - 1][idx_j]\n                candidato_izq = matrizC[idx_i][idx_j - 1]\n                matrizC[idx_i][idx_j] = seleccionar_maximo(candidato_arriba, candidato_izq)\n            fin si\n        fin para\n    fin para\n    \n    retornar matrizC[longitudX][longitudY]\nfin funcion",
+    "label": "programacion_dinamica"
+  }
+]

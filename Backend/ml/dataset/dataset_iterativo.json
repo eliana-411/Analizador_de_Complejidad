@@ -1,0 +1,338 @@
+[
+  {
+    "id": "iterativo_suma_array_1",
+    "categoria": "iterativo",
+    "subcategoria": "suma_array",
+    "pseudocodigo": "funcion suma_array(arreglo, tamanio)\n    total = 0\n    para i desde 0 hasta tamanio-1 hacer\n        total = total + arreglo[i]\n    fin para\n    retornar total\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_suma_array_2",
+    "categoria": "iterativo",
+    "subcategoria": "suma_array",
+    "pseudocodigo": "funcion calcular_suma(lista, n)\n    // Inicializar acumulador\n    acumulador = 0\n    indice = 0\n    \n    // Recorrer todos los elementos\n    mientras indice < n hacer\n        acumulador = acumulador + lista[indice]\n        indice = indice + 1\n    fin mientras\n    \n    retornar acumulador\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_suma_array_3",
+    "categoria": "iterativo",
+    "subcategoria": "suma_array",
+    "pseudocodigo": "funcion sumar_elementos(vector, cantidad_elementos)\n    resultado = 0\n    contador = 0\n    mientras contador < cantidad_elementos hacer\n        resultado = resultado + vector[contador]\n        contador = contador + 1\n    fin mientras\n    retornar resultado\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_suma_array_4",
+    "categoria": "iterativo",
+    "subcategoria": "suma_array",
+    "pseudocodigo": "funcion obtener_suma_total(datos, longitud)\n    suma_parcial = 0\n    para cada_posicion desde 0 hasta longitud-1 hacer\n        suma_parcial = suma_parcial + datos[cada_posicion]\n    fin para\n    retornar suma_parcial\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_suma_array_5",
+    "categoria": "iterativo",
+    "subcategoria": "suma_array",
+    "pseudocodigo": "funcion sumatoria(arr, tam)\n    s = 0\n    j = 0\n    mientras j < tam hacer\n        s = s + arr[j]\n        j = j + 1\n    fin mientras\n    retornar s\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_suma_array_6",
+    "categoria": "iterativo",
+    "subcategoria": "suma_array",
+    "pseudocodigo": "funcion suma_de_arreglo(numeros, dimension)\n    // Variable para almacenar el resultado\n    suma_total = 0\n    \n    // Iterar por cada elemento del arreglo\n    para pos desde 0 hasta dimension-1 hacer\n        suma_total = suma_total + numeros[pos]\n    fin para\n    \n    // Devolver el resultado final\n    retornar suma_total\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_suma_array_7",
+    "categoria": "iterativo",
+    "subcategoria": "suma_array",
+    "pseudocodigo": "funcion calcular_sumatoria(coleccion, num_elementos)\n    valor_acumulado = 0\n    posicion_actual = 0\n    \n    mientras posicion_actual < num_elementos hacer\n        valor_acumulado = valor_acumulado + coleccion[posicion_actual]\n        posicion_actual = posicion_actual + 1\n    fin mientras\n    \n    retornar valor_acumulado\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_suma_array_8",
+    "categoria": "iterativo",
+    "subcategoria": "suma_array",
+    "pseudocodigo": "funcion suma_iterativa(A, N)\n    resultado_suma = 0\n    para k desde 0 hasta N-1 hacer\n        resultado_suma = resultado_suma + A[k]\n    fin para\n    retornar resultado_suma\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_suma_array_9",
+    "categoria": "iterativo",
+    "subcategoria": "suma_array",
+    "pseudocodigo": "funcion agregar_elementos(valores, largo)\n    total_suma = 0\n    idx = 0\n    \n    mientras idx < largo hacer\n        total_suma = total_suma + valores[idx]\n        idx = idx + 1\n    fin mientras\n    \n    retornar total_suma\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_suma_array_10",
+    "categoria": "iterativo",
+    "subcategoria": "suma_array",
+    "pseudocodigo": "funcion sumar_valores_array(elementos, cantidad)\n    // Comenzar con suma en cero\n    suma = 0\n    \n    // Procesar cada elemento\n    para i_actual desde 0 hasta cantidad-1 hacer\n        // Agregar elemento actual a la suma\n        suma = suma + elementos[i_actual]\n    fin para\n    \n    // Retornar suma calculada\n    retornar suma\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_suma_array_11",
+    "categoria": "iterativo",
+    "subcategoria": "suma_array",
+    "pseudocodigo": "funcion suma_completa(vector_numeros, tamanio_vector)\n    acum = 0\n    p = 0\n    mientras p < tamanio_vector hacer\n        acum = acum + vector_numeros[p]\n        p = p + 1\n    fin mientras\n    retornar acum\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_suma_array_12",
+    "categoria": "iterativo",
+    "subcategoria": "suma_array",
+    "pseudocodigo": "funcion obtener_suma(array_entrada, num_elem)\n    variable_suma = 0\n    \n    para indice_i desde 0 hasta num_elem-1 hacer\n        variable_suma = variable_suma + array_entrada[indice_i]\n    fin para\n    \n    retornar variable_suma\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_maximo_minimo_1",
+    "categoria": "iterativo",
+    "subcategoria": "maximo_minimo",
+    "pseudocodigo": "funcion encontrarMaximoMinimo(arreglo, n)\n    max = arreglo[0]\n    min = arreglo[0]\n    para i desde 1 hasta n-1 hacer\n        si arreglo[i] > max entonces\n            max = arreglo[i]\n        fin si\n        si arreglo[i] < min entonces\n            min = arreglo[i]\n        fin si\n    fin para\n    retornar max, min\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_maximo_minimo_2",
+    "categoria": "iterativo",
+    "subcategoria": "maximo_minimo",
+    "pseudocodigo": "funcion buscarExtremos(lista, tamaño)\n    // Inicializar con el primer elemento\n    valorMaximo = lista[0]\n    valorMinimo = lista[0]\n    \n    indice = 1\n    mientras indice < tamaño hacer\n        si lista[indice] > valorMaximo entonces\n            valorMaximo = lista[indice]\n        sino si lista[indice] < valorMinimo entonces\n            valorMinimo = lista[indice]\n        fin si\n        indice = indice + 1\n    fin mientras\n    \n    retornar valorMaximo, valorMinimo\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_maximo_minimo_3",
+    "categoria": "iterativo",
+    "subcategoria": "maximo_minimo",
+    "pseudocodigo": "funcion calcularMaxMin(datos, cantidad)\n    mayor = datos[0]\n    menor = datos[0]\n    \n    para cada elemento en datos hacer\n        si elemento > mayor entonces\n            mayor = elemento\n        fin si\n        si elemento < menor entonces\n            menor = elemento\n        fin si\n    fin para\n    \n    retornar mayor, menor\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_maximo_minimo_4",
+    "categoria": "iterativo",
+    "subcategoria": "maximo_minimo",
+    "pseudocodigo": "funcion obtenerRango(vector, longitud)\n    si longitud = 0 entonces\n        retornar nulo\n    fin si\n    \n    maximo = vector[0]\n    minimo = vector[0]\n    posicion = 0\n    \n    mientras posicion < longitud hacer\n        actual = vector[posicion]\n        si actual > maximo entonces\n            maximo = actual\n        fin si\n        si actual < minimo entonces\n            minimo = actual\n        fin si\n        posicion = posicion + 1\n    fin mientras\n    \n    retornar minimo, maximo\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_maximo_minimo_5",
+    "categoria": "iterativo",
+    "subcategoria": "maximo_minimo",
+    "pseudocodigo": "funcion extremosArray(A, tam)\n    maxVal = A[0]\n    minVal = A[0]\n    i = 1\n    mientras i < tam hacer\n        si A[i] > maxVal entonces\n            maxVal = A[i]\n        fin si\n        si A[i] < minVal entonces\n            minVal = A[i]\n        fin si\n        i = i + 1\n    fin mientras\n    retornar maxVal, minVal\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_maximo_minimo_6",
+    "categoria": "iterativo",
+    "subcategoria": "maximo_minimo",
+    "pseudocodigo": "funcion hallarMaximoYMinimo(secuencia, total)\n    // Variables para almacenar extremos\n    elementoMaximo = secuencia[0]\n    elementoMinimo = secuencia[0]\n    \n    // Recorrer desde el segundo elemento\n    para j desde 1 hasta total-1 hacer\n        valorActual = secuencia[j]\n        \n        si valorActual > elementoMaximo entonces\n            elementoMaximo = valorActual\n        fin si\n        \n        si valorActual < elementoMinimo entonces\n            elementoMinimo = valorActual\n        fin si\n    fin para\n    \n    retornar elementoMaximo, elementoMinimo\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_maximo_minimo_7",
+    "categoria": "iterativo",
+    "subcategoria": "maximo_minimo",
+    "pseudocodigo": "funcion determinarExtremos(numeros, n)\n    limiteInferior = numeros[0]\n    limiteSuperior = numeros[0]\n    contador = 1\n    \n    mientras contador < n hacer\n        si numeros[contador] < limiteInferior entonces\n            limiteInferior = numeros[contador]\n        sino si numeros[contador] > limiteSuperior entonces\n            limiteSuperior = numeros[contador]\n        fin si\n        contador = contador + 1\n    fin mientras\n    \n    retornar limiteSuperior, limiteInferior\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_maximo_minimo_8",
+    "categoria": "iterativo",
+    "subcategoria": "maximo_minimo",
+    "pseudocodigo": "funcion maxYMin(arr, len)\n    max = arr[0]\n    min = arr[0]\n    \n    para idx desde 0 hasta len-1 hacer\n        si arr[idx] > max entonces\n            max = arr[idx]\n        sino\n            si arr[idx] < min entonces\n                min = arr[idx]\n            fin si\n        fin si\n    fin para\n    \n    retornar max, min\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_maximo_minimo_9",
+    "categoria": "iterativo",
+    "subcategoria": "maximo_minimo",
+    "pseudocodigo": "funcion encontrarLimites(conjunto, dimension)\n    // Validar entrada\n    si dimension <= 0 entonces\n        retornar error\n    fin si\n    \n    valorMayor = conjunto[0]\n    valorMenor = conjunto[0]\n    \n    k = 1\n    mientras k < dimension hacer\n        elementoActual = conjunto[k]\n        \n        si elementoActual > valorMayor entonces\n            valorMayor = elementoActual\n        fin si\n        \n        si elementoActual < valorMenor entonces\n            valorMenor = elementoActual\n        fin si\n        \n        k = k + 1\n    fin mientras\n    \n    retornar valorMayor, valorMenor\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_maximo_minimo_10",
+    "categoria": "iterativo",
+    "subcategoria": "maximo_minimo",
+    "pseudocodigo": "funcion buscarMaxMin(valores, size)\n    primerValor = valores[0]\n    maximoEncontrado = primerValor\n    minimoEncontrado = primerValor\n    \n    para p desde 1 hasta size-1 hacer\n        si valores[p] > maximoEncontrado entonces\n            maximoEncontrado = valores[p]\n        fin si\n        si valores[p] < minimoEncontrado entonces\n            minimoEncontrado = valores[p]\n        fin si\n    fin para\n    \n    retornar maximoEncontrado, minimoEncontrado\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_maximo_minimo_11",
+    "categoria": "iterativo",
+    "subcategoria": "maximo_minimo",
+    "pseudocodigo": "funcion obtenerMaximoMinimo(serie, numElementos)\n    mayorValor = serie[0]\n    menorValor = serie[0]\n    indiceActual = 0\n    \n    mientras indiceActual < numElementos hacer\n        valorExaminado = serie[indiceActual]\n        \n        si valorExaminado > mayorValor entonces\n            mayorValor = valorExaminado\n        fin si\n        \n        si valorExaminado < menorValor entonces\n            menorValor = valorExaminado\n        fin si\n        \n        indiceActual = indiceActual + 1\n    fin mientras\n    \n    retornar mayorValor, menorValor\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_maximo_minimo_12",
+    "categoria": "iterativo",
+    "subcategoria": "maximo_minimo",
+    "pseudocodigo": "funcion calcularExtremosLista(L, cantidadElementos)\n    // Inicialización\n    maxi = L[0]\n    mini = L[0]\n    \n    // Búsqueda iterativa\n    para pos desde 1 hasta cantidadElementos-1 hacer\n        elemento = L[pos]\n        \n        si elemento > maxi entonces\n            maxi = elemento\n        fin si\n        \n        si elemento < mini entonces\n            mini = elemento\n        fin si\n    fin para\n    \n    // Retornar resultados\n    retornar maxi, mini\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_conteo_1",
+    "categoria": "iterativo",
+    "subcategoria": "conteo",
+    "pseudocodigo": "funcion contarPositivos(arreglo)\n    contador = 0\n    para cada elemento en arreglo hacer\n        si elemento > 0 entonces\n            contador = contador + 1\n        fin si\n    fin para\n    retornar contador\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_conteo_2",
+    "categoria": "iterativo",
+    "subcategoria": "conteo",
+    "pseudocodigo": "// Cuenta cuántos números pares hay en una lista\nfuncion totalPares(lista, tamaño)\n    suma = 0\n    indice = 0\n    mientras indice < tamaño hacer\n        si lista[indice] mod 2 == 0 entonces\n            suma = suma + 1\n        fin si\n        indice = indice + 1\n    fin mientras\n    retornar suma\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_conteo_3",
+    "categoria": "iterativo",
+    "subcategoria": "conteo",
+    "pseudocodigo": "funcion cuantasVocales(cadena)\n    total = 0\n    i = 0\n    mientras i < longitud(cadena) hacer\n        caracter = cadena[i]\n        si caracter == 'a' o caracter == 'e' o caracter == 'i' o caracter == 'o' o caracter == 'u' entonces\n            total = total + 1\n        fin si\n        i = i + 1\n    fin mientras\n    retornar total\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_conteo_4",
+    "categoria": "iterativo",
+    "subcategoria": "conteo",
+    "pseudocodigo": "funcion conteoNegativos(numeros, n)\n    cuenta = 0\n    para j = 0 hasta n - 1 hacer\n        si numeros[j] < 0 entonces\n            cuenta = cuenta + 1\n        fin si\n    fin para\n    retornar cuenta\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_conteo_5",
+    "categoria": "iterativo",
+    "subcategoria": "conteo",
+    "pseudocodigo": "// Contar elementos mayores a un umbral dado\nfuncion contarMayoresQue(datos, limite, longitud)\n    resultado = 0\n    posicion = 0\n    mientras posicion < longitud hacer\n        si datos[posicion] > limite entonces\n            resultado = resultado + 1\n        fin si\n        posicion = posicion + 1\n    fin mientras\n    retornar resultado\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_conteo_6",
+    "categoria": "iterativo",
+    "subcategoria": "conteo",
+    "pseudocodigo": "funcion cuantosImpares(secuencia)\n    cantidadImpares = 0\n    para cada numero en secuencia hacer\n        si numero mod 2 != 0 entonces\n            cantidadImpares = cantidadImpares + 1\n        fin si\n    fin para\n    retornar cantidadImpares\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_conteo_7",
+    "categoria": "iterativo",
+    "subcategoria": "conteo",
+    "pseudocodigo": "funcion contarCeros(vector, tam)\n    c = 0\n    idx = 0\n    mientras idx < tam hacer\n        si vector[idx] == 0 entonces\n            c = c + 1\n        fin si\n        idx = idx + 1\n    fin mientras\n    retornar c\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_conteo_8",
+    "categoria": "iterativo",
+    "subcategoria": "conteo",
+    "pseudocodigo": "// Cuenta elementos dentro de un rango específico\nfuncion contarEnRango(arr, min, max, size)\n    contador = 0\n    para k = 0 hasta size - 1 hacer\n        si arr[k] >= min y arr[k] <= max entonces\n            contador = contador + 1\n        fin si\n    fin para\n    retornar contador\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_conteo_9",
+    "categoria": "iterativo",
+    "subcategoria": "conteo",
+    "pseudocodigo": "funcion contarMayusculas(texto)\n    numMayusculas = 0\n    pos = 0\n    mientras pos < longitud(texto) hacer\n        letra = texto[pos]\n        si letra >= 'A' y letra <= 'Z' entonces\n            numMayusculas = numMayusculas + 1\n        fin si\n        pos = pos + 1\n    fin mientras\n    retornar numMayusculas\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_conteo_10",
+    "categoria": "iterativo",
+    "subcategoria": "conteo",
+    "pseudocodigo": "funcion cuantosMultiplosDeTres(coleccion, cantidad)\n    conteo = 0\n    para i = 0 hasta cantidad - 1 hacer\n        si coleccion[i] mod 3 == 0 entonces\n            conteo = conteo + 1\n        fin si\n    fin para\n    retornar conteo\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_conteo_11",
+    "categoria": "iterativo",
+    "subcategoria": "conteo",
+    "pseudocodigo": "// Contar palabras en una cadena separadas por espacios\nfuncion contarPalabras(frase)\n    palabras = 0\n    enPalabra = falso\n    i = 0\n    mientras i < longitud(frase) hacer\n        si frase[i] != ' ' entonces\n            si enPalabra == falso entonces\n                palabras = palabras + 1\n                enPalabra = verdadero\n            fin si\n        sino\n            enPalabra = falso\n        fin si\n        i = i + 1\n    fin mientras\n    retornar palabras\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_conteo_12",
+    "categoria": "iterativo",
+    "subcategoria": "conteo",
+    "pseudocodigo": "funcion contarDuplicados(array, len)\n    totalDuplicados = 0\n    para x = 0 hasta len - 1 hacer\n        para y = x + 1 hasta len - 1 hacer\n            si array[x] == array[y] entonces\n                totalDuplicados = totalDuplicados + 1\n            fin si\n        fin para\n    fin para\n    retornar totalDuplicados\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_busqueda_secuencial_1",
+    "categoria": "iterativo",
+    "subcategoria": "busqueda_secuencial",
+    "pseudocodigo": "funcion buscar(arreglo, n, objetivo)\n    para i desde 0 hasta n-1\n        si arreglo[i] == objetivo entonces\n            retornar i\n        fin si\n    fin para\n    retornar -1\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_busqueda_secuencial_2",
+    "categoria": "iterativo",
+    "subcategoria": "busqueda_secuencial",
+    "pseudocodigo": "funcion busquedaLineal(lista, tamaño, valorBuscado)\n    indice = 0\n    mientras indice < tamaño hacer\n        si lista[indice] == valorBuscado entonces\n            retornar indice\n        fin si\n        indice = indice + 1\n    fin mientras\n    retornar -1\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_busqueda_secuencial_3",
+    "categoria": "iterativo",
+    "subcategoria": "busqueda_secuencial",
+    "pseudocodigo": "// Búsqueda secuencial con bandera\nfuncion encontrarElemento(datos, longitud, elemento)\n    encontrado = falso\n    posicion = 0\n    \n    para pos desde 0 hasta longitud-1\n        si datos[pos] == elemento entonces\n            encontrado = verdadero\n            posicion = pos\n        fin si\n    fin para\n    \n    si encontrado entonces\n        retornar posicion\n    sino\n        retornar -1\n    fin si\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_busqueda_secuencial_4",
+    "categoria": "iterativo",
+    "subcategoria": "busqueda_secuencial",
+    "pseudocodigo": "funcion buscarSecuencial(vector, tam, x)\n    i = 0\n    mientras i < tam hacer\n        si vector[i] == x entonces\n            retornar i\n        sino\n            i = i + 1\n        fin si\n    fin mientras\n    retornar -1\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_busqueda_secuencial_5",
+    "categoria": "iterativo",
+    "subcategoria": "busqueda_secuencial",
+    "pseudocodigo": "// Retorna verdadero si encuentra el elemento\nfuncion existeEnArreglo(A, numElementos, valorABuscar)\n    para k desde 0 hasta numElementos-1\n        si A[k] == valorABuscar entonces\n            retornar verdadero\n        fin si\n    fin para\n    retornar falso\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_busqueda_secuencial_6",
+    "categoria": "iterativo",
+    "subcategoria": "busqueda_secuencial",
+    "pseudocodigo": "funcion busquedaSimple(coleccion, cantidad, clave)\n    contador = 0\n    repetir\n        si coleccion[contador] == clave entonces\n            retornar contador\n        fin si\n        contador = contador + 1\n    hasta que contador >= cantidad\n    retornar -1\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_busqueda_secuencial_7",
+    "categoria": "iterativo",
+    "subcategoria": "busqueda_secuencial",
+    "pseudocodigo": "funcion localizarValor(array, dimension, valor)\n    resultado = -1\n    idx = 0\n    \n    mientras idx < dimension y resultado == -1 hacer\n        si array[idx] == valor entonces\n            resultado = idx\n        fin si\n        idx = idx + 1\n    fin mientras\n    \n    retornar resultado\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_busqueda_secuencial_8",
+    "categoria": "iterativo",
+    "subcategoria": "busqueda_secuencial",
+    "pseudocodigo": "// Búsqueda con retorno inmediato\nfuncion hallarPosicion(secuencia, largo, objetivo)\n    para j desde 0 hasta largo-1\n        si secuencia[j] == objetivo entonces\n            retornar j\n        fin si\n    fin para\n    retornar -1\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_busqueda_secuencial_9",
+    "categoria": "iterativo",
+    "subcategoria": "busqueda_secuencial",
+    "pseudocodigo": "funcion buscarEnLista(L, N, elem)\n    posActual = 0\n    \n    mientras posActual < N hacer\n        elementoActual = L[posActual]\n        si elementoActual == elem entonces\n            retornar posActual\n        fin si\n        posActual = posActual + 1\n    fin mientras\n    \n    retornar -1\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_busqueda_secuencial_10",
+    "categoria": "iterativo",
+    "subcategoria": "busqueda_secuencial",
+    "pseudocodigo": "funcion busquedaIterativa(matriz, total, item)\n    para indice desde 0 hasta total-1\n        si matriz[indice] == item entonces\n            retornar indice\n        fin si\n    fin para\n    retornar -1\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_busqueda_secuencial_11",
+    "categoria": "iterativo",
+    "subcategoria": "busqueda_secuencial",
+    "pseudocodigo": "// Búsqueda con contador de comparaciones\nfuncion buscarConContador(arr, size, target)\n    comparaciones = 0\n    \n    para p desde 0 hasta size-1\n        comparaciones = comparaciones + 1\n        si arr[p] == target entonces\n            retornar p\n        fin si\n    fin para\n    \n    retornar -1\nfin funcion",
+    "label": "iterativo"
+  },
+  {
+    "id": "iterativo_busqueda_secuencial_12",
+    "categoria": "iterativo",
+    "subcategoria": "busqueda_secuencial",
+    "pseudocodigo": "funcion busquedaSecuencialBasica(elementos, numeroElementos, valorObjetivo)\n    ubicacion = -1\n    control = 0\n    \n    mientras control < numeroElementos hacer\n        si elementos[control] == valorObjetivo entonces\n            ubicacion = control\n            control = numeroElementos\n        sino\n            control = control + 1\n        fin si\n    fin mientras\n    \n    retornar ubicacion\nfin funcion",
+    "label": "iterativo"
+  }
+]

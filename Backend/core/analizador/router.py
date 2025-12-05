@@ -14,9 +14,9 @@ logger = logging.getLogger(__name__)
 class AnalisisRequest(BaseModel):
     """Request para análisis de complejidad"""
     entrada: str = Field(..., description="Pseudocódigo o descripción en lenguaje natural")
-    tipo_entrada: Literal["pseudocodigo", "lenguaje_natural"] = Field(
-        default="pseudocodigo",
-        description="Tipo de entrada: pseudocodigo o lenguaje_natural"
+    tipo_entrada: Literal["pseudocodigo", "lenguaje_natural", "auto"] = Field(
+        default="auto",
+        description="Tipo de entrada: pseudocodigo, lenguaje_natural o auto (detecta automáticamente)"
     )
     auto_corregir: bool = Field(
         default=True,

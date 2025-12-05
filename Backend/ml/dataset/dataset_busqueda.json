@@ -1,0 +1,317 @@
+[
+  {
+    "id": "busqueda_lineal_1",
+    "categoria": "busqueda",
+    "subcategoria": "lineal",
+    "pseudocodigo": "funcion busquedaLineal(arreglo, valor)\n    para i desde 0 hasta longitud(arreglo) - 1\n        si arreglo[i] == valor entonces\n            retornar i\n        fin si\n    fin para\n    retornar -1\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_lineal_2",
+    "categoria": "busqueda",
+    "subcategoria": "lineal",
+    "pseudocodigo": "funcion buscarElemento(lista, objetivo)\n    indice = 0\n    mientras indice < tamaño(lista)\n        si lista[indice] == objetivo entonces\n            retornar indice\n        fin si\n        indice = indice + 1\n    fin mientras\n    retornar -1\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_lineal_3",
+    "categoria": "busqueda",
+    "subcategoria": "lineal",
+    "pseudocodigo": "// Búsqueda lineal con contador de comparaciones\nfuncion buscar(datos, elemento_buscado)\n    comparaciones = 0\n    para posicion desde 0 hasta longitud(datos) - 1\n        comparaciones = comparaciones + 1\n        si datos[posicion] == elemento_buscado entonces\n            retornar posicion\n        fin si\n    fin para\n    retornar nulo\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_lineal_4",
+    "categoria": "busqueda",
+    "subcategoria": "lineal",
+    "pseudocodigo": "funcion encontrarValor(vector, x)\n    n = longitud(vector)\n    para j desde 0 hasta n - 1\n        si vector[j] == x entonces\n            retornar verdadero\n        fin si\n    fin para\n    retornar falso\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_lineal_5",
+    "categoria": "busqueda",
+    "subcategoria": "lineal",
+    "pseudocodigo": "funcion busquedaSecuencial(coleccion, item)\n    pos = 0\n    encontrado = falso\n    mientras pos < tamaño(coleccion) y no encontrado\n        si coleccion[pos] == item entonces\n            encontrado = verdadero\n        sino\n            pos = pos + 1\n        fin si\n    fin mientras\n    retornar encontrado\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_lineal_6",
+    "categoria": "busqueda",
+    "subcategoria": "lineal",
+    "pseudocodigo": "// Retorna la posición del elemento o mensaje de error\nfuncion localizarElemento(A, clave)\n    para k desde 0 hasta longitud(A) - 1\n        si A[k] == clave entonces\n            retornar k\n        fin si\n    fin para\n    retornar \"Elemento no encontrado\"\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_lineal_7",
+    "categoria": "busqueda",
+    "subcategoria": "lineal",
+    "pseudocodigo": "funcion buscarEnArreglo(numeros, valorBuscado)\n    indiceActual = 0\n    longitudTotal = tamaño(numeros)\n    mientras indiceActual < longitudTotal\n        elementoActual = numeros[indiceActual]\n        si elementoActual == valorBuscado entonces\n            retornar indiceActual\n        fin si\n        indiceActual = indiceActual + 1\n    fin mientras\n    retornar -1\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_lineal_8",
+    "categoria": "busqueda",
+    "subcategoria": "lineal",
+    "pseudocodigo": "funcion busquedaSimple(arr, target)\n    para idx en rango(0, longitud(arr))\n        si arr[idx] == target entonces\n            retornar idx\n        fin si\n    fin para\n    retornar nulo\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_lineal_9",
+    "categoria": "busqueda",
+    "subcategoria": "lineal",
+    "pseudocodigo": "// Búsqueda que retorna todas las posiciones donde aparece el elemento\nfuncion buscarTodasOcurrencias(secuencia, elem)\n    posiciones = []\n    para i desde 0 hasta longitud(secuencia) - 1\n        si secuencia[i] == elem entonces\n            agregar(posiciones, i)\n        fin si\n    fin para\n    retornar posiciones\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_lineal_10",
+    "categoria": "busqueda",
+    "subcategoria": "lineal",
+    "pseudocodigo": "funcion busquedaLinealMejorada(array, buscar)\n    limite = longitud(array)\n    contador = 0\n    mientras contador < limite\n        si array[contador] == buscar entonces\n            retornar contador\n        fin si\n        contador = contador + 1\n    fin mientras\n    retornar -1\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_lineal_11",
+    "categoria": "busqueda",
+    "subcategoria": "lineal",
+    "pseudocodigo": "funcion localizarDato(listaValores, datoObjetivo)\n    existe = falso\n    ubicacion = -1\n    para p desde 0 hasta tamaño(listaValores) - 1\n        si listaValores[p] == datoObjetivo entonces\n            existe = verdadero\n            ubicacion = p\n            romper\n        fin si\n    fin para\n    retornar ubicacion\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_lineal_12",
+    "categoria": "busqueda",
+    "subcategoria": "lineal",
+    "pseudocodigo": "// Búsqueda lineal con validación de entrada\nfuncion buscarElementoSeguro(contenedor, valorABuscar)\n    si contenedor == nulo o vacio(contenedor) entonces\n        retornar -1\n    fin si\n    para index desde 0 hasta longitud(contenedor) - 1\n        si contenedor[index] == valorABuscar entonces\n            retornar index\n        fin si\n    fin para\n    retornar -1\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_lineal_13",
+    "categoria": "busqueda",
+    "subcategoria": "lineal",
+    "pseudocodigo": "funcion busquedaEnLista(L, e)\n    i = 0\n    n = tamaño(L)\n    mientras i < n\n        si L[i] == e entonces\n            retornar verdadero\n        fin si\n        i = i + 1\n    fin mientras\n    retornar falso\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_lineal_14",
+    "categoria": "busqueda",
+    "subcategoria": "lineal",
+    "pseudocodigo": "funcion encontrarPosicion(matriz_unidimensional, numero)\n    para posicion_actual desde 0 hasta longitud(matriz_unidimensional) - 1\n        elemento = matriz_unidimensional[posicion_actual]\n        si elemento == numero entonces\n            retornar posicion_actual\n        fin si\n    fin para\n    retornar \"No existe\"\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_lineal_15",
+    "categoria": "busqueda",
+    "subcategoria": "lineal",
+    "pseudocodigo": "// Búsqueda lineal que cuenta iteraciones realizadas\nfuncion buscarConEstadisticas(datos, objetivo)\n    iteraciones = 0\n    resultado = -1\n    para pos desde 0 hasta longitud(datos) - 1\n        iteraciones = iteraciones + 1\n        si datos[pos] == objetivo entonces\n            resultado = pos\n            romper\n        fin si\n    fin para\n    retornar [resultado, iteraciones]\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_binaria_1",
+    "categoria": "busqueda",
+    "subcategoria": "binaria",
+    "pseudocodigo": "funcion busquedaBinaria(arreglo, objetivo)\n    inicio = 0\n    fin = longitud(arreglo) - 1\n    \n    mientras inicio <= fin hacer\n        medio = (inicio + fin) / 2\n        \n        si arreglo[medio] == objetivo entonces\n            retornar medio\n        sino si arreglo[medio] < objetivo entonces\n            inicio = medio + 1\n        sino\n            fin = medio - 1\n        fin si\n    fin mientras\n    \n    retornar -1\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_binaria_2",
+    "categoria": "busqueda",
+    "subcategoria": "binaria",
+    "pseudocodigo": "funcion buscar(lista, valor_buscado)\n    izq = 0\n    der = tamaño(lista) - 1\n    \n    mientras izq <= der hacer\n        centro = izq + (der - izq) / 2\n        \n        si lista[centro] == valor_buscado entonces\n            retornar centro\n        fin si\n        \n        si lista[centro] < valor_buscado entonces\n            izq = centro + 1\n        sino\n            der = centro - 1\n        fin si\n    fin mientras\n    \n    retornar -1\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_binaria_3",
+    "categoria": "busqueda",
+    "subcategoria": "binaria",
+    "pseudocodigo": "// Búsqueda binaria recursiva\nfuncion busquedaRecursiva(arr, elemento, inferior, superior)\n    si inferior > superior entonces\n        retornar -1\n    fin si\n    \n    punto_medio = (inferior + superior) / 2\n    \n    si arr[punto_medio] == elemento entonces\n        retornar punto_medio\n    sino si arr[punto_medio] > elemento entonces\n        retornar busquedaRecursiva(arr, elemento, inferior, punto_medio - 1)\n    sino\n        retornar busquedaRecursiva(arr, elemento, punto_medio + 1, superior)\n    fin si\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_binaria_4",
+    "categoria": "busqueda",
+    "subcategoria": "binaria",
+    "pseudocodigo": "funcion encontrarElemento(datos, x)\n    primero = 0\n    ultimo = longitud(datos) - 1\n    encontrado = falso\n    posicion = -1\n    \n    mientras primero <= ultimo y no encontrado hacer\n        mitad = entero((primero + ultimo) / 2)\n        \n        si datos[mitad] == x entonces\n            encontrado = verdadero\n            posicion = mitad\n        sino\n            si x < datos[mitad] entonces\n                ultimo = mitad - 1\n            sino\n                primero = mitad + 1\n            fin si\n        fin si\n    fin mientras\n    \n    retornar posicion\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_binaria_5",
+    "categoria": "busqueda",
+    "subcategoria": "binaria",
+    "pseudocodigo": "funcion binarySearch(vector, target)\n    low = 0\n    high = vector.longitud - 1\n    \n    mientras low <= high hacer\n        mid = low + entero((high - low) / 2)\n        elemento_medio = vector[mid]\n        \n        si elemento_medio == target entonces\n            retornar mid\n        sino si elemento_medio < target entonces\n            low = mid + 1\n        sino\n            high = mid - 1\n        fin si\n    fin mientras\n    \n    retornar -1\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_binaria_6",
+    "categoria": "busqueda",
+    "subcategoria": "binaria",
+    "pseudocodigo": "// Implementación iterativa simple\nfuncion buscar_binario(coleccion, clave)\n    min = 0\n    max = longitud(coleccion) - 1\n    \n    repetir mientras min <= max\n        indice_central = (min + max) dividido 2\n        valor_central = coleccion[indice_central]\n        \n        si valor_central == clave entonces\n            retornar indice_central\n        fin si\n        \n        si valor_central > clave entonces\n            max = indice_central - 1\n        sino\n            min = indice_central + 1\n        fin si\n    fin repetir\n    \n    retornar -1\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_binaria_7",
+    "categoria": "busqueda",
+    "subcategoria": "binaria",
+    "pseudocodigo": "funcion busquedaDicotomica(A, n, valorBuscado)\n    // A: arreglo ordenado\n    // n: número de elementos\n    // valorBuscado: elemento a buscar\n    \n    limiteInferior = 0\n    limiteSuperior = n - 1\n    \n    mientras limiteInferior <= limiteSuperior hacer\n        indiceMedio = limiteInferior + (limiteSuperior - limiteInferior) / 2\n        \n        si A[indiceMedio] == valorBuscado entonces\n            retornar indiceMedio\n        sino si A[indiceMedio] < valorBuscado entonces\n            limiteInferior = indiceMedio + 1\n        sino\n            limiteSuperior = indiceMedio - 1\n        fin si\n    fin mientras\n    \n    retornar -1\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_binaria_8",
+    "categoria": "busqueda",
+    "subcategoria": "binaria",
+    "pseudocodigo": "funcion busquedaBinariaRecursiva(secuencia, item, inicio, final)\n    si inicio > final entonces\n        retornar -1\n    sino\n        medio = (inicio + final) dividido_entero 2\n        \n        si secuencia[medio] == item entonces\n            retornar medio\n        sino si secuencia[medio] > item entonces\n            retornar busquedaBinariaRecursiva(secuencia, item, inicio, medio - 1)\n        sino\n            retornar busquedaBinariaRecursiva(secuencia, item, medio + 1, final)\n        fin si\n    fin si\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_binaria_9",
+    "categoria": "busqueda",
+    "subcategoria": "binaria",
+    "pseudocodigo": "funcion buscarValor(tabla, val)\n    pos_inicial = 0\n    pos_final = dimension(tabla) - 1\n    resultado = -1\n    \n    mientras pos_inicial <= pos_final y resultado == -1 hacer\n        pos_media = (pos_inicial + pos_final) / 2\n        \n        si tabla[pos_media] == val entonces\n            resultado = pos_media\n        sino si tabla[pos_media] < val entonces\n            pos_inicial = pos_media + 1\n        sino\n            pos_final = pos_media - 1\n        fin si\n    fin mientras\n    \n    retornar resultado\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_binaria_10",
+    "categoria": "busqueda",
+    "subcategoria": "binaria",
+    "pseudocodigo": "funcion busqueda_binaria_iterativa(array, elemento_buscar)\n    indice_bajo = 0\n    indice_alto = tamaño(array) - 1\n    \n    mientras indice_bajo <= indice_alto hacer\n        indice_medio = piso((indice_bajo + indice_alto) / 2)\n        valor_medio = array[indice_medio]\n        \n        si valor_medio == elemento_buscar entonces\n            retornar indice_medio\n        fin si\n        \n        si elemento_buscar < valor_medio entonces\n            indice_alto = indice_medio - 1\n        sino\n            indice_bajo = indice_medio + 1\n        fin si\n    fin mientras\n    \n    retornar -1\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_binaria_11",
+    "categoria": "busqueda",
+    "subcategoria": "binaria",
+    "pseudocodigo": "funcion buscarEnArreglo(arr, x, izquierda, derecha)\n    si izquierda > derecha entonces\n        retornar -1\n    fin si\n    \n    centro = izquierda + entero((derecha - izquierda) / 2)\n    \n    si arr[centro] == x entonces\n        retornar centro\n    fin si\n    \n    si arr[centro] > x entonces\n        retornar buscarEnArreglo(arr, x, izquierda, centro - 1)\n    fin si\n    \n    retornar buscarEnArreglo(arr, x, centro + 1, derecha)\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_binaria_12",
+    "categoria": "busqueda",
+    "subcategoria": "binaria",
+    "pseudocodigo": "// Búsqueda binaria con validación\nfuncion busquedaSegura(lista_ordenada, elemento_objetivo)\n    si lista_ordenada esta_vacia entonces\n        retornar -1\n    fin si\n    \n    p_izquierdo = 0\n    p_derecho = longitud(lista_ordenada) - 1\n    \n    mientras p_izquierdo <= p_derecho hacer\n        p_central = (p_izquierdo + p_derecho) dividido_entero 2\n        \n        si lista_ordenada[p_central] == elemento_objetivo entonces\n            retornar p_central\n        sino si lista_ordenada[p_central] < elemento_objetivo entonces\n            p_izquierdo = p_central + 1\n        sino\n            p_derecho = p_central - 1\n        fin si\n    fin mientras\n    \n    retornar -1\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_binaria_13",
+    "categoria": "busqueda",
+    "subcategoria": "binaria",
+    "pseudocodigo": "funcion binaria(vector_ordenado, num)\n    extremo_izq = 0\n    extremo_der = longitud(vector_ordenado) - 1\n    \n    mientras extremo_izq <= extremo_der hacer\n        punto_central = extremo_izq + (extremo_der - extremo_izq) / 2\n        \n        si vector_ordenado[punto_central] == num entonces\n            retornar punto_central\n        sino\n            si num > vector_ordenado[punto_central] entonces\n                extremo_izq = punto_central + 1\n            sino\n                extremo_der = punto_central - 1\n            fin si\n        fin si\n    fin mientras\n    \n    retornar -1\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_binaria_14",
+    "categoria": "busqueda",
+    "subcategoria": "binaria",
+    "pseudocodigo": "funcion busqueda_bin_rec(datos, objetivo, inf, sup)\n    // Caso base: no encontrado\n    si inf > sup entonces\n        retornar -1\n    fin si\n    \n    // Calcular posición central\n    med = (inf + sup) / 2\n    \n    // Verificar si encontramos el objetivo\n    si datos[med] == objetivo entonces\n        retornar med\n    sino si objetivo < datos[med] entonces\n        retornar busqueda_bin_rec(datos, objetivo, inf, med - 1)\n    sino\n        retornar busqueda_bin_rec(datos, objetivo, med + 1, sup)\n    fin si\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_binaria_15",
+    "categoria": "busqueda",
+    "subcategoria": "binaria",
+    "pseudocodigo": "funcion encontrar(arreglo_ordenado, valor_a_buscar)\n    limite_inf = 0\n    limite_sup = tamaño(arreglo_ordenado) - 1\n    iteraciones = 0\n    \n    mientras limite_inf <= limite_sup hacer\n        iteraciones = iteraciones + 1\n        posicion_media = (limite_inf + limite_sup) dividido 2\n        elemento_actual = arreglo_ordenado[posicion_media]\n        \n        si elemento_actual == valor_a_buscar entonces\n            retornar posicion_media\n        sino si elemento_actual < valor_a_buscar entonces\n            limite_inf = posicion_media + 1\n        sino\n            limite_sup = posicion_media - 1\n        fin si\n    fin mientras\n    \n    retornar -1\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_hash_1",
+    "categoria": "busqueda",
+    "subcategoria": "hash",
+    "pseudocodigo": "funcion buscarEnTablaHash(tabla, clave)\n    indice = funcionHash(clave)\n    retornar tabla[indice]\nfin funcion\n\nfuncion funcionHash(clave)\n    retornar clave mod tamaño_tabla\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_hash_2",
+    "categoria": "busqueda",
+    "subcategoria": "hash",
+    "pseudocodigo": "// Búsqueda con manejo de colisiones por encadenamiento\nfuncion buscar(hashTable, key)\n    pos = calcularHash(key)\n    nodo = hashTable[pos]\n    mientras nodo no sea nulo hacer\n        si nodo.clave == key entonces\n            retornar nodo.valor\n        fin si\n        nodo = nodo.siguiente\n    fin mientras\n    retornar nulo\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_hash_3",
+    "categoria": "busqueda",
+    "subcategoria": "hash",
+    "pseudocodigo": "funcion encontrarElemento(diccionario, k, tamano)\n    ubicacion = k mod tamano\n    si diccionario[ubicacion].llave == k entonces\n        retornar diccionario[ubicacion].dato\n    sino\n        retornar \"No encontrado\"\n    fin si\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_hash_4",
+    "categoria": "busqueda",
+    "subcategoria": "hash",
+    "pseudocodigo": "funcion busquedaHash(arregloHash, claveABuscar, capacidad)\n    // Sondeo lineal para resolver colisiones\n    posicionInicial = hash(claveABuscar, capacidad)\n    i = 0\n    mientras i < capacidad hacer\n        posActual = (posicionInicial + i) mod capacidad\n        si arregloHash[posActual].key == claveABuscar entonces\n            retornar arregloHash[posActual].value\n        fin si\n        i = i + 1\n    fin mientras\n    retornar -1\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_hash_5",
+    "categoria": "busqueda",
+    "subcategoria": "hash",
+    "pseudocodigo": "funcion obtenerValor(mapa, llaveBuscada)\n    indiceHash = generarIndice(llaveBuscada)\n    bucket = mapa[indiceHash]\n    para cada elemento en bucket hacer\n        si elemento.llave == llaveBuscada entonces\n            retornar elemento.valor\n        fin para\n    fin para\n    retornar nulo\nfin funcion\n\nfuncion generarIndice(llave)\n    retornar llave mod dimension_mapa\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_hash_6",
+    "categoria": "busqueda",
+    "subcategoria": "hash",
+    "pseudocodigo": "funcion consultarHash(estructura, claveConsulta, N)\n    h = claveConsulta mod N\n    celda = estructura[h]\n    si celda esta vacia entonces\n        retornar falso\n    sino\n        si celda.clave == claveConsulta entonces\n            retornar celda.informacion\n        fin si\n    fin si\n    retornar falso\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_hash_7",
+    "categoria": "busqueda",
+    "subcategoria": "hash",
+    "pseudocodigo": "// Búsqueda con sondeo cuadrático\nfuncion buscarConSondeoCuadratico(tablaH, keyBuscada, size)\n    idx = keyBuscada mod size\n    intento = 0\n    mientras intento < size hacer\n        posicion = (idx + intento * intento) mod size\n        si tablaH[posicion] no esta ocupada entonces\n            retornar nulo\n        fin si\n        si tablaH[posicion].clave == keyBuscada entonces\n            retornar tablaH[posicion].contenido\n        fin si\n        intento = intento + 1\n    fin mientras\n    retornar nulo\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_hash_8",
+    "categoria": "busqueda",
+    "subcategoria": "hash",
+    "pseudocodigo": "funcion recuperarDato(almacen, identificador)\n    codigo = calcularCodigo(identificador)\n    lista = almacen[codigo]\n    si lista == vacia entonces\n        retornar \"Elemento inexistente\"\n    fin si\n    actual = lista.cabeza\n    mientras actual != nulo hacer\n        si actual.id == identificador entonces\n            retornar actual.datos\n        fin si\n        actual = actual.proximo\n    fin mientras\n    retornar \"Elemento inexistente\"\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_hash_9",
+    "categoria": "busqueda",
+    "subcategoria": "hash",
+    "pseudocodigo": "funcion localizarEnHash(conjunto, valorBuscado, longitud)\n    direccion = funcionDispersion(valorBuscado, longitud)\n    si conjunto[direccion] == valorBuscado entonces\n        retornar verdadero\n    sino\n        retornar falso\n    fin si\nfin funcion\n\nfuncion funcionDispersion(valor, long)\n    retornar (valor * 31) mod long\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_hash_10",
+    "categoria": "busqueda",
+    "subcategoria": "hash",
+    "pseudocodigo": "funcion search(hashmap, searchKey, maxSize)\n    // Hash con doble dispersión\n    hash1 = searchKey mod maxSize\n    hash2 = 1 + (searchKey mod (maxSize - 1))\n    contador = 0\n    mientras contador < maxSize hacer\n        indice = (hash1 + contador * hash2) mod maxSize\n        si hashmap[indice].key == searchKey entonces\n            retornar hashmap[indice].data\n        fin si\n        si hashmap[indice] esta vacio entonces\n            retornar nulo\n        fin si\n        contador = contador + 1\n    fin mientras\n    retornar nulo\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_hash_11",
+    "categoria": "busqueda",
+    "subcategoria": "hash",
+    "pseudocodigo": "funcion buscarRegistro(registros, claveID, tam)\n    posHash = claveID mod tam\n    entrada = registros[posHash]\n    para j desde 0 hasta entrada.cantidad hacer\n        si entrada.elementos[j].identificador == claveID entonces\n            retornar entrada.elementos[j]\n        fin si\n    fin para\n    retornar nulo\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_hash_12",
+    "categoria": "busqueda",
+    "subcategoria": "hash",
+    "pseudocodigo": "funcion consultarTabla(T, x)\n    // Calcula posición hash\n    p = hash_function(x)\n    // Verifica si existe\n    si T[p] existe y T[p].clave == x entonces\n        retornar T[p].valor\n    sino\n        // Busca en posiciones alternativas\n        offset = 1\n        mientras offset <= tamaño_tabla hacer\n            nueva_pos = (p + offset) mod tamaño_tabla\n            si T[nueva_pos].clave == x entonces\n                retornar T[nueva_pos].valor\n            fin si\n            offset = offset + 1\n        fin mientras\n    fin si\n    retornar \"No existe\"\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_hash_13",
+    "categoria": "busqueda",
+    "subcategoria": "hash",
+    "pseudocodigo": "funcion encontrar(coleccion, llaveObjetivo, capacidadTotal)\n    ranura = llaveObjetivo mod capacidadTotal\n    listaCubeta = coleccion[ranura]\n    nodoActual = listaCubeta.primero\n    mientras nodoActual no sea nulo hacer\n        si nodoActual.llave == llaveObjetivo entonces\n            retornar nodoActual.valorAsociado\n        fin si\n        nodoActual = nodoActual.siguiente\n    fin mientras\n    retornar nulo\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_hash_14",
+    "categoria": "busqueda",
+    "subcategoria": "hash",
+    "pseudocodigo": "funcion obtener(mapeoHash, claveDeseada)\n    indiceCalculado = metodoHash(claveDeseada)\n    secuencia = mapeoHash[indiceCalculado]\n    si secuencia es nula entonces\n        retornar falso\n    fin si\n    para i desde 0 hasta secuencia.longitud - 1 hacer\n        si secuencia[i].clave == claveDeseada entonces\n            retornar secuencia[i].valor\n        fin si\n    fin para\n    retornar falso\nfin funcion\n\nfuncion metodoHash(clave)\n    retornar clave mod tamaño_estructura\nfin funcion",
+    "label": "busqueda"
+  },
+  {
+    "id": "busqueda_hash_15",
+    "categoria": "busqueda",
+    "subcategoria": "hash",
+    "pseudocodigo": "// Implementación con rehashing\nfuncion buscarConRehash(tabla, key, M)\n    intento = 0\n    encontrado = falso\n    mientras intento < M y no encontrado hacer\n        pos = hashFunction(key, intento, M)\n        si tabla[pos].activo y tabla[pos].clave == key entonces\n            encontrado = verdadero\n            retornar tabla[pos].valor\n        fin si\n        intento = intento + 1\n    fin mientras\n    retornar nulo\nfin funcion\n\nfuncion hashFunction(k, i, M)\n    retornar (k + i) mod M\nfin funcion",
+    "label": "busqueda"
+  }
+]
