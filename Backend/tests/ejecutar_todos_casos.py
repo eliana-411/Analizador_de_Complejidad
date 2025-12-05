@@ -14,10 +14,12 @@ import os
 from pathlib import Path
 from datetime import datetime
 import json
+from contextlib import redirect_stdout, redirect_stderr
+from io import StringIO
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from flujo_analisis import FlujoAnalisis
+from Backend.tests.flujo_analisis import FlujoAnalisis
 from agentes.agenteReportador import AgenteReportador
 from tools.metricas import reset_metricas, obtener_metricas, guardar_metricas
 
@@ -25,6 +27,7 @@ from tools.metricas import reset_metricas, obtener_metricas, guardar_metricas
 # ==================== CONFIGURACIÓN ====================
 CARPETA_PSEUDOCODIGO = Path(__file__).parent / "data" / "pseudocodigos" / "correctos"
 CARPETA_LENGUAJE_NATURAL = Path(__file__).parent / "data" / "pseudocodigos" / "lenguaje_natural"
+CARPETA_TRADUCIDOS = Path(__file__).parent / "data" / "pseudocodigos" / "traducidos"
 CARPETA_RESULTADOS = Path(__file__).parent / "resultados_casos_prueba"
 
 # Casos de pseudocódigo
@@ -69,7 +72,12 @@ def ejecutar_caso_archivo(flujo: FlujoAnalisis, archivo: str, carpeta: Path, num
         return None
     
     try:
-        resultado = flujo.analizar_desde_archivo(str(ruta_archivo), auto_corregir=True)
+        # Suprimir stdout/stderr para evitar UnicodeEncodeError en Windows
+        stdout_buffer = StringIO()
+        stderr_buffer = StringIO()
+        
+        with redirect_stdout(stdout_buffer), redirect_stderr(stderr_buffer):
+            resultado = flujo.analizar_desde_archivo(str(ruta_archivo), auto_corregir=True)
         
         if resultado['exito']:
             print(f"[OK] Análisis completado exitosamente")
@@ -86,30 +94,36 @@ def ejecutar_caso_archivo(flujo: FlujoAnalisis, archivo: str, carpeta: Path, num
 
 
 def ejecutar_caso_texto(flujo: FlujoAnalisis, archivo: str, carpeta: Path, numero: int, total: int, tipo: str) -> dict:
-    """Ejecuta análisis de un caso de lenguaje natural"""
+    """Ejecuta análisis de un caso de lenguaje natural usando pseudocódigo pre-traducido"""
     print(f"\n{'='*80}")
     print(f"CASO {numero}/{total}: {archivo} ({tipo})")
     print(f"{'='*80}")
     
-    ruta_archivo = carpeta / archivo
+    # Usar pseudocódigo ya traducido (sin LLM)
+    ruta_traducido = CARPETA_TRADUCIDOS / archivo
     
-    if not ruta_archivo.exists():
-        print(f"[ERROR] Archivo no encontrado: {ruta_archivo}")
+    if not ruta_traducido.exists():
+        print(f"[ERROR] Archivo traducido no encontrado: {ruta_traducido}")
         return None
     
     try:
-        # Leer contenido
-        with open(ruta_archivo, 'r', encoding='utf-8') as f:
-            texto = f.read().strip()
+        # Leer pseudocódigo ya traducido
+        with open(ruta_traducido, 'r', encoding='utf-8') as f:
+            pseudocodigo = f.read().strip()
         
-        print(f"[INPUT] Entrada: {texto[:80]}...")
+        print(f"[INPUT] Usando pseudocódigo pre-traducido...")
         
-        # Analizar como lenguaje natural
-        resultado = flujo.analizar(
-            entrada=texto,
-            tipo_entrada="lenguaje_natural",
-            auto_corregir=True
-        )
+        # Suprimir stdout/stderr para evitar UnicodeEncodeError en Windows
+        stdout_buffer = StringIO()
+        stderr_buffer = StringIO()
+        
+        with redirect_stdout(stdout_buffer), redirect_stderr(stderr_buffer):
+            # Analizar directamente como pseudocódigo (sin traducción LLM)
+            resultado = flujo.analizar(
+                entrada=pseudocodigo,
+                tipo_entrada="pseudocodigo",
+                auto_corregir=True
+            )
         
         if resultado['exito']:
             print(f"[OK] Análisis completado exitosamente")
