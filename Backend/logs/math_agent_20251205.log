@@ -1,0 +1,48 @@
+2025-12-05 04:45:22 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-05 04:45:22 - MathAgent - INFO - Algoritmo: multiplicarMatrices
+2025-12-05 04:45:22 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-05 04:45:22 - MathAgent - INFO - Escenarios: 1
+2025-12-05 04:45:22 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-05 04:45:22 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-05 04:45:33 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-05 04:45:33 - MathAgent - INFO - Mejor caso: K1 + n*C + n**2*C + n**3*C
+2025-12-05 04:45:33 - MathAgent - INFO - Caso promedio: K1 + n*C + n**2*C + n**3*C
+2025-12-05 04:45:33 - MathAgent - INFO - Peor caso: K1 + n*C + n**2*C + n**3*C
+2025-12-05 04:45:33 - MathAgent - INFO - Ecuaciones iguales: True
+2025-12-05 04:45:33 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-05 04:45:33 - MathAgent - INFO -   Hits: 0
+2025-12-05 04:45:33 - MathAgent - INFO -   Misses: 1
+2025-12-05 04:45:33 - MathAgent - INFO -   Size: 1
+2025-12-05 04:45:33 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-05 04:49:13 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-05 04:49:13 - MathAgent - INFO - Algoritmo: multiplicarMatrices
+2025-12-05 04:49:13 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-05 04:49:13 - MathAgent - INFO - Escenarios: 1
+2025-12-05 04:49:13 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-05 04:49:13 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-05 04:49:24 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-05 04:49:24 - MathAgent - INFO - Mejor caso: K1 + n*C + n**2*C + n**3*C
+2025-12-05 04:49:24 - MathAgent - INFO - Caso promedio: K1 + n*C + n**2*C + n**3*C
+2025-12-05 04:49:24 - MathAgent - INFO - Peor caso: K1 + n*C + n**2*C + n**3*C
+2025-12-05 04:49:24 - MathAgent - INFO - Ecuaciones iguales: True
+2025-12-05 04:49:24 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-05 04:49:24 - MathAgent - INFO -   Hits: 0
+2025-12-05 04:49:24 - MathAgent - INFO -   Misses: 1
+2025-12-05 04:49:24 - MathAgent - INFO -   Size: 1
+2025-12-05 04:49:24 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-05 04:50:39 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-05 04:50:39 - MathAgent - INFO - Algoritmo: mergeSort
+2025-12-05 04:50:39 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-05 04:50:39 - MathAgent - INFO - Escenarios: 2
+2025-12-05 04:50:39 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-05 04:50:39 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-05 04:50:52 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-05 04:50:52 - MathAgent - INFO - Mejor caso: T(1) = c
+2025-12-05 04:50:52 - MathAgent - INFO - Caso promedio: T(n) = 2T(n/2) + c
+2025-12-05 04:50:52 - MathAgent - INFO - Peor caso: T(n) = 2*T(n/2) + c*n
+2025-12-05 04:50:52 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-05 04:50:52 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-05 04:50:52 - MathAgent - INFO -   Hits: 0
+2025-12-05 04:50:52 - MathAgent - INFO -   Misses: 1
+2025-12-05 04:50:52 - MathAgent - INFO -   Size: 1
+2025-12-05 04:50:52 - MathAgent - INFO -   Hit Rate: 0.0%
