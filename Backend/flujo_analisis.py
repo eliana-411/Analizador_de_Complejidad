@@ -34,6 +34,7 @@ from shared.services.lectorArchivos import LectorArchivos
 from shared.services.detectorTipoEntrada import DetectorTipoEntrada
 from agentes.agenteResolver import AgenteResolver
 from agentes.agenteFlowchart import AgenteFlowchart
+from agentes.agenteValidadorComplejidades import AgenteValidadorComplejidades
 from ml.clasificador import obtener_clasificador
 from core.analizador.agents.workflow import get_workflow
 from core.analizador.models.scenario_state import ScenarioState
@@ -61,6 +62,7 @@ class FlujoAnalisis:
         self.resolver = AgenteResolver()
         self.generador_flowchart = AgenteFlowchart()
         self.agente_matematicas = AgenteRepresentacionMatematica(use_llm=True)
+        self.validador_complejidades = AgenteValidadorComplejidades(use_llm=True)
         
         # Inicializar clasificador ML
         try:
@@ -361,11 +363,42 @@ class FlujoAnalisis:
             self._log(f"   Caso promedio: {complejidades['complejidades'].get('caso_promedio', 'N/A')}")
             self._log(f"   Peor caso:     {complejidades['complejidades'].get('peor_caso', 'N/A')}")
             
-            # ==================== FASE 8: GENERACIÓN DE REPORTE ====================
+            # ==================== FASE 8.5: VALIDACIÓN DE COMPLEJIDADES ====================
             self._log("\n" + "="*80)
-            # ==================== FASE 8: GENERACIÓN DE REPORTE ====================
+            self._log("FASE 8.5: VALIDACIÓN DE COMPLEJIDADES CON LLM")
+            self._log("="*80)
+            
+            try:
+                self._log("[INFO] Comparando resultados del sistema con análisis LLM...")
+                
+                validacion_complejidades = self.validador_complejidades.validar_complejidades(
+                    pseudocodigo=pseudocodigo,
+                    complejidades_sistema=complejidades['complejidades'],
+                    algorithm_name=algorithm_name
+                )
+                
+                resultado['validacion_complejidades'] = validacion_complejidades
+                resultado['fase_actual'] = 'validacion_complejidades_completada'
+                
+                # El validador ya muestra toda la info en sus logs
+                # Solo agregamos un resumen aquí
+                if validacion_complejidades['concordancia']:
+                    self._log(f"\n[OK] ✅ Concordancia con LLM: {validacion_complejidades['confianza']:.0%}")
+                else:
+                    self._log(f"\n[WARN] ⚠️ Divergencias detectadas con LLM")
+                    if validacion_complejidades['analisis_divergencias']:
+                        self._log(f"[WARN] Casos divergentes: {len(validacion_complejidades['analisis_divergencias'])}")
+                
+            except Exception as e:
+                self._log(f"[WARN] Error en validación con LLM: {str(e)}")
+                resultado['validacion_complejidades'] = {
+                    'concordancia': None,
+                    'error': str(e)
+                }
+            
+            # ==================== FASE 9: GENERACIÓN DE REPORTE ====================
             self._log("\n" + "="*80)
-            self._log("FASE 8: GENERACIÓN DE REPORTE FINAL")
+            self._log("FASE 9: GENERACIÓN DE REPORTE FINAL")
             self._log("="*80)
             
             resultado['exito'] = True
