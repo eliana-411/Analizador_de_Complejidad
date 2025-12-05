@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import logging
 
 from core.validador.router import router as validador_router
+from core.analizador.router import router as analizador_router
 
 # Configurar logging
 logging.basicConfig(
@@ -33,6 +34,7 @@ app.add_middleware(
 
 # Registrar routers
 app.include_router(validador_router)
+app.include_router(analizador_router)
 
 
 @app.get("/", tags=["root"])
@@ -43,7 +45,10 @@ async def root():
         "version": "1.0.0",
         "endpoints": {
             "validador": "/validador/validar",
-            "health": "/validador/health",
+            "analisis": "/analisis/analizar",
+            "analisis_archivo": "/analisis/analizar-archivo",
+            "health_validador": "/validador/health",
+            "health_analisis": "/analisis/health",
             "docs": "/docs",
         },
     }
