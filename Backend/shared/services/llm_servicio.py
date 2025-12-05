@@ -1,5 +1,6 @@
 from langchain_anthropic import ChatAnthropic
 from config.settings import settings
+from tools.metricas import registrar_tokens
 
 
 class LLMService:
@@ -53,6 +54,16 @@ class LLMService:
         try:
             llm = LLMService.get_llm()
             response = llm.invoke("Responde solo con: 'Conexión exitosa'")
+            
+            # Registrar tokens si están disponibles
+            if hasattr(response, 'response_metadata') and 'usage' in response.response_metadata:
+                usage = response.response_metadata['usage']
+                registrar_tokens(
+                    input_tokens=usage.get('input_tokens', 0),
+                    output_tokens=usage.get('output_tokens', 0),
+                    modelo=settings.model_name
+                )
+            
             return {
                 "status": "success",
                 "message": "Conexión establecida correctamente",

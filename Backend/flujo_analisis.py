@@ -33,6 +33,7 @@ from shared.services.servicioCorrector import ServicioCorrector
 from shared.services.lectorArchivos import LectorArchivos
 from shared.services.detectorTipoEntrada import DetectorTipoEntrada
 from agentes.agenteResolver import AgenteResolver
+from agentes.agenteFlowchart import AgenteFlowchart
 from ml.clasificador import obtener_clasificador
 
 
@@ -54,16 +55,17 @@ class FlujoAnalisis:
         self.validador = servicioValidador()
         self.corrector = ServicioCorrector()
         self.resolver = AgenteResolver()
+        self.generador_flowchart = AgenteFlowchart()
         
         # Inicializar clasificador ML
         try:
             self.clasificador = obtener_clasificador()
-            self._log("✅ Clasificador ML cargado correctamente")
+            self._log("[OK] Clasificador ML cargado correctamente")
         except Exception as e:
             self.clasificador = None
-            self._log(f"⚠️ Clasificador ML no disponible: {e}")
+            self._log(f"[WARN] Clasificador ML no disponible: {e}")
         
-        self._log("✅ Flujo de análisis inicializado correctamente")
+        self._log("[OK] Flujo de análisis inicializado correctamente")
     
     def analizar(
         self,
@@ -87,8 +89,8 @@ class FlujoAnalisis:
                 - pseudocodigo_original: str
                 - pseudocodigo_validado: str
                 - validacion: dict
-                - costos_por_linea: dict ⚠️ PENDIENTE
-                - ecuaciones: dict ⚠️ PENDIENTE
+                - costos_por_linea: dict [WARN] PENDIENTE
+                - ecuaciones: dict [WARN] PENDIENTE
                 - complejidades: dict
                 - exito: bool
                 - errores: list
@@ -105,6 +107,7 @@ class FlujoAnalisis:
             'costos_por_linea': None,
             'ecuaciones': None,
             'complejidades': None,
+            'flowchart': None,
             'errores': []
         }
         
@@ -121,7 +124,7 @@ class FlujoAnalisis:
             # ==================== DETECCIÓN AUTOMÁTICA DE TIPO ====================
             if tipo_entrada == "auto":
                 tipo_entrada = DetectorTipoEntrada.detectar(pseudocodigo)
-                self._log(f"\n🔍 Detección automática: {tipo_entrada.upper()}")
+                self._log(f"\n[SEARCH] Detección automática: {tipo_entrada.upper()}")
             
             # ==================== FASE 2: TRADUCCIÓN (si es necesario) ====================
             if tipo_entrada == "lenguaje_natural":
@@ -132,8 +135,8 @@ class FlujoAnalisis:
                 resultado_traduccion = self.traductor.traducir(pseudocodigo)
                 pseudocodigo = resultado_traduccion['pseudocodigo']
                 
-                self._log(f"✅ Tipo detectado: {resultado_traduccion['tipo_detectado']}")
-                self._log(f"✅ Ejemplos usados: {len(resultado_traduccion['ejemplos_usados'])}")
+                self._log(f"[OK] Tipo detectado: {resultado_traduccion['tipo_detectado']}")
+                self._log(f"[OK] Ejemplos usados: {len(resultado_traduccion['ejemplos_usados'])}")
                 resultado['fase_actual'] = 'traduccion_completada'
             
             # ==================== FASE 3: CLASIFICACIÓN ML ====================
@@ -147,14 +150,28 @@ class FlujoAnalisis:
                     resultado['clasificacion'] = clasificacion
                     resultado['fase_actual'] = 'clasificacion_completada'
                     
-                    self._log(f"\n🔍 Clasificación detectada:")
-                    self._log(f"   ⭐ {clasificacion['categoria_principal'].upper()} ({clasificacion['confianza']*100:.1f}%)")
-                    self._log(f"\n   Otras posibilidades:")
-                    for pred in clasificacion['top_predicciones'][1:3]:
-                        self._log(f"      • {pred['categoria']} ({pred['probabilidad']*100:.1f}%)")
+                    self._log(f"\n[SEARCH] Clasificación detectada:")
+                    self._log(f"   • Principal: {clasificacion['categoria']} ({clasificacion['confianza']:.1%})")
+                    alternativas = ', '.join([f"{p['categoria']} ({p['probabilidad']:.1%})" for p in clasificacion['top_predicciones'][:2]])
+                    self._log(f"   • Alternativas: {alternativas}")
                 except Exception as e:
-                    self._log(f"⚠️ Error en clasificación: {e}")
-                    resultado['clasificacion'] = None
+                    self._log(f"[WARN] Error en clasificación: {str(e)}")
+                    resultado['errores'].append(f"Clasificación: {str(e)}")
+            
+            # ==================== FASE 3.5: GENERACIÓN DE FLOWCHART ====================
+            self._log("\n" + "="*80)
+            self._log("FASE 3.5: GENERACIÓN DE FLOWCHART")
+            self._log("="*80)
+            
+            try:
+                flowchart_mermaid = self.generador_flowchart.generar(pseudocodigo)
+                resultado['flowchart'] = flowchart_mermaid
+                resultado['fase_actual'] = 'flowchart_generado'
+                self._log("[OK] Flowchart generado exitosamente")
+            except Exception as e:
+                self._log(f"[WARN] Error generando flowchart: {str(e)}")
+                resultado['errores'].append(f"Flowchart: {str(e)}")
+                resultado['flowchart'] = None
             
             # ==================== FASE 4: VALIDACIÓN ====================
             self._log("\n" + "="*80)
@@ -166,8 +183,8 @@ class FlujoAnalisis:
             resultado['validacion_inicial'] = validacion
             resultado['fase_actual'] = 'validacion_completada'
             
-            self._log(f"{'✅' if validacion['valido_general'] else '❌'} Válido: {validacion['valido_general']}")
-            self._log(f"📊 Errores encontrados: {validacion['resumen']['errores_totales']}")
+            self._log(f"{'[OK]' if validacion['valido_general'] else '[ERROR]'} Válido: {validacion['valido_general']}")
+            self._log(f"[STATS] Errores encontrados: {validacion['resumen']['errores_totales']}")
             
             # Mostrar errores detallados
             if not validacion['valido_general']:
@@ -176,7 +193,7 @@ class FlujoAnalisis:
                     if capa_datos['errores']:
                         self._log(f"\n   {capa_nombre}:")
                         for error in capa_datos['errores']:
-                            self._log(f"      ❌ {error}")
+                            self._log(f"      [ERROR] {error}")
             
             # ==================== FASE 5: CORRECCIÓN (si hay errores) ====================
             if not validacion['valido_general'] and auto_corregir:
@@ -189,8 +206,8 @@ class FlujoAnalisis:
                 
                 if resultado_correccion['corregido']:
                     pseudocodigo = resultado_correccion['pseudocodigo']
-                    self._log("✅ Pseudocódigo corregido exitosamente")
-                    self._log(f"\n📝 CAMBIOS REALIZADOS:")
+                    self._log("[OK] Pseudocódigo corregido exitosamente")
+                    self._log(f"\n[INPUT] CAMBIOS REALIZADOS:")
                     if 'explicacion' in resultado_correccion:
                         self._log(f"   {resultado_correccion['explicacion']}")
                     
@@ -199,10 +216,10 @@ class FlujoAnalisis:
                     resultado['validacion'] = validacion
                     resultado['fase_actual'] = 'correccion_completada'
                     
-                    self._log(f"\n✅ Re-validación: {'EXITOSA ✅' if validacion['valido_general'] else 'AÚN CON ERRORES ⚠️'}")
-                    self._log(f"📊 Errores restantes: {validacion['resumen']['errores_totales']}")
+                    self._log(f"\n[OK] Re-validación: {'EXITOSA [OK]' if validacion['valido_general'] else 'AÚN CON ERRORES [WARN]'}")
+                    self._log(f"[STATS] Errores restantes: {validacion['resumen']['errores_totales']}")
                 else:
-                    self._log("⚠️ No se pudo corregir automáticamente")
+                    self._log("[WARN] No se pudo corregir automáticamente")
                     if 'razon' in resultado_correccion:
                         self._log(f"   Razón: {resultado_correccion['razon']}")
                     resultado['errores'].append("Corrección automática falló")
@@ -238,7 +255,7 @@ class FlujoAnalisis:
             # Determinar ecuaciones según el tipo de algoritmo
             if validacion['tipo_algoritmo'] == 'Recursivo':
                 ecuacion_ejemplo = "T(n) = 2T(n/2) + n"
-                self._log(f"📝 Ecuación de ejemplo (temporal): {ecuacion_ejemplo}")
+                self._log(f"[INPUT] Ecuación de ejemplo (temporal): {ecuacion_ejemplo}")
                 
                 ecuaciones = {
                     'mejor_caso': ecuacion_ejemplo,
@@ -247,7 +264,7 @@ class FlujoAnalisis:
                 }
             else:
                 # Para iterativos, usar AnalizadorDirecto
-                self._log(f"📝 Ecuaciones de ejemplo (temporal - iterativo)")
+                self._log(f"[INPUT] Ecuaciones de ejemplo (temporal - iterativo)")
                 
                 ecuaciones = {
                     'mejor_caso': "T(n) = 1",
@@ -279,7 +296,7 @@ class FlujoAnalisis:
             resultado['complejidades'] = complejidades
             resultado['fase_actual'] = 'resolucion_completada'
             
-            self._log("\n📊 COMPLEJIDADES CALCULADAS:")
+            self._log("\n[STATS] COMPLEJIDADES CALCULADAS:")
             self._log(f"   Mejor caso:    {complejidades['complejidades'].get('mejor_caso', 'N/A')}")
             self._log(f"   Caso promedio: {complejidades['complejidades'].get('caso_promedio', 'N/A')}")
             self._log(f"   Peor caso:     {complejidades['complejidades'].get('peor_caso', 'N/A')}")
@@ -297,7 +314,7 @@ class FlujoAnalisis:
             return resultado
             
         except Exception as e:
-            self._log(f"\n❌ ERROR EN FASE: {resultado['fase_actual']}")
+            self._log(f"\n[ERROR] ERROR EN FASE: {resultado['fase_actual']}")
             self._log(f"   {type(e).__name__}: {str(e)}")
             resultado['errores'].append(f"{type(e).__name__}: {str(e)}")
             return resultado
@@ -333,21 +350,21 @@ class FlujoAnalisis:
             if not archivo_path:
                 raise ValueError("archivo_path requerido cuando tipo_entrada='archivo'")
             
-            self._log(f"📂 Leyendo archivo: {archivo_path}")
+            self._log(f"[FOLDER] Leyendo archivo: {archivo_path}")
             lector = LectorArchivos(archivo_path)
             
             if not lector.leer_archivo():
                 raise ValueError(f"No se pudo leer el archivo: {archivo_path}")
             
             pseudocodigo = lector.obtener_contenido_completo()
-            self._log(f"✅ Archivo leído: {len(pseudocodigo.split(chr(10)))} líneas")
+            self._log(f"[OK] Archivo leído: {len(pseudocodigo.split(chr(10)))} líneas")
             
         elif tipo_entrada in ["pseudocodigo", "lenguaje_natural", "auto"]:
             if not entrada:
                 raise ValueError(f"entrada requerida cuando tipo_entrada='{tipo_entrada}'")
             
             pseudocodigo = entrada
-            self._log(f"✅ Entrada recibida: {len(pseudocodigo.split(chr(10)))} líneas")
+            self._log(f"[OK] Entrada recibida: {len(pseudocodigo.split(chr(10)))} líneas")
         
         else:
             raise ValueError(f"tipo_entrada inválido: {tipo_entrada}")
@@ -376,7 +393,7 @@ class FlujoAnalisis:
         lineas.append("")
         
         # Estado
-        lineas.append(f"Estado: {'✅ EXITOSO' if resultado['exito'] else '❌ FALLIDO'}")
+        lineas.append(f"Estado: {'[OK] EXITOSO' if resultado['exito'] else '[ERROR] FALLIDO'}")
         lineas.append(f"Fase final: {resultado['fase_actual']}")
         lineas.append("")
         
@@ -392,7 +409,7 @@ class FlujoAnalisis:
         if resultado['validacion']:
             val = resultado['validacion']
             lineas.append("VALIDACIÓN:")
-            lineas.append(f"  Válido: {'SÍ ✅' if val['valido_general'] else 'NO ❌'}")
+            lineas.append(f"  Válido: {'SÍ [OK]' if val['valido_general'] else 'NO [ERROR]'}")
             lineas.append(f"  Tipo: {val.get('tipo_algoritmo', 'N/A')}")
             lineas.append(f"  Errores: {val['resumen']['errores_totales']}")
             lineas.append("")
@@ -412,7 +429,7 @@ class FlujoAnalisis:
         if resultado['errores']:
             lineas.append("ERRORES:")
             for error in resultado['errores']:
-                lineas.append(f"  ❌ {error}")
+                lineas.append(f"  [ERROR] {error}")
             lineas.append("")
         
         lineas.append("="*80)

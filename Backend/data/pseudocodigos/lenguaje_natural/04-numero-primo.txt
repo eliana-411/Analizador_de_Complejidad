@@ -1,0 +1,14 @@
+Si el número es menor o igual a 1, devolver falso (no es primo).
+
+Si el número es exactamente 2, devolver verdadero (es primo).
+
+Calcular la raíz cuadrada del número.
+
+Iniciar un contador llamado divisor en 2.
+
+Mientras el divisor sea menor o igual a la raíz cuadrada:
+  - Dividir el número entre el divisor.
+  - Si el residuo es cero, devolver falso (no es primo).
+  - Incrementar el divisor en 1.
+
+Si ningún divisor produjo residuo cero, devolver verdadero (es primo).

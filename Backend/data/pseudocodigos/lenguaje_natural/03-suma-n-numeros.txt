@@ -1,0 +1,9 @@
+Iniciar una variable llamada suma en 0.
+
+Iniciar un contador llamado i en 1.
+
+Mientras el contador i sea menor o igual a n:
+  - Agregar el valor de i a la variable suma.
+  - Incrementar el contador i en 1.
+
+Cuando el contador llegue a n+1, devolver el valor de suma.
