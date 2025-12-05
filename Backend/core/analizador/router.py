@@ -6,7 +6,7 @@ from pathlib import Path
 from datetime import datetime
 
 from pydantic import BaseModel, Field
-from Backend.tests.flujo_analisis import FlujoAnalisis
+from flujo_analisis import FlujoAnalisis
 
 router = APIRouter(prefix="/analisis", tags=["analisis"])
 logger = logging.getLogger(__name__)

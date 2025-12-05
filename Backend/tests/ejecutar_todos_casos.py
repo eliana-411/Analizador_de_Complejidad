@@ -17,9 +17,9 @@ import json
 from contextlib import redirect_stdout, redirect_stderr
 from io import StringIO
 
-sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from Backend.tests.flujo_analisis import FlujoAnalisis
+from flujo_analisis import FlujoAnalisis
 from agentes.agenteReportador import AgenteReportador
 from tools.metricas import reset_metricas, obtener_metricas, guardar_metricas
 

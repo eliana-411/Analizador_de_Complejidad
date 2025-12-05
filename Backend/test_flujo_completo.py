@@ -14,7 +14,7 @@ import os
 # Agregar Backend al path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from tests.flujo_analisis import FlujoAnalisis
+from flujo_analisis import FlujoAnalisis
 
 # Pseudocódigo de prueba: Búsqueda Lineal Simple
 pseudocodigo_test = """busquedaLineal(int A[], int n, int x)
