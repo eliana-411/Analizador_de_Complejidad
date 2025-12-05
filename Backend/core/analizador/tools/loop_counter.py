@@ -20,16 +20,18 @@ class LoopCounter:
     """
 
     # Patrones de expresiones regulares para identificar ciclos
-    PATRON_FOR = r'for\s+(\w+)\s*(<-|🡨)\s*(.+?)\s+to\s+(.+?)\s+do'
+    # Acepta: <-, 🡨, ←, :=, y =
+    PATRON_FOR = r'for\s+(\w+)\s*(<-|🡨|←|:=|=)\s*(.+?)\s+to\s+(.+?)\s+do'
     PATRON_WHILE = r'while\s*\((.+?)\)\s*do'
     PATRON_REPEAT = r'repeat|repetir'
     PATRON_UNTIL = r'until\s*\((.+?)\)'
 
     # Patrones para detectar modificaciones de variables
-    PATRON_INCREMENTO_LINEAL = r'(\w+)\s*(<-|🡨)\s*\1\s*\+\s*(\d+)'  # i <- i + 1
-    PATRON_DECREMENTO_LINEAL = r'(\w+)\s*(<-|🡨)\s*\1\s*-\s*(\d+)'  # i <- i - 1
-    PATRON_MULTIPLICACION = r'(\w+)\s*(<-|🡨)\s*\1\s*\*\s*(\d+)'    # i <- i * 2
-    PATRON_DIVISION = r'(\w+)\s*(<-|🡨)\s*\1\s*/\s*(\d+)'           # i <- i / 2
+    # Acepta: <-, 🡨, ←, :=, y =
+    PATRON_INCREMENTO_LINEAL = r'(\w+)\s*(<-|🡨|←|:=|=)\s*\1\s*\+\s*(\d+)'  # i = i + 1
+    PATRON_DECREMENTO_LINEAL = r'(\w+)\s*(<-|🡨|←|:=|=)\s*\1\s*-\s*(\d+)'  # i = i - 1
+    PATRON_MULTIPLICACION = r'(\w+)\s*(<-|🡨|←|:=|=)\s*\1\s*\*\s*(\d+)'    # i = i * 2
+    PATRON_DIVISION = r'(\w+)\s*(<-|🡨|←|:=|=)\s*\1\s*/\s*(\d+)'           # i = i / 2
 
     def __init__(self):
         """Inicializa el contador de ciclos."""

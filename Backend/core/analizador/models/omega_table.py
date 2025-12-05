@@ -42,47 +42,87 @@ class ScenarioEntry(BaseModel):
 
     Cada escenario corresponde a un camino de ejecución específico del algoritmo,
     definido por condiciones lógicas sobre las variables de control.
+
+    NOTA: Los detalles del análisis línea por línea se almacenan en
+    OmegaTable.metadata, no dentro de cada escenario.
     """
     id: str  # Identificador único: S_k=1, S_k=k, S_fallo, S_p=0, etc.
+    semantic_id: str = ""  # Identificador semántico: S_best, S_worst, S_intermediate, etc.
     condition: str  # Expresión lógica que activa este escenario
     state: str  # Estado cualitativo: EXITO_TEMPRANO, EXITO_INTERMEDIO, FALLO_COMPLETO, etc.
     cost_T: str  # T(S) = función de costo para este escenario ("4*k + 2", "n²", etc.)
-    probability_P: str  # P(S) = probabilidad de ocurrencia ("1/n", "1/(n+1)", etc.)
-
-    # ⭐ SUBTABLA DE JUSTIFICACIÓN (costeo línea por línea)
-    line_costs: List[LineCost] = Field(default_factory=list)
-
-    def calculate_total(self) -> str:
-        """
-        Suma todos los line_costs para verificar que coincide con cost_T.
-
-        Returns:
-            Formula simplificada con sympy
-        """
-        if not self.line_costs:
-            return "0"
-
-        # Sumar todos los totales usando sympy
-        total = 0
-        for line_cost in self.line_costs:
-            try:
-                total += sp.sympify(line_cost.Total)
-            except:
-                # Si no se puede parsear, ignorar
-                pass
-
-        simplified = sp.simplify(total)
-        return str(simplified)
+    probability_P: str  # P(S) = probabilidad de ocurrencia ("1/n", "q·(1/n)", "1-q", etc.)
 
     class Config:
         json_schema_extra = {
             "example": {
                 "id": "S_k=1",
+                "semantic_id": "best_case",
                 "condition": "A[1] == x",
                 "state": "EXITO_TEMPRANO",
                 "cost_T": "6",
-                "probability_P": "1/n",
-                "line_costs": []
+                "probability_P": "1/n"
+            }
+        }
+
+
+class SummaryEntry(BaseModel):
+    """
+    Entrada de resumen para un caso específico (mejor/peor).
+
+    Contiene información resumida sobre un escenario particular
+    que representa el mejor o peor caso del algoritmo.
+    """
+    scenario_id: str  # ID del escenario (ej: "S_1", "S_∅")
+    semantic_id: str  # ID semántico (ej: "S_best", "S_worst")
+    T: str  # Función de costo T(S) para este caso
+    P: str  # Probabilidad P(S) de este caso
+    description: str  # Descripción de la entrada que causa este caso
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "scenario_id": "S_1",
+                "semantic_id": "S_best",
+                "T": "7",
+                "P": "q·(1/n)",
+                "description": "Elemento en primera posición"
+            }
+        }
+
+
+class CaseSummary(BaseModel):
+    """
+    Resumen completo de mejor caso, peor caso y caso promedio.
+
+    Proporciona una vista consolidada de los casos clave del análisis
+    de complejidad del algoritmo.
+    """
+    best_case: SummaryEntry  # Escenario de mejor caso (mínimo T(S))
+    worst_case: SummaryEntry  # Escenario de peor caso (máximo T(S))
+    average_case: Dict  # Caso promedio: {"T_avg": str, "formula": str}
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "best_case": {
+                    "scenario_id": "S_1",
+                    "semantic_id": "S_best",
+                    "T": "7",
+                    "P": "q·(1/n)",
+                    "description": "Elemento en primera posición"
+                },
+                "worst_case": {
+                    "scenario_id": "S_∅",
+                    "semantic_id": "S_worst_not_found",
+                    "T": "4*n+2",
+                    "P": "1-q",
+                    "description": "Elemento no existe en el arreglo"
+                },
+                "average_case": {
+                    "T_avg": "q·(n+1)/2 + (1-q)·n",
+                    "formula": "Σ T(S)·P(S) = q·(n+1)/2 + (1-q)·n"
+                }
             }
         }
 
@@ -92,7 +132,14 @@ class OmegaTable(BaseModel):
     Tabla Universal Ω completa del algoritmo.
 
     Contiene todos los escenarios posibles identificados durante el análisis,
-    junto con metadata del algoritmo.
+    junto con metadata del algoritmo que incluye:
+    - algorithm_type: "iterative" | "recursive"
+    - llm_analysis: Análisis completo del LLM (mejor, peor, promedio casos)
+    - line_by_line_details: Desglose línea por línea de cada escenario
+    - best_case, worst_case, average_case: Resúmenes de casos principales
+
+    Esta estructura simplificada permite pasar la tabla al módulo de
+    representación matemática de forma directa.
     """
     algorithm_name: str
     scenarios: List[ScenarioEntry]
@@ -177,8 +224,10 @@ class OmegaTable(BaseModel):
         """
         Genera subtabla de justificación (costeo línea por línea) para un escenario.
 
+        Los datos se extraen de metadata['llm_analysis'][case]['line_by_line_analysis']
+
         Args:
-            scenario_id: ID del escenario (ej: "S_k=1")
+            scenario_id: ID del escenario (ej: "S_k=1", "S_best_case")
 
         Returns:
             Tabla Markdown con formato:
@@ -190,8 +239,18 @@ class OmegaTable(BaseModel):
         if not scenario:
             return f"Scenario {scenario_id} not found"
 
-        if not scenario.line_costs:
-            return f"No line costs for scenario {scenario_id}"
+        # Buscar análisis línea por línea en metadata
+        line_costs = []
+        if 'llm_analysis' in self.metadata:
+            semantic_id = scenario.semantic_id
+            # Mapear semantic_id a keys del LLM analysis
+            case_key = semantic_id if semantic_id in self.metadata['llm_analysis'] else None
+
+            if case_key and 'line_by_line_analysis' in self.metadata['llm_analysis'][case_key]:
+                line_costs = self.metadata['llm_analysis'][case_key]['line_by_line_analysis']
+
+        if not line_costs:
+            return f"No line costs for scenario {scenario_id} in metadata"
 
         lines = [
             f"### Justificación de {scenario_id}",
@@ -200,9 +259,10 @@ class OmegaTable(BaseModel):
             "| :---: | :--- | :---: | :---: | :---: |"
         ]
 
-        for lc in scenario.line_costs:
+        for lc in line_costs:
             lines.append(
-                f"| {lc.line_number} | `{lc.code}` | {lc.C_op} | {lc.Freq} | {lc.Total} |"
+                f"| {lc.get('line_number', 0)} | `{lc.get('code', '')}` | "
+                f"{lc.get('C_op', 0)} | {lc.get('Freq', '1')} | {lc.get('Total', '0')} |"
             )
 
         # Agregar total
