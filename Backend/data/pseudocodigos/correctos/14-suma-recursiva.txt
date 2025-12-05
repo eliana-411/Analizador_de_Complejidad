@@ -1,0 +1,12 @@
+sumaRecursiva(n)
+begin
+    if (n == 0) then
+    begin
+        return 0
+    end
+    else
+    begin
+        temp ← CALL sumaRecursiva(n - 1)
+        return n + temp
+    end
+end

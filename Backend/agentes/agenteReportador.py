@@ -18,6 +18,7 @@ Salida:
 
 from typing import Dict, Any, List, Optional
 from datetime import datetime
+from tools.metricas import generar_tabla_metricas
 
 
 class AgenteReportador:
@@ -76,22 +77,29 @@ class AgenteReportador:
         # 1. Resumen Ejecutivo
         sections.append(self._seccion_resumen_ejecutivo(resultado))
         
-        # 2. Proceso de Análisis
+        # 2. Flowchart (Diagrama de Flujo)
+        if resultado.get('flowchart'):
+            sections.append(self._seccion_flowchart(resultado))
+        
+        # 3. Proceso de Análisis
         sections.append(self._seccion_proceso_analisis(resultado))
         
-        # 3. Análisis de Costos (si existe)
+        # 4. Análisis de Costos (si existe)
         if resultado.get('costos_por_linea'):
             sections.append(self._seccion_analisis_costos(resultado))
         
-        # 4. Resolución de Recurrencia
+        # 5. Resolución de Recurrencia
         if resultado.get('complejidades'):
             sections.append(self._seccion_resolucion_recurrencia(resultado))
         
-        # 5. Pseudocódigo Final
+        # 6. Pseudocódigo Final
         sections.append(self._seccion_pseudocodigo_final(resultado))
         
-        # 6. Conclusiones
+        # 7. Conclusiones
         sections.append(self._seccion_conclusiones(resultado))
+        
+        # 8. Métricas de Ejecución
+        sections.append(self._seccion_metricas())
         
         return '\n\n'.join(sections)
     
@@ -200,12 +208,33 @@ class AgenteReportador:
         
         return '\n'.join(contenido)
     
+    def _seccion_flowchart(self, resultado: Dict) -> str:
+        """Genera sección de diagrama de flujo"""
+        contenido = ["## 2. Diagrama de Flujo (Flowchart)"]
+        
+        flowchart = resultado.get('flowchart', '')
+        
+        if flowchart and flowchart.strip():
+            contenido.append("\nRepresentación visual del flujo de ejecución del algoritmo:")
+            contenido.append("")
+            contenido.append(flowchart)
+            contenido.append("")
+            contenido.append("**Leyenda:**")
+            contenido.append("- `([...])`: Nodos de inicio/fin")
+            contenido.append("- `[...]`: Procesos y asignaciones")
+            contenido.append("- `{...?}`: Decisiones (condiciones)")
+            contenido.append("- `[/... /]`: Retorno de función")
+        else:
+            contenido.append("\n*No se pudo generar el flowchart para este pseudocódigo*")
+        
+        return '\n'.join(contenido)
+    
     def _seccion_analisis_costos(self, resultado: Dict) -> str:
         """Genera sección de análisis de costos por línea"""
-        contenido = ["## 3. Análisis de Costos"]
+        contenido = ["## 4. Análisis de Costos"]
         
         # TODO: Implementar cuando AgenteAnalizador esté listo
-        contenido.append("### 3.1 Tabla de Costos por Línea")
+        contenido.append("### 4.1 Tabla de Costos por Línea")
         contenido.append("| Línea | Código | C_op | Frecuencia | Total |")
         contenido.append("|-------|--------|------|------------|-------|")
         contenido.append("| ... | ... | ... | ... | ... |")
@@ -215,19 +244,19 @@ class AgenteReportador:
     
     def _seccion_resolucion_recurrencia(self, resultado: Dict) -> str:
         """Genera sección de resolución de ecuaciones de recurrencia"""
-        contenido = ["## 4. Resolución de Ecuaciones de Recurrencia"]
+        contenido = ["## 5. Resolución de Ecuaciones de Recurrencia"]
         
         complejidades = resultado.get('complejidades', {})
         
         if not complejidades:
             return '\n'.join(contenido + ["\n*No hay información de complejidades disponible*"])
         
-        # 4.1 Método utilizado
+        # 5.1 Método utilizado
         metodo = complejidades.get('metodo_usado', 'No especificado')
-        contenido.append(f"\n### 4.1 Método Utilizado: {metodo}")
+        contenido.append(f"\n### 5.1 Método Utilizado: {metodo}")
         
-        # 4.2 Ecuaciones analizadas
-        contenido.append("\n### 4.2 Ecuaciones Analizadas")
+        # 5.2 Ecuaciones analizadas
+        contenido.append("\n### 5.2 Ecuaciones Analizadas")
         
         casos = complejidades.get('ecuaciones', {})
         if casos:
@@ -237,10 +266,10 @@ class AgenteReportador:
                 contenido.append(f"{ecuacion}")
                 contenido.append(f"```")
         
-        # 4.3 Paso a paso (si está disponible)
+        # 5.3 Paso a paso (si está disponible)
         pasos = complejidades.get('pasos_resolucion', {})
         if pasos:
-            contenido.append("\n### 4.3 Paso a Paso de la Resolución")
+            contenido.append("\n### 5.3 Paso a Paso de la Resolución")
             
             for caso, detalle in pasos.items():
                 caso_nombre = caso.replace('_', ' ').title()
@@ -598,6 +627,13 @@ graph TD
         diagrama.append('```')
         
         return '\n'.join(diagrama)
+    
+    def _seccion_metricas(self) -> str:
+        """Genera sección con métricas de ejecución"""
+        try:
+            return generar_tabla_metricas()
+        except Exception as e:
+            return f"## 📊 Métricas de Ejecución\n\n*No se pudieron generar métricas: {str(e)}*"
     
     def exportar_markdown(self, reporte: str, ruta_archivo: str):
         """Exporta el reporte a un archivo Markdown"""
