@@ -47,9 +47,9 @@ class MathAgentLogger:
             file_handler = logging.FileHandler(log_file, encoding='utf-8')
             file_handler.setLevel(logging.DEBUG)
             
-            # Handler para consola
+            # Handler para consola (solo errores y advertencias)
             console_handler = logging.StreamHandler()
-            console_handler.setLevel(logging.INFO)
+            console_handler.setLevel(logging.WARNING)
             
             # Formato
             formatter = logging.Formatter(
