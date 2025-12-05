@@ -26,8 +26,12 @@ class ServicioCorrector:
         """Inicializa el servicio corrector con la base de conocimiento"""
         self.base_conocimiento = []
         # Usar ruta relativa desde el archivo actual
-        # Backend/services/servicioCorrector.py -> Backend/data/pseudocodigos/correctos
-        self.ruta_ejemplos = Path(__file__).resolve().parent.parent / "data" / "pseudocodigos" / "correctos"
+        # Backend/shared/services/servicioCorrector.py -> Backend/data/pseudocodigos/correctos
+        # __file__ = Backend/shared/services/servicioCorrector.py
+        # parent = Backend/shared/services/
+        # parent.parent = Backend/shared/
+        # parent.parent.parent = Backend/
+        self.ruta_ejemplos = Path(__file__).resolve().parent.parent.parent / "data" / "pseudocodigos" / "correctos"
         self._cargar_base_conocimiento()
     
     def _cargar_base_conocimiento(self):
