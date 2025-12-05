@@ -1,0 +1,303 @@
+[
+  {
+    "id": "recursivo_divide_conquista_fibonacci_1",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "fibonacci",
+    "pseudocodigo": "funcion fibonacci(n)\n    si n <= 1 entonces\n        retornar n\n    fin si\n    retornar fibonacci(n - 1) + fibonacci(n - 2)\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_fibonacci_2",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "fibonacci",
+    "pseudocodigo": "// Calcula el n-ésimo número de Fibonacci\nfuncion calcularFib(numero)\n    si numero es igual a 0 entonces\n        retornar 0\n    sino si numero es igual a 1 entonces\n        retornar 1\n    sino\n        resultado1 = calcularFib(numero - 1)\n        resultado2 = calcularFib(numero - 2)\n        retornar resultado1 + resultado2\n    fin si\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_fibonacci_3",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "fibonacci",
+    "pseudocodigo": "funcion fib(posicion)\n    // Casos base\n    si posicion < 2 entonces\n        retornar posicion\n    fin si\n    \n    // División del problema\n    anterior = fib(posicion - 1)\n    preAnterior = fib(posicion - 2)\n    \n    // Conquista: combinar resultados\n    retornar anterior + preAnterior\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_fibonacci_4",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "fibonacci",
+    "pseudocodigo": "funcion secuenciaFibonacci(indice)\n    si indice == 0 entonces\n        retornar 0\n    fin si\n    si indice == 1 entonces\n        retornar 1\n    fin si\n    retornar secuenciaFibonacci(indice - 1) + secuenciaFibonacci(indice - 2)\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_fibonacci_5",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "fibonacci",
+    "pseudocodigo": "funcion obtenerFibonacci(pos)\n    // Validación de casos triviales\n    si pos menor o igual que 1 entonces\n        retornar pos\n    de lo contrario\n        // Divide: dos subproblemas más pequeños\n        valorIzq = obtenerFibonacci(pos - 1)\n        valorDer = obtenerFibonacci(pos - 2)\n        // Conquista: suma de ambas ramas\n        suma = valorIzq + valorDer\n        retornar suma\n    fin si\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_fibonacci_6",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "fibonacci",
+    "pseudocodigo": "funcion fibonacciRecursivo(term)\n    si term es 0 entonces\n        retornar 0\n    sino\n        si term es 1 entonces\n            retornar 1\n        sino\n            retornar fibonacciRecursivo(term - 1) + fibonacciRecursivo(term - 2)\n        fin si\n    fin si\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_fibonacci_7",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "fibonacci",
+    "pseudocodigo": "// Implementación recursiva pura de Fibonacci\nfuncion Fib(k)\n    si k <= 0 entonces\n        retornar 0\n    fin si\n    si k == 1 entonces\n        retornar 1\n    fin si\n    \n    primerLlamada = Fib(k - 1)\n    segundaLlamada = Fib(k - 2)\n    \n    retornar primerLlamada + segundaLlamada\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_fibonacci_8",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "fibonacci",
+    "pseudocodigo": "funcion numeroFibonacci(idx)\n    // Condiciones de parada\n    si idx es igual a 0 entonces retornar 0\n    si idx es igual a 1 entonces retornar 1\n    \n    // Recursión dividiendo el problema\n    retornar numeroFibonacci(idx - 1) + numeroFibonacci(idx - 2)\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_fibonacci_9",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "fibonacci",
+    "pseudocodigo": "funcion calcFibonacci(elemento)\n    si elemento < 2 entonces\n        retornar elemento\n    de lo contrario\n        // Divide y conquista\n        subproblema1 = calcFibonacci(elemento - 1)\n        subproblema2 = calcFibonacci(elemento - 2)\n        solucion = subproblema1 + subproblema2\n        retornar solucion\n    fin si\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_fibonacci_10",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "fibonacci",
+    "pseudocodigo": "// Versión con validación explícita\nfuncion fibonacciDivideConquista(valor)\n    si valor == 0 entonces\n        retornar 0\n    fin si\n    \n    si valor == 1 entonces\n        retornar 1\n    fin si\n    \n    // Dividir en dos subproblemas\n    rama1 = fibonacciDivideConquista(valor - 1)\n    rama2 = fibonacciDivideConquista(valor - 2)\n    \n    // Conquistar combinando soluciones\n    resultado = rama1 + rama2\n    retornar resultado\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_fibonacci_11",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "fibonacci",
+    "pseudocodigo": "funcion fibRec(num)\n    // Base cases para detener recursión\n    si num menor que 2 entonces\n        retornar num\n    fin si\n    \n    // Llamadas recursivas\n    izquierda = fibRec(num - 1)\n    derecha = fibRec(num - 2)\n    \n    retornar izquierda + derecha\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_fibonacci_12",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "fibonacci",
+    "pseudocodigo": "funcion serieF(n)\n    si n es 0 entonces retornar 0\n    si n es 1 entonces retornar 1\n    \n    // Estrategia divide y conquista\n    penultimo = serieF(n - 1)\n    antepenultimo = serieF(n - 2)\n    \n    // Combinar resultados parciales\n    total = penultimo + antepenultimo\n    \n    retornar total\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_factorial_1",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "factorial",
+    "pseudocodigo": "funcion factorial(n)\n    si n es igual a 0 entonces\n        retornar 1\n    sino\n        retornar n * factorial(n - 1)\n    fin si\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_factorial_2",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "factorial",
+    "pseudocodigo": "// Calculo factorial mediante recursion\nfuncion calcularFactorial(numero)\n    si numero menor o igual a 1 entonces\n        retornar 1\n    fin si\n    retornar numero * calcularFactorial(numero - 1)\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_factorial_3",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "factorial",
+    "pseudocodigo": "funcion fact(x)\n    // Caso base\n    si x es 0 o x es 1 entonces\n        retornar 1\n    sino\n        // Caso recursivo\n        resultado = x * fact(x - 1)\n        retornar resultado\n    fin si\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_factorial_4",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "factorial",
+    "pseudocodigo": "funcion factorialRecursivo(valor)\n    si valor es igual a 0 entonces\n        retornar 1\n    de lo contrario\n        temporal = factorialRecursivo(valor - 1)\n        retornar valor * temporal\n    fin si\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_factorial_5",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "factorial",
+    "pseudocodigo": "funcion calcFact(num)\n    si num menor o igual que 0 entonces\n        retornar 1\n    fin si\n    producto = num * calcFact(num - 1)\n    retornar producto\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_factorial_6",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "factorial",
+    "pseudocodigo": "// Implementacion recursiva de factorial\n// Usa divide y conquista\nfuncion obtenerFactorial(n)\n    si n es 1 entonces\n        retornar 1\n    sino si n es 0 entonces\n        retornar 1\n    sino\n        retornar n * obtenerFactorial(n - 1)\n    fin si\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_factorial_7",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "factorial",
+    "pseudocodigo": "funcion factRec(entrada)\n    si entrada igual a 0 entonces\n        retornar 1\n    fin si\n    \n    valorAnterior = factRec(entrada - 1)\n    resultadoFinal = entrada * valorAnterior\n    retornar resultadoFinal\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_factorial_8",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "factorial",
+    "pseudocodigo": "funcion factorial_recursivo(parametro)\n    // Verificar caso base\n    si parametro es 0 o parametro es 1 entonces\n        retornar 1\n    de lo contrario\n        retornar parametro * factorial_recursivo(parametro - 1)\n    fin si\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_factorial_9",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "factorial",
+    "pseudocodigo": "funcion factorialDivideConquista(k)\n    si k menor que 2 entonces\n        retornar 1\n    fin si\n    subproblema = factorialDivideConquista(k - 1)\n    solucion = k * subproblema\n    retornar solucion\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_factorial_10",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "factorial",
+    "pseudocodigo": "// Calcula el factorial de un numero entero\nfuncion fact_recursiva(dato)\n    si dato es igual a 1 entonces\n        retornar 1\n    sino si dato es igual a 0 entonces\n        retornar 1\n    sino\n        res = dato * fact_recursiva(dato - 1)\n        retornar res\n    fin si\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_factorial_11",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "factorial",
+    "pseudocodigo": "funcion factorialNumero(m)\n    si m es 0 entonces\n        retornar 1\n    sino\n        llamadaRecursiva = factorialNumero(m - 1)\n        multiplicacion = m * llamadaRecursiva\n        retornar multiplicacion\n    fin si\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_factorial_12",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "factorial",
+    "pseudocodigo": "// Funcion factorial con enfoque divide y conquista\nfuncion computarFactorial(entero)\n    // Condicion de parada\n    si entero menor o igual a 1 entonces\n        retornar 1\n    fin si\n    // Division del problema\n    subresultado = computarFactorial(entero - 1)\n    // Conquista: combinar resultados\n    retornar entero * subresultado\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_torres_hanoi_1",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "torres_hanoi",
+    "pseudocodigo": "funcion moverDiscos(n, origen, destino, auxiliar)\n    si n == 1 entonces\n        escribir \"Mover disco de \" + origen + \" a \" + destino\n        retornar\n    fin si\n    \n    moverDiscos(n-1, origen, auxiliar, destino)\n    escribir \"Mover disco de \" + origen + \" a \" + destino\n    moverDiscos(n-1, auxiliar, destino, origen)\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_torres_hanoi_2",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "torres_hanoi",
+    "pseudocodigo": "funcion hanoi(numDiscos, torreA, torreB, torreC)\n    // Caso base: un solo disco\n    si numDiscos == 1 entonces\n        imprimir \"Transferir disco 1 desde \" + torreA + \" hasta \" + torreB\n    sino\n        // Mover n-1 discos a torre auxiliar\n        hanoi(numDiscos-1, torreA, torreC, torreB)\n        // Mover disco mayor\n        imprimir \"Transferir disco \" + numDiscos + \" desde \" + torreA + \" hasta \" + torreB\n        // Mover n-1 discos desde auxiliar a destino\n        hanoi(numDiscos-1, torreC, torreB, torreA)\n    fin si\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_torres_hanoi_3",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "torres_hanoi",
+    "pseudocodigo": "procedimiento resolverTorres(cantidad, posteInicial, posteFinal, posteIntermedio)\n    si cantidad > 0 entonces\n        resolverTorres(cantidad-1, posteInicial, posteIntermedio, posteFinal)\n        mostrar \"Mover disco desde poste \" + posteInicial + \" hacia poste \" + posteFinal\n        resolverTorres(cantidad-1, posteIntermedio, posteFinal, posteInicial)\n    fin si\nfin procedimiento",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_torres_hanoi_4",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "torres_hanoi",
+    "pseudocodigo": "funcion torres(discos, desde, hacia, usando)\n    si discos == 0 entonces\n        retornar\n    fin si\n    torres(discos-1, desde, usando, hacia)\n    escribir \"Disco \" + discos + \": \" + desde + \" -> \" + hacia\n    torres(discos-1, usando, hacia, desde)\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_torres_hanoi_5",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "torres_hanoi",
+    "pseudocodigo": "procedimiento hanoi_recursivo(n, varilla_origen, varilla_destino, varilla_auxiliar)\n    // Divide y conquista: resolver subproblemas\n    si n >= 1 entonces\n        // Paso 1: mover n-1 discos a auxiliar\n        hanoi_recursivo(n-1, varilla_origen, varilla_auxiliar, varilla_destino)\n        \n        // Paso 2: mover el disco más grande\n        imprimir \"Mover disco de tamaño \" + n + \" de \" + varilla_origen + \" a \" + varilla_destino\n        \n        // Paso 3: mover n-1 discos de auxiliar a destino\n        hanoi_recursivo(n-1, varilla_auxiliar, varilla_destino, varilla_origen)\n    fin si\nfin procedimiento",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_torres_hanoi_6",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "torres_hanoi",
+    "pseudocodigo": "funcion solucionarHanoi(total, A, B, C)\n    si total == 1 entonces\n        retornar \"Mover de \" + A + \" a \" + B\n    fin si\n    \n    solucionarHanoi(total-1, A, C, B)\n    imprimir \"Movimiento: \" + A + \" --> \" + B\n    solucionarHanoi(total-1, C, B, A)\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_torres_hanoi_7",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "torres_hanoi",
+    "pseudocodigo": "procedimiento mover_torres(piezas, torre1, torre2, torre3)\n    si piezas == 1 entonces\n        escribir torre1 + \" a \" + torre2\n    sino\n        mover_torres(piezas-1, torre1, torre3, torre2)\n        escribir torre1 + \" a \" + torre2\n        mover_torres(piezas-1, torre3, torre2, torre1)\n    fin si\nfin procedimiento",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_torres_hanoi_8",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "torres_hanoi",
+    "pseudocodigo": "funcion transferirDiscos(altura, columnaOrigen, columnaDestino, columnaAux)\n    // Estrategia divide y conquista\n    si altura == 0 entonces\n        retornar 0\n    fin si\n    \n    movimientos := 0\n    \n    // Subproblema 1\n    movimientos := movimientos + transferirDiscos(altura-1, columnaOrigen, columnaAux, columnaDestino)\n    \n    // Resolver problema actual\n    mostrar \"Trasladar disco desde \" + columnaOrigen + \" hasta \" + columnaDestino\n    movimientos := movimientos + 1\n    \n    // Subproblema 2\n    movimientos := movimientos + transferirDiscos(altura-1, columnaAux, columnaDestino, columnaOrigen)\n    \n    retornar movimientos\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_torres_hanoi_9",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "torres_hanoi",
+    "pseudocodigo": "procedimiento hanoi_clasico(num, P1, P2, P3)\n    si num > 0 entonces\n        hanoi_clasico(num-1, P1, P3, P2)\n        imprimir \"Pasar disco de \" + P1 + \" a \" + P2\n        hanoi_clasico(num-1, P3, P2, P1)\n    fin si\nfin procedimiento",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_torres_hanoi_10",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "torres_hanoi",
+    "pseudocodigo": "funcion resolver(cantidadDiscos, puntoPartida, puntoLlegada, puntoApoyo)\n    si cantidadDiscos == 1 entonces\n        escribir \"Movimiento: disco 1 de \" + puntoPartida + \" a \" + puntoLlegada\n        retornar\n    fin si\n    \n    resolver(cantidadDiscos-1, puntoPartida, puntoApoyo, puntoLlegada)\n    escribir \"Movimiento: disco \" + cantidadDiscos + \" de \" + puntoPartida + \" a \" + puntoLlegada\n    resolver(cantidadDiscos-1, puntoApoyo, puntoLlegada, puntoPartida)\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_torres_hanoi_11",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "torres_hanoi",
+    "pseudocodigo": "procedimiento torresHanoi(nivel, estacaA, estacaB, estacaC)\n    // Caso base de la recursión\n    si nivel == 1 entonces\n        mostrar \"Mover: \" + estacaA + \" -> \" + estacaB\n        retornar\n    fin si\n    \n    // Primera fase: liberar disco inferior\n    torresHanoi(nivel-1, estacaA, estacaC, estacaB)\n    \n    // Segunda fase: mover disco inferior\n    mostrar \"Mover: \" + estacaA + \" -> \" + estacaB\n    \n    // Tercera fase: reconstruir torre\n    torresHanoi(nivel-1, estacaC, estacaB, estacaA)\nfin procedimiento",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_torres_hanoi_12",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "torres_hanoi",
+    "pseudocodigo": "funcion jugarHanoi(elementos, base, objetivo, temporal)\n    si elementos <= 0 entonces\n        retornar\n    fin si\n    \n    jugarHanoi(elementos-1, base, temporal, objetivo)\n    imprimir \"Acción: llevar disco \" + elementos + \" desde \" + base + \" hasta \" + objetivo\n    jugarHanoi(elementos-1, temporal, objetivo, base)\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_multiplicacion_matrices_1",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "multiplicacion_matrices",
+    "pseudocodigo": "funcion multiplicar_matrices(A, B, n)\n    si n == 1 entonces\n        retornar A[0][0] * B[0][0]\n    fin si\n    \n    mitad = n / 2\n    \n    A11 = submatriz(A, 0, 0, mitad)\n    A12 = submatriz(A, 0, mitad, mitad)\n    A21 = submatriz(A, mitad, 0, mitad)\n    A22 = submatriz(A, mitad, mitad, mitad)\n    \n    B11 = submatriz(B, 0, 0, mitad)\n    B12 = submatriz(B, 0, mitad, mitad)\n    B21 = submatriz(B, mitad, 0, mitad)\n    B22 = submatriz(B, mitad, mitad, mitad)\n    \n    C11 = sumar(multiplicar_matrices(A11, B11, mitad), multiplicar_matrices(A12, B21, mitad))\n    C12 = sumar(multiplicar_matrices(A11, B12, mitad), multiplicar_matrices(A12, B22, mitad))\n    C21 = sumar(multiplicar_matrices(A21, B11, mitad), multiplicar_matrices(A22, B21, mitad))\n    C22 = sumar(multiplicar_matrices(A21, B12, mitad), multiplicar_matrices(A22, B22, mitad))\n    \n    retornar combinar(C11, C12, C21, C22)\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_multiplicacion_matrices_2",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "multiplicacion_matrices",
+    "pseudocodigo": "funcion mult_mat_recursiva(matriz1, matriz2, tam)\n    si tam == 1 entonces\n        resultado = crear_matriz(1, 1)\n        resultado[0][0] = matriz1[0][0] * matriz2[0][0]\n        retornar resultado\n    fin si\n    \n    nuevo_tam = tam / 2\n    \n    M1_sup_izq = extraer(matriz1, 0, 0, nuevo_tam)\n    M1_sup_der = extraer(matriz1, 0, nuevo_tam, nuevo_tam)\n    M1_inf_izq = extraer(matriz1, nuevo_tam, 0, nuevo_tam)\n    M1_inf_der = extraer(matriz1, nuevo_tam, nuevo_tam, nuevo_tam)\n    \n    M2_sup_izq = extraer(matriz2, 0, 0, nuevo_tam)\n    M2_sup_der = extraer(matriz2, 0, nuevo_tam, nuevo_tam)\n    M2_inf_izq = extraer(matriz2, nuevo_tam, 0, nuevo_tam)\n    M2_inf_der = extraer(matriz2, nuevo_tam, nuevo_tam, nuevo_tam)\n    \n    R1 = sumar_matrices(mult_mat_recursiva(M1_sup_izq, M2_sup_izq, nuevo_tam), mult_mat_recursiva(M1_sup_der, M2_inf_izq, nuevo_tam))\n    R2 = sumar_matrices(mult_mat_recursiva(M1_sup_izq, M2_sup_der, nuevo_tam), mult_mat_recursiva(M1_sup_der, M2_inf_der, nuevo_tam))\n    R3 = sumar_matrices(mult_mat_recursiva(M1_inf_izq, M2_sup_izq, nuevo_tam), mult_mat_recursiva(M1_inf_der, M2_inf_izq, nuevo_tam))\n    R4 = sumar_matrices(mult_mat_recursiva(M1_inf_izq, M2_sup_der, nuevo_tam), mult_mat_recursiva(M1_inf_der, M2_inf_der, nuevo_tam))\n    \n    retornar unir_submatrices(R1, R2, R3, R4, tam)\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_multiplicacion_matrices_3",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "multiplicacion_matrices",
+    "pseudocodigo": "funcion producto_matrices_DC(X, Y, dimension)\n    // Caso base: matriz 1x1\n    si dimension <= 1 entonces\n        retornar X[0][0] * Y[0][0]\n    fin si\n    \n    d = dimension / 2\n    \n    // Dividir matriz X\n    X_NW = obtener_cuadrante(X, 0, 0, d)\n    X_NE = obtener_cuadrante(X, 0, d, d)\n    X_SW = obtener_cuadrante(X, d, 0, d)\n    X_SE = obtener_cuadrante(X, d, d, d)\n    \n    // Dividir matriz Y\n    Y_NW = obtener_cuadrante(Y, 0, 0, d)\n    Y_NE = obtener_cuadrante(Y, 0, d, d)\n    Y_SW = obtener_cuadrante(Y, d, 0, d)\n    Y_SE = obtener_cuadrante(Y, d, d, d)\n    \n    // Conquistar: 8 multiplicaciones recursivas\n    Z_NW = adicionar(producto_matrices_DC(X_NW, Y_NW, d), producto_matrices_DC(X_NE, Y_SW, d))\n    Z_NE = adicionar(producto_matrices_DC(X_NW, Y_NE, d), producto_matrices_DC(X_NE, Y_SE, d))\n    Z_SW = adicionar(producto_matrices_DC(X_SW, Y_NW, d), producto_matrices_DC(X_SE, Y_SW, d))\n    Z_SE = adicionar(producto_matrices_DC(X_SW, Y_NE, d), producto_matrices_DC(X_SE, Y_SE, d))\n    \n    retornar ensamblar_matriz(Z_NW, Z_NE, Z_SW, Z_SE)\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_multiplicacion_matrices_4",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "multiplicacion_matrices",
+    "pseudocodigo": "funcion dividir_y_conquistar_mult(P, Q, size)\n    si size == 1 entonces\n        res = nueva_matriz(1)\n        res[0][0] = P[0][0] * Q[0][0]\n        retornar res\n    fin si\n    \n    mitad_size = size / 2\n    \n    P1 = particionar(P, 0, 0, mitad_size)\n    P2 = particionar(P, 0, mitad_size, mitad_size)\n    P3 = particionar(P, mitad_size, 0, mitad_size)\n    P4 = particionar(P, mitad_size, mitad_size, mitad_size)\n    \n    Q1 = particionar(Q, 0, 0, mitad_size)\n    Q2 = particionar(Q, 0, mitad_size, mitad_size)\n    Q3 = particionar(Q, mitad_size, 0, mitad_size)\n    Q4 = particionar(Q, mitad_size, mitad_size, mitad_size)\n    \n    T1 = suma(dividir_y_conquistar_mult(P1, Q1, mitad_size), dividir_y_conquistar_mult(P2, Q3, mitad_size))\n    T2 = suma(dividir_y_conquistar_mult(P1, Q2, mitad_size), dividir_y_conquistar_mult(P2, Q4, mitad_size))\n    T3 = suma(dividir_y_conquistar_mult(P3, Q1, mitad_size), dividir_y_conquistar_mult(P4, Q3, mitad_size))\n    T4 = suma(dividir_y_conquistar_mult(P3, Q2, mitad_size), dividir_y_conquistar_mult(P4, Q4, mitad_size))\n    \n    retornar construir_resultado(T1, T2, T3, T4, size)\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_multiplicacion_matrices_5",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "multiplicacion_matrices",
+    "pseudocodigo": "funcion mult_rec(mat_a, mat_b, n)\n    si n == 1 entonces\n        retornar mat_a[0][0] * mat_b[0][0]\n    fin si\n    \n    k = n / 2\n    \n    a11 = dividir_matriz(mat_a, 0, 0, k)\n    a12 = dividir_matriz(mat_a, 0, k, k)\n    a21 = dividir_matriz(mat_a, k, 0, k)\n    a22 = dividir_matriz(mat_a, k, k, k)\n    \n    b11 = dividir_matriz(mat_b, 0, 0, k)\n    b12 = dividir_matriz(mat_b, 0, k, k)\n    b21 = dividir_matriz(mat_b, k, 0, k)\n    b22 = dividir_matriz(mat_b, k, k, k)\n    \n    c11 = agregar(mult_rec(a11, b11, k), mult_rec(a12, b21, k))\n    c12 = agregar(mult_rec(a11, b12, k), mult_rec(a12, b22, k))\n    c21 = agregar(mult_rec(a21, b11, k), mult_rec(a22, b21, k))\n    c22 = agregar(mult_rec(a21, b12, k), mult_rec(a22, b22, k))\n    \n    resultado = juntar_bloques(c11, c12, c21, c22, n)\n    retornar resultado\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_multiplicacion_matrices_6",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "multiplicacion_matrices",
+    "pseudocodigo": "funcion multiplicacion_por_bloques(primera, segunda, orden)\n    // Verificar caso base\n    si orden == 1 entonces\n        retornar primera[0][0] * segunda[0][0]\n    fin si\n    \n    medio = orden / 2\n    \n    // Extraer bloques de la primera matriz\n    bloque_a11 = copiar_bloque(primera, 0, 0, medio)\n    bloque_a12 = copiar_bloque(primera, 0, medio, medio)\n    bloque_a21 = copiar_bloque(primera, medio, 0, medio)\n    bloque_a22 = copiar_bloque(primera, medio, medio, medio)\n    \n    // Extraer bloques de la segunda matriz\n    bloque_b11 = copiar_bloque(segunda, 0, 0, medio)\n    bloque_b12 = copiar_bloque(segunda, 0, medio, medio)\n    bloque_b21 = copiar_bloque(segunda, medio, 0, medio)\n    bloque_b22 = copiar_bloque(segunda, medio, medio, medio)\n    \n    // Calcular bloques del resultado\n    resultado11 = suma_bloques(multiplicacion_por_bloques(bloque_a11, bloque_b11, medio), multiplicacion_por_bloques(bloque_a12, bloque_b21, medio))\n    resultado12 = suma_bloques(multiplicacion_por_bloques(bloque_a11, bloque_b12, medio), multiplicacion_por_bloques(bloque_a12, bloque_b22, medio))\n    resultado21 = suma_bloques(multiplicacion_por_bloques(bloque_a21, bloque_b11, medio), multiplicacion_por_bloques(bloque_a22, bloque_b21, medio))\n    resultado22 = suma_bloques(multiplicacion_por_bloques(bloque_a21, bloque_b12, medio), multiplicacion_por_bloques(bloque_a22, bloque_b22, medio))\n    \n    retornar fusionar(resultado11, resultado12, resultado21, resultado22, orden)\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  },
+  {
+    "id": "recursivo_divide_conquista_multiplicacion_matrices_7",
+    "categoria": "recursivo_divide_conquista",
+    "subcategoria": "multiplicacion_matrices",
+    "pseudocodigo": "funcion matriz_producto_recursivo(M1, M2, tam_matriz)\n    si tam_matriz == 1 entonces\n        salida = [[0]]\n        salida[0][0] = M1[0][0] * M2[0][0]\n        retornar salida\n    fin si\n    \n    nuevo_tamanio = tam_matriz / 2\n    \n    M1_parte1 = segmentar(M1, 0, 0, nuevo_tamanio)\n    M1_parte2 = segmentar(M1, 0, nuevo_tamanio, nuevo_tamanio)\n    M1_parte3 = segmentar(M1, nuevo_tamanio, 0, nuevo_tamanio)\n    M1_parte4 = segmentar(M1, nuevo_tamanio, nuevo_tamanio, nuevo_tamanio)\n    \n    M2_parte1 = segmentar(M2, 0, 0, nuevo_tamanio)\n    M2_parte2 = segmentar(M2, 0, nuevo_tamanio, nuevo_tamanio)\n    M2_parte3 = segmentar(M2, nuevo_tamanio, 0, nuevo_tamanio)\n    M2_parte4 = segmentar(M2, nuevo_tamanio, nuevo_tamanio, nuevo_tamanio)\n    \n    salida_parte1 = sumar_dos_matrices(matriz_producto_recursivo(M1_parte1, M2_parte1, nuevo_tamanio), matriz_producto_recursivo(M1_parte2, M2_parte3, nuevo_tamanio))\n    salida_parte2 = sumar_dos_matrices(matriz_producto_recursivo(M1_parte1, M2_parte2, nuevo_tamanio), matriz_producto_recursivo(M1_parte2, M2_parte4, nuevo_tamanio))\n    salida_parte3 = sumar_dos_matrices(matriz_producto_recursivo(M1_parte3, M2_parte1, nuevo_tamanio), matriz_producto_recursivo(M1_parte4, M2_parte3, nuevo_tamanio))\n    salida_parte4 = sumar_dos_matrices(matriz_producto_recursivo(M1_parte3, M2_parte2, nuevo_tamanio), matriz_producto_recursivo(M1_parte4, M2_parte4, nuevo_tamanio))\n    \n    retornar armar_matriz_completa(salida_parte1, salida_parte2, salida_parte3, salida_parte4)\nfin funcion",
+    "label": "recursivo_divide_conquista"
+  }
+]

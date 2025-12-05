@@ -1,0 +1,282 @@
+[
+  {
+    "id": "grafos_bfs_1",
+    "categoria": "grafos",
+    "subcategoria": "bfs",
+    "pseudocodigo": "funcion BFS(grafo, nodoInicial)\n    cola = CrearCola()\n    visitados = ConjuntoVacio()\n    \n    Encolar(cola, nodoInicial)\n    Agregar(visitados, nodoInicial)\n    \n    mientras no EstaVacia(cola) hacer\n        actual = Desencolar(cola)\n        Procesar(actual)\n        \n        para cada vecino en grafo[actual] hacer\n            si vecino no esta en visitados entonces\n                Agregar(visitados, vecino)\n                Encolar(cola, vecino)\n            fin si\n        fin para\n    fin mientras\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_bfs_2",
+    "categoria": "grafos",
+    "subcategoria": "bfs",
+    "pseudocodigo": "// Recorrido en anchura con seguimiento de niveles\nprocedimiento RecorridoAnchura(G, origen)\n    Q = nueva cola\n    marcados = arreglo booleano de tamaño |V|\n    nivel = arreglo entero de tamaño |V|\n    \n    para todo v en V hacer\n        marcados[v] = falso\n        nivel[v] = infinito\n    fin para\n    \n    insertar(Q, origen)\n    marcados[origen] = verdadero\n    nivel[origen] = 0\n    \n    mientras Q no vacia hacer\n        u = extraer(Q)\n        para todo w adyacente a u hacer\n            si no marcados[w] entonces\n                marcados[w] = verdadero\n                nivel[w] = nivel[u] + 1\n                insertar(Q, w)\n            fin si\n        fin para\n    fin mientras\nfin procedimiento",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_bfs_3",
+    "categoria": "grafos",
+    "subcategoria": "bfs",
+    "pseudocodigo": "funcion BusquedaAmplitud(red, verticeOrigen, verticeDestino)\n    colaAuxiliar = []\n    explorados = {}\n    padres = {}\n    \n    AgregarAlFinal(colaAuxiliar, verticeOrigen)\n    explorados[verticeOrigen] = cierto\n    padres[verticeOrigen] = nulo\n    \n    mientras Longitud(colaAuxiliar) > 0 hacer\n        nodoActual = RemoverPrimero(colaAuxiliar)\n        \n        si nodoActual == verticeDestino entonces\n            retornar ReconstruirCamino(padres, verticeDestino)\n        fin si\n        \n        para cada adyacente en ObtenerVecinos(red, nodoActual) hacer\n            si adyacente no pertenece a explorados entonces\n                explorados[adyacente] = cierto\n                padres[adyacente] = nodoActual\n                AgregarAlFinal(colaAuxiliar, adyacente)\n            fin si\n        fin para\n    fin mientras\n    \n    retornar nulo\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_bfs_4",
+    "categoria": "grafos",
+    "subcategoria": "bfs",
+    "pseudocodigo": "procedimiento ExploracionPorNiveles(mapa, inicio)\n    buffer = ColaVacia()\n    visto = []\n    distancias = DiccionarioVacio()\n    \n    Push(buffer, inicio)\n    Anexar(visto, inicio)\n    distancias[inicio] = 0\n    \n    mientras Tamaño(buffer) != 0 hacer\n        elemento = Pop(buffer)\n        Imprimir(elemento)\n        \n        para n en ListaAdyacencia(mapa, elemento) hacer\n            si n no esta en visto entonces\n                Anexar(visto, n)\n                distancias[n] = distancias[elemento] + 1\n                Push(buffer, n)\n            fin si\n        fin para\n    fin mientras\n    \n    retornar distancias\nfin procedimiento",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_bfs_5",
+    "categoria": "grafos",
+    "subcategoria": "bfs",
+    "pseudocodigo": "funcion TraversalBFS(graph, startNode)\n    queue = InitializeQueue()\n    discovered = CreateSet()\n    result = []\n    \n    Enqueue(queue, startNode)\n    AddToSet(discovered, startNode)\n    \n    mientras not IsEmpty(queue) hacer\n        current = Dequeue(queue)\n        Append(result, current)\n        \n        neighbors = GetAdjacent(graph, current)\n        para cada neighbor en neighbors hacer\n            si not Contains(discovered, neighbor) entonces\n                AddToSet(discovered, neighbor)\n                Enqueue(queue, neighbor)\n            fin si\n        fin para\n    fin mientras\n    \n    retornar result\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_bfs_6",
+    "categoria": "grafos",
+    "subcategoria": "bfs",
+    "pseudocodigo": "// BFS con detección de componentes conexas\nprocedimiento BFS_Componentes(grafo)\n    visitado = arreglo[1..n] de booleanos inicializado en falso\n    componente = 0\n    \n    para cada vertice v desde 1 hasta n hacer\n        si no visitado[v] entonces\n            componente = componente + 1\n            Q = crearCola()\n            agregar(Q, v)\n            visitado[v] = verdadero\n            \n            mientras Q no esta vacia hacer\n                x = quitar(Q)\n                Etiquetar(x, componente)\n                \n                para cada y en Adyacentes(grafo, x) hacer\n                    si no visitado[y] entonces\n                        visitado[y] = verdadero\n                        agregar(Q, y)\n                    fin si\n                fin para\n            fin mientras\n        fin si\n    fin para\nfin procedimiento",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_bfs_7",
+    "categoria": "grafos",
+    "subcategoria": "bfs",
+    "pseudocodigo": "funcion AnchuraPrimero(estructura, raiz)\n    fila = NuevaCola()\n    procesados = ConjuntoVacio()\n    orden = ListaVacia()\n    \n    Insertar(fila, raiz)\n    Marcar(procesados, raiz)\n    \n    mientras Longitud(fila) > 0 hacer\n        nodo = ExtraerPrimero(fila)\n        AgregarAlFinal(orden, nodo)\n        \n        sucesores = Vecindad(estructura, nodo)\n        para cada s en sucesores hacer\n            si no Pertenece(s, procesados) entonces\n                Marcar(procesados, s)\n                Insertar(fila, s)\n            fin si\n        fin para\n    fin mientras\n    \n    retornar orden\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_bfs_8",
+    "categoria": "grafos",
+    "subcategoria": "bfs",
+    "pseudocodigo": "procedimiento RecorridoBFS(G, s)\n    color = nuevo arreglo[|V|]\n    distancia = nuevo arreglo[|V|]\n    predecesor = nuevo arreglo[|V|]\n    \n    para cada u en V[G] - {s} hacer\n        color[u] = BLANCO\n        distancia[u] = INFINITO\n        predecesor[u] = NIL\n    fin para\n    \n    color[s] = GRIS\n    distancia[s] = 0\n    predecesor[s] = NIL\n    COLA = CrearColaVacia()\n    Encolar(COLA, s)\n    \n    mientras COLA no vacia hacer\n        u = Desencolar(COLA)\n        para cada v en Ady[u] hacer\n            si color[v] = BLANCO entonces\n                color[v] = GRIS\n                distancia[v] = distancia[u] + 1\n                predecesor[v] = u\n                Encolar(COLA, v)\n            fin si\n        fin para\n        color[u] = NEGRO\n    fin mientras\nfin procedimiento",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_bfs_9",
+    "categoria": "grafos",
+    "subcategoria": "bfs",
+    "pseudocodigo": "funcion BusquedaEnAmplitud(matrizAdy, nodoPartida, nodoBuscado)\n    pendientes = ColaFIFO()\n    yaVistos = ArregloBool(tamaño)\n    encontrado = falso\n    \n    Meter(pendientes, nodoPartida)\n    yaVistos[nodoPartida] = verdadero\n    \n    mientras no Vacia(pendientes) y no encontrado hacer\n        v = Sacar(pendientes)\n        \n        si v == nodoBuscado entonces\n            encontrado = verdadero\n        sino\n            para i desde 0 hasta tamaño-1 hacer\n                si matrizAdy[v][i] == 1 y no yaVistos[i] entonces\n                    yaVistos[i] = verdadero\n                    Meter(pendientes, i)\n                fin si\n            fin para\n        fin si\n    fin mientras\n    \n    retornar encontrado\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_bfs_10",
+    "categoria": "grafos",
+    "subcategoria": "bfs",
+    "pseudocodigo": "procedimiento ExploracionNivelPorNivel(digrafo, origen)\n    frontera = []\n    alcanzados = ConjuntoVacio()\n    profundidad = 0\n    \n    Agregar(frontera, origen)\n    Incluir(alcanzados, origen)\n    \n    mientras Cardinalidad(frontera) > 0 hacer\n        Imprimir(\"Nivel\", profundidad, \":\", frontera)\n        siguienteNivel = []\n        \n        para cada vertice en frontera hacer\n            para cada destino en Sucesores(digrafo, vertice) hacer\n                si destino no pertenece a alcanzados entonces\n                    Incluir(alcanzados, destino)\n                    Agregar(siguienteNivel, destino)\n                fin si\n            fin para\n        fin para\n        \n        frontera = siguienteNivel\n        profundidad = profundidad + 1\n    fin mientras\nfin procedimiento",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dfs_1",
+    "categoria": "grafos",
+    "subcategoria": "dfs",
+    "pseudocodigo": "funcion DFS(grafo, nodoInicial):\n    visitados = conjunto_vacio()\n    pila = nueva_pila()\n    pila.agregar(nodoInicial)\n    \n    mientras pila no este vacia:\n        nodo = pila.extraer()\n        si nodo no esta en visitados:\n            visitados.agregar(nodo)\n            procesar(nodo)\n            para cada vecino en grafo.adyacentes(nodo):\n                pila.agregar(vecino)\n    \n    retornar visitados",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dfs_2",
+    "categoria": "grafos",
+    "subcategoria": "dfs",
+    "pseudocodigo": "procedimiento RecorridoProfundidad(G, v, marcados):\n    marcados[v] = verdadero\n    imprimir(v)\n    \n    para cada w en G.listaAdyacencia[v]:\n        si marcados[w] == falso entonces:\n            RecorridoProfundidad(G, w, marcados)",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dfs_3",
+    "categoria": "grafos",
+    "subcategoria": "dfs",
+    "pseudocodigo": "funcion exploracion_profunda(red, origen):\n    // Algoritmo DFS iterativo con seguimiento de camino\n    conjunto_explorado = arreglo_booleano(red.tamaño)\n    stack = []\n    ruta_completa = []\n    \n    stack.insertar_final(origen)\n    \n    mientras longitud(stack) > 0:\n        actual = stack.quitar_final()\n        \n        si no conjunto_explorado[actual]:\n            conjunto_explorado[actual] = verdadero\n            ruta_completa.agregar(actual)\n            \n            para i desde red.vecinos[actual].tamaño - 1 hasta 0:\n                siguiente = red.vecinos[actual][i]\n                si no conjunto_explorado[siguiente]:\n                    stack.insertar_final(siguiente)\n    \n    retornar ruta_completa",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dfs_4",
+    "categoria": "grafos",
+    "subcategoria": "dfs",
+    "pseudocodigo": "funcion busqueda_profundidad(matriz_adyacencia, inicio, n):\n    visto = arreglo[n] inicializado en falso\n    resultado = lista_vacia()\n    \n    procedimiento dfs_recursivo(u):\n        visto[u] = verdadero\n        resultado.añadir(u)\n        \n        para j desde 0 hasta n-1:\n            si matriz_adyacencia[u][j] == 1 y visto[j] == falso:\n                dfs_recursivo(j)\n    \n    dfs_recursivo(inicio)\n    retornar resultado",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dfs_5",
+    "categoria": "grafos",
+    "subcategoria": "dfs",
+    "pseudocodigo": "algoritmo DFS_Completo(grafo):\n    estado = diccionario_vacio()\n    orden_visita = []\n    \n    para cada vertice en grafo.vertices():\n        estado[vertice] = \"no_visitado\"\n    \n    funcion visitar(x):\n        estado[x] = \"visitando\"\n        orden_visita.agregar(x)\n        \n        para cada y en grafo.obtener_vecinos(x):\n            si estado[y] == \"no_visitado\":\n                visitar(y)\n        \n        estado[x] = \"visitado\"\n    \n    para cada nodo en grafo.vertices():\n        si estado[nodo] == \"no_visitado\":\n            visitar(nodo)\n    \n    retornar orden_visita",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dfs_6",
+    "categoria": "grafos",
+    "subcategoria": "dfs",
+    "pseudocodigo": "procedimiento recorrido_DFS(G, s):\n    crear pila P\n    crear conjunto V\n    P.push(s)\n    \n    repetir hasta que P este vacia:\n        elemento = P.pop()\n        \n        si elemento no pertenece a V:\n            V.insertar(elemento)\n            ejecutar_accion(elemento)\n            \n            adyacentes = G.obtenerAdyacentes(elemento)\n            para cada adj en adyacentes hacer:\n                P.push(adj)",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dfs_7",
+    "categoria": "grafos",
+    "subcategoria": "dfs",
+    "pseudocodigo": "funcion depth_first_search(graph, start_node, objetivo):\n    // DFS con búsqueda de objetivo específico\n    visitado = conjunto()\n    pila_nodos = pila_nueva()\n    pila_nodos.empujar(start_node)\n    \n    mientras no pila_nodos.esta_vacia():\n        current = pila_nodos.tope()\n        pila_nodos.desapilar()\n        \n        si current == objetivo entonces:\n            retornar verdadero\n        \n        si current no en visitado:\n            visitado.agregar(current)\n            \n            lista_ady = graph.adyacencias(current)\n            para cada nodo_adj en lista_ady:\n                si nodo_adj no en visitado:\n                    pila_nodos.empujar(nodo_adj)\n    \n    retornar falso",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dfs_8",
+    "categoria": "grafos",
+    "subcategoria": "dfs",
+    "pseudocodigo": "algoritmo BusquedaEnProfundidad(grafo, raiz):\n    marcas = mapa_vacio()\n    \n    funcion explorar(nodo_actual):\n        marcas[nodo_actual] = cierto\n        mostrar(nodo_actual)\n        \n        conexiones = grafo[nodo_actual]\n        para cada conexion en conexiones:\n            si marcas[conexion] != cierto:\n                explorar(conexion)\n    \n    explorar(raiz)",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dfs_9",
+    "categoria": "grafos",
+    "subcategoria": "dfs",
+    "pseudocodigo": "procedimiento DFS_con_tiempo(G, vertice_inicial):\n    // DFS con marcas de tiempo de descubrimiento y finalización\n    color = arreglo[G.num_vertices] = \"blanco\"\n    tiempo_desc = arreglo[G.num_vertices]\n    tiempo_fin = arreglo[G.num_vertices]\n    tiempo = 0\n    \n    procedimiento DFS_visita(u):\n        tiempo = tiempo + 1\n        tiempo_desc[u] = tiempo\n        color[u] = \"gris\"\n        \n        para cada v en G.ady[u]:\n            si color[v] == \"blanco\":\n                DFS_visita(v)\n        \n        color[u] = \"negro\"\n        tiempo = tiempo + 1\n        tiempo_fin[u] = tiempo\n    \n    DFS_visita(vertice_inicial)",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dfs_10",
+    "categoria": "grafos",
+    "subcategoria": "dfs",
+    "pseudocodigo": "funcion recorrido_profundidad_iterativo(red, punto_partida):\n    explorados = conjunto_nuevo()\n    frontera = pila_nueva()\n    secuencia = lista_nueva()\n    \n    frontera.apilar(punto_partida)\n    \n    mientras frontera.tamaño() > 0:\n        nodo_actual = frontera.desapilar()\n        \n        si nodo_actual no esta en explorados:\n            explorados.añadir(nodo_actual)\n            secuencia.añadir(nodo_actual)\n            \n            vecindad = red.obtener_vecinos(nodo_actual)\n            vecindad.invertir()\n            \n            para cada vecino en vecindad:\n                si vecino no esta en explorados:\n                    frontera.apilar(vecino)\n    \n    retornar secuencia",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dijkstra_1",
+    "categoria": "grafos",
+    "subcategoria": "dijkstra",
+    "pseudocodigo": "funcion dijkstra(grafo, origen)\n    distancias = arreglo infinito para todos los nodos\n    distancias[origen] = 0\n    visitados = conjunto vacío\n    cola = todos los nodos del grafo\n    \n    mientras cola no esté vacía hacer\n        u = nodo con menor distancia en cola\n        remover u de cola\n        agregar u a visitados\n        \n        para cada vecino v de u hacer\n            si v no está en visitados entonces\n                nueva_distancia = distancias[u] + peso(u, v)\n                si nueva_distancia < distancias[v] entonces\n                    distancias[v] = nueva_distancia\n                fin si\n            fin si\n        fin para\n    fin mientras\n    \n    retornar distancias\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dijkstra_2",
+    "categoria": "grafos",
+    "subcategoria": "dijkstra",
+    "pseudocodigo": "funcion caminoMasCorto(red, nodoInicial)\n    costo = mapa con valores infinitos\n    costo[nodoInicial] = 0\n    procesados = lista vacía\n    pendientes = cola_prioridad con nodoInicial\n    \n    mientras pendientes tenga elementos hacer\n        actual = extraer_minimo(pendientes)\n        \n        si actual en procesados entonces\n            continuar\n        fin si\n        \n        marcar actual como procesado\n        \n        para cada adyacente en red[actual] hacer\n            costoNuevo = costo[actual] + red[actual][adyacente]\n            si costoNuevo < costo[adyacente] entonces\n                costo[adyacente] = costoNuevo\n                insertar adyacente en pendientes\n            fin si\n        fin para\n    fin mientras\n    \n    retornar costo\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dijkstra_3",
+    "categoria": "grafos",
+    "subcategoria": "dijkstra",
+    "pseudocodigo": "funcion encontrarRutaMinima(G, s)\n    d = vector de tamaño n con valores INFINITO\n    d[s] = 0\n    Q = conjunto de todos los vértices\n    predecesor = vector de tamaño n con valores nulo\n    \n    mientras Q no sea vacío hacer\n        extraer vértice u con d[u] mínimo de Q\n        \n        para cada arista (u,w) hacer\n            alternativa = d[u] + longitud(u,w)\n            si alternativa < d[w] entonces\n                d[w] = alternativa\n                predecesor[w] = u\n            fin si\n        fin para\n    fin mientras\n    \n    retornar d, predecesor\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dijkstra_4",
+    "categoria": "grafos",
+    "subcategoria": "dijkstra",
+    "pseudocodigo": "funcion algoritmo_dijkstra(matriz_adyacencia, inicio)\n    n = número de nodos\n    dist = arreglo[n] inicializado en infinito\n    dist[inicio] = 0\n    visitado = arreglo[n] de booleanos en falso\n    \n    para i desde 1 hasta n hacer\n        minimo = infinito\n        indice_minimo = -1\n        \n        para j desde 0 hasta n-1 hacer\n            si no visitado[j] y dist[j] < minimo entonces\n                minimo = dist[j]\n                indice_minimo = j\n            fin si\n        fin para\n        \n        visitado[indice_minimo] = verdadero\n        \n        para k desde 0 hasta n-1 hacer\n            si matriz_adyacencia[indice_minimo][k] > 0 entonces\n                si dist[indice_minimo] + matriz_adyacencia[indice_minimo][k] < dist[k] entonces\n                    dist[k] = dist[indice_minimo] + matriz_adyacencia[indice_minimo][k]\n                fin si\n            fin si\n        fin para\n    fin para\n    \n    retornar dist\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dijkstra_5",
+    "categoria": "grafos",
+    "subcategoria": "dijkstra",
+    "pseudocodigo": "funcion buscarDistanciasMinimas(grafo, verticeOrigen)\n    distancia = diccionario vacío\n    anterior = diccionario vacío\n    noVisitados = heap_minimo vacío\n    \n    para cada nodo en grafo hacer\n        distancia[nodo] = infinito\n        anterior[nodo] = indefinido\n        insertar nodo en noVisitados con prioridad infinito\n    fin para\n    \n    distancia[verticeOrigen] = 0\n    actualizar_prioridad(noVisitados, verticeOrigen, 0)\n    \n    mientras noVisitados no esté vacío hacer\n        v = extraer_minimo(noVisitados)\n        \n        para cada vecino en grafo.adyacentes(v) hacer\n            distAlternativa = distancia[v] + grafo.peso_arista(v, vecino)\n            \n            si distAlternativa < distancia[vecino] entonces\n                distancia[vecino] = distAlternativa\n                anterior[vecino] = v\n                actualizar_prioridad(noVisitados, vecino, distAlternativa)\n            fin si\n        fin para\n    fin mientras\n    \n    retornar distancia, anterior\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dijkstra_6",
+    "categoria": "grafos",
+    "subcategoria": "dijkstra",
+    "pseudocodigo": "funcion calcular_caminos_cortos(listaAdyacencia, raiz)\n    tamano = longitud(listaAdyacencia)\n    costos = nuevo arreglo[tamano]\n    explorado = nuevo arreglo[tamano]\n    \n    para idx desde 0 hasta tamano-1 hacer\n        costos[idx] = INFINITO\n        explorado[idx] = falso\n    fin para\n    \n    costos[raiz] = 0\n    contador = 0\n    \n    mientras contador < tamano hacer\n        minCosto = INFINITO\n        nodoActual = -1\n        \n        para i desde 0 hasta tamano-1 hacer\n            si explorado[i] es falso y costos[i] < minCosto entonces\n                minCosto = costos[i]\n                nodoActual = i\n            fin si\n        fin para\n        \n        explorado[nodoActual] = verdadero\n        contador = contador + 1\n        \n        para cada arista en listaAdyacencia[nodoActual] hacer\n            destino = arista.destino\n            peso = arista.peso\n            \n            si costos[nodoActual] + peso < costos[destino] entonces\n                costos[destino] = costos[nodoActual] + peso\n            fin si\n        fin para\n    fin mientras\n    \n    retornar costos\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dijkstra_7",
+    "categoria": "grafos",
+    "subcategoria": "dijkstra",
+    "pseudocodigo": "funcion dijkstra_con_camino(G, origen, destino)\n    D = tabla_hash con distancias infinitas\n    D[origen] = 0\n    P = tabla_hash para padres\n    S = conjunto de nodos resueltos\n    Q = cola_prioridad_minima\n    Q.insertar(origen, 0)\n    \n    mientras no Q.esta_vacia() hacer\n        u = Q.extraer_minimo()\n        \n        si u igual destino entonces\n            romper\n        fin si\n        \n        si u en S entonces\n            continuar\n        fin si\n        \n        S.agregar(u)\n        \n        para cada vecino v de G.vecinos(u) hacer\n            peso_arista = G.obtener_peso(u, v)\n            distancia_candidata = D[u] + peso_arista\n            \n            si distancia_candidata < D[v] entonces\n                D[v] = distancia_candidata\n                P[v] = u\n                Q.insertar(v, distancia_candidata)\n            fin si\n        fin para\n    fin mientras\n    \n    camino = reconstruir_camino(P, origen, destino)\n    retornar D[destino], camino\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dijkstra_8",
+    "categoria": "grafos",
+    "subcategoria": "dijkstra",
+    "pseudocodigo": "funcion ruta_optima(mapa, puntoPartida)\n    longitudes = inicializar_infinito()\n    longitudes[puntoPartida] = 0\n    sinProcesar = conjunto_todos_nodos(mapa)\n    \n    mientras sinProcesar.tamano() > 0 hacer\n        nodoMinimo = nulo\n        valorMinimo = infinito\n        \n        para cada elemento en sinProcesar hacer\n            si longitudes[elemento] < valorMinimo entonces\n                valorMinimo = longitudes[elemento]\n                nodoMinimo = elemento\n            fin si\n        fin para\n        \n        sinProcesar.eliminar(nodoMinimo)\n        \n        para cada conexion en mapa.obtener_conexiones(nodoMinimo) hacer\n            nodoVecino = conexion.nodo\n            pesoConexion = conexion.peso\n            longitudAlternativa = longitudes[nodoMinimo] + pesoConexion\n            \n            si longitudAlternativa < longitudes[nodoVecino] entonces\n                longitudes[nodoVecino] = longitudAlternativa\n            fin si\n        fin para\n    fin mientras\n    \n    retornar longitudes\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dijkstra_9",
+    "categoria": "grafos",
+    "subcategoria": "dijkstra",
+    "pseudocodigo": "funcion distancias_minimas_dijkstra(grafo, nodo_inicio)\n    num_vertices = grafo.cantidad_nodos()\n    distancias_finales = arreglo[num_vertices]\n    conjunto_visitados = conjunto_vacio\n    heap = monticulo_minimo\n    \n    para v desde 0 hasta num_vertices-1 hacer\n        distancias_finales[v] = VALOR_INFINITO\n    fin para\n    \n    distancias_finales[nodo_inicio] = 0\n    heap.agregar(nodo_inicio, 0)\n    \n    mientras heap.no_vacio() hacer\n        nodo_actual = heap.extraer_minimo()\n        \n        si nodo_actual en conjunto_visitados entonces\n            continuar\n        fin si\n        \n        conjunto_visitados.insertar(nodo_actual)\n        \n        lista_vecinos = grafo.obtener_vecinos(nodo_actual)\n        \n        para cada vecino en lista_vecinos hacer\n            si vecino no en conjunto_visitados entonces\n                peso_enlace = grafo.peso_entre(nodo_actual, vecino)\n                nueva_distancia = distancias_finales[nodo_actual] + peso_enlace\n                \n                si nueva_distancia < distancias_finales[vecino] entonces\n                    distancias_finales[vecino] = nueva_distancia\n                    heap.agregar(vecino, nueva_distancia)\n                fin si\n            fin si\n        fin para\n    fin mientras\n    \n    retornar distancias_finales\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_dijkstra_10",
+    "categoria": "grafos",
+    "subcategoria": "dijkstra",
+    "pseudocodigo": "funcion resolver_camino_minimo(red, vertice_inicial)\n    tabla_distancias = crear_tabla()\n    tabla_previos = crear_tabla()\n    procesados = conjunto_vacio\n    por_procesar = heap_fibonacci\n    \n    inicializar_tabla(tabla_distancias, infinito)\n    tabla_distancias[vertice_inicial] = 0\n    por_procesar.insertar(vertice_inicial, 0)\n    \n    mientras por_procesar.tiene_elementos() hacer\n        v_actual = por_procesar.eliminar_minimo()\n        \n        si v_actual ya_esta_en procesados entonces\n            saltar_iteracion\n        fin si\n        \n        procesados.agregar(v_actual)\n        aristas_salientes = red.aristas_desde(v_actual)\n        \n        para cada arista en aristas_salientes hacer\n            v_destino = arista.obtener_destino()\n            peso_arista = arista.obtener_peso()\n            distancia_propuesta = tabla_distancias[v_actual] + peso_arista\n            \n            si distancia_propuesta < tabla_distancias[v_destino] entonces\n                tabla_distancias[v_destino] = distancia_propuesta\n                tabla_previos[v_destino] = v_actual\n                \n                si v_destino no_esta_en procesados entonces\n                    por_procesar.insertar(v_destino, distancia_propuesta)\n                fin si\n            fin si\n        fin para\n    fin mientras\n    \n    retornar tabla_distancias, tabla_previos\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_prim_1",
+    "categoria": "grafos",
+    "subcategoria": "prim",
+    "pseudocodigo": "funcion prim(grafo, inicio)\n    visitados = conjunto_vacio\n    arbol = lista_vacia\n    cola_prioridad = nueva_cola_prioridad()\n    \n    agregar visitados(inicio)\n    para cada arista en grafo.aristas(inicio) hacer\n        insertar cola_prioridad(arista, arista.peso)\n    fin para\n    \n    mientras no esta_vacia(cola_prioridad) hacer\n        arista_minima = extraer_minimo(cola_prioridad)\n        vertice_destino = arista_minima.destino\n        \n        si vertice_destino no esta en visitados entonces\n            agregar visitados(vertice_destino)\n            agregar arbol(arista_minima)\n            \n            para cada arista en grafo.aristas(vertice_destino) hacer\n                si arista.destino no esta en visitados entonces\n                    insertar cola_prioridad(arista, arista.peso)\n                fin si\n            fin para\n        fin si\n    fin mientras\n    \n    retornar arbol\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_prim_2",
+    "categoria": "grafos",
+    "subcategoria": "prim",
+    "pseudocodigo": "funcion algoritmo_prim(G, nodo_raiz)\n    conjunto_S = {nodo_raiz}\n    aristas_MST = []\n    costo_total = 0\n    \n    mientras tamaño(conjunto_S) < numero_vertices(G) hacer\n        menor_peso = infinito\n        arista_elegida = nulo\n        \n        para u en conjunto_S hacer\n            para v en adyacentes(G, u) hacer\n                si v no pertenece a conjunto_S entonces\n                    si peso(u, v) < menor_peso entonces\n                        menor_peso = peso(u, v)\n                        arista_elegida = (u, v)\n                    fin si\n                fin si\n            fin para\n        fin para\n        \n        agregar conjunto_S(arista_elegida.segundo)\n        agregar aristas_MST(arista_elegida)\n        costo_total = costo_total + menor_peso\n    fin mientras\n    \n    retornar aristas_MST, costo_total\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_prim_3",
+    "categoria": "grafos",
+    "subcategoria": "prim",
+    "pseudocodigo": "funcion construir_arbol_minimo(red, v_inicial)\n    marcados = arreglo[tamaño_red] inicializado en falso\n    padre = arreglo[tamaño_red] inicializado en -1\n    clave = arreglo[tamaño_red] inicializado en infinito\n    \n    clave[v_inicial] = 0\n    \n    para i desde 0 hasta tamaño_red - 1 hacer\n        u = extraer_vertice_minimo_no_marcado(clave, marcados)\n        marcados[u] = verdadero\n        \n        para cada vecino w de u hacer\n            si marcados[w] == falso y red[u][w] < clave[w] entonces\n                clave[w] = red[u][w]\n                padre[w] = u\n            fin si\n        fin para\n    fin para\n    \n    retornar padre\nfin funcion\n\nfuncion extraer_vertice_minimo_no_marcado(clave, marcados)\n    minimo = infinito\n    indice_min = -1\n    para i desde 0 hasta longitud(clave) - 1 hacer\n        si marcados[i] == falso y clave[i] < minimo entonces\n            minimo = clave[i]\n            indice_min = i\n        fin si\n    fin para\n    retornar indice_min\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_prim_4",
+    "categoria": "grafos",
+    "subcategoria": "prim",
+    "pseudocodigo": "funcion MST_Prim(matriz_adyacencia, origen)\n    n = numero_nodos(matriz_adyacencia)\n    incluido = nuevo_arreglo_booleano(n, falso)\n    distancia_minima = nuevo_arreglo(n, INFINITO)\n    resultado = lista_vacia\n    \n    distancia_minima[origen] = 0\n    incluido[origen] = verdadero\n    nodos_procesados = 1\n    \n    mientras nodos_procesados < n hacer\n        borde_minimo = INFINITO\n        desde = -1\n        hacia = -1\n        \n        para i desde 0 hasta n-1 hacer\n            si incluido[i] entonces\n                para j desde 0 hasta n-1 hacer\n                    si no incluido[j] y matriz_adyacencia[i][j] > 0 entonces\n                        si matriz_adyacencia[i][j] < borde_minimo entonces\n                            borde_minimo = matriz_adyacencia[i][j]\n                            desde = i\n                            hacia = j\n                        fin si\n                    fin si\n                fin para\n            fin si\n        fin para\n        \n        incluido[hacia] = verdadero\n        agregar_a_lista(resultado, {desde, hacia, borde_minimo})\n        nodos_procesados = nodos_procesados + 1\n    fin mientras\n    \n    retornar resultado\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_prim_5",
+    "categoria": "grafos",
+    "subcategoria": "prim",
+    "pseudocodigo": "funcion prim_con_heap(grafo_G, vertice_s)\n    // Inicialización de estructuras\n    Q = crear_heap_minimo()\n    arbol_expansion = conjunto_vacio\n    costo = arreglo_de_tamaño(G.vertices) con valores infinito\n    predecesor = arreglo_de_tamaño(G.vertices) con valores nulo\n    \n    costo[vertice_s] = 0\n    \n    // Insertar todos los vértices en el heap\n    para cada v en grafo_G.vertices hacer\n        insertar_en_heap(Q, v, costo[v])\n    fin para\n    \n    // Algoritmo principal\n    mientras Q no este vacio hacer\n        u = extraer_minimo(Q)\n        \n        si predecesor[u] != nulo entonces\n            agregar arbol_expansion({predecesor[u], u})\n        fin si\n        \n        para cada v adyacente a u hacer\n            si v esta en Q y peso(u,v) < costo[v] entonces\n                predecesor[v] = u\n                costo[v] = peso(u,v)\n                decrementar_clave(Q, v, costo[v])\n            fin si\n        fin para\n    fin mientras\n    \n    retornar arbol_expansion\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_prim_6",
+    "categoria": "grafos",
+    "subcategoria": "prim",
+    "pseudocodigo": "funcion arbol_recubridor_minimo(G, raiz)\n    T = grafo_vacio\n    vertices_en_T = {raiz}\n    aristas_candidatas = obtener_aristas_incidentes(G, raiz)\n    \n    repetir hasta que tamaño(vertices_en_T) == tamaño(G.vertices)\n        e = arista_de_peso_minimo(aristas_candidatas)\n        eliminar aristas_candidatas(e)\n        \n        sean u, v los extremos de e\n        \n        si u en vertices_en_T y v no en vertices_en_T entonces\n            agregar T(e)\n            agregar vertices_en_T(v)\n            nuevas_aristas = obtener_aristas_incidentes(G, v)\n            para cada arista_nueva en nuevas_aristas hacer\n                si arista_nueva no conecta dos vertices en vertices_en_T entonces\n                    agregar aristas_candidatas(arista_nueva)\n                fin si\n            fin para\n        sino si v en vertices_en_T y u no en vertices_en_T entonces\n            agregar T(e)\n            agregar vertices_en_T(u)\n            nuevas_aristas = obtener_aristas_incidentes(G, u)\n            para cada arista_nueva en nuevas_aristas hacer\n                si arista_nueva no conecta dos vertices en vertices_en_T entonces\n                    agregar aristas_candidatas(arista_nueva)\n                fin si\n            fin para\n        fin si\n    fin repetir\n    \n    retornar T\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_prim_7",
+    "categoria": "grafos",
+    "subcategoria": "prim",
+    "pseudocodigo": "funcion ejecutar_prim(malla, punto_partida)\n    explorados = conjunto_vacio\n    frontera = heap_minimo_vacio\n    solucion = lista_vacia\n    peso_total = 0\n    \n    insertar explorados(punto_partida)\n    \n    para cada conexion c saliendo de punto_partida hacer\n        push frontera(c.destino, c.costo, punto_partida, c.destino)\n    fin para\n    \n    mientras tamaño(explorados) < malla.cantidad_nodos hacer\n        registro = pop frontera()\n        nodo_actual = registro.nodo_destino\n        \n        si nodo_actual no esta en explorados entonces\n            insertar explorados(nodo_actual)\n            insertar solucion({registro.nodo_origen, registro.nodo_destino, registro.costo})\n            peso_total = peso_total + registro.costo\n            \n            para cada conexion c saliendo de nodo_actual hacer\n                si c.destino no esta en explorados entonces\n                    push frontera(c.destino, c.costo, nodo_actual, c.destino)\n                fin si\n            fin para\n        fin si\n    fin mientras\n    \n    retornar solucion, peso_total\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_prim_8",
+    "categoria": "grafos",
+    "subcategoria": "prim",
+    "pseudocodigo": "funcion prim_simple(red, nodo_inicial)\n    seleccionados = [nodo_inicial]\n    enlaces = []\n    \n    mientras longitud(seleccionados) < total_nodos(red) hacer\n        peso_min = INFINITO\n        enlace_optimo = nulo\n        \n        para cada n en seleccionados hacer\n            para cada m en vecinos(red, n) hacer\n                si m no esta en seleccionados entonces\n                    w = obtener_peso(red, n, m)\n                    si w < peso_min entonces\n                        peso_min = w\n                        enlace_optimo = crear_enlace(n, m, w)\n                    fin si\n                fin si\n            fin para\n        fin para\n        \n        agregar_nodo seleccionados(enlace_optimo.segundo_nodo)\n        agregar_enlace enlaces(enlace_optimo)\n    fin mientras\n    \n    retornar enlaces\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_prim_9",
+    "categoria": "grafos",
+    "subcategoria": "prim",
+    "pseudocodigo": "funcion generar_MST_prim(grafo, v0)\n    visitado = mapa_booleano vacio\n    distancia = mapa_numerico vacio\n    previo = mapa vacio\n    cola = cola_prioridad_minima vacia\n    \n    para cada vertice en grafo hacer\n        visitado[vertice] = falso\n        distancia[vertice] = infinito\n        previo[vertice] = indefinido\n    fin para\n    \n    distancia[v0] = 0\n    encolar cola(v0, 0)\n    \n    mientras cola no vacia hacer\n        actual = desencolar cola()\n        \n        si visitado[actual] entonces\n            continuar\n        fin si\n        \n        visitado[actual] = verdadero\n        \n        para cada adyacente en grafo.obtener_adyacentes(actual) hacer\n            peso_arista = grafo.obtener_peso(actual, adyacente)\n            \n            si no visitado[adyacente] y peso_arista < distancia[adyacente] entonces\n                distancia[adyacente] = peso_arista\n                previo[adyacente] = actual\n                encolar cola(adyacente, peso_arista)\n            fin si\n        fin para\n    fin mientras\n    \n    retornar reconstruir_arbol(previo, v0)\nfin funcion\n\nfuncion reconstruir_arbol(previo, raiz)\n    aristas = lista_vacia\n    para cada vertice, padre en previo hacer\n        si padre != indefinido entonces\n            agregar aristas({padre, vertice})\n        fin si\n    fin para\n    retornar aristas\nfin funcion",
+    "label": "grafos"
+  },
+  {
+    "id": "grafos_prim_10",
+    "categoria": "grafos",
+    "subcategoria": "prim",
+    "pseudocodigo": "funcion algoritmo_expansion_minima(G, s)\n    N = cantidad_vertices(G)\n    procesado = arreglo[N] de falsos\n    costo_minimo = arreglo[N] de infinitos\n    conexion_previa = arreglo[N] de nulos\n    resultado_aristas = lista_vacia\n    suma_pesos = 0\n    \n    costo_minimo[s] = 0\n    contador = 0\n    \n    mientras contador < N hacer\n        minimo_actual = infinito\n        vertice_seleccionado = -1\n        \n        para idx desde 0 hasta N-1 hacer\n            si no procesado[idx] y costo_minimo[idx] < minimo_actual entonces\n                minimo_actual = costo_minimo[idx]\n                vertice_seleccionado = idx\n            fin si\n        fin para\n        \n        procesado[vertice_seleccionado] = verdadero\n        contador = contador + 1\n        \n        si conexion_previa[vertice_seleccionado] != nulo entonces\n            agregar resultado_aristas({conexion_previa[vertice_seleccionado], vertice_seleccionado})\n            suma_pesos = suma_pesos + minimo_actual\n        fin si\n        \n        para cada ady en adyacentes(G, vertice_seleccionado) hacer\n            peso_ady = G.peso_arista(vertice_seleccionado, ady)\n            si no procesado[ady] y peso_ady < costo_minimo[ady] entonces\n                costo_minimo[ady] = peso_ady\n                conexion_previa[ady] = vertice_seleccionado\n            fin si\n        fin para\n    fin mientras\n    \n    retornar resultado_aristas, suma_pesos\nfin funcion",
+    "label": "grafos"
+  }
+]
