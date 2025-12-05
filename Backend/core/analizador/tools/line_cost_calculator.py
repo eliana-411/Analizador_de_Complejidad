@@ -107,21 +107,63 @@ class LineCostCalculator:
         if line_clean.startswith('int ') or line_clean.startswith('bool ') or line_clean.startswith('real '):
             return 0
 
-        # Ignorar headers de loops/if (el costo está en el cuerpo)
-        if any(line_clean.startswith(kw) for kw in ['for ', 'while ', 'repeat', 'until ', 'if ', 'else', 'then']):
+        # IMPORTANTE: Los encabezados de loops SÍ tienen costo
+        # FOR: tiene comparación (i <= n) que se ejecuta n+1 veces
+        # WHILE: tiene evaluación de condición
+        # Por eso NO los ignoramos aquí, los contamos según su operación
+
+        # Contar operaciones en encabezados de loops
+        if line_clean.startswith('for '):
+            # for i = 1 to n → tiene comparación implícita
+            return 1  # Comparación i <= n
+
+        if line_clean.startswith('while '):
+            # while (condicion) → evaluar la condición
+            # Contar operaciones en la condición
+            match = re.search(r'while\s*\((.+?)\)', line_clean)
+            if match:
+                condition = match.group(1)
+                # Contar comparaciones y operaciones lógicas en la condición
+                ops_in_condition = 0
+                ops_in_condition += len(re.findall(r'(==|!=|<=|>=|<|>)', condition))
+                ops_in_condition += len(re.findall(r'(and|or|not)', condition))
+                return max(ops_in_condition, 1)  # Al menos 1 op
+            return 1  # Default si no se puede parsear
+
+        # Contar operaciones en IF
+        if line_clean.startswith('if '):
+            # if (condicion) then → evaluar la condición
+            match = re.search(r'if\s*\((.+?)\)\s*then', line_clean)
+            if match:
+                condition = match.group(1)
+                # Contar comparaciones y operaciones lógicas en la condición
+                ops_in_condition = 0
+                ops_in_condition += len(re.findall(r'(==|!=|<=|>=|<|>)', condition))
+                ops_in_condition += len(re.findall(r'(and|or|not)', condition))
+                return max(ops_in_condition, 1)  # Al menos 1 op si hay condición
+            return 1  # Default si no se puede parsear
+
+        # Ignorar otros headers (else, then, repeat, until)
+        if any(line_clean.startswith(kw) for kw in ['else', 'then', 'repeat', 'until ']):
             return 0
 
         ops = 0
 
-        # Asignaciones
+        # Asignaciones (←, 🡨, =, :=)
+        # Solo contar como asignación si no es parte de una comparación
         if '←' in line_clean or '🡨' in line_clean:
             ops += 1
+        elif '=' in line_clean:
+            # Verificar que no sea comparación (==, !=, <=, >=)
+            if not any(op in line_clean for op in ['==', '!=', '<=', '>=']):
+                ops += 1
 
         # Operaciones aritméticas
         ops += len(re.findall(r'[\+\-\*/]', line_clean))
 
-        # Comparaciones (evitar contar =  en asignaciones)
-        comparison_pattern = r'(?<![🡨←])\s*([<>=≤≥≠])\s*'
+        # Comparaciones (evitar contar = en asignaciones)
+        # Buscar: ==, !=, <, >, <=, >=
+        comparison_pattern = r'(==|!=|<=|>=|<|>)'
         ops += len(re.findall(comparison_pattern, line_clean))
 
         # Accesos a array
@@ -149,8 +191,13 @@ class LineCostCalculator:
 
         Estrategia:
         1. Si línea está fuera de loops → Freq = 1
-        2. Si línea está en loop(s) → Freq = producto de iteraciones de loops contenedores
-        3. Si escenario tiene salida temprana → aplicar modificador de iteraciones
+        2. Si línea es ENCABEZADO de loop → Freq = iteraciones + 1 (lógica de ejecución real)
+        3. Si línea está DENTRO de loop(s) → Freq = producto de iteraciones de loops contenedores
+        4. Si escenario tiene salida temprana → aplicar modificador de iteraciones
+
+        IMPORTANTE: Sigue la lógica real de ejecución:
+        - El encabezado del loop (for/while) se evalúa n+1 veces
+        - El cuerpo del loop se ejecuta n veces
 
         Args:
             line_num: Número de línea (0-indexed)
@@ -164,23 +211,67 @@ class LineCostCalculator:
         # Por defecto, líneas fuera de loops se ejecutan 1 vez
         freq = sp.Integer(1)
 
-        # Encontrar loops que contienen esta línea
-        containing_loops = [
-            loop for loop in loops
-            if loop.start_line <= line_num <= loop.end_line
-        ]
+        # Obtener la línea actual para verificar si es encabezado de loop
+        current_line = lines[line_num].strip().lower() if line_num < len(lines) else ""
 
-        # Multiplicar iteraciones de todos los loops contenedores
-        for loop in containing_loops:
-            loop_iterations = sp.sympify(loop.iterations)
+        # Verificar si esta línea ES un encabezado de loop
+        is_loop_header = (
+            current_line.startswith('for ') or
+            current_line.startswith('while ') or
+            current_line.startswith('repeat')
+        )
+
+        # Encontrar loops que contienen esta línea
+        # IMPORTANTE: Los loops están indexados desde 0, igual que las líneas
+        containing_loops = []
+        loop_owner = None  # El loop cuyo encabezado es esta línea
+
+        for loop in loops:
+            # Si esta línea ES el encabezado del loop
+            if loop.start_line == line_num and is_loop_header:
+                loop_owner = loop
+            # Si esta línea está DENTRO del rango del loop (pero no es el encabezado)
+            elif loop.start_line < line_num <= loop.end_line:
+                containing_loops.append(loop)
+
+        # CASO 1: Esta línea es el ENCABEZADO de un loop
+        if loop_owner:
+            # El encabezado se evalúa (n + 1) veces
+            try:
+                loop_iterations = sp.sympify(loop_owner.iterations)
+            except:
+                loop_iterations = self.n
 
             # Aplicar modificador si hay salida temprana
             if scenario.get('early_exit'):
-                # Si hay salida temprana, usar iteration_value del escenario
                 iteration_val = scenario.get('iteration_value', 'n')
-                loop_iterations = sp.sympify(iteration_value)
+                try:
+                    loop_iterations = sp.sympify(iteration_val)
+                except:
+                    loop_iterations = self.k
 
-            freq *= loop_iterations
+            # Encabezado se evalúa una vez más que el cuerpo
+            freq = loop_iterations + 1
+
+        # CASO 2: Esta línea está DENTRO de loop(s)
+        elif containing_loops:
+            # Multiplicar iteraciones de todos los loops contenedores
+            for loop in containing_loops:
+                # Convertir string de iteraciones a expresión simbólica
+                try:
+                    loop_iterations = sp.sympify(loop.iterations)
+                except:
+                    loop_iterations = self.n
+
+                # Aplicar modificador si hay salida temprana
+                if scenario.get('early_exit'):
+                    iteration_val = scenario.get('iteration_value', 'n')
+                    try:
+                        loop_iterations = sp.sympify(iteration_val)
+                    except:
+                        loop_iterations = self.k
+
+                freq *= loop_iterations
 
         # Verificar si la línea está en un bloque condicional que NO se ejecuta en este escenario
         if self._is_in_unexecuted_branch(line_num, scenario, lines):
@@ -231,9 +322,13 @@ class LineCostCalculator:
         recursion_info: RecursionInfo
     ) -> Tuple[str, List[LineCost]]:
         """
-        Calcula la relación de recurrencia para un algoritmo recursivo.
+        Calcula la relación de recurrencia para un algoritmo recursivo
+        y genera tabla de costos línea por línea COMPLETA.
 
-        NO resuelve la recurrencia, solo la expresa como string.
+        Para recursivos, la tabla muestra:
+        - TODAS las líneas del algoritmo
+        - Las llamadas recursivas tienen costo "T(pattern)" en lugar de numérico
+        - El costo total es una relación de recurrencia
 
         Ejemplos de output:
         - Factorial: "T(n) = T(n-1) + 2"
@@ -250,50 +345,89 @@ class LineCostCalculator:
         """
         line_costs = []
         non_recursive_cost = 0
+        recursive_cost_term = ""  # T(n-1), T(n/2), etc.
 
-        # 1. Calcular costo del trabajo NO recursivo (C)
-        for line_num, line in enumerate(lines):
-            # Saltar llamadas recursivas (no se cuentan en C, van en el T())
-            if self._is_recursive_call(line):
-                continue
-
-            # Contar operaciones
-            c_op = self._count_operations(line)
-
-            # Acumular costo no recursivo
-            non_recursive_cost += c_op
-
-            # Agregar a justificación
-            if c_op > 0:
-                line_costs.append(LineCost(
-                    line_number=line_num + 1,
-                    code=line.strip(),
-                    C_op=c_op,
-                    Freq="1",
-                    Total=str(c_op)
-                ))
-
-        # 2. Construir relación de recurrencia
+        # Obtener patrón de recursión
         num_calls = recursion_info.num_calls
-        pattern = recursion_info.call_pattern[0] if recursion_info.call_pattern else "n-1"
+        patterns = recursion_info.call_pattern if recursion_info.call_pattern else ["n-1"]
 
         # Ajustar patrón según escenario (balanced vs skewed)
         recursion_pattern = scenario.get("recursion_pattern", "standard")
         if recursion_pattern == "skewed" and "divide" in recursion_info.recurrence_type:
             # Peor caso: división desbalanceada
-            pattern = "n-1"
+            patterns = ["n-1"]
             num_calls = 1
 
-        # Formatear relación de recurrencia
-        if num_calls == 1:
-            # T(n) = T(pattern) + C
-            recurrence = f"T(n) = T({pattern}) + {non_recursive_cost}"
+        # Formatear término recursivo
+        # Si todos los patrones son iguales: num_calls*T(pattern)
+        # Si son diferentes: T(pattern1) + T(pattern2) + ...
+        if len(set(patterns)) == 1:
+            # Todos los patrones son iguales
+            pattern = patterns[0]
+            if num_calls == 1:
+                recursive_cost_term = f"T({pattern})"
+            else:
+                recursive_cost_term = f"{num_calls}*T({pattern})"
         else:
-            # T(n) = num_calls*T(pattern) + C
-            recurrence = f"T(n) = {num_calls}*T({pattern}) + {non_recursive_cost}"
+            # Patrones diferentes (ej: fibonacci con T(n-1) + T(n-2))
+            recursive_cost_term = " + ".join([f"T({p})" for p in patterns])
 
-        # Simplificaciones comunes
-        recurrence = recurrence.replace("+ 0", "").replace(" + 1", " + C").strip()
+        # 1. Generar tabla COMPLETA línea por línea
+        for line_num, line in enumerate(lines):
+            c_op = self._count_operations(line)
+
+            # Determinar si es una llamada recursiva
+            is_recursive = self._is_recursive_call(line)
+
+            if is_recursive:
+                # Llamada recursiva: contar operaciones NO recursivas + mostrar T(pattern)
+                # Ejemplo: "return n * CALL factorial(n-1)" tiene 2 ops (return + *) + T(n-1)
+
+                # Contar operaciones excluyendo la llamada CALL
+                line_without_call = line.replace("CALL", "").replace("call", "")
+                non_recursive_ops = self._count_operations(line_without_call)
+
+                # Total = ops_no_recursivas + T(pattern)
+                if non_recursive_ops > 0:
+                    total = f"{non_recursive_ops} + {recursive_cost_term}"
+                else:
+                    total = recursive_cost_term
+
+                line_costs.append(LineCost(
+                    line_number=line_num + 1,
+                    code=line.strip(),
+                    C_op=non_recursive_ops,
+                    Freq="1",
+                    Total=total
+                ))
+
+                # Acumular costo no recursivo
+                non_recursive_cost += non_recursive_ops
+            else:
+                # Línea normal: mostrar su costo
+                freq = "1"  # En recursivos simples, cada línea se ejecuta 1 vez por llamada
+                total = str(c_op) if c_op > 0 else "0"
+
+                line_costs.append(LineCost(
+                    line_number=line_num + 1,
+                    code=line.strip(),
+                    C_op=c_op,
+                    Freq=freq,
+                    Total=total
+                ))
+
+                # Acumular costo no recursivo
+                non_recursive_cost += c_op
+
+        # 2. Construir relación de recurrencia
+        # Usar recursive_cost_term que ya tiene el formato correcto
+        if non_recursive_cost > 0:
+            recurrence = f"T(n) = {recursive_cost_term} + {non_recursive_cost}"
+        else:
+            recurrence = f"T(n) = {recursive_cost_term}"
+
+        # Simplificación: eliminar " + 0" si el costo no recursivo es 0
+        recurrence = recurrence.replace(" + 0", "").strip()
 
         return recurrence, line_costs
 

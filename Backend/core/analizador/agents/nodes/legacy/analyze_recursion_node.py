@@ -212,9 +212,13 @@ def analyze_parameter_transformation(arguments: List[str], parameters: Dict[str,
     for arg in arguments:
         arg_lower = arg.lower()
 
-        # Detectar patrones comunes
+        # Detectar patrones numéricos explícitos primero (n-1, n-2, n-3, etc.)
         if "n-1" in arg or "n - 1" in arg:
             return "n-1"
+        elif "n-2" in arg or "n - 2" in arg:
+            return "n-2"
+        elif "n-3" in arg or "n - 3" in arg:
+            return "n-3"
         elif "n/2" in arg or "n / 2" in arg or "n//2" in arg:
             return "n/2"
         elif "n+1" in arg or "n + 1" in arg:
@@ -224,7 +228,8 @@ def analyze_parameter_transformation(arguments: List[str], parameters: Dict[str,
 
         # Detectar divisiones de rango (ej: mid - low, high - mid)
         # Esto indica división del problema
-        if "-" in arg and not arg.startswith("-"):
+        # SOLO si NO tiene 'n' (para no confundir con n-2, n-3, etc.)
+        if "-" in arg and not arg.startswith("-") and "n" not in arg_lower:
             # Probablemente es división de rango → n/2
             return "n/2"
 
