@@ -1,0 +1,11 @@
+Si el arreglo tiene uno o cero elementos, ya está ordenado, devolver el arreglo.
+
+Dividir el arreglo en dos mitades aproximadamente iguales.
+
+Ordenar recursivamente la primera mitad del arreglo.
+
+Ordenar recursivamente la segunda mitad del arreglo.
+
+Combinar las dos mitades ordenadas en un solo arreglo ordenado, comparando elemento por elemento y colocando el menor primero.
+
+Devolver el arreglo completamente ordenado.

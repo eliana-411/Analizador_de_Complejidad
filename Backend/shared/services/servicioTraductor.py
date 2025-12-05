@@ -36,7 +36,7 @@ class ServicioTraductor:
         Estos servirán como ejemplos de referencia para traducciones.
         """
         if not self.ruta_ejemplos.exists():
-            print(f"⚠️ Advertencia: No se encontró la carpeta {self.ruta_ejemplos}")
+            print(f"[WARN] Advertencia: No se encontró la carpeta {self.ruta_ejemplos}")
             return
         
         archivos_correctos = sorted(self.ruta_ejemplos.glob("*.txt"))
@@ -82,9 +82,9 @@ class ServicioTraductor:
                         'ruta': str(archivo)
                     })
             except Exception as e:
-                print(f"⚠️ Error cargando {archivo}: {e}")
+                print(f"[WARN] Error cargando {archivo}: {e}")
         
-        print(f"✅ Base de conocimiento cargada: {len(self.base_conocimiento)} ejemplos para traducción")
+        print(f"[OK] Base de conocimiento cargada: {len(self.base_conocimiento)} ejemplos para traducción")
     
     def _detectar_tipo_algoritmo(self, pseudocodigo: str) -> str:
         """Detecta si el algoritmo es iterativo o recursivo"""

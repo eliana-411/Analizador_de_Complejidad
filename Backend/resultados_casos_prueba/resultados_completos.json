@@ -1,0 +1,238 @@
+[
+  {
+    "archivo": "01-busqueda-lineal.txt",
+    "tipo": "Pseudocódigo",
+    "exito": true,
+    "clasificacion": null,
+    "complejidades": {
+      "mejor_caso": "Ω(1)",
+      "caso_promedio": "Θ(n)",
+      "peor_caso": "O(n)"
+    },
+    "errores": []
+  },
+  {
+    "archivo": "02-busqueda-binaria.txt",
+    "tipo": "Pseudocódigo",
+    "exito": true,
+    "clasificacion": null,
+    "complejidades": {
+      "mejor_caso": "Ω(1)",
+      "caso_promedio": "Θ(n)",
+      "peor_caso": "O(n)"
+    },
+    "errores": []
+  },
+  {
+    "archivo": "03-bubble-sort.txt",
+    "tipo": "Pseudocódigo",
+    "exito": true,
+    "clasificacion": null,
+    "complejidades": {
+      "mejor_caso": "Ω(1)",
+      "caso_promedio": "Θ(n)",
+      "peor_caso": "O(n)"
+    },
+    "errores": []
+  },
+  {
+    "archivo": "04-merge-sort.txt",
+    "tipo": "Pseudocódigo",
+    "exito": true,
+    "clasificacion": null,
+    "complejidades": {
+      "mejor_caso": "Θ(n log n)",
+      "caso_promedio": "Θ(n log n)",
+      "peor_caso": "Θ(n log n)"
+    },
+    "errores": []
+  },
+  {
+    "archivo": "05-quick-sort.txt",
+    "tipo": "Pseudocódigo",
+    "exito": true,
+    "clasificacion": null,
+    "complejidades": {
+      "mejor_caso": "Θ(n log n)",
+      "caso_promedio": "Θ(n log n)",
+      "peor_caso": "Θ(n log n)"
+    },
+    "errores": []
+  },
+  {
+    "archivo": "06-fibonacci-recursivo.txt",
+    "tipo": "Pseudocódigo",
+    "exito": true,
+    "clasificacion": null,
+    "complejidades": {
+      "mejor_caso": "Θ(n log n)",
+      "caso_promedio": "Θ(n log n)",
+      "peor_caso": "Θ(n log n)"
+    },
+    "errores": []
+  },
+  {
+    "archivo": "07-factorial-recursivo.txt",
+    "tipo": "Pseudocódigo",
+    "exito": true,
+    "clasificacion": null,
+    "complejidades": {
+      "mejor_caso": "Θ(n log n)",
+      "caso_promedio": "Θ(n log n)",
+      "peor_caso": "Θ(n log n)"
+    },
+    "errores": []
+  },
+  {
+    "archivo": "08-torres-hanoi.txt",
+    "tipo": "Pseudocódigo",
+    "exito": true,
+    "clasificacion": null,
+    "complejidades": {
+      "mejor_caso": "Θ(n log n)",
+      "caso_promedio": "Θ(n log n)",
+      "peor_caso": "Θ(n log n)"
+    },
+    "errores": []
+  },
+  {
+    "archivo": "09-bst-insert.txt",
+    "tipo": "Pseudocódigo",
+    "exito": true,
+    "clasificacion": null,
+    "complejidades": {
+      "mejor_caso": "Θ(n log n)",
+      "caso_promedio": "Θ(n log n)",
+      "peor_caso": "Θ(n log n)"
+    },
+    "errores": []
+  },
+  {
+    "archivo": "10-matrix-multiplication.txt",
+    "tipo": "Pseudocódigo",
+    "exito": true,
+    "clasificacion": null,
+    "complejidades": {
+      "mejor_caso": "Ω(1)",
+      "caso_promedio": "Θ(n)",
+      "peor_caso": "O(n)"
+    },
+    "errores": []
+  },
+  {
+    "archivo": "11-selection-sort.txt",
+    "tipo": "Pseudocódigo",
+    "exito": true,
+    "clasificacion": null,
+    "complejidades": {
+      "mejor_caso": "Ω(1)",
+      "caso_promedio": "Θ(n)",
+      "peor_caso": "O(n)"
+    },
+    "errores": []
+  },
+  {
+    "archivo": "12-insertion-sort.txt",
+    "tipo": "Pseudocódigo",
+    "exito": true,
+    "clasificacion": null,
+    "complejidades": {
+      "mejor_caso": "Ω(1)",
+      "caso_promedio": "Θ(n)",
+      "peor_caso": "O(n)"
+    },
+    "errores": []
+  },
+  {
+    "archivo": "13-potencia-recursiva.txt",
+    "tipo": "Pseudocódigo",
+    "exito": true,
+    "clasificacion": null,
+    "complejidades": {
+      "mejor_caso": "Θ(n log n)",
+      "caso_promedio": "Θ(n log n)",
+      "peor_caso": "Θ(n log n)"
+    },
+    "errores": []
+  },
+  {
+    "archivo": "14-suma-recursiva.txt",
+    "tipo": "Pseudocódigo",
+    "exito": false,
+    "clasificacion": null,
+    "complejidades": null,
+    "errores": [
+      "Pseudocódigo inválido: 1 errores"
+    ]
+  },
+  {
+    "archivo": "15-maximo-array.txt",
+    "tipo": "Pseudocódigo",
+    "exito": true,
+    "clasificacion": null,
+    "complejidades": {
+      "mejor_caso": "Ω(1)",
+      "caso_promedio": "Θ(n)",
+      "peor_caso": "O(n)"
+    },
+    "errores": []
+  },
+  {
+    "archivo": "01-maximo-array.txt",
+    "tipo": "Lenguaje Natural",
+    "exito": true,
+    "clasificacion": null,
+    "complejidades": {
+      "mejor_caso": "Ω(1)",
+      "caso_promedio": "Θ(n)",
+      "peor_caso": "O(n)"
+    },
+    "errores": []
+  },
+  {
+    "archivo": "02-merge-sort.txt",
+    "tipo": "Lenguaje Natural",
+    "exito": true,
+    "clasificacion": null,
+    "complejidades": {
+      "mejor_caso": "Θ(n log n)",
+      "caso_promedio": "Θ(n log n)",
+      "peor_caso": "Θ(n log n)"
+    },
+    "errores": []
+  },
+  {
+    "archivo": "03-suma-n-numeros.txt",
+    "tipo": "Lenguaje Natural",
+    "exito": true,
+    "clasificacion": null,
+    "complejidades": {
+      "mejor_caso": "Ω(1)",
+      "caso_promedio": "Θ(n)",
+      "peor_caso": "O(n)"
+    },
+    "errores": []
+  },
+  {
+    "archivo": "04-numero-primo.txt",
+    "tipo": "Lenguaje Natural",
+    "exito": false,
+    "clasificacion": null,
+    "complejidades": null,
+    "errores": [
+      "Pseudocódigo inválido: 5 errores"
+    ]
+  },
+  {
+    "archivo": "05-invertir-array.txt",
+    "tipo": "Lenguaje Natural",
+    "exito": true,
+    "clasificacion": null,
+    "complejidades": {
+      "mejor_caso": "Ω(1)",
+      "caso_promedio": "Θ(n)",
+      "peor_caso": "O(n)"
+    },
+    "errores": []
+  }
+]
