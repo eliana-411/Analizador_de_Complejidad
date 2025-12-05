@@ -1,0 +1,18 @@
+======================================================================
+TEST: Árbol de Recursión DESBALANCEADO
+Ecuación: T(n) = T(n/3) + T(2n/3) + n
+======================================================================
+
+✓ ¿Puede resolver? True
+Traceback (most recent call last):
+  File "C:\Users\egriv\OneDrive\Documentos\Analizador de Complejidad\Backend\tests\test_arbol_desbalanceado.py", line 116, in <module>
+    test_arbol_desbalanceado()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\egriv\OneDrive\Documentos\Analizador de Complejidad\Backend\tests\test_arbol_desbalanceado.py", line 56, in test_arbol_desbalanceado
+    resultado = resolver.resolver(ecuacion)
+  File "C:\Users\egriv\OneDrive\Documentos\Analizador de Complejidad\Backend\agentes\resolvers\arbol_recursion.py", line 61, in resolver
+    return self._resolver_asimetrico(ecuacion)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\egriv\OneDrive\Documentos\Analizador de Complejidad\Backend\agentes\resolvers\arbol_recursion.py", line 209, in _resolver_asimetrico
+    diagrama_mermaid = self._generar_diagrama_mermaid(terminos, f_n_str, niveles_mostrar=3)
+TypeError: ArbolRecursion._generar_diagrama_mermaid() got an unexpected keyword argument 'niveles_mostrar'
