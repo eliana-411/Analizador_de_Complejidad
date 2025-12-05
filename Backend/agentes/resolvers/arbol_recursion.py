@@ -81,11 +81,21 @@ class ArbolRecursion(BaseResolver):
         terminos = ecuacion.get('terminos_recursivos', [])
         f_n_str = ecuacion.get('f_n', '0')
         
-        pasos.append(f"📝 Ecuación: T(n) = " + " + ".join([f"T(n/{t['divisor']})" for t in terminos]) + f" + {f_n_str}")
+        # Generar ecuación con coeficientes correctos
+        terminos_str = []
+        for t in terminos:
+            coef = t.get('coeficiente', 1)
+            divisor = t['divisor']
+            if coef == 1:
+                terminos_str.append(f"T(n/{int(divisor) if divisor == int(divisor) else divisor})")
+            else:
+                terminos_str.append(f"T({int(coef) if coef == int(coef) else coef}n/{int(divisor) if divisor == int(divisor) else divisor})")
+        
+        pasos.append(f"📝 Ecuación: T(n) = " + " + ".join(terminos_str) + f" + {f_n_str}")
         pasos.append(f"")
         pasos.append(f"🔹 MÉTODO DEL ÁRBOL DE RECURSIÓN (División Asimétrica)")
         pasos.append(f"   ⚠️  Esta ecuación NO puede resolverse con Teorema Maestro")
-        pasos.append(f"   porque tiene divisores diferentes: {', '.join([str(t['divisor']) for t in terminos])}")
+        pasos.append(f"   porque tiene divisores diferentes o coeficientes no estándar")
         pasos.append(f"")
         
         # PASO 1: Construir niveles del árbol
@@ -98,7 +108,12 @@ class ArbolRecursion(BaseResolver):
         
         pasos.append(f"   Nivel 1:")
         for t in terminos:
-            pasos.append(f"      T(n/{t['divisor']})")
+            coef = t.get('coeficiente', 1)
+            divisor = t['divisor']
+            if coef == 1:
+                pasos.append(f"      T(n/{int(divisor) if divisor == int(divisor) else divisor})")
+            else:
+                pasos.append(f"      T({int(coef) if coef == int(coef) else coef}n/{int(divisor) if divisor == int(divisor) else divisor})")
         pasos.append(f"      Costo por nodo: {f_n_str} evaluado en cada tamaño")
         
         # Calcular suma del nivel 1
@@ -190,12 +205,17 @@ El árbol de recursión muestra que aunque las ramas tienen diferentes
 profundidades, el costo por nivel se mantiene balanceado.
 """
         
-        return self._crear_resultado(
+        # Generar diagrama Mermaid del árbol de recursión
+        diagrama_mermaid = self._generar_diagrama_mermaid(terminos, f_n_str, profundidad_maxima=5)
+        
+        resultado = self._crear_resultado(
             exito=True,
             solucion=solucion,
             pasos=pasos,
             explicacion=explicacion
         )
+        resultado['diagrama_mermaid'] = diagrama_mermaid
+        return resultado
     
     def _resolver_multiples_terminos(self, ecuacion):
         """
@@ -206,15 +226,25 @@ profundidades, el costo por nivel se mantiene balanceado.
         terminos = ecuacion.get('terminos_recursivos', [])
         f_n_str = ecuacion.get('f_n', '0')
         
-        pasos.append(f"📝 Ecuación: T(n) = " + " + ".join([f"T(n/{t['divisor']})" for t in terminos]) + f" + {f_n_str}")
+        # Generar ecuación con coeficientes correctos
+        terminos_str = []
+        for t in terminos:
+            coef = t.get('coeficiente', 1)
+            divisor = t['divisor']
+            if coef == 1:
+                terminos_str.append(f"T(n/{int(divisor) if divisor == int(divisor) else divisor})")
+            else:
+                terminos_str.append(f"T({int(coef) if coef == int(coef) else coef}n/{int(divisor) if divisor == int(divisor) else divisor})")
+        
+        pasos.append(f"📝 Ecuación: T(n) = " + " + ".join(terminos_str) + f" + {f_n_str}")
         pasos.append(f"")
         pasos.append(f"🔹 MÉTODO DEL ÁRBOL DE RECURSIÓN (Múltiples Divisiones)")
         pasos.append(f"   Esta ecuación tiene {len(terminos)} términos recursivos con divisores diferentes")
         pasos.append(f"")
         
         pasos.append(f"🔹 PASO 1: Identificar estructura")
-        for i, t in enumerate(terminos):
-            pasos.append(f"   Término {i+1}: T(n/{t['divisor']})")
+        for i, (t, term_str) in enumerate(zip(terminos, terminos_str)):
+            pasos.append(f"   Término {i+1}: {term_str}")
         pasos.append(f"   Trabajo no recursivo: {f_n_str}")
         pasos.append(f"")
         
@@ -261,12 +291,166 @@ Este tipo de recurrencia requiere análisis con árbol porque:
 SOLUCIÓN: T(n) = """ + solucion + """
 """
         
-        return self._crear_resultado(
+        # Generar diagrama Mermaid del árbol con múltiples términos
+        diagrama_mermaid = self._generar_diagrama_mermaid(terminos, f_n_str, profundidad_maxima=5)
+        
+        resultado = self._crear_resultado(
             exito=True,
             solucion=solucion,
             pasos=pasos,
             explicacion=explicacion
         )
+        resultado['diagrama_mermaid'] = diagrama_mermaid
+        return resultado
+    
+    def _generar_diagrama_mermaid(self, terminos, f_n_str, profundidad_maxima=6):
+        """
+        Genera un diagrama Mermaid mostrando el árbol de recursión con desbalance real.
+        
+        Rastrea el tamaño de cada nodo y solo expande hasta alcanzar el caso base,
+        mostrando que diferentes ramas terminan a diferentes profundidades.
+        
+        Args:
+            terminos: Lista de términos recursivos con divisores y coeficientes
+            f_n_str: Función de costo f(n)
+            profundidad_maxima: Profundidad máxima a explorar (default 6)
+        
+        Returns:
+            String con código Mermaid
+        """
+        import math
+        
+        mermaid = "```mermaid\ngraph TD\n"
+        
+        # Rastrear todos los nodos: {id: (tamano, padre_id, nivel)}
+        todos_nodos = {}
+        todos_nodos["N0"] = (1.0, None, 0)
+        
+        # Cola para BFS: [(id, tamano, nivel)]
+        cola = [("N0", 1.0, 0)]
+        
+        # Umbral más realista: cuando el tamaño es < 1/64 consideramos caso base
+        UMBRAL_CASO_BASE = 1.0 / 64.0
+        
+        contador_nodos = 0
+        
+        while cola and contador_nodos < 50:  # Limitar a 50 nodos para no saturar
+            node_id, tamano, nivel = cola.pop(0)
+            
+            # Si ya llegamos a la profundidad máxima, no expandir
+            if nivel >= profundidad_maxima:
+                continue
+            
+            # Si el tamaño es muy pequeño, es caso base - no expandir
+            if tamano < UMBRAL_CASO_BASE:
+                continue
+            
+            # Expandir según los términos recursivos
+            for i, t in enumerate(terminos):
+                divisor = t['divisor']
+                coef = t.get('coeficiente', 1)
+                
+                # Calcular nuevo tamaño: (coef * tamano) / divisor
+                nuevo_tamano = (coef * tamano) / divisor
+                
+                # Crear ID único para este nodo hijo
+                hijo_id = f"{node_id}_h{i}"
+                contador_nodos += 1
+                
+                # Guardar el nodo
+                todos_nodos[hijo_id] = (nuevo_tamano, node_id, nivel + 1)
+                
+                # Agregar a la cola para explorar después
+                cola.append((hijo_id, nuevo_tamano, nivel + 1))
+                # Agregar a la cola para explorar después
+                cola.append((hijo_id, nuevo_tamano, nivel + 1))
+        
+        # Generar código Mermaid
+        colores = [
+            ("#9333ea", "#7e22ce"),  # Nivel 0: morado oscuro
+            ("#8b5cf6", "#7c3aed"),  # Nivel 1: morado medio
+            ("#a78bfa", "#8b5cf6"),  # Nivel 2: morado claro
+            ("#c4b5fd", "#a78bfa"),  # Nivel 3: morado muy claro
+            ("#ddd6fe", "#c4b5fd"),  # Nivel 4: morado pálido
+            ("#ede9fe", "#ddd6fe"),  # Nivel 5: morado super pálido
+            ("#f5f3ff", "#ede9fe"),  # Nivel 6: casi blanco
+        ]
+        
+        # Generar nodos y conexiones
+        for node_id, (tamano, padre_id, nivel) in todos_nodos.items():
+            # Generar etiqueta del nodo
+            if node_id == "N0":
+                label = f"T(n)<br/>Costo: {f_n_str}"
+            else:
+                # Calcular representación del tamaño
+                size_label = self._generar_label_tamano(tamano)
+                
+                # Calcular costo
+                if f_n_str == 'n':
+                    costo_label = size_label
+                elif f_n_str.isdigit():
+                    costo_label = f_n_str
+                else:
+                    costo_label = f"f({size_label})"
+                
+                label = f"T({size_label})<br/>Costo: {costo_label}"
+            
+            # Verificar si es hoja (no tiene hijos en todos_nodos)
+            es_hoja = not any(datos[1] == node_id for datos in todos_nodos.values())
+            
+            # Si es hoja y no está en caso base, agregar indicador
+            if es_hoja and tamano >= UMBRAL_CASO_BASE:
+                label += "<br/>..."
+            
+            mermaid += f"    {node_id}[\"{label}\"]\n"
+            
+            # Crear conexión con padre
+            if padre_id:
+                mermaid += f"    {padre_id} --> {node_id}\n"
+        
+        mermaid += "\n"
+        
+        # Aplicar estilos por nivel
+        for node_id, (tamano, padre_id, nivel) in todos_nodos.items():
+            if nivel < len(colores):
+                fill, stroke = colores[nivel]
+            else:
+                fill, stroke = colores[-1]
+            
+            if nivel == 0:
+                mermaid += f"    style {node_id} fill:{fill},stroke:{stroke},stroke-width:2px,color:#fff\n"
+            else:
+                mermaid += f"    style {node_id} fill:{fill},stroke:{stroke},stroke-width:1px,color:#fff\n"
+        
+        mermaid += "\n"
+        
+        # Agregar leyenda explicativa
+        mermaid += "    L[\"📊 Árbol desbalanceado<br/>Ramas terminan a diferentes profundidades<br/>... indica continuación\"]\n"
+        mermaid += "    style L fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#000\n"
+        
+        mermaid += "```"
+        return mermaid
+    
+    def _generar_label_tamano(self, tamano_relativo):
+        """
+        Convierte un tamaño relativo (fracción de n) a una etiqueta legible.
+        
+        Args:
+            tamano_relativo: Fracción de n (ej: 0.333, 0.667, 0.111)
+        
+        Returns:
+            String con la representación (ej: "n/3", "2n/3", "n/9")
+        """
+        # Intentar encontrar fracción simple
+        from fractions import Fraction
+        
+        # Convertir a fracción con tolerancia
+        frac = Fraction(tamano_relativo).limit_denominator(100)
+        
+        if frac.numerator == 1:
+            return f"n/{frac.denominator}"
+        else:
+            return f"{frac.numerator}n/{frac.denominator}"
     
     def _calcular_suma_nivel_asimetrico(self, terminos, f_n_str, nivel):
         """
