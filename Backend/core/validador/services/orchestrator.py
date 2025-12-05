@@ -10,7 +10,13 @@ from core.validador.models.response_models import (
     ValidationResponse,
     LayerResult,
     ResumenValidacion,
+    ClasificacionResult,
+    ClasificacionPrediccion,
 )
+from ml.clasificador import obtener_clasificador
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class ValidationOrchestrator: 
@@ -67,15 +73,52 @@ class ValidationOrchestrator:
         if return_suggestions and not valido_general:
             sugerencias = self._generar_sugerencias(resultado_completo)
 
-        # 9. Construir respuesta estructurada
+        # 9. Ejecutar clasificación ML del algoritmo
+        clasificacion = self._clasificar_algoritmo(pseudocodigo)
+
+        # 10. Construir respuesta estructurada
         return self._construir_respuesta(
             resultado_completo,
             valido_general=valido_general,
             tipo_algoritmo=tipo_algoritmo,
             resumen=resumen,
             sugerencias=sugerencias,
+            clasificacion=clasificacion,
             return_suggestions=return_suggestions,
         )
+
+    def _clasificar_algoritmo(self, pseudocodigo: str) -> ClasificacionResult | None:
+        """
+        Clasifica el algoritmo usando el modelo ML entrenado.
+
+        Args:
+            pseudocodigo: Código a clasificar
+
+        Returns:
+            ClasificacionResult con la categoría y confianza, o None si falla
+        """
+        try:
+            clasificador = obtener_clasificador()
+            resultado_ml = clasificador.clasificar(pseudocodigo, top_n=3)
+
+            # Convertir a modelo Pydantic
+            return ClasificacionResult(
+                categoria_principal=resultado_ml["categoria_principal"],
+                confianza=resultado_ml["confianza"],
+                top_predicciones=[
+                    ClasificacionPrediccion(
+                        categoria=pred["categoria"], probabilidad=pred["probabilidad"]
+                    )
+                    for pred in resultado_ml["top_predicciones"]
+                ],
+            )
+
+        except FileNotFoundError as e:
+            logger.warning(f"Modelo de clasificación no encontrado: {e}")
+            return None
+        except Exception as e:
+            logger.error(f"Error al clasificar algoritmo: {e}", exc_info=True)
+            return None
 
     def _generar_sugerencias(self, resultado: dict) -> list[str]:
         """
@@ -138,6 +181,7 @@ class ValidationOrchestrator:
         tipo_algoritmo: str = None,
         resumen: ResumenValidacion = None,
         sugerencias: list[str] = None,
+        clasificacion: ClasificacionResult = None,
         return_suggestions: bool = True,
     ) -> ValidationResponse:
         """
@@ -149,6 +193,7 @@ class ValidationOrchestrator:
             tipo_algoritmo: 'Iterativo' o 'Recursivo'
             resumen: Resumen estadístico
             sugerencias: Lista de sugerencias de corrección
+            clasificacion: Resultado de clasificación ML
             return_suggestions: Si se deben incluir sugerencias
 
         Returns:
@@ -178,4 +223,5 @@ class ValidationOrchestrator:
             capas=capas_convertidas,
             resumen=resumen,
             sugerencias=sugerencias if return_suggestions else None,
+            clasificacion=clasificacion,
         )
