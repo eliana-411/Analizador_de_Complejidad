@@ -18,7 +18,7 @@ if sys.platform == 'win32':
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from agentes.agenteReportador import AgenteReportador
-from flujo_analisis import FlujoAnalisis
+from Backend.tests.flujo_analisis import FlujoAnalisis
 
 
 def test_reportador():

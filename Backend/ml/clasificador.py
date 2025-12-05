@@ -21,8 +21,8 @@ class ClasificadorAlgoritmos:
         self.label_encoder = self._cargar_pickle(f"{modelo_nombre}_encoder.pkl")
         self.modelo = self._cargar_pickle(f"{modelo_nombre}_modelo.pkl")
         
-        print(f"✓ Clasificador cargado: {modelo_nombre}")
-        print(f"  Categorías: {list(self.label_encoder.classes_)}")
+        print(f"[OK] Clasificador cargado: {modelo_nombre}")
+        print(f"  Categorias: {list(self.label_encoder.classes_)}")
     
     def _cargar_pickle(self, filename: str):
         """Carga un archivo pickle"""

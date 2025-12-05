@@ -1,4 +1,4 @@
-sumaRecursiva(n)
+sumaRecursiva(int n)
 begin
     if (n == 0) then
     begin
@@ -6,7 +6,7 @@ begin
     end
     else
     begin
-        temp ← CALL sumaRecursiva(n - 1)
+        temp 🡨 CALL sumaRecursiva(n - 1)
         return n + temp
     end
 end

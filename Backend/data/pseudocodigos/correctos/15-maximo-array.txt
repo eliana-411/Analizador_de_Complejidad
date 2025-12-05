@@ -1,11 +1,11 @@
-maximoArray(arr, n)
+maximoArray(int arr[], int n)
 begin
-    max ← arr[0]
-    for i ← 1 to n-1 do
+    max 🡨 arr[0]
+    for i 🡨 1 to n-1 do
     begin
         if (arr[i] > max) then
         begin
-            max ← arr[i]
+            max 🡨 arr[i]
         end
     end
     return max

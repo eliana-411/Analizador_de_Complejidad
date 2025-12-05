@@ -1,4 +1,4 @@
-potencia(base, exp)
+potencia(int base, int exp)
 begin
     if (exp == 0) then
     begin
@@ -8,12 +8,12 @@ begin
     begin
         if (exp MOD 2 == 0) then
         begin
-            mitad ← CALL potencia(base, exp / 2)
+            mitad 🡨 CALL potencia(base, exp / 2)
             return mitad * mitad
         end
         else
         begin
-            temp ← CALL potencia(base, exp - 1)
+            temp 🡨 CALL potencia(base, exp - 1)
             return base * temp
         end
     end
