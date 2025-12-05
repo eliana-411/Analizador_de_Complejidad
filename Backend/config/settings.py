@@ -26,7 +26,8 @@ class Settings(BaseSettings):
     langsmith_project: str = "complexity-analyzer"
 
     class Config:
-        env_file = str(BACKEND_DIR / ".env")
+        # Buscar .env en la raíz del proyecto (un nivel arriba de Backend/)
+        env_file = Path(__file__).resolve().parent.parent.parent / ".env"
         env_file_encoding = "utf-8"
         case_sensitive = False
 
