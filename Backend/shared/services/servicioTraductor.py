@@ -26,8 +26,8 @@ class ServicioTraductor:
         """Inicializa el servicio traductor con la base de conocimiento"""
         self.base_conocimiento = []
         # Usar ruta relativa desde el archivo actual
-        # Backend/services/servicioTraductor.py -> Backend/data/pseudocodigos/correctos
-        self.ruta_ejemplos = Path(__file__).resolve().parent.parent / "data" / "pseudocodigos" / "correctos"
+        # Backend/shared/services/servicioTraductor.py -> Backend/data/pseudocodigos/correctos
+        self.ruta_ejemplos = Path(__file__).resolve().parent.parent.parent / "data" / "pseudocodigos" / "correctos"
         self._cargar_base_conocimiento()
     
     def _cargar_base_conocimiento(self):
