@@ -9,9 +9,20 @@ export interface LayerResult {
   detalles: string[];
 }
 
+export interface ClasificacionPrediccion {
+  categoria: string;
+  probabilidad: number;
+}
+
+export interface ClasificacionResult {
+  categoria_principal: string;
+  confianza: number;
+  top_predicciones: ClasificacionPrediccion[];
+}
+
 export interface ValidationResponse {
   valido_general: boolean;
-  tipo_algoritmo?: string;
+  tipo_algoritmo?: string | null;
   capas: Record<string, LayerResult>;
   resumen: {
     total_lineas: number;
@@ -19,8 +30,10 @@ export interface ValidationResponse {
     subrutinas_encontradas: number;
     errores_totales: number;
   };
+  clasificacion?: ClasificacionResult | null;
   sugerencias?: string[];
 }
+
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
