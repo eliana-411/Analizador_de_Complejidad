@@ -98,6 +98,17 @@ Una parte **obligatoria** del proyecto será la incorporación de **modelos de l
    - Animación, O
    - Presentación interactiva
 
+### 📊 Reportes Automáticos (NUEVO)
+
+6. **Sistema de Reportes en Markdown**:
+   - ✅ Genera automáticamente archivos `.md` con el análisis completo
+   - 🌳 Incluye **árboles de recursión visualizados** con Mermaid
+   - 📈 Diagramas de flujo del algoritmo
+   - 🔢 Paso a paso de resolución de ecuaciones
+   - 📁 Se guardan en `Backend/reportes/`
+   - 🎨 Visualizables en GitHub, VS Code y navegadores
+   - 📖 Ver guía completa: [GUIA_REPORTES.md](Backend/GUIA_REPORTES.md)
+
 ---
 
 ## 📊 5. Criterios de Evaluación
@@ -249,6 +260,8 @@ Antes de entregar, verificar que se cumple con:
 - [ ] Material audiovisual/presentación
 - [ ] Integración funcional con LLM
 - [ ] README actualizado con instrucciones de uso
+- [x] **Sistema de reportes automáticos en .md con árboles de recursión**
+- [x] **Visualización de diagramas Mermaid integrada**
 
 ---
 
@@ -274,8 +287,9 @@ Este proyecto es parte de un trabajo académico para el curso de **Análisis y D
 - [Especificación de Gramática Completa](Backend/data/gramatica.md)
 - [Guía de Validación](Backend/data/gramatica/8-validacion.md)
 - [Ejemplos de Algoritmos](Backend/data/ejemplos/)
+- [**📊 Guía de Reportes con Árboles de Recursión**](Backend/GUIA_REPORTES.md) ⭐ NUEVO
 
 ---
 
-**Última actualización:** Enero 2025
-**Versión:** 1.0
+**Última actualización:** Diciembre 2025
+**Versión:** 2.0

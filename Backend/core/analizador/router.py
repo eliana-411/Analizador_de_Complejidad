@@ -3,6 +3,7 @@ from typing import Optional, Literal
 import logging
 import tempfile
 from pathlib import Path
+from datetime import datetime
 
 from pydantic import BaseModel, Field
 from Backend.tests.flujo_analisis import FlujoAnalisis
@@ -35,6 +36,14 @@ class AnalisisResponse(BaseModel):
     ecuaciones: Optional[dict]
     complejidades: Optional[dict]
     errores: list
+    reporte_markdown: Optional[str] = Field(
+        default=None,
+        description="Reporte completo en formato Markdown con árboles de recursión y diagramas"
+    )
+    ruta_reporte_guardado: Optional[str] = Field(
+        default=None,
+        description="Ruta donde se guardó el archivo .md del reporte"
+    )
 
 
 @router.post("/analizar", response_model=AnalisisResponse, status_code=status.HTTP_200_OK)
