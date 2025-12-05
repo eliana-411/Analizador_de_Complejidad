@@ -1,6 +1,10 @@
 from typing import Optional
+from pathlib import Path
 
 from pydantic_settings import BaseSettings
+
+# Obtener la ruta del directorio Backend
+BACKEND_DIR = Path(__file__).parent.parent
 
 
 class Settings(BaseSettings):
@@ -22,7 +26,7 @@ class Settings(BaseSettings):
     langsmith_project: str = "complexity-analyzer"
 
     class Config:
-        env_file = ".env"
+        env_file = str(BACKEND_DIR / ".env")
         env_file_encoding = "utf-8"
         case_sensitive = False
 
