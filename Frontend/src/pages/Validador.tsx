@@ -1,4 +1,5 @@
 import { createSignal } from 'solid-js';
+import { useNavigate } from '@solidjs/router';
 import { H1 } from '../components/ui/Typography';
 import Button from '../components/ui/Button';
 import Textarea from '../components/ui/Textarea';
@@ -15,6 +16,8 @@ import type { ValidationStatus } from '../types';
  * Shows validation status with static indicators and text input
  */
 export default function Validador() {
+  const navigate = useNavigate();
+
   const [macroalgorith, setMacroalgorith] = createSignal(mockPseudocode);
   const [validationResult, setValidationResult] = createSignal<ValidationResponse | null>(null);
   const [isAnalyzing, setIsAnalyzing] = createSignal(false);
@@ -61,6 +64,12 @@ export default function Validador() {
 
       console.log('Resultado de validación:', resultado);
       setValidationResult(resultado);
+
+      // Si la validación es exitosa, navegar a Results
+      if (resultado.valido_general) {
+        console.log('Validación exitosa, navegando a Results...');
+        navigate(`/results?pseudocodigo=${encodeURIComponent(macroalgorith())}`);
+      }
 
     } catch (error) {
       console.error('Error al validar:', error);
@@ -112,6 +121,8 @@ export default function Validador() {
               onFileUpload={(content, filename) => {
                 setMacroalgorith(content);
                 console.log(`Archivo cargado: ${filename}`);
+                // Analizar automáticamente después de cargar el archivo
+                setTimeout(() => handleAnalyze(), 100);
               }}
               rows={20}
               class="font-mono text-sm"

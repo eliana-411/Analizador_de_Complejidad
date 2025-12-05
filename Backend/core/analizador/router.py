@@ -6,6 +6,7 @@ from pathlib import Path
 
 from pydantic import BaseModel, Field
 from tests.flujo_analisis import FlujoAnalisis
+from agentes.agenteReportador import AgenteReportador
 
 router = APIRouter(prefix="/analisis", tags=["analisis"])
 logger = logging.getLogger(__name__)
@@ -35,6 +36,23 @@ class AnalisisResponse(BaseModel):
     ecuaciones: Optional[dict]
     complejidades: Optional[dict]
     errores: list
+
+
+class AnalisisConReporteResponse(BaseModel):
+    """Response del análisis con reporte generado"""
+    exito: bool
+    fase_actual: Optional[str]
+    pseudocodigo_original: Optional[str]
+    pseudocodigo_validado: Optional[str]
+    validacion: Optional[dict]
+    costos_por_linea: Optional[dict]
+    ecuaciones: Optional[dict]
+    complejidades: Optional[dict]
+    errores: list
+    clasificacion: Optional[dict]
+    flowchart: Optional[str]
+    reporte_markdown: Optional[str]
+    diagramas: Optional[dict]
 
 
 @router.post("/analizar", response_model=AnalisisResponse, status_code=status.HTTP_200_OK)
@@ -119,6 +137,53 @@ async def analizar_desde_archivo(
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Error procesando el archivo"
+        )
+
+
+@router.post("/analizar-con-reporte", response_model=AnalisisConReporteResponse, status_code=status.HTTP_200_OK)
+async def analizar_con_reporte(request: AnalisisRequest) -> AnalisisConReporteResponse:
+    """
+    Analiza la complejidad y genera reporte completo en Markdown.
+
+    Similar a /analizar pero incluye:
+    - Reporte en Markdown generado por AgenteReportador
+    - Diagramas Mermaid
+    - Clasificación ML (si está disponible)
+    - Flowchart del algoritmo
+    """
+    try:
+        logger.info(f"Análisis con reporte iniciado - tipo: {request.tipo_entrada}")
+
+        flujo = FlujoAnalisis(modo_verbose=False)
+        resultado = flujo.analizar(
+            entrada=request.entrada,
+            tipo_entrada=request.tipo_entrada,
+            auto_corregir=request.auto_corregir
+        )
+
+        # Generar reporte con AgenteReportador
+        reportador = AgenteReportador()
+        reporte_completo = reportador.generar_reporte_completo(resultado)
+
+        # Agregar reporte y diagramas al resultado
+        resultado['reporte_markdown'] = reporte_completo.get('markdown')
+        resultado['diagramas'] = reporte_completo.get('diagramas')
+
+        logger.info(f"Análisis con reporte completado - éxito: {resultado['exito']}")
+
+        return AnalisisConReporteResponse(**resultado)
+
+    except ValueError as e:
+        logger.warning(f"Input inválido: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Input inválido: {str(e)}"
+        )
+    except Exception as e:
+        logger.error(f"Error interno en análisis con reporte: {str(e)}", exc_info=True)
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Error interno en el servidor"
         )
 
 
