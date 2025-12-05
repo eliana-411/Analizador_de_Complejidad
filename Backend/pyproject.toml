@@ -19,7 +19,20 @@ dependencies = [
 ]
 
 [tool.setuptools]
-packages = ["core", "core.analizador", "core.analizador.agents", "core.analizador.agents.nodes", "core.analizador.models", "core.analizador.tools", "core.analizador.tests"]
+packages = [
+    "core", 
+    "core.analizador", 
+    "core.analizador.agents", 
+    "core.analizador.agents.nodes", 
+    "core.analizador.models", 
+    "core.analizador.tools", 
+    "core.analizador.tests",
+    "representacion",
+    "representacion.agents",
+    "representacion.models",
+    "representacion.processors",
+    "representacion.utils"
+]
 package-dir = {"" = "."}
 
 [dependency-groups]
