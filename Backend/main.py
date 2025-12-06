@@ -344,45 +344,9 @@ def main():
     print(f"📄 Archivo a analizar: {archivo}")
     print(f"📏 Tamaño: {archivo_path.stat().st_size} bytes")
     print()
-    
-    # Inicializar flujo
-    mostrar_seccion("🔧 INICIALIZANDO SISTEMA", "=", 100)
-    print("Cargando componentes...")
-    
-    flujo = FlujoAnalisis(modo_verbose=True)  # Verbose = True para TODO
-    
-    print("\n✅ Sistema inicializado correctamente")
-    
-    # Ejecutar análisis completo
-    mostrar_seccion("⚙  EJECUTANDO ANÁLISIS COMPLETO", "=", 100)
-    print("MOSTRANDO TODOS LOS PASOS SIN OMITIR NADA...\n")
-    print("=" * 100 + "\n")
-    
-    try:
-        resultado = flujo.analizar_desde_archivo(
-            str(archivo_path),
-            auto_corregir=True
-        )
-        
-        # Mostrar TODOS los resultados
-        mostrar_resultado_completo(resultado, mostrar_todo=True)
-        
-        # Estado de salida
-        return 0 if resultado.get('exito') else 1
-        
-    except Exception as e:
-        mostrar_seccion("❌ ERROR CRÍTICO", "=", 100)
-        print(f"Tipo: {type(e)._name_}")
-        print(f"Mensaje: {str(e)}")
-        
-        import traceback
-        print("\nTraceback completo:")
-        print("-" * 100)
-        traceback.print_exc()
-        print("-" * 100)
-        
-        return 1
+    print("=" * 80)
+    print("  🏁 FIN DEL PROCESO")
+    print("=" * 80)
 
 if __name__ == "__main__":
-    exit_code = main()
-    sys.exit(exit_code)
+    main()

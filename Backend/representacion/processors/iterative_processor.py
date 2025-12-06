@@ -332,7 +332,7 @@ def process_multiple_scenarios(omega_table: OmegaTable, llm_analysis: Dict = Non
     if tiene_probabilidades:
         # Calcular esperanza matemática
         pasos.append("   ► Usando esperanza matemática (E[T])")
-        caso_promedio, derivacion = calculate_expected_value(omega_table)
+        caso_promedio, derivacion = calculate_expected_value(omega_table.scenarios)
         pasos.append(f"   ► E[T] = {caso_promedio}")
     else:
         # Usar mediana (escenario del medio)

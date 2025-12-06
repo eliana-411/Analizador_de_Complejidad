@@ -3,6 +3,7 @@ from typing import Optional, Literal
 import logging
 import tempfile
 from pathlib import Path
+from datetime import datetime
 
 from pydantic import BaseModel, Field
 from tests.flujo_analisis import FlujoAnalisis
@@ -28,35 +29,14 @@ class AnalisisRequest(BaseModel):
 class AnalisisResponse(BaseModel):
     """Response del análisis de complejidad"""
     exito: bool
-    fase_actual: Optional[str] = None
-    pseudocodigo_original: Optional[str] = None
-    pseudocodigo_validado: Optional[str] = None
-    validacion: Optional[dict] = None
-    validacion_inicial: Optional[dict] = None
-    correccion: Optional[dict] = None
-    costos_por_linea: Optional[dict] = None
-    ecuaciones: Optional[dict] = None
-    complejidades: Optional[dict] = None
-    errores: list = []
-
-
-class AnalisisConReporteResponse(BaseModel):
-    """Response del análisis con reporte generado"""
-    exito: bool
-    fase_actual: Optional[str] = None
-    pseudocodigo_original: Optional[str] = None
-    pseudocodigo_validado: Optional[str] = None
-    validacion: Optional[dict] = None
-    validacion_inicial: Optional[dict] = None
-    correccion: Optional[dict] = None
-    costos_por_linea: Optional[dict] = None
-    ecuaciones: Optional[dict] = None
-    complejidades: Optional[dict] = None
-    errores: list = []
-    clasificacion: Optional[dict] = None
-    flowchart: Optional[str] = None
-    reporte_markdown: Optional[str] = None
-    diagramas: Optional[dict] = None
+    fase_actual: Optional[str]
+    pseudocodigo_original: Optional[str]
+    pseudocodigo_validado: Optional[str]
+    validacion: Optional[dict]
+    costos_por_linea: Optional[dict]
+    ecuaciones: Optional[dict]
+    complejidades: Optional[dict]
+    errores: list
 
 
 @router.post("/analizar", response_model=AnalisisResponse, status_code=status.HTTP_200_OK)
