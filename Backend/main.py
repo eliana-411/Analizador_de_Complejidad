@@ -172,8 +172,8 @@ def mostrar_resultado_completo(resultado: dict, mostrar_todo: bool = True):
                 print(f"   ID: {scenario.id}")
                 print(f"   Condición: {scenario.condition}")
                 print(f"   Estado: {scenario.state}")
-                print(f"   Costo T(S): {scenario.cost}")
-                print(f"   Probabilidad P(S): {scenario.probability}")
+                print(f"   Costo T(S): {scenario.cost_T}")
+                print(f"   Probabilidad P(S): {scenario.probability_P}")
                 
                 if hasattr(scenario, 'line_costs') and scenario.line_costs:
                     print(f"\n   Costos por línea:")
