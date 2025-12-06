@@ -1,0 +1,49 @@
+C:\Python311\Lib\site-packages\sklearn\base.py:442: InconsistentVersionWarning: Trying to unpickle estimator TfidfTransformer from version 1.5.2 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Python311\Lib\site-packages\sklearn\base.py:442: InconsistentVersionWarning: Trying to unpickle estimator TfidfVectorizer from version 1.5.2 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Python311\Lib\site-packages\sklearn\base.py:442: InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder from version 1.5.2 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Python311\Lib\site-packages\sklearn\base.py:442: InconsistentVersionWarning: Trying to unpickle estimator SVC from version 1.5.2 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+================================================================================
+TEST DIRECTO FLUJO ANALISIS
+================================================================================
+[OK] Base de conocimiento cargada: 15 ejemplos para traducción
+[OK] Base de conocimiento cargada: 15 ejemplos correctos
+[OK] Clasificador cargado: clasificador
+  Categorias: [np.str_('busqueda'), np.str_('grafos'), np.str_('greedy'), np.str_('iterativo'), np.str_('ordenamiento'), np.str_('programacion_dinamica'), np.str_('recursivo_divide_conquista')]
+
+[KEYS EN RESULTADO]:
+  - exito: bool 
+  - fase_actual: str 
+  - pseudocodigo_original: str 
+  - pseudocodigo_validado: str 
+  - clasificacion: dict 
+  - validacion: dict 
+  - validacion_inicial: dict 
+  - correccion: dict 
+  - costos_por_linea: NoneType (None)
+  - ecuaciones: NoneType (None)
+  - complejidades: NoneType (None)
+  - flowchart: str 
+  - errores: list 
+
+[VALIDACION_INICIAL]:
+  Existe en dict: True
+  Valor es None: False
+  Errores totales: 2
+
+[CORRECCION]:
+  Existe en dict: True
+  Valor es None: False
+  Corregido: True
+  Keys: ['corregido', 'pseudocodigo', 'explicacion', 'ejemplos_usados']
+
+[OK] Resultado completo guardado en: test_flujo_resultado.json
+
+================================================================================

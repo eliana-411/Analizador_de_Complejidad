@@ -26,6 +26,7 @@ Uso:
 
 from typing import Dict, Any, Literal, Optional
 from pathlib import Path
+from datetime import datetime
 
 from shared.services.servicioTraductor import ServicioTraductor
 from shared.services.servicioValidador import servicioValidador
@@ -193,7 +194,7 @@ class FlujoAnalisis:
             
             # Mostrar errores detallados
             if not validacion['valido_general']:
-                self._log("\n[ERRORES] ERRORES DETECTADOS:")
+                self._log("\n📋 ERRORES DETECTADOS:")
                 for capa_nombre, capa_datos in validacion['capas'].items():
                     if capa_datos['errores']:
                         self._log(f"\n   {capa_nombre}:")
@@ -365,8 +366,31 @@ class FlujoAnalisis:
             self._log("\n" + "="*80)
             # ==================== FASE 8: GENERACIÓN DE REPORTE ====================
             self._log("\n" + "="*80)
-            self._log("FASE 8: GENERACIÓN DE REPORTE FINAL")
+            self._log("FASE 9: GENERACIÓN DE REPORTE FINAL")
             self._log("="*80)
+            
+            try:
+                # Generar reporte completo con árboles y diagramas
+                reporte_completo = self.reportador.generar_reporte_completo(resultado)
+                resultado['reporte_markdown'] = reporte_completo.get('markdown', '')
+                
+                # Guardar el reporte en un archivo .md
+                carpeta_reportes = Path(__file__).parent.parent / 'reportes'
+                carpeta_reportes.mkdir(exist_ok=True)
+                
+                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                nombre_archivo = f"reporte_analisis_{timestamp}.md"
+                ruta_reporte = carpeta_reportes / nombre_archivo
+                
+                with open(ruta_reporte, 'w', encoding='utf-8') as f:
+                    f.write(resultado['reporte_markdown'])
+                
+                resultado['ruta_reporte_guardado'] = str(ruta_reporte)
+                self._log(f"[OK] Reporte guardado en: {ruta_reporte}")
+                
+            except Exception as e:
+                self._log(f"[WARN] Error generando reporte: {str(e)}")
+                resultado['errores'].append(f"Generación de reporte: {str(e)}")
             
             resultado['exito'] = True
             resultado['fase_actual'] = 'completado'

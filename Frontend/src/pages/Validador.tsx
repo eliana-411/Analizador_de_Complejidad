@@ -7,8 +7,10 @@ import StatusIndicator from '../components/ui/StatusIndicator';
 import ContentContainer from '../components/layout/ContentContainer';
 import ClassificationPanel from '../components/ui/ClassificationPanel';
 import ErrorModal from '../components/ui/ErrorModal';
+import CorrectionFeedback from '../components/ui/CorrectionFeedback';
 import { mockPseudocode } from '../mock-data/validador';
 import { validatePseudocode, type ValidationResponse } from '../api/validator';
+import { analyzeCode, type AnalisisResponse } from '../api/analyzer';
 import type { ValidationStatus } from '../types';
 
 /**
@@ -20,6 +22,7 @@ export default function Validador() {
 
   const [macroalgorith, setMacroalgorith] = createSignal(mockPseudocode);
   const [validationResult, setValidationResult] = createSignal<ValidationResponse | null>(null);
+  const [analysisResult, setAnalysisResult] = createSignal<AnalisisResponse | null>(null);
   const [isAnalyzing, setIsAnalyzing] = createSignal(false);
   const [errorModal, setErrorModal] = createSignal<{
     isOpen: boolean;
@@ -57,22 +60,40 @@ export default function Validador() {
     try {
       console.log('Analyzing pseudocode...');
 
-      const resultado = await validatePseudocode({
-        pseudocodigo: macroalgorith(),
-        return_suggestions: true
+      // Call analysis endpoint to get validation + correction data
+      const resultado = await analyzeCode({
+        entrada: macroalgorith(),
+        tipo_entrada: 'auto',
+        auto_corregir: true
       });
 
-      console.log('Resultado de validación:', resultado);
-      setValidationResult(resultado);
+      console.log('Resultado de análisis:', resultado);
+      setAnalysisResult(resultado);
 
-      // Si la validación es exitosa, navegar a Results
-      if (resultado.valido_general) {
-        console.log('Validación exitosa, navegando a Results...');
-        navigate(`/results?pseudocodigo=${encodeURIComponent(macroalgorith())}`);
+      // Extract validation data for UI (from validacion or validacion_inicial)
+      const validacionData = resultado.validacion;
+      if (validacionData) {
+        // Map analysis validation to ValidationResponse format
+        const mappedValidation: ValidationResponse = {
+          valido_general: validacionData.valido_general || false,
+          tipo_algoritmo: validacionData.tipo_algoritmo || null,
+          capas: validacionData.capas || {},
+          resumen: validacionData.resumen || {
+            total_lineas: 0,
+            clases_encontradas: 0,
+            subrutinas_encontradas: 0,
+            errores_totales: 0
+          },
+          clasificacion: resultado.clasificacion || null,
+          sugerencias: []
+        };
+        setValidationResult(mappedValidation);
       }
 
+      // No redirigir automáticamente - el usuario navegará con el botón de flecha
+
     } catch (error) {
-      console.error('Error al validar:', error);
+      console.error('Error al analizar:', error);
       // TODO: Mostrar error al usuario con un toast/notification
     } finally {
       setIsAnalyzing(false);
@@ -139,6 +160,12 @@ export default function Validador() {
                 {isAnalyzing() ? 'ANALIZANDO...' : 'ANALIZAR CÓDIGO'}
               </Button>
             </div>
+
+            {/* Correction Feedback - below ANALIZAR button */}
+            <CorrectionFeedback
+              correccion={analysisResult()?.correccion}
+              validacionInicial={analysisResult()?.validacion_inicial}
+            />
           </div>
 
           {/* Right Column: Classification Panel (40%) */}
@@ -157,6 +184,26 @@ export default function Validador() {
           layerName={errorModal().layer}
           errors={errorModal().errors}
         />
+
+        {/* Navigation Button */}
+        <Show when={validationResult()?.valido_general && analysisResult()}>
+          <div class="flex justify-end mt-8">
+            <button
+              onClick={() => {
+                // Usar el pseudocódigo VALIDADO (y corregido si fue necesario), no el original
+                const pseudocodigoValidado = analysisResult()?.pseudocodigo_validado || macroalgorith();
+                navigate(`/analizador?pseudocodigo=${encodeURIComponent(pseudocodigoValidado)}`);
+              }}
+              class="flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-white transition-all duration-200 shadow-md hover:shadow-lg"
+              style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);"
+            >
+              <span>Siguiente: Ver Tabla Omega</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </Show>
       </div>
     </ContentContainer>
   );
