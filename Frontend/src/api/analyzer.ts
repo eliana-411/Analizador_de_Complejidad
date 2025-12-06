@@ -8,12 +8,28 @@ export interface AnalisisRequest {
   auto_corregir?: boolean;
 }
 
+export interface CorreccionResult {
+  corregido: boolean;
+  pseudocodigo?: string;
+  explicacion?: string;
+  razon?: string;
+  ejemplos_usados?: string[];
+  cambios?: Array<{
+    linea: number;
+    antes: string;
+    despues: string;
+    razon: string;
+  }>;
+}
+
 export interface AnalisisResponse {
   exito: boolean;
   fase_actual: string | null;
   pseudocodigo_original: string | null;
   pseudocodigo_validado: string | null;
   validacion: Record<string, any> | null;
+  validacion_inicial?: Record<string, any> | null;
+  correccion?: CorreccionResult | null;
   costos_por_linea: Record<string, any> | null;
   ecuaciones: Record<string, any> | null;
   complejidades: ComplejidadesResult | null;

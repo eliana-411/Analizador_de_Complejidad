@@ -4,7 +4,7 @@ from pathlib import Path
 from pydantic_settings import BaseSettings
 
 # Obtener la ruta del directorio Backend
-BACKEND_DIR = Path(__file__).parent.parent
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 
 
 class Settings(BaseSettings):
@@ -27,7 +27,7 @@ class Settings(BaseSettings):
 
     class Config:
         # Buscar .env en la raíz del proyecto (un nivel arriba de Backend/)
-        env_file = Path(__file__).resolve().parent.parent.parent / ".env"
+        env_file = PROJECT_ROOT / ".env"
         env_file_encoding = "utf-8"
         case_sensitive = False
 

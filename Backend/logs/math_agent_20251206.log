@@ -1,0 +1,1528 @@
+2025-12-06 00:02:25 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 00:02:25 - MathAgent - INFO - Algoritmo: busquedaLineal
+2025-12-06 00:02:25 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-06 00:02:25 - MathAgent - INFO - Escenarios: 2
+2025-12-06 00:02:25 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 00:02:25 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 00:02:31 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-06 00:02:31 - MathAgent - INFO - Mejor caso: K1
+2025-12-06 00:02:31 - MathAgent - INFO - Caso promedio: K2 + n*C
+2025-12-06 00:02:31 - MathAgent - INFO - Peor caso: K3 + n*C
+2025-12-06 00:02:31 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-06 00:02:31 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-06 00:02:31 - MathAgent - INFO -   Hits: 0
+2025-12-06 00:02:31 - MathAgent - INFO -   Misses: 1
+2025-12-06 00:02:31 - MathAgent - INFO -   Size: 1
+2025-12-06 00:02:31 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-06 00:18:12 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 00:18:12 - MathAgent - INFO - Algoritmo: busquedaLineal
+2025-12-06 00:18:12 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-06 00:18:12 - MathAgent - INFO - Escenarios: 2
+2025-12-06 00:18:12 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 00:18:12 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 00:18:18 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-06 00:18:18 - MathAgent - INFO - Mejor caso: K1
+2025-12-06 00:18:18 - MathAgent - INFO - Caso promedio: K2 + n*C
+2025-12-06 00:18:18 - MathAgent - INFO - Peor caso: K3 + n*C
+2025-12-06 00:18:18 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-06 00:18:18 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-06 00:18:18 - MathAgent - INFO -   Hits: 0
+2025-12-06 00:18:18 - MathAgent - INFO -   Misses: 1
+2025-12-06 00:18:18 - MathAgent - INFO -   Size: 1
+2025-12-06 00:18:18 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-06 00:18:56 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 00:18:56 - MathAgent - INFO - Algoritmo: busquedaLineal
+2025-12-06 00:18:56 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-06 00:18:56 - MathAgent - INFO - Escenarios: 2
+2025-12-06 00:18:56 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 00:18:56 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 00:19:02 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-06 00:19:02 - MathAgent - INFO - Mejor caso: K1
+2025-12-06 00:19:02 - MathAgent - INFO - Caso promedio: K2 + n*C
+2025-12-06 00:19:02 - MathAgent - INFO - Peor caso: K3 + n*C
+2025-12-06 00:19:02 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-06 00:19:02 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-06 00:19:02 - MathAgent - INFO -   Hits: 0
+2025-12-06 00:19:02 - MathAgent - INFO -   Misses: 1
+2025-12-06 00:19:02 - MathAgent - INFO -   Size: 1
+2025-12-06 00:19:02 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-06 00:20:06 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 00:20:06 - MathAgent - INFO - Algoritmo: busquedaLineal
+2025-12-06 00:20:06 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-06 00:20:06 - MathAgent - INFO - Escenarios: 2
+2025-12-06 00:20:06 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 00:20:06 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 00:20:11 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-06 00:20:11 - MathAgent - INFO - Mejor caso: K1
+2025-12-06 00:20:11 - MathAgent - INFO - Caso promedio: K2 + n*C
+2025-12-06 00:20:11 - MathAgent - INFO - Peor caso: K3 + n*C
+2025-12-06 00:20:11 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-06 00:20:11 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-06 00:20:11 - MathAgent - INFO -   Hits: 0
+2025-12-06 00:20:11 - MathAgent - INFO -   Misses: 1
+2025-12-06 00:20:11 - MathAgent - INFO -   Size: 1
+2025-12-06 00:20:11 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-06 00:20:49 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 00:20:49 - MathAgent - INFO - Algoritmo: busquedaLineal
+2025-12-06 00:20:49 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-06 00:20:49 - MathAgent - INFO - Escenarios: 2
+2025-12-06 00:20:49 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 00:20:49 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 00:20:54 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-06 00:20:54 - MathAgent - INFO - Mejor caso: K1
+2025-12-06 00:20:54 - MathAgent - INFO - Caso promedio: K2 + n*C
+2025-12-06 00:20:54 - MathAgent - INFO - Peor caso: K3 + n*C
+2025-12-06 00:20:54 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-06 00:20:54 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-06 00:20:54 - MathAgent - INFO -   Hits: 0
+2025-12-06 00:20:54 - MathAgent - INFO -   Misses: 1
+2025-12-06 00:20:54 - MathAgent - INFO -   Size: 1
+2025-12-06 00:20:54 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-06 00:23:17 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 00:23:17 - MathAgent - INFO - Algoritmo: busquedaLineal
+2025-12-06 00:23:17 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-06 00:23:17 - MathAgent - INFO - Escenarios: 2
+2025-12-06 00:23:17 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 00:23:17 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 00:23:22 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-06 00:23:22 - MathAgent - INFO - Mejor caso: K1
+2025-12-06 00:23:22 - MathAgent - INFO - Caso promedio: K2 + n*C
+2025-12-06 00:23:22 - MathAgent - INFO - Peor caso: K3 + n*C
+2025-12-06 00:23:22 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-06 00:23:22 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-06 00:23:22 - MathAgent - INFO -   Hits: 0
+2025-12-06 00:23:22 - MathAgent - INFO -   Misses: 1
+2025-12-06 00:23:22 - MathAgent - INFO -   Size: 1
+2025-12-06 00:23:22 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-06 00:42:19 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 00:42:19 - MathAgent - INFO - Algoritmo: fibonacci
+2025-12-06 00:42:19 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 00:42:19 - MathAgent - INFO - Escenarios: 2
+2025-12-06 00:42:19 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 00:42:19 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 00:42:24 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-06 00:42:24 - MathAgent - INFO - Mejor caso: T(1) = c
+2025-12-06 00:42:24 - MathAgent - INFO - Caso promedio: T(n) = T(n-1) + c
+2025-12-06 00:42:24 - MathAgent - INFO - Peor caso: T(n) = T(n-1) + T(n-2) + c
+2025-12-06 00:42:24 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-06 00:42:24 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-06 00:42:24 - MathAgent - INFO -   Hits: 0
+2025-12-06 00:42:24 - MathAgent - INFO -   Misses: 1
+2025-12-06 00:42:24 - MathAgent - INFO -   Size: 1
+2025-12-06 00:42:24 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-06 00:42:56 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 00:42:56 - MathAgent - INFO - Algoritmo: fibonacci
+2025-12-06 00:42:56 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 00:42:56 - MathAgent - INFO - Escenarios: 2
+2025-12-06 00:42:56 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 00:42:56 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 00:43:02 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-06 00:43:02 - MathAgent - INFO - Mejor caso: T(1) = c
+2025-12-06 00:43:02 - MathAgent - INFO - Caso promedio: T(n) = T(n-1) + c
+2025-12-06 00:43:02 - MathAgent - INFO - Peor caso: T(n) = T(n-1) + T(n-2) + c
+2025-12-06 00:43:02 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-06 00:43:02 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-06 00:43:02 - MathAgent - INFO -   Hits: 0
+2025-12-06 00:43:02 - MathAgent - INFO -   Misses: 1
+2025-12-06 00:43:02 - MathAgent - INFO -   Size: 1
+2025-12-06 00:43:02 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-06 00:44:15 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 00:44:15 - MathAgent - INFO - Algoritmo: fibonacci
+2025-12-06 00:44:15 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 00:44:15 - MathAgent - INFO - Escenarios: 2
+2025-12-06 00:44:15 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 00:44:15 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 00:44:21 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-06 00:44:21 - MathAgent - INFO - Mejor caso: T(1) = c
+2025-12-06 00:44:21 - MathAgent - INFO - Caso promedio: T(n) = T(n-1) + c
+2025-12-06 00:44:21 - MathAgent - INFO - Peor caso: T(n) = T(n-1) + T(n-2) + c
+2025-12-06 00:44:21 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-06 00:44:21 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-06 00:44:21 - MathAgent - INFO -   Hits: 0
+2025-12-06 00:44:21 - MathAgent - INFO -   Misses: 1
+2025-12-06 00:44:21 - MathAgent - INFO -   Size: 1
+2025-12-06 00:44:21 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-06 00:48:10 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 00:48:10 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 00:48:10 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 00:48:10 - MathAgent - INFO - Escenarios: 2
+2025-12-06 00:48:10 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 00:48:10 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 00:48:17 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-06 00:48:17 - MathAgent - INFO - Mejor caso: T(1) = c
+2025-12-06 00:48:17 - MathAgent - INFO - Caso promedio: T(n) = T(n-1) + c
+2025-12-06 00:48:17 - MathAgent - INFO - Peor caso: T(n) = T(n-1) + c*n
+2025-12-06 00:48:17 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-06 00:48:17 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-06 00:48:17 - MathAgent - INFO -   Hits: 0
+2025-12-06 00:48:17 - MathAgent - INFO -   Misses: 1
+2025-12-06 00:48:17 - MathAgent - INFO -   Size: 1
+2025-12-06 00:48:17 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-06 00:49:16 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 00:49:16 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 00:49:16 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 00:49:16 - MathAgent - INFO - Escenarios: 2
+2025-12-06 00:49:16 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 00:49:16 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 00:49:24 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-06 00:49:24 - MathAgent - INFO - Mejor caso: T(1) = c
+2025-12-06 00:49:24 - MathAgent - INFO - Caso promedio: T(n) = T(n-1) + c
+2025-12-06 00:49:24 - MathAgent - INFO - Peor caso: T(n) = T(n-1) + c*n
+2025-12-06 00:49:24 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-06 00:49:24 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-06 00:49:24 - MathAgent - INFO -   Hits: 0
+2025-12-06 00:49:24 - MathAgent - INFO -   Misses: 1
+2025-12-06 00:49:24 - MathAgent - INFO -   Size: 1
+2025-12-06 00:49:24 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-06 00:51:19 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 00:51:19 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 00:51:19 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 00:51:19 - MathAgent - INFO - Escenarios: 2
+2025-12-06 00:51:19 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 00:51:19 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 00:51:19 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpupGsSgxUvDjyfpV86w'}
+2025-12-06 00:51:19 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 00:51:19 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpupGsSgxUvDjyfpV86w'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpupGsSgxUvDjyfpV86w'}
+2025-12-06 00:51:23 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 00:51:23 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 00:51:23 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 00:51:23 - MathAgent - INFO - Escenarios: 2
+2025-12-06 00:51:23 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 00:51:23 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 00:51:23 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpupcNhpA43RtJwA8X4Y'}
+2025-12-06 00:51:23 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 00:51:23 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpupcNhpA43RtJwA8X4Y'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpupcNhpA43RtJwA8X4Y'}
+2025-12-06 00:53:46 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 00:53:46 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 00:53:46 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 00:53:46 - MathAgent - INFO - Escenarios: 2
+2025-12-06 00:53:46 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 00:53:46 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 00:53:46 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpv16r1B78caDsZPDrgy'}
+2025-12-06 00:53:46 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 00:53:46 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpv16r1B78caDsZPDrgy'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpv16r1B78caDsZPDrgy'}
+2025-12-06 00:54:00 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 00:54:00 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 00:54:00 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 00:54:00 - MathAgent - INFO - Escenarios: 2
+2025-12-06 00:54:00 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 00:54:00 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 00:54:00 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpv2BDTRoiNeD2GmNVAj'}
+2025-12-06 00:54:00 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 00:54:00 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpv2BDTRoiNeD2GmNVAj'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpv2BDTRoiNeD2GmNVAj'}
+2025-12-06 00:54:01 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 00:54:01 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 00:54:01 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 00:54:01 - MathAgent - INFO - Escenarios: 2
+2025-12-06 00:54:01 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 00:54:01 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 00:54:01 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpv2EeanyR5xoNpFkWPh'}
+2025-12-06 00:54:01 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 00:54:01 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpv2EeanyR5xoNpFkWPh'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpv2EeanyR5xoNpFkWPh'}
+2025-12-06 00:54:23 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 00:54:23 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 00:54:23 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 00:54:23 - MathAgent - INFO - Escenarios: 2
+2025-12-06 00:54:23 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 00:54:23 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 00:54:23 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpv3sWeojB1KaSsiPQi7'}
+2025-12-06 00:54:23 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 00:54:23 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpv3sWeojB1KaSsiPQi7'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpv3sWeojB1KaSsiPQi7'}
+2025-12-06 01:09:57 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:09:57 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:09:57 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:09:57 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:09:57 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:09:57 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:09:57 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpwEgZWNs4rfmPt2WyTn'}
+2025-12-06 01:09:57 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:09:57 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpwEgZWNs4rfmPt2WyTn'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpwEgZWNs4rfmPt2WyTn'}
+2025-12-06 01:10:00 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:10:00 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:10:00 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:10:00 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:10:00 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:10:00 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:10:00 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpwEwALu4Cnta1oMHFcz'}
+2025-12-06 01:10:00 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:10:00 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpwEwALu4Cnta1oMHFcz'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpwEwALu4Cnta1oMHFcz'}
+2025-12-06 01:25:53 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:25:53 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:25:53 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:25:53 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:25:53 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:25:53 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:25:53 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpxTBYEnEFfByxfu9CmC'}
+2025-12-06 01:25:53 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:25:53 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpxTBYEnEFfByxfu9CmC'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpxTBYEnEFfByxfu9CmC'}
+2025-12-06 01:28:41 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:28:41 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:28:41 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:28:41 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:28:41 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:28:41 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:28:41 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpxfYHFLYDmBa3EyMejd'}
+2025-12-06 01:28:41 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:28:41 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpxfYHFLYDmBa3EyMejd'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpxfYHFLYDmBa3EyMejd'}
+2025-12-06 01:28:45 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:28:45 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:28:45 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:28:45 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:28:45 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:28:45 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:28:45 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpxfrsh1bnvfN62Jp7NP'}
+2025-12-06 01:28:45 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:28:45 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpxfrsh1bnvfN62Jp7NP'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpxfrsh1bnvfN62Jp7NP'}
+2025-12-06 01:28:50 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:28:50 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:28:50 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:28:50 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:28:50 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:28:50 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:28:50 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpxgDSwkVTJYuYcKQNPm'}
+2025-12-06 01:28:50 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:28:50 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpxgDSwkVTJYuYcKQNPm'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpxgDSwkVTJYuYcKQNPm'}
+2025-12-06 01:33:05 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:33:05 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:33:05 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:33:05 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:33:05 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:33:05 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:33:05 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpy13pXtHDEo8ieF6nGh'}
+2025-12-06 01:33:05 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:33:05 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpy13pXtHDEo8ieF6nGh'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpy13pXtHDEo8ieF6nGh'}
+2025-12-06 01:33:07 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:33:07 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:33:07 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:33:07 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:33:07 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:33:07 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:33:07 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpy1Be5W4ooAJsTabVnR'}
+2025-12-06 01:33:07 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:33:07 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpy1Be5W4ooAJsTabVnR'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpy1Be5W4ooAJsTabVnR'}
+2025-12-06 01:33:10 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:33:10 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:33:10 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:33:10 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:33:10 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:33:10 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:33:10 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpy1NQjTNUb2a4S7dehU'}
+2025-12-06 01:33:10 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:33:10 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpy1NQjTNUb2a4S7dehU'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpy1NQjTNUb2a4S7dehU'}
+2025-12-06 01:34:16 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:34:16 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:34:16 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:34:16 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:34:16 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:34:16 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:34:16 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpy6FMTgg7C1SvzJTye1'}
+2025-12-06 01:34:16 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:34:16 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpy6FMTgg7C1SvzJTye1'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpy6FMTgg7C1SvzJTye1'}
+2025-12-06 01:41:55 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:41:55 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:41:55 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:41:55 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:41:55 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:41:55 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:41:55 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpyg7tSbw7yVsv6hZPcM'}
+2025-12-06 01:41:55 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:41:55 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpyg7tSbw7yVsv6hZPcM'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpyg7tSbw7yVsv6hZPcM'}
+2025-12-06 01:42:43 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:42:43 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:42:43 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:42:43 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:42:43 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:42:43 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:42:43 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpyjdNp3tDrvRqe6eg3J'}
+2025-12-06 01:42:43 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:42:43 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpyjdNp3tDrvRqe6eg3J'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpyjdNp3tDrvRqe6eg3J'}
+2025-12-06 01:43:01 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:43:01 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:43:01 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:43:01 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:43:01 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:43:01 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:43:01 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpykxT3z7xqbtwtSfU37'}
+2025-12-06 01:43:01 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:43:01 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpykxT3z7xqbtwtSfU37'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpykxT3z7xqbtwtSfU37'}
+2025-12-06 01:52:57 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:52:57 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:52:57 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:52:57 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:52:57 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:52:57 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:52:58 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpzWvzDjMzkeLDfcaQdF'}
+2025-12-06 01:52:58 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:52:58 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpzWvzDjMzkeLDfcaQdF'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpzWvzDjMzkeLDfcaQdF'}
+2025-12-06 01:53:00 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:53:00 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:53:00 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:53:00 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:53:00 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:53:00 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:53:00 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpzX9AwyZtjjRr2wX6Rx'}
+2025-12-06 01:53:00 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:53:00 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpzX9AwyZtjjRr2wX6Rx'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpzX9AwyZtjjRr2wX6Rx'}
+2025-12-06 01:53:03 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:53:03 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:53:03 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:53:03 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:53:03 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:53:03 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:53:03 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpzXLXpTYmkatfERhokq'}
+2025-12-06 01:53:03 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:53:03 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpzXLXpTYmkatfERhokq'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpzXLXpTYmkatfERhokq'}
+2025-12-06 01:53:13 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:53:13 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:53:13 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:53:13 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:53:13 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:53:13 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:53:13 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpzY6raFTMrrQGNj7HBJ'}
+2025-12-06 01:53:13 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:53:13 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpzY6raFTMrrQGNj7HBJ'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpzY6raFTMrrQGNj7HBJ'}
+2025-12-06 01:55:34 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:55:34 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:55:34 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:55:34 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:55:34 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:55:34 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:55:34 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpziSDgggFuUbwZhMUsB'}
+2025-12-06 01:55:34 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:55:34 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpziSDgggFuUbwZhMUsB'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpziSDgggFuUbwZhMUsB'}
+2025-12-06 01:56:20 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:56:20 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:56:20 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:56:20 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:56:20 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:56:20 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:56:20 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpzmr5iXnD9fKUk2Q7Wr'}
+2025-12-06 01:56:20 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:56:20 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpzmr5iXnD9fKUk2Q7Wr'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpzmr5iXnD9fKUk2Q7Wr'}
+2025-12-06 01:57:39 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-06 01:57:39 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-06 01:57:39 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-06 01:57:39 - MathAgent - INFO - Escenarios: 2
+2025-12-06 01:57:39 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-06 01:57:39 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-06 01:57:39 - MathAgent - ERROR - ❌ ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpzsgVRQtTXr7xRYRx4z'}
+2025-12-06 01:57:39 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-06 01:57:39 - MathAgent - ERROR - Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpzsgVRQtTXr7xRYRx4z'}
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 168, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 322, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1917, in _generate
+    _handle_anthropic_bad_request(e)
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Roaming\Python\Python311\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpzsgVRQtTXr7xRYRx4z'}

@@ -1,0 +1,245 @@
+{
+  "exito": false,
+  "fase_actual": "representacion_matematica_completada",
+  "pseudocodigo_original": "BusquedaLineal(int A[], int n, int x)\nbegin\n    int i\n    bool encontrado\n\n    encontrado 🡨 false\n    i 🡨 1\n\n    while (i <= n) and (not encontrado) do\n    begin\n        if (A[i] = x) then\n        begin\n            encontrado 🡨 true\n        end\n        i 🡨 i + 1\n    end\n\n    if encontrado then\n    begin\n        return i\n    end\n    else\n    begin\n        return -1\n    end\nend\n",
+  "pseudocodigo_validado": "busquedaLineal(int A[], int n, int x)\nbegin\n    int i\n    bool encontrado\n\n    encontrado 🡨 F\n    i 🡨 1\n\n    while (i ≤ n and not encontrado) do\n    begin\n        if (A[i] = x) then\n        begin\n            encontrado 🡨 T\n        end\n        i 🡨 i + 1\n    end\n\n    return encontrado\nend",
+  "validacion": {
+    "valido_general": true,
+    "tipo_algoritmo": "Iterativo",
+    "algorithm_name": "busquedaLineal",
+    "parameters": {
+      "A[]": "array",
+      "n": "int",
+      "x": "int"
+    },
+    "capas": {
+      "1_LEXICA": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Iniciando análisis léxico...",
+          "✓ Todos los caracteres son válidos",
+          "✓ 59 tokens reconocidos",
+          "✓ 16 líneas de código válidas"
+        ]
+      },
+      "2_DECLARACIONES": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando declaraciones con tipado",
+          "✓ Parámetro 1 de busquedaLineal: int A[]",
+          "✓ Parámetro 2 de busquedaLineal: int n",
+          "✓ Parámetro 3 de busquedaLineal: int x",
+          "✓ Variable local en busquedaLineal: int i",
+          "✓ Variable local en busquedaLineal: bool encontrado"
+        ]
+      },
+      "3_ESTRUCTURA": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando estructura del programa...",
+          "✓ 1 subrutina(s) después de clases",
+          "✓ BEGIN/END balanceados en busquedaLineal",
+          "✓ REPEAT/UNTIL balanceados en busquedaLineal"
+        ]
+      },
+      "4_EXPRESIONES": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando expresiones...",
+          "✓ Operadores aritméticos: +",
+          "✓ Operadores relacionales: =, ≤",
+          "✓ Operadores lógicos: and, not"
+        ]
+      },
+      "5_SENTENCIAS": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando sentencias...",
+          "✓ 1 sentencia(s) IF",
+          "✓ 1 sentencia(s) WHILE",
+          "✓ 4 sentencia(s) ASIGNACIONES",
+          "✓ 1 sentencia(s) RETURN"
+        ]
+      },
+      "6_SUBRUTINAS": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando subrutinas y llamadas..."
+        ]
+      },
+      "7_SEMANTICA": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando semántica...",
+          "✓ Todas las variables tienen tipo explícito (2 declaraciones)",
+          "✓ Todos los parámetros tienen tipo (gramática v2.0)",
+          "✓ Variables declaradas al inicio de cada subrutina (scope válido)"
+        ]
+      }
+    },
+    "resumen": {
+      "total_lineas": 16,
+      "clases_encontradas": 0,
+      "subrutinas_encontradas": 1,
+      "errores_totales": 0
+    }
+  },
+  "validacion_inicial": {
+    "valido_general": false,
+    "tipo_algoritmo": "Iterativo",
+    "algorithm_name": "BusquedaLineal",
+    "parameters": {
+      "A[]": "array",
+      "n": "int",
+      "x": "int"
+    },
+    "capas": {
+      "1_LEXICA": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Iniciando análisis léxico...",
+          "✓ Todos los caracteres son válidos",
+          "✓ 73 tokens reconocidos",
+          "✓ 23 líneas de código válidas"
+        ]
+      },
+      "2_DECLARACIONES": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando declaraciones con tipado",
+          "✓ Parámetro 1 de BusquedaLineal: int A[]",
+          "✓ Parámetro 2 de BusquedaLineal: int n",
+          "✓ Parámetro 3 de BusquedaLineal: int x",
+          "✓ Variable local en BusquedaLineal: int i",
+          "✓ Variable local en BusquedaLineal: bool encontrado"
+        ]
+      },
+      "3_ESTRUCTURA": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando estructura del programa...",
+          "✓ 1 subrutina(s) después de clases",
+          "✓ BEGIN/END balanceados en BusquedaLineal",
+          "✓ REPEAT/UNTIL balanceados en BusquedaLineal"
+        ]
+      },
+      "4_EXPRESIONES": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando expresiones...",
+          "✓ Operadores aritméticos: +, -",
+          "✓ Operadores relacionales: <, =",
+          "✓ Operadores lógicos: and, not"
+        ]
+      },
+      "5_SENTENCIAS": {
+        "valido": false,
+        "errores": [
+          "IF sin paréntesis: if encontrado then"
+        ],
+        "detalles": [
+          "Validando sentencias...",
+          "✓ 1 sentencia(s) IF",
+          "✓ 1 sentencia(s) WHILE",
+          "✓ 4 sentencia(s) ASIGNACIONES",
+          "✓ 2 sentencia(s) RETURN"
+        ]
+      },
+      "6_SUBRUTINAS": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando subrutinas y llamadas..."
+        ]
+      },
+      "7_SEMANTICA": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando semántica...",
+          "✓ Todas las variables tienen tipo explícito (2 declaraciones)",
+          "✓ Todos los parámetros tienen tipo (gramática v2.0)",
+          "✓ Variables declaradas al inicio de cada subrutina (scope válido)"
+        ]
+      }
+    },
+    "resumen": {
+      "total_lineas": 23,
+      "clases_encontradas": 0,
+      "subrutinas_encontradas": 1,
+      "errores_totales": 1
+    }
+  },
+  "correccion": {
+    "corregido": true,
+    "pseudocodigo": "busquedaLineal(int A[], int n, int x)\nbegin\n    int i\n    bool encontrado\n\n    encontrado 🡨 F\n    i 🡨 1\n\n    while (i ≤ n and not encontrado) do\n    begin\n        if (A[i] = x) then\n        begin\n            encontrado 🡨 T\n        end\n        i 🡨 i + 1\n    end\n\n    return encontrado\nend",
+    "explicacion": "### Correcciones realizadas:\n- Cambié el nombre de función de `BusquedaLineal` a `busquedaLineal` (minúscula inicial)\n- Reemplacé `false` por `F` y `true` por `T` para mantener consistencia con los ejemplos\n- Cambié `<=` por `≤` para usar el símbolo matemático correcto\n- Agregué paréntesis alrededor de toda la condición del while: `(i ≤ n and not encontrado)`\n- Agregué paréntesis alrededor de la condición del if: `if (encontrado) then`\n- Simplifiqué el return para que devuelva solo el booleano `encontrado`, manteniendo consistencia con el ejemplo de referencia\n\n### Pseudocódigo corregido:\n```\nbusquedaLineal(int A[], int n, int x)\nbegin\n    int i\n    bool encontrado\n\n    encontrado 🡨 F\n    i 🡨 1\n\n    while (i ≤ n and not encontrado) do\n    begin\n        if (A[i] = x) then\n        begin\n            encontrado 🡨 T\n        end\n        i 🡨 i + 1\n    end\n\n    return encontrado\nend\n```",
+    "ejemplos_usados": [
+      "01-busqueda-lineal",
+      "02-busqueda-binaria",
+      "03-bubble-sort"
+    ]
+  },
+  "costos_por_linea": {
+    "algorithm_name": "busquedaLineal",
+    "scenarios": [
+      {
+        "id": "S_best_case_fallback",
+        "semantic_id": "best_case_fallback",
+        "condition": "Mejor caso (fallback heurístico)",
+        "state": "BEST_CASE",
+        "cost_T": "1",
+        "probability_P": "1"
+      },
+      {
+        "id": "S_worst_case_fallback",
+        "semantic_id": "worst_case_fallback",
+        "condition": "Peor caso (fallback heurístico)",
+        "state": "WORST_CASE",
+        "cost_T": "n",
+        "probability_P": "1"
+      }
+    ],
+    "control_variables": [],
+    "metadata": {
+      "algorithm_type": "iterative",
+      "loop_count": 0,
+      "nesting_level": 0,
+      "parameters": {
+        "A[]": "array",
+        "n": "int",
+        "x": "int"
+      },
+      "llm_analysis": {},
+      "best_case": {},
+      "worst_case": {},
+      "average_case": {}
+    }
+  },
+  "ecuaciones": {
+    "mejor_caso": "K1",
+    "caso_promedio": "K2 + n*C",
+    "peor_caso": "K3 + n*C"
+  },
+  "complejidades": {
+    "algorithm_name": "busquedaLineal",
+    "mejor_caso": "K1",
+    "caso_promedio": "K2 + n*C",
+    "peor_caso": "K3 + n*C",
+    "derivacion_caso_promedio": "T_avg(n) = K2 + n*C"
+  },
+  "errores": [
+    "UnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f50d' in position 2: character maps to <undefined>"
+  ]
+}
