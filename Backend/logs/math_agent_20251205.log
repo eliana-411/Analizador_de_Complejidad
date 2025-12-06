@@ -184,3 +184,67 @@ anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type':
 2025-12-05 07:48:13 - MathAgent - INFO -   Misses: 1
 2025-12-05 07:48:13 - MathAgent - INFO -   Size: 1
 2025-12-05 07:48:13 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-05 21:02:47 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-05 21:02:47 - MathAgent - INFO - Algoritmo: hanoi
+2025-12-05 21:02:47 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-05 21:02:47 - MathAgent - INFO - Escenarios: 4
+2025-12-05 21:02:47 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-05 21:02:47 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-05 21:02:54 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-05 21:02:54 - MathAgent - INFO - Mejor caso: T(0) = c
+2025-12-05 21:02:54 - MathAgent - INFO - Caso promedio: T(n) = 2*T(n-1) + c
+2025-12-05 21:02:54 - MathAgent - INFO - Peor caso: T(n) = T(n-1) + c
+2025-12-05 21:02:54 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-05 21:02:54 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-05 21:02:54 - MathAgent - INFO -   Hits: 0
+2025-12-05 21:02:54 - MathAgent - INFO -   Misses: 1
+2025-12-05 21:02:54 - MathAgent - INFO -   Size: 1
+2025-12-05 21:02:54 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-05 21:10:55 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-05 21:10:55 - MathAgent - INFO - Algoritmo: hanoi
+2025-12-05 21:10:55 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-05 21:10:55 - MathAgent - INFO - Escenarios: 4
+2025-12-05 21:10:55 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-05 21:10:55 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-05 21:11:03 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-05 21:11:03 - MathAgent - INFO - Mejor caso: T(0) = c
+2025-12-05 21:11:03 - MathAgent - INFO - Caso promedio: T(n) = 2*T(n-1) + c
+2025-12-05 21:11:03 - MathAgent - INFO - Peor caso: T(n) = T(n-1) + c
+2025-12-05 21:11:03 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-05 21:11:03 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-05 21:11:03 - MathAgent - INFO -   Hits: 0
+2025-12-05 21:11:03 - MathAgent - INFO -   Misses: 1
+2025-12-05 21:11:03 - MathAgent - INFO -   Size: 1
+2025-12-05 21:11:03 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-05 21:18:57 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-05 21:18:57 - MathAgent - INFO - Algoritmo: hanoi
+2025-12-05 21:18:57 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-05 21:18:57 - MathAgent - INFO - Escenarios: 4
+2025-12-05 21:18:57 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-05 21:18:57 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-05 21:19:04 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-05 21:19:04 - MathAgent - INFO - Mejor caso: T(0) = c
+2025-12-05 21:19:04 - MathAgent - INFO - Caso promedio: T(n) = 2*T(n-1) + c
+2025-12-05 21:19:04 - MathAgent - INFO - Peor caso: T(n) = T(n-1) + c
+2025-12-05 21:19:04 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-05 21:19:04 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-05 21:19:04 - MathAgent - INFO -   Hits: 0
+2025-12-05 21:19:04 - MathAgent - INFO -   Misses: 1
+2025-12-05 21:19:04 - MathAgent - INFO -   Size: 1
+2025-12-05 21:19:04 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-05 21:22:55 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-05 21:22:55 - MathAgent - INFO - Algoritmo: hanoi
+2025-12-05 21:22:55 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-05 21:22:55 - MathAgent - INFO - Escenarios: 4
+2025-12-05 21:22:55 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-05 21:22:55 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-05 21:23:02 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-05 21:23:02 - MathAgent - INFO - Mejor caso: T(0) = c
+2025-12-05 21:23:02 - MathAgent - INFO - Caso promedio: T(n) = 2*T(n-1) + c
+2025-12-05 21:23:02 - MathAgent - INFO - Peor caso: T(n) = T(n-1) + c
+2025-12-05 21:23:02 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-05 21:23:02 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-05 21:23:02 - MathAgent - INFO -   Hits: 0
+2025-12-05 21:23:02 - MathAgent - INFO -   Misses: 1
+2025-12-05 21:23:02 - MathAgent - INFO -   Size: 1
+2025-12-05 21:23:02 - MathAgent - INFO -   Hit Rate: 0.0%
