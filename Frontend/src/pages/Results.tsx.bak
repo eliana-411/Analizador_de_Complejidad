@@ -121,13 +121,9 @@ export default function Results() {
                     Volver
                   </Button>
                   <Show when={result.reporte_markdown}>
-                    <Button
-                      variant="primary"
-                      onClick={downloadMarkdown}
-                      class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-200"
-                    >
+                    <Button variant="blue" onClick={downloadMarkdown}>
                       <Download class="w-5 h-5 mr-2" />
-                      Descargar Reporte Completo
+                      Descargar Reporte
                     </Button>
                   </Show>
                 </div>
@@ -254,34 +250,6 @@ export default function Results() {
                     </For>
                   </div>
                 </Card>
-              </Show>
-
-              {/* Sección de Descarga Destacada */}
-              <Show when={result.reporte_markdown}>
-                <div class="mt-8 p-6 rounded-xl bg-gradient-to-r from-purple-50 via-indigo-50 to-purple-50 border-2 border-purple-200">
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-4">
-                      <div class="p-3 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-lg">
-                        <FileText class="w-8 h-8 text-white" />
-                      </div>
-                      <div>
-                        <H3 class="mb-1">Reporte de Análisis Completo</H3>
-                        <Body class="text-sm text-gray-600">
-                          Descarga el reporte detallado en formato Markdown con todos los pasos del análisis
-                        </Body>
-                      </div>
-                    </div>
-                    <Button
-                      variant="primary"
-                      onClick={downloadMarkdown}
-                      class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-200 px-8"
-                      size="lg"
-                    >
-                      <Download class="w-6 h-6 mr-2" />
-                      Descargar Reporte (.md)
-                    </Button>
-                  </div>
-                </div>
               </Show>
             </div>
           )}

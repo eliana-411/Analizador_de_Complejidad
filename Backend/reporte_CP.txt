@@ -1,0 +1,91 @@
+C:\Python311\Lib\site-packages\sklearn\base.py:442: InconsistentVersionWarning: Trying to unpickle estimator TfidfTransformer from version 1.5.2 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Python311\Lib\site-packages\sklearn\base.py:442: InconsistentVersionWarning: Trying to unpickle estimator TfidfVectorizer from version 1.5.2 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Python311\Lib\site-packages\sklearn\base.py:442: InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder from version 1.5.2 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Python311\Lib\site-packages\sklearn\base.py:442: InconsistentVersionWarning: Trying to unpickle estimator SVC from version 1.5.2 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\analizar_CP.py", line 140, in main
+    print(reporte_completo['markdown'])
+  File "C:\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f4ca' in position 2: character maps to <undefined>
+================================================================================
+ANALISIS DEL ALGORITMO CP (Contador de Pares)
+================================================================================
+
+PSEUDOCODIGO A ANALIZAR:
+--------------------------------------------------------------------------------
+Algoritmo CP (int A[n])
+begin
+  contador <- 0
+  for i <- 1 to n do
+     Si el numero del arreglo es par, incrementar un contador en 1
+  end
+  print(contador)
+end
+
+--------------------------------------------------------------------------------
+
+[OK] Base de conocimiento cargada: 15 ejemplos para traducción
+[OK] Base de conocimiento cargada: 15 ejemplos correctos
+[OK] Clasificador cargado: clasificador
+  Categorias: [np.str_('busqueda'), np.str_('grafos'), np.str_('greedy'), np.str_('iterativo'), np.str_('ordenamiento'), np.str_('programacion_dinamica'), np.str_('recursivo_divide_conquista')]
+EJECUTANDO ANALISIS COMPLETO...
+
+
+================================================================================
+RESULTADOS DEL ANALISIS
+================================================================================
+
+Exito: False
+Fase actual: correccion_completada
+
+VALIDACION:
+  - Valido: False
+  - Tipo: Iterativo
+  - Errores: 1
+
+  Errores encontrados:
+
+  4_EXPRESIONES:
+    - Operador mod mal usado: if (A[i] mod 2 = 0) then. Use: a mod b
+
+CLASIFICACION ML:
+  - Categoria: iterativo
+  - Confianza: 37.4%
+  - Top 3:
+    iterativo: 37.4%
+    ordenamiento: 25.5%
+    busqueda: 14.2%
+
+FLOWCHART GENERADO:
+--------------------------------------------------------------------------------
+```mermaid
+flowchart TD
+    N0[Algoritmo CP (int A[n])]
+    N1[contador <- 0]
+    N2[for i <- 1 to n do]
+    N3[Si el numero del arreglo es par, incrementar un contador en 1]
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+```
+--------------------------------------------------------------------------------
+
+
+================================================================================
+GENERANDO REPORTE COMPLETO...
+================================================================================
+
+REPORTE EN MARKDOWN:
+================================================================================
+
+ERROR EN ANALISIS: 'charmap' codec can't encode character '\U0001f4ca' in position 2: character maps to <undefined>

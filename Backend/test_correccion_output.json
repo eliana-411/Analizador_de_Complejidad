@@ -1,0 +1,10 @@
+{
+  "corregido": true,
+  "pseudocodigo": "Prueba5(int n)\nbegin\n    int i\n\n    for i 🡨 0 to n do\n    begin\n        print (i)\n        if (i mod 2) = 0 then\n        begin\n            print ('Par')\n        end\n    end\nend",
+  "explicacion": "### Correcciones realizadas:\n- Agregado tipo `int` al parámetro `n`\n- Agregada declaración de variable local `int i` con tipo\n- Cambiado `<-` por `🡨` para asignación\n- Reemplazadas comillas dobles por comillas simples en las cadenas de texto\n- Mantenida la estructura de control `for` y `if` con sintaxis correcta\n\n### Pseudocódigo corregido:\n```\nPrueba5(int n)\nbegin\n    int i\n\n    for i 🡨 0 to n do\n    begin\n        print (i)\n        if (i mod 2) = 0 then\n        begin\n            print ('Par')\n        end\n    end\nend\n```",
+  "ejemplos_usados": [
+    "01-busqueda-lineal",
+    "02-busqueda-binaria",
+    "04-merge-sort"
+  ]
+}

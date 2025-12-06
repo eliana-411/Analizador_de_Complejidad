@@ -103,10 +103,11 @@ class servicioValidador:
         
         # CAPA 1: LÉXICA
         self._validar_capa_lexica(pseudocodigo)
-        
-        # Si falla léxica, no continuar
+
+        # Si falla léxica, no continuar pero generar resumen
         if not self._resultado['capas']['1_LEXICA']['valido']:
             self._resultado['valido_general'] = False
+            self._generar_resumen()
             return self._resultado
         
         # CAPA 2: DECLARACIONES
@@ -666,7 +667,9 @@ class servicioValidador:
         total_errores = 0
         for capa_nombre, capa_datos in self._resultado['capas'].items():
             total_errores += len(capa_datos['errores'])
-            if not capa_datos['valido']:
-                self._resultado['valido_general'] = False
-        
+
+        # valido_general debe basarse en si hay errores, no en flags individuales
+        if total_errores > 0:
+            self._resultado['valido_general'] = False
+
         self._resultado['resumen']['errores_totales'] = total_errores

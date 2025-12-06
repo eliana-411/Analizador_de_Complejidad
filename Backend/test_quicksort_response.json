@@ -1,0 +1,247 @@
+{
+  "exito": false,
+  "fase_actual": "representacion_matematica_error",
+  "pseudocodigo_original": "quickSort(int A[], int izq, int der)\nbegin\n    int pivote\n\n    if (izq < der) then\n    begin\n        pivote 🡨 CALL particionar(A[], izq, der)\n        CALL quickSort(A[], izq, pivote - 1)\n        CALL quickSort(A[], pivote + 1, der)\n    end\nend\n\nparticionar(int A[], int izq, int der)\nbegin\n    int pivote, i, j, temp\n\n    pivote 🡨 A[der]\n    i 🡨 izq - 1\n\n    for j 🡨 izq to der - 1 do\n    begin\n        if (A[j] ≤ pivote) then\n        begin\n            i 🡨 i + 1\n            temp 🡨 A[i]\n            A[i] 🡨 A[j]\n            A[j] 🡨 temp\n        end\n    end\n\n    temp 🡨 A[i + 1]\n    A[i + 1] 🡨 A[der]\n    A[der] 🡨 temp\n\n    return i + 1\nend\n",
+  "pseudocodigo_validado": "quickSort(int A[], int izq, int der)\nbegin\n    int pivote\n\n    if (izq < der) then\n    begin\n        pivote 🡨 CALL particionar(A[], izq, der)\n        CALL quickSort(A[], izq, pivote - 1)\n        CALL quickSort(A[], pivote + 1, der)\n    end\nend\n\nparticionar(int A[], int izq, int der)\nbegin\n    int pivote, i, j, temp\n\n    pivote 🡨 A[der]\n    i 🡨 izq - 1\n\n    for j 🡨 izq to der - 1 do\n    begin\n        if (A[j] ≤ pivote) then\n        begin\n            i 🡨 i + 1\n            temp 🡨 A[i]\n            A[i] 🡨 A[j]\n            A[j] 🡨 temp\n        end\n    end\n\n    temp 🡨 A[i + 1]\n    A[i + 1] 🡨 A[der]\n    A[der] 🡨 temp\n\n    return i + 1\nend\n",
+  "validacion": {
+    "valido_general": true,
+    "tipo_algoritmo": "Recursivo",
+    "algorithm_name": "quickSort",
+    "parameters": {
+      "A[]": "array",
+      "izq": "int",
+      "der": "int"
+    },
+    "capas": {
+      "1_LEXICA": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Iniciando análisis léxico...",
+          "✓ Todos los caracteres son válidos",
+          "✓ 177 tokens reconocidos",
+          "✓ 30 líneas de código válidas"
+        ]
+      },
+      "2_DECLARACIONES": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando declaraciones con tipado",
+          "✓ Parámetro 1 de quickSort: int A[]",
+          "✓ Parámetro 2 de quickSort: int izq",
+          "✓ Parámetro 3 de quickSort: int der",
+          "✓ Variable local en quickSort: int pivote",
+          "✓ Parámetro 1 de particionar: int A[]",
+          "✓ Parámetro 2 de particionar: int izq",
+          "✓ Parámetro 3 de particionar: int der",
+          "✓ Declaración múltiple en particionar: int pivote, i, j, temp"
+        ]
+      },
+      "3_ESTRUCTURA": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando estructura del programa...",
+          "✓ 2 subrutina(s) después de clases",
+          "✓ BEGIN/END balanceados en quickSort",
+          "✓ REPEAT/UNTIL balanceados en quickSort",
+          "✓ BEGIN/END balanceados en particionar",
+          "✓ REPEAT/UNTIL balanceados en particionar"
+        ]
+      },
+      "4_EXPRESIONES": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando expresiones...",
+          "✓ Operadores aritméticos: +, -",
+          "✓ Operadores relacionales: <, ≤"
+        ]
+      },
+      "5_SENTENCIAS": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando sentencias...",
+          "✓ 2 sentencia(s) IF",
+          "✓ 1 sentencia(s) FOR",
+          "✓ 9 sentencia(s) ASIGNACIONES",
+          "✓ 1 sentencia(s) RETURN"
+        ]
+      },
+      "6_SUBRUTINAS": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando subrutinas y llamadas...",
+          "⚠ Recursión detectada: quickSort se llama a sí misma",
+          "⚠ Recursión detectada: quickSort se llama a sí misma",
+          "✓ 3 llamada(s) CALL encontradas",
+          "✓ Tipo de algoritmo: Recursivo"
+        ]
+      },
+      "7_SEMANTICA": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando semántica...",
+          "✓ Todas las variables tienen tipo explícito (2 declaraciones)",
+          "✓ Todos los parámetros tienen tipo (gramática v2.0)",
+          "✓ Variables declaradas al inicio de cada subrutina (scope válido)"
+        ]
+      }
+    },
+    "resumen": {
+      "total_lineas": 30,
+      "clases_encontradas": 0,
+      "subrutinas_encontradas": 2,
+      "errores_totales": 0
+    }
+  },
+  "validacion_inicial": {
+    "valido_general": true,
+    "tipo_algoritmo": "Recursivo",
+    "algorithm_name": "quickSort",
+    "parameters": {
+      "A[]": "array",
+      "izq": "int",
+      "der": "int"
+    },
+    "capas": {
+      "1_LEXICA": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Iniciando análisis léxico...",
+          "✓ Todos los caracteres son válidos",
+          "✓ 177 tokens reconocidos",
+          "✓ 30 líneas de código válidas"
+        ]
+      },
+      "2_DECLARACIONES": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando declaraciones con tipado",
+          "✓ Parámetro 1 de quickSort: int A[]",
+          "✓ Parámetro 2 de quickSort: int izq",
+          "✓ Parámetro 3 de quickSort: int der",
+          "✓ Variable local en quickSort: int pivote",
+          "✓ Parámetro 1 de particionar: int A[]",
+          "✓ Parámetro 2 de particionar: int izq",
+          "✓ Parámetro 3 de particionar: int der",
+          "✓ Declaración múltiple en particionar: int pivote, i, j, temp"
+        ]
+      },
+      "3_ESTRUCTURA": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando estructura del programa...",
+          "✓ 2 subrutina(s) después de clases",
+          "✓ BEGIN/END balanceados en quickSort",
+          "✓ REPEAT/UNTIL balanceados en quickSort",
+          "✓ BEGIN/END balanceados en particionar",
+          "✓ REPEAT/UNTIL balanceados en particionar"
+        ]
+      },
+      "4_EXPRESIONES": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando expresiones...",
+          "✓ Operadores aritméticos: +, -",
+          "✓ Operadores relacionales: <, ≤"
+        ]
+      },
+      "5_SENTENCIAS": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando sentencias...",
+          "✓ 2 sentencia(s) IF",
+          "✓ 1 sentencia(s) FOR",
+          "✓ 9 sentencia(s) ASIGNACIONES",
+          "✓ 1 sentencia(s) RETURN"
+        ]
+      },
+      "6_SUBRUTINAS": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando subrutinas y llamadas...",
+          "⚠ Recursión detectada: quickSort se llama a sí misma",
+          "⚠ Recursión detectada: quickSort se llama a sí misma",
+          "✓ 3 llamada(s) CALL encontradas",
+          "✓ Tipo de algoritmo: Recursivo"
+        ]
+      },
+      "7_SEMANTICA": {
+        "valido": true,
+        "errores": [],
+        "detalles": [
+          "Validando semántica...",
+          "✓ Todas las variables tienen tipo explícito (2 declaraciones)",
+          "✓ Todos los parámetros tienen tipo (gramática v2.0)",
+          "✓ Variables declaradas al inicio de cada subrutina (scope válido)"
+        ]
+      }
+    },
+    "resumen": {
+      "total_lineas": 30,
+      "clases_encontradas": 0,
+      "subrutinas_encontradas": 2,
+      "errores_totales": 0
+    }
+  },
+  "correccion": null,
+  "costos_por_linea": {
+    "algorithm_name": "quickSort",
+    "scenarios": [
+      {
+        "id": "S_best_case_fallback",
+        "semantic_id": "best_case_fallback",
+        "condition": "Mejor caso (fallback heurístico)",
+        "state": "BEST_CASE",
+        "cost_T": "T(n) = 1",
+        "probability_P": "1"
+      },
+      {
+        "id": "S_worst_case_fallback",
+        "semantic_id": "worst_case_fallback",
+        "condition": "Peor caso (fallback heurístico)",
+        "state": "WORST_CASE",
+        "cost_T": "T(n) = T(n-1) + 1",
+        "probability_P": "1"
+      }
+    ],
+    "control_variables": [],
+    "metadata": {
+      "algorithm_type": "recursive",
+      "loop_count": 0,
+      "nesting_level": 0,
+      "parameters": {
+        "A[]": "array",
+        "izq": "int",
+        "der": "int"
+      },
+      "llm_analysis": {},
+      "best_case": {},
+      "worst_case": {},
+      "average_case": {}
+    }
+  },
+  "ecuaciones": null,
+  "complejidades": {
+    "algorithm_name": "quickSort",
+    "mejor_caso": "O(1)",
+    "caso_promedio": "O(n)",
+    "peor_caso": "O(2^n)",
+    "derivacion_caso_promedio": "T(n) = T(n-1) + O(1)"
+  },
+  "errores": [
+    "Error en representación matemática: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CVpyg7tSbw7yVsv6hZPcM'}",
+    "UnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f50d' in position 2: character maps to <undefined>"
+  ]
+}
