@@ -124,7 +124,7 @@ def mostrar_resultado_completo(resultado: dict, mostrar_todo: bool = True):
             if capa_datos.get('advertencias'):
                 print("     Advertencias:")
                 for adv in capa_datos['advertencias']:
-                    print(f"       ⚠️  {adv}")
+                    print(f"       ⚠  {adv}")
     
     # ==================== CORRECCIÓN ====================
     if resultado.get('correccion'):
@@ -267,7 +267,7 @@ def mostrar_resultado_completo(resultado: dict, mostrar_todo: bool = True):
             nombre = caso.replace('_', ' ').title()
             val_sistema = sistema.get(caso, 'N/A')
             val_llm = llm.get(caso, 'N/A')
-            estado = "✅" if val_sistema == val_llm else "⚠️"
+            estado = "✅" if val_sistema == val_llm else "⚠"
             
             print(f"{nombre:<20} {val_sistema:<25} {val_llm:<25} {estado}")
         
@@ -308,7 +308,7 @@ def mostrar_resultado_completo(resultado: dict, mostrar_todo: bool = True):
     
     if resultado.get('validacion_complejidades'):
         conc = resultado['validacion_complejidades']['concordancia']
-        print(f"✓ Validación LLM: {'Concordante ✅' if conc else 'Divergente ⚠️'}")
+        print(f"✓ Validación LLM: {'Concordante ✅' if conc else 'Divergente ⚠'}")
     
     print("\n" + "=" * 100 + "\n")
 
@@ -344,46 +344,14 @@ def main():
     print(f"📄 Archivo a analizar: {archivo}")
     print(f"📏 Tamaño: {archivo_path.stat().st_size} bytes")
     print()
-    
-    # Inicializar flujo
-    mostrar_seccion("🔧 INICIALIZANDO SISTEMA", "=", 100)
-    print("Cargando componentes...")
-    
-    flujo = FlujoAnalisis(modo_verbose=True)  # Verbose = True para TODO
-    
-    print("\n✅ Sistema inicializado correctamente")
-    
-    # Ejecutar análisis completo
-    mostrar_seccion("⚙️  EJECUTANDO ANÁLISIS COMPLETO", "=", 100)
-    print("MOSTRANDO TODOS LOS PASOS SIN OMITIR NADA...\n")
-    print("=" * 100 + "\n")
-    
-    try:
-        resultado = flujo.analizar_desde_archivo(
-            str(archivo_path),
-            auto_corregir=True
-        )
-        
-        # Mostrar TODOS los resultados
-        mostrar_resultado_completo(resultado, mostrar_todo=True)
-        
-        # Estado de salida
-        return 0 if resultado.get('exito') else 1
-        
-    except Exception as e:
-        mostrar_seccion("❌ ERROR CRÍTICO", "=", 100)
-        print(f"Tipo: {type(e).__name__}")
-        print(f"Mensaje: {str(e)}")
-        
-        import traceback
-        print("\nTraceback completo:")
-        print("-" * 100)
-        traceback.print_exc()
-        print("-" * 100)
-        
-        return 1
-
+    print("=" * 80)
+    print("  🏁 FIN DEL PROCESO")
+    print("=" * 80)
 
 if __name__ == "__main__":
+<<<<<<< HEAD
+    main()
+=======
     exit_code = main()
     sys.exit(exit_code)
+>>>>>>> b9667378af72c8d0635c8a497e1d39b66559252e
