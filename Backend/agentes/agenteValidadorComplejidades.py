@@ -13,6 +13,7 @@ from langchain_anthropic import ChatAnthropic
 from langchain_core.messages import HumanMessage, SystemMessage
 import re
 import logging
+from config.settings import settings
 
 # Configurar logging
 logging.basicConfig(level=logging.INFO)
@@ -33,9 +34,10 @@ class AgenteValidadorComplejidades:
         
         if self.use_llm:
             self.llm = ChatAnthropic(
-                model="claude-3-5-sonnet-20241022",
+                model=settings.model_name,
                 temperature=0.1,
-                max_tokens=2000
+                max_tokens=2000,
+                api_key=settings.anthropic_api_key
             )
     
     def validar_complejidades(

@@ -349,9 +349,4 @@ def main():
     print("=" * 80)
 
 if __name__ == "__main__":
-<<<<<<< HEAD
     main()
-=======
-    exit_code = main()
-    sys.exit(exit_code)
->>>>>>> b9667378af72c8d0635c8a497e1d39b66559252e
