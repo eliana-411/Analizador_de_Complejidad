@@ -117,6 +117,7 @@ class AnalizadorDirecto(BaseResolver):
         """
         exp = expresion.replace(' ', '').lower()
         terminos = []
+        posiciones_usadas = set()  # Para evitar capturar la misma parte varias veces
         
         # Patrones a buscar (del más complejo al más simple)
         patrones = [
@@ -132,14 +133,14 @@ class AnalizadorDirecto(BaseResolver):
             # n^2, n² (cuadrático)
             (r'n\*\*2|n\^2|n\*n', 'cuadratico', 'n²', 7),
             
-            # n*log(n)
-            (r'n\*log\(n\)|n\*logn|nlog\(n\)|nlogn', 'n_log_n', 'n·log(n)', 6),
+            # n*log(n), n*log2(n), n*log10(n), etc.
+            (r'n\*log\d*\(n\)|n\*log\d*n|nlog\d*\(n\)|nlog\d*n', 'n_log_n', 'n·log(n)', 6),
+            
+            # log(n), log2(n), log10(n), logn, log2n, etc.
+            (r'log\d*\(n\)|log\d*n', 'logaritmico', 'log(n)', 4),
             
             # n, n/2, n/3, etc. (lineal)
             (r'\d*n/\d+|\d*\*?n(?![a-z])', 'lineal', 'n', 5),
-            
-            # log(n)
-            (r'log\(n\)|logn', 'logaritmico', 'log(n)', 4),
             
             # Constantes (K, C, números)
             (r'[kc]\d*|^\d+$', 'constante', '1', 1),
@@ -148,13 +149,19 @@ class AnalizadorDirecto(BaseResolver):
         for patron, tipo, complejidad, prioridad in patrones:
             matches = re.finditer(patron, exp, re.IGNORECASE)
             for match in matches:
-                terminos.append({
-                    'expresion': match.group(0),
-                    'tipo': tipo,
-                    'complejidad': complejidad,
-                    'prioridad': prioridad,
-                    'descripcion': self._describir_tipo(tipo)
-                })
+                start, end = match.span()
+                # Solo agregar si esta posición no ha sido usada
+                if not any(start < pos < end or pos == start for pos in posiciones_usadas):
+                    terminos.append({
+                        'expresion': match.group(0),
+                        'tipo': tipo,
+                        'complejidad': complejidad,
+                        'prioridad': prioridad,
+                        'descripcion': self._describir_tipo(tipo)
+                    })
+                    # Marcar todas las posiciones de este match como usadas
+                    for pos in range(start, end):
+                        posiciones_usadas.add(pos)
         
         # Si no encontró nada, asumir constante
         if not terminos:
