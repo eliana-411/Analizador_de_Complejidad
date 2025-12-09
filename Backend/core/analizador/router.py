@@ -47,10 +47,21 @@ class AnalisisResponse(BaseModel):
     pseudocodigo_original: Optional[str]
     pseudocodigo_validado: Optional[str]
     validacion: Optional[dict]
+    validacion_inicial: Optional[dict] = None
+    correccion: Optional[dict] = None
     costos_por_linea: Optional[dict]
     ecuaciones: Optional[dict]
     complejidades: Optional[dict]
     errores: list
+    clasificacion: Optional[dict] = None
+    flowchart: Optional[str] = None
+
+
+class AnalisisConReporteResponse(AnalisisResponse):
+    """Response del análisis con reporte completo en Markdown"""
+    reporte_markdown: Optional[str] = None
+    diagramas: Optional[dict] = None
+    validacion_complejidades: Optional[dict] = None
 
 
 @router.post("/analizar", response_model=AnalisisResponse, status_code=status.HTTP_200_OK)

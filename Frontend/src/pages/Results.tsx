@@ -5,6 +5,7 @@ import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
 import ContentContainer from '../components/layout/ContentContainer';
+import ComparisonTable from '../components/ui/ComparisonTable';
 import { BarChart3, FileText, Brain, CheckCircle, XCircle, Download, ArrowLeft } from 'lucide-solid';
 import { analyzeCodeWithReport, type AnalisisResponse } from '../api/analyzer';
 
@@ -61,7 +62,7 @@ export default function Results() {
   };
 
   const getComplexityBadge = (complexity: string | undefined): 'success' | 'warning' | 'danger' => {
-    if (!complexity) return 'info';
+    if (!complexity) return 'danger';
     const lower = complexity.toLowerCase();
     if (lower.includes('o(1)') || lower.includes('θ(1)')) return 'success';
     if (lower.includes('o(n)') || lower.includes('θ(n)') || lower.includes('o(log')) return 'warning';
@@ -102,7 +103,7 @@ export default function Results() {
                   <H1 class="mb-2">Resultados del Análisis</H1>
                   <div class="flex items-center gap-3">
                     <Show
-                      when={result.exito}
+                      when={result().exito}
                       fallback={
                         <>
                           <XCircle class="w-5 h-5 text-red-500" />
@@ -120,7 +121,7 @@ export default function Results() {
                     <ArrowLeft class="w-5 h-5 mr-2" />
                     Volver
                   </Button>
-                  <Show when={result.reporte_markdown}>
+                  <Show when={result().reporte_markdown}>
                     <Button
                       variant="primary"
                       onClick={downloadMarkdown}
@@ -138,34 +139,34 @@ export default function Results() {
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <Body class="text-sm text-gray-600 mb-1">Tipo de Algoritmo</Body>
-                    <Body class="font-bold text-lg">{result.validacion?.tipo_algoritmo || 'No determinado'}</Body>
+                    <Body class="font-bold text-lg">{result().validacion?.tipo_algoritmo || 'No determinado'}</Body>
                   </div>
                   <div>
                     <Body class="text-sm text-gray-600 mb-1">Fase Actual</Body>
-                    <Body class="font-bold text-lg capitalize">{result.fase_actual?.replace(/_/g, ' ') || 'Completado'}</Body>
+                    <Body class="font-bold text-lg capitalize">{result().fase_actual?.replace(/_/g, ' ') || 'Completado'}</Body>
                   </div>
                 </div>
 
-                <Show when={result.complejidades?.complejidades}>
+                <Show when={result().complejidades?.complejidades}>
                   <div class="mt-6">
                     <H3 class="mb-4">Complejidades Computacionales</H3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div class="p-4 rounded-lg bg-green-50 border-2 border-green-200">
                         <Body class="text-sm text-green-700 mb-2">Mejor Caso (Ω)</Body>
-                        <Badge variant={getComplexityBadge(result.complejidades!.complejidades!.mejor_caso)} class="text-lg px-4 py-2">
-                          {result.complejidades!.complejidades!.mejor_caso || 'N/A'}
+                        <Badge variant={getComplexityBadge(result().complejidades!.complejidades!.mejor_caso)} class="text-lg px-4 py-2">
+                          {result().complejidades!.complejidades!.mejor_caso || 'N/A'}
                         </Badge>
                       </div>
                       <div class="p-4 rounded-lg bg-yellow-50 border-2 border-yellow-200">
                         <Body class="text-sm text-yellow-700 mb-2">Caso Promedio (Θ)</Body>
-                        <Badge variant={getComplexityBadge(result.complejidades!.complejidades!.caso_promedio)} class="text-lg px-4 py-2">
-                          {result.complejidades!.complejidades!.caso_promedio || 'N/A'}
+                        <Badge variant={getComplexityBadge(result().complejidades!.complejidades!.caso_promedio)} class="text-lg px-4 py-2">
+                          {result().complejidades!.complejidades!.caso_promedio || 'N/A'}
                         </Badge>
                       </div>
                       <div class="p-4 rounded-lg bg-red-50 border-2 border-red-200">
                         <Body class="text-sm text-red-700 mb-2">Peor Caso (O)</Body>
-                        <Badge variant={getComplexityBadge(result.complejidades!.complejidades!.peor_caso)} class="text-lg px-4 py-2">
-                          {result.complejidades!.complejidades!.peor_caso || 'N/A'}
+                        <Badge variant={getComplexityBadge(result().complejidades!.complejidades!.peor_caso)} class="text-lg px-4 py-2">
+                          {result().complejidades!.complejidades!.peor_caso || 'N/A'}
                         </Badge>
                       </div>
                     </div>
@@ -173,25 +174,30 @@ export default function Results() {
                 </Show>
               </Card>
 
+              {/* Comparación Sistema vs LLM */}
+              <Show when={result()?.validacion_complejidades}>
+                <ComparisonTable validacion={result()!.validacion_complejidades!} />
+              </Show>
+
               {/* Clasificación ML */}
-              <Show when={result.clasificacion}>
+              <Show when={result()?.clasificacion}>
                 <Card title="Clasificación de Algoritmo (Machine Learning)">
                   <div class="flex items-center gap-4 mb-4">
                     <Brain class="w-12 h-12 text-purple-500" />
                     <div class="flex-1">
                       <Body class="text-sm text-gray-600">Categoría Detectada</Body>
-                      <H2 class="capitalize">{result.clasificacion!.categoria_principal.replace(/_/g, ' ')}</H2>
+                      <H2 class="capitalize">{result().clasificacion!.categoria_principal.replace(/_/g, ' ')}</H2>
                       <Body class="text-sm text-gray-600 mt-1">
-                        Confianza: {(result.clasificacion!.confianza * 100).toFixed(1)}%
+                        Confianza: {(result().clasificacion!.confianza * 100).toFixed(1)}%
                       </Body>
                     </div>
                   </div>
 
-                  <Show when={result.clasificacion!.top_predicciones?.length > 0}>
+                  <Show when={result().clasificacion!.top_predicciones?.length > 0}>
                     <div class="mt-4">
                       <Body class="text-sm text-gray-700 mb-3 font-semibold">Otras Posibilidades:</Body>
                       <div class="space-y-2">
-                        <For each={result.clasificacion!.top_predicciones.slice(0, 3)}>
+                        <For each={result().clasificacion!.top_predicciones.slice(0, 3)}>
                           {(pred, index) => (
                             <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                               <Body class="capitalize">#{index() + 1} {pred.categoria.replace(/_/g, ' ')}</Body>
@@ -208,41 +214,45 @@ export default function Results() {
               {/* Pseudocódigo Validado */}
               <Card title="Pseudocódigo Validado">
                 <pre class="bg-gray-50 p-4 rounded-lg overflow-x-auto font-mono text-sm border border-gray-200">
-                  {result.pseudocodigo_validado || result.pseudocodigo_original || 'No disponible'}
+                  {result().pseudocodigo_validado || result().pseudocodigo_original || 'No disponible'}
                 </pre>
               </Card>
 
               {/* Flowchart */}
-              <Show when={result.flowchart}>
+              <Show when={result()?.flowchart}>
                 <Card title="Diagrama de Flujo">
                   <div class="bg-gray-50 p-4 rounded-lg overflow-x-auto">
-                    <pre class="font-mono text-sm whitespace-pre-wrap">{result.flowchart}</pre>
+                    <pre class="font-mono text-sm whitespace-pre-wrap">{result().flowchart}</pre>
                   </div>
                 </Card>
               </Show>
 
               {/* Reporte Completo en Markdown */}
-              <Show when={result.reporte_markdown}>
+              <Show when={result()?.reporte_markdown}>
                 <Card title="Reporte Completo">
                   <div class="prose prose-sm max-w-none">
-                    <div class="bg-white p-6 rounded-lg border border-gray-200">
-                      <pre class="whitespace-pre-wrap font-sans text-sm leading-relaxed">{result.reporte_markdown}</pre>
-                    </div>
+                    <pre class="bg-gray-50 p-4 rounded-lg overflow-x-auto text-sm border border-gray-200 whitespace-pre-wrap">
+                      {result().reporte_markdown}
+                    </pre>
                   </div>
                   <div class="mt-4 flex justify-end">
-                    <Button variant="blue" onClick={downloadMarkdown}>
-                      <Download class="w-5 h-5 mr-2" />
-                      Descargar como Markdown
+                    <Button
+                      variant="outline"
+                      onClick={downloadMarkdown}
+                      class="flex items-center gap-2"
+                    >
+                      <Download size={16} />
+                      Descargar Reporte Completo
                     </Button>
                   </div>
                 </Card>
               </Show>
 
               {/* Errores */}
-              <Show when={result.errores && result.errores.length > 0}>
+              <Show when={result()?.errores && result().errores.length > 0}>
                 <Card title="Errores Encontrados">
                   <div class="space-y-2">
-                    <For each={result.errores}>
+                    <For each={result().errores}>
                       {(error, index) => (
                         <div class="flex items-start gap-3 p-3 bg-red-50 border border-red-200 rounded-lg">
                           <div class="flex-shrink-0 w-6 h-6 bg-red-200 rounded-full flex items-center justify-center">
@@ -257,7 +267,7 @@ export default function Results() {
               </Show>
 
               {/* Sección de Descarga Destacada */}
-              <Show when={result.reporte_markdown}>
+              <Show when={result()?.reporte_markdown}>
                 <div class="mt-8 p-6 rounded-xl bg-gradient-to-r from-purple-50 via-indigo-50 to-purple-50 border-2 border-purple-200">
                   <div class="flex items-center justify-between">
                     <div class="flex items-center gap-4">
