@@ -22,6 +22,30 @@ export interface CorreccionResult {
   }>;
 }
 
+export interface ValidacionComplejidadesResult {
+  algorithm_name: string;
+  complejidades_sistema: {
+    mejor_caso?: string;
+    caso_promedio?: string;
+    peor_caso?: string;
+  };
+  complejidades_llm: {
+    mejor_caso?: string;
+    caso_promedio?: string;
+    peor_caso?: string;
+  };
+  concordancia: boolean;
+  analisis_divergencias: Array<{
+    caso: string;
+    sistema: string;
+    llm: string;
+    tipo: string;
+    severidad: string;
+  }>;
+  confianza: number;
+  recomendacion: string;
+}
+
 export interface AnalisisResponse {
   exito: boolean;
   fase_actual: string | null;
@@ -38,6 +62,7 @@ export interface AnalisisResponse {
   flowchart?: string | null;
   reporte_markdown?: string | null;
   diagramas?: Record<string, string> | null;
+  validacion_complejidades?: ValidacionComplejidadesResult | null;
 }
 
 export interface ComplejidadesResult {
