@@ -628,7 +628,7 @@ class LLMAnalyzer:
         """
         try:
             # Crear prompt
-            prompt = ANALYZE_BEST_CASE_PROMPT.format(pseudocode=pseudocode)
+            prompt = ANALYZE_BEST_CASE_FULL_PROMPT.format(pseudocode=pseudocode)
 
             # Invocar LLM
             messages = [
