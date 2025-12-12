@@ -44,7 +44,7 @@ def llm_analyze_average_case_node(state: ScenarioState) -> ScenarioState:
         best_case_summary = _get_case_summary(state, "best_case")
         worst_case_summary = _get_case_summary(state, "worst_case")
 
-        print("📋 CONTEXTO para caso promedio:")
+        print("CONTEXTO para caso promedio:")
         print(f"  - Mejor caso: {best_case_summary}")
         print(f"  - Peor caso: {worst_case_summary}")
         print()
@@ -63,10 +63,19 @@ def llm_analyze_average_case_node(state: ScenarioState) -> ScenarioState:
 
         print("[OK] LLM respondió exitosamente")
         print()
-        print("📊 RESULTADO DEL LLM:")
+        print("RESULTADO DEL LLM:")
         print(f"  - Tipo: {llm_result.get('scenario_type')}")
-        print(f"  - Fórmula E[T]: {llm_result.get('average_cost_formula', 'N/A')[:80]}...")
-        print(f"  - Costo simplificado: {llm_result.get('average_cost_simplified')}")
+        
+        # Detectar formato y mostrar campos apropiados
+        if "input_condition" in llm_result:
+            # Formato nuevo (iterativo)
+            print(f"  - Fórmula E[T]: {llm_result.get('average_cost_formula', 'N/A')[:80]}...")
+            print(f"  - Costo T(S): {llm_result.get('T_of_S', 'N/A')}")
+            print(f"  - Costo simplificado: {llm_result.get('T_of_S_simplified', 'N/A')}")
+        else:
+            # Formato antiguo (recursivo)
+            print(f"  - Fórmula E[T]: {llm_result.get('average_cost_formula', 'N/A')[:80]}...")
+            print(f"  - Costo simplificado: {llm_result.get('average_cost_simplified', 'N/A')}")
 
         # Contar escenarios intermedios
         breakdown = llm_result.get('scenarios_breakdown', [])
@@ -132,6 +141,7 @@ def _get_case_summary(state: ScenarioState, case_type: str) -> str:
 def convert_average_case_to_scenarios(llm_result: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
     Convierte respuesta del caso promedio a lista de escenarios.
+    Compatible con ambos formatos: antiguo (recursivo) y nuevo (iterativo).
 
     El caso promedio puede generar múltiples escenarios intermedios:
     - S_1, S_2, ..., S_k (encontrado en posiciones)
@@ -146,6 +156,8 @@ def convert_average_case_to_scenarios(llm_result: Dict[str, Any]) -> List[Dict[s
     Returns:
         Lista de escenarios en formato interno (estructura simplificada)
     """
+    # Detectar formato
+    is_new_format = "input_condition" in llm_result
     scenarios = []
 
     # Procesar scenarios_breakdown si existe
@@ -163,17 +175,29 @@ def convert_average_case_to_scenarios(llm_result: Dict[str, Any]) -> List[Dict[s
             })
 
     # Agregar escenario consolidado de caso promedio
+    # Extraer campos según formato
+    if is_new_format:
+        # Formato NUEVO (iterativo): input_condition, T_of_S, P_of_S
+        condition = llm_result.get("input_condition", "Caso promedio (esperanza)")
+        cost_T = llm_result.get("T_of_S_simplified", llm_result.get("T_of_S", "n"))
+        probability_P = llm_result.get("P_of_S", "1")
+    else:
+        # Formato ANTIGUO (recursivo): input_description, total_cost_T, probability_P
+        condition = llm_result.get("input_description", "Caso promedio (esperanza)")
+        cost_T = llm_result.get("average_cost_simplified", llm_result.get("total_cost_T", "n"))
+        probability_P = llm_result.get("probability_P", "1")
+    
     scenarios.append({
         "id": "S_avg",
         "semantic_id": "average_case",
-        "condition": llm_result.get("input_description", "Caso promedio (esperanza)"),
+        "condition": condition,
         "state": "AVERAGE",
-        "cost_T": llm_result.get("average_cost_simplified", llm_result.get("total_cost_T", "n")),
-        "probability_P": llm_result.get("probability_P", "1"),
-        "input_description": llm_result.get("input_description", "Caso promedio"),
+        "cost_T": cost_T,
+        "probability_P": probability_P,
+        "input_description": condition,
         "input_characteristics": {},
         "average_cost_formula": llm_result.get("average_cost_formula", ""),
-        "average_cost_simplified": llm_result.get("average_cost_simplified", "")
+        "average_cost_simplified": cost_T
     })
 
     return scenarios

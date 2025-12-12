@@ -55,11 +55,20 @@ def llm_analyze_worst_case_node(state: ScenarioState) -> ScenarioState:
 
         print("[OK] LLM respondió exitosamente")
         print()
-        print("📊 RESULTADO DEL LLM:")
+        print("RESULTADO DEL LLM:")
         print(f"  - Tipo: {llm_result.get('scenario_type')}")
-        print(f"  - Entrada: {llm_result.get('input_description', 'N/A')[:80]}...")
-        print(f"  - Costo T(S): {llm_result.get('total_cost_T')}")
-        print(f"  - Probabilidad P(S): {llm_result.get('probability_P')}")
+        
+        # Detectar formato y mostrar campos apropiados
+        if "input_condition" in llm_result:
+            # Formato nuevo (iterativo)
+            print(f"  - Entrada: {llm_result.get('input_condition', 'N/A')[:80]}...")
+            print(f"  - Costo T(S): {llm_result.get('T_of_S')}")
+            print(f"  - Probabilidad P(S): {llm_result.get('P_of_S')}")
+        else:
+            # Formato antiguo (recursivo)
+            print(f"  - Entrada: {llm_result.get('input_description', 'N/A')[:80]}...")
+            print(f"  - Costo T(S): {llm_result.get('total_cost_T')}")
+            print(f"  - Probabilidad P(S): {llm_result.get('probability_P')}")
 
         if state.is_iterative:
             num_lines = len(llm_result.get('line_by_line_analysis', []))

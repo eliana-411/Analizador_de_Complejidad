@@ -53,11 +53,20 @@ def llm_analyze_best_case_node(state: ScenarioState) -> ScenarioState:
 
         print("[OK] LLM respondió exitosamente")
         print()
-        print("📊 RESULTADO DEL LLM:")
+        print("RESULTADO DEL LLM:")
         print(f"  - Tipo: {llm_result.get('scenario_type')}")
-        print(f"  - Entrada: {llm_result.get('input_description', 'N/A')[:80]}...")
-        print(f"  - Costo T(S): {llm_result.get('total_cost_T')}")
-        print(f"  - Probabilidad P(S): {llm_result.get('probability_P')}")
+        
+        # Detectar formato y mostrar campos apropiados
+        if "input_condition" in llm_result:
+            # Formato nuevo (iterativo)
+            print(f"  - Entrada: {llm_result.get('input_condition', 'N/A')[:80]}...")
+            print(f"  - Costo T(S): {llm_result.get('T_of_S')}")
+            print(f"  - Probabilidad P(S): {llm_result.get('P_of_S')}")
+        else:
+            # Formato antiguo (recursivo)
+            print(f"  - Entrada: {llm_result.get('input_description', 'N/A')[:80]}...")
+            print(f"  - Costo T(S): {llm_result.get('total_cost_T')}")
+            print(f"  - Probabilidad P(S): {llm_result.get('probability_P')}")
 
         if state.is_iterative:
             num_lines = len(llm_result.get('line_by_line_analysis', []))
@@ -101,6 +110,7 @@ def llm_analyze_best_case_node(state: ScenarioState) -> ScenarioState:
 def convert_llm_to_scenario(llm_result: Dict[str, Any], scenario_type: str) -> Dict[str, Any]:
     """
     Convierte respuesta del LLM al formato ScenarioEntry esperado.
+    Compatible con ambos formatos: antiguo (recursivo) y nuevo (iterativo).
 
     NOTA: No incluye line_costs en el escenario. El análisis línea por línea
     completo se almacena en state.llm_analysis y luego en metadata.
@@ -112,15 +122,30 @@ def convert_llm_to_scenario(llm_result: Dict[str, Any], scenario_type: str) -> D
     Returns:
         Dict con formato compatible con ScenarioEntry (estructura simplificada)
     """
+    # Detectar formato: nuevo iterativo usa 'input_condition', antiguo usa 'input_description'
+    is_new_format = "input_condition" in llm_result
+    
+    # Extraer campos según formato
+    if is_new_format:
+        # Formato NUEVO (iterativo): input_condition, T_of_S, P_of_S
+        condition = llm_result.get("input_condition", "")
+        cost_T = llm_result.get("T_of_S", "n")
+        probability_P = llm_result.get("P_of_S", "1")
+    else:
+        # Formato ANTIGUO (recursivo): input_description, total_cost_T, probability_P
+        condition = llm_result.get("input_description", "")
+        cost_T = llm_result.get("total_cost_T", "n")
+        probability_P = llm_result.get("probability_P", "1")
+    
     # Construir escenario en formato interno (sin line_costs)
     scenario = {
         "id": f"S_{scenario_type}",
         "semantic_id": scenario_type,
-        "condition": llm_result.get("input_description", ""),
+        "condition": condition,
         "state": scenario_type.upper(),
-        "cost_T": llm_result.get("total_cost_T", "n"),
-        "probability_P": llm_result.get("probability_P", "1"),
-        "input_description": llm_result.get("input_description", ""),
+        "cost_T": cost_T,
+        "probability_P": probability_P,
+        "input_description": condition,  # Mantener para compatibilidad
         "input_characteristics": llm_result.get("input_characteristics", {}),
         "is_iterative": llm_result.get("is_iterative", True)
     }
