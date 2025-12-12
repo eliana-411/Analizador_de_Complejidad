@@ -6,8 +6,22 @@ from pathlib import Path
 from datetime import datetime
 
 from pydantic import BaseModel, Field
-from tests.flujo_analisis import FlujoAnalisis
+from flujo_analisis import FlujoAnalisis
 from agentes.agenteReportador import AgenteReportador
+
+class AnalisisConReporteResponse(BaseModel):
+    """Response del análisis con reporte"""
+    exito: bool
+    fase_actual: Optional[str]
+    pseudocodigo_original: Optional[str]
+    pseudocodigo_validado: Optional[str]
+    validacion: Optional[dict]
+    costos_por_linea: Optional[dict]
+    ecuaciones: Optional[dict]
+    complejidades: Optional[dict]
+    errores: list
+    reporte_markdown: Optional[str]
+    diagramas: Optional[dict]
 
 router = APIRouter(prefix="/analisis", tags=["analisis"])
 logger = logging.getLogger(__name__)

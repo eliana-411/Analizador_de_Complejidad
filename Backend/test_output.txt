@@ -1,0 +1,19 @@
+================================================================================
+Traceback (most recent call last):
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\test_flujo_iterativo.py", line 276, in <module>
+    asyncio.run(ejecutar_prueba())
+  File "C:\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python311\Lib\asyncio\base_events.py", line 650, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\julia\UNIVERSIDAD\ANALISIS\Analisis2025-II\Analizador_de_Complejidad\Backend\test_flujo_iterativo.py", line 67, in ejecutar_prueba
+    print("\U0001f9ea TEST: FLUJO CON ALGORITMO ITERATIVO")
+  File "C:\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f9ea' in position 0: character maps to <undefined>

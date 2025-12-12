@@ -44,7 +44,7 @@ def llm_analyze_average_case_node(state: ScenarioState) -> ScenarioState:
         best_case_summary = _get_case_summary(state, "best_case")
         worst_case_summary = _get_case_summary(state, "worst_case")
 
-        print("📋 CONTEXTO para caso promedio:")
+        print("CONTEXTO para caso promedio:")
         print(f"  - Mejor caso: {best_case_summary}")
         print(f"  - Peor caso: {worst_case_summary}")
         print()
@@ -63,10 +63,19 @@ def llm_analyze_average_case_node(state: ScenarioState) -> ScenarioState:
 
         print("[OK] LLM respondió exitosamente")
         print()
-        print("📊 RESULTADO DEL LLM:")
+        print("RESULTADO DEL LLM:")
         print(f"  - Tipo: {llm_result.get('scenario_type')}")
-        print(f"  - Fórmula E[T]: {llm_result.get('average_cost_formula', 'N/A')[:80]}...")
-        print(f"  - Costo simplificado: {llm_result.get('average_cost_simplified')}")
+        
+        # Detectar formato y mostrar campos apropiados
+        if "input_condition" in llm_result:
+            # Formato nuevo (iterativo)
+            print(f"  - Fórmula E[T]: {llm_result.get('average_cost_formula', 'N/A')[:80]}...")
+            print(f"  - Costo T(S): {llm_result.get('T_of_S', 'N/A')}")
+            print(f"  - Costo simplificado: {llm_result.get('T_of_S_simplified', 'N/A')}")
+        else:
+            # Formato antiguo (recursivo)
+            print(f"  - Fórmula E[T]: {llm_result.get('average_cost_formula', 'N/A')[:80]}...")
+            print(f"  - Costo simplificado: {llm_result.get('average_cost_simplified', 'N/A')}")
 
         # Contar escenarios intermedios
         breakdown = llm_result.get('scenarios_breakdown', [])
@@ -163,6 +172,8 @@ def convert_average_case_to_scenarios(llm_result: Dict[str, Any], is_iterative: 
     Returns:
         Lista de escenarios intermedios en formato interno
     """
+    # Detectar formato
+    is_new_format = "input_condition" in llm_result
     scenarios = []
 
     # Procesar scenarios_breakdown si existe (solo escenarios intermedios)

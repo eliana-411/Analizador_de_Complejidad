@@ -7,6 +7,7 @@ from pydantic_settings import BaseSettings
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 
 
+
 class Settings(BaseSettings):
     """
     Configuración centralizada del sistema.

@@ -105,44 +105,150 @@ FORMATO DE SALIDA:
 - Incluye explicaciones claras en los campos *_explanation cuando se solicite
 """
 
-# ========================================
-# PROMPT PARA ANÁLISIS DE MEJOR CASO
-# ========================================
-ANALYZE_BEST_CASE_FULL_PROMPT = """Analiza el siguiente pseudocódigo y determina el análisis de complejidad completo para el MEJOR CASO.
+# Plantilla de prompt para análisis de escenarios
+ANALYZE_INPUT_SCENARIOS_PROMPT = """Eres un experto en análisis de algoritmos. Analiza el siguiente pseudocódigo y determina:
 
-El MEJOR CASO es la entrada de datos que MINIMIZA el número de operaciones ejecutadas.
+1. **Sensibilidad a entrada**: ¿El costo de ejecución depende de CÓMO están organizados los datos de entrada?
+   - Ejemplo SÍ sensible: Búsqueda (depende de dónde esté el elemento)
+   - Ejemplo NO sensible: Suma de array (siempre recorre todo)
+
+2. **Tipo de sensibilidad** (si aplica):
+   - "position": Posición de un elemento afecta el costo
+   - "organization": Orden/organización de datos afecta (ej: QuickSort)
+   - "value_distribution": Distribución de valores afecta
+   - "none": No es sensible
+
+3. **Mejor caso**: Describe qué entrada causaría el MENOR costo de ejecución
+
+4. **Peor caso**: Describe qué entrada causaría el MAYOR costo de ejecución
+
+5. **Parámetro q**: ¿Hay un parámetro de probabilidad relevante? (ej: probabilidad de existencia)
 
 Pseudocódigo:
 ```
 {pseudocode}
 ```
 
+Responde SOLO con este JSON (sin markdown, sin bloques de código):
+{{
+  "is_sensitive": true/false,
+  "sensitivity_type": "position" | "organization" | "value_distribution" | "none",
+  "best_case_input": "descripción clara de la entrada",
+  "worst_case_input": "descripción clara de la entrada",
+  "parameter_q_applicable": true/false,
+  "parameter_q_meaning": "qué representa q en este algoritmo"
+}}
+"""
+
+# ========================================
+# PROMPTS ESPECÍFICOS PARA ALGORITMOS ITERATIVOS
+# ========================================
+
+ANALYZE_ITERATIVE_BEST_CASE_PROMPT = """Eres un experto en análisis de complejidad algorítmica. Analiza el siguiente pseudocódigo ITERATIVO para determinar el MEJOR CASO.
+
+El MEJOR CASO es la entrada de datos que MINIMIZA el número de operaciones ejecutadas.
+
+════════════════════════════════════════════════════════════════
+EJEMPLO COMPLETO - APRENDE DE ESTE FORMATO
+════════════════════════════════════════════════════════════════
+
+Si el pseudocodigo fuera busqueda lineal, tu respuesta para MEJOR CASO debe ser:
+{{
+  "scenario_id": "S_best_case",
+  "scenario_type": "best_case",
+  "input_condition": "Elemento x encontrado en la primera posicion del arreglo (A[1] = x)",
+  "line_by_line_analysis": [
+    {{"line_number": 1, "code": "int i", "C_op": "c1", "Freq": "1", "Total": "c1"}},
+    {{"line_number": 2, "code": "bool encontrado", "C_op": "c2", "Freq": "1", "Total": "c2"}},
+    {{"line_number": 3, "code": "encontrado <- F", "C_op": "c3", "Freq": "1", "Total": "c3"}},
+    {{"line_number": 4, "code": "i <- 1", "C_op": "c4", "Freq": "1", "Total": "c4", "explanation": "Inicializacion del indice"}},
+    {{"line_number": 5, "code": "while (i <= n and not encontrado)", "C_op": "c5", "Freq": "2", "Total": "c5*2", "explanation": "Encabezado: se evalua 2 veces por salida temprana"}},
+    {{"line_number": 6, "code": "if (A[i] = x)", "C_op": "c6", "Freq": "1", "Total": "c6"}},
+    {{"line_number": 7, "code": "encontrado <- T", "C_op": "c7", "Freq": "1", "Total": "c7", "explanation": "Se ejecuta porque encuentra el elemento"}},
+    {{"line_number": 8, "code": "i <- i + 1", "C_op": "c8", "Freq": "1", "Total": "c8"}},
+    {{"line_number": 9, "code": "return encontrado", "C_op": "c9", "Freq": "1", "Total": "c9"}}
+  ],
+  "T_of_S": "c1 + c2 + c3 + c4 + c5*2 + c6 + c7 + c8 + c9",
+  "T_of_S_explanation": "Suma de todos los costos individuales",
+  "P_of_S": "1/n",
+  "P_of_S_explanation": "Probabilidad de que el elemento este en la primera posicion",
+  "probability_model": "Se asume que el elemento existe y puede estar en cualquiera de las n posiciones con igual probabilidad 1/n"
+}}
+
+NOTAS IMPORTANTES:
+- El campo 'explanation' es OPCIONAL - incluirlo solo para lineas criticas
+- En el ejemplo: solo 3 de 9 lineas tienen 'explanation'
+- Si incluyes explanation, debe ser breve (maximo 12 palabras)
+- Los campos OBLIGATORIOS son: line_number, code, C_op, Freq, Total
+
+NOTA CRITICA SOBRE C_op:
+- NUNCA uses numeros directos como 0, 1, 2
+- SIEMPRE usa strings simbolicos: "c1", "c2", "c3", "c4", etc.
+- Freq y Total tambien son strings: "1", "2", "n+1", "c5*2"
+- NO escribas {{"C_op": 0}} - esto es INCORRECTO
+- SI escribes {{"C_op": "c1"}} - esto es CORRECTO
+
+════════════════════════════════════════════════════════════════
+
+Ahora analiza ESTE pseudocodigo:
+
+Pseudocodigo:
+```
+{pseudocode}
+```
+
 Nombre del algoritmo: {algorithm_name}
-Tipo de algoritmo: {algorithm_type}
+
+════════════════════════════════════════════════════════════════
+REGLAS PARA ALGORITMOS ITERATIVOS - MEJOR CASO
+════════════════════════════════════════════════════════════════
+
+1. CONSTANTES SIMBÓLICAS (C_op):
+   - Usa constantes simbólicas secuenciales: c1, c2, c3, ...
+   - Asigna una constante por línea del pseudocódigo (en orden)
+   - La misma línea usa la MISMA constante en todos los casos
+
+2. FRECUENCIAS (Freq):
+   - REGLA N+1: Encabezados de loops se ejecutan (iteraciones + 1) veces
+   - Cuerpo del loop: se ejecuta (iteraciones) veces
+   - Para MEJOR CASO con salida temprana:
+     * Si sale en iteración k: encabezado Freq="k+1", cuerpo Freq="k"
+     * Típicamente k=1 para búsquedas
+
+3. COSTO TOTAL (Total):
+   - Total = C_op * Freq (producto simbólico)
+   - NO calcular, mantener expresión: "c2*(k+1)", "c3*k"
+
+4. PROBABILIDADES (P_of_S):
+   IMPORTANTE: NO uses variable 'q'. Usa probabilidades RESUELTAS:
+   
+   Para búsquedas (modelo: elemento existe y posiciones equiprobables):
+   - P(encontrado en pos 1) = "1/n"
+   - P(encontrado en pos 2) = "1/n"
+   - etc.
+   
+   Para búsquedas (modelo: puede existir o no, n+1 casos equiprobables):
+   - P(encontrado en pos k) = "1/(n+1)"
+   - P(no encontrado) = "1/(n+1)"
+   
+   Para algoritmos NO sensibles:
+   - P = "1" (único escenario)
+   
+   Escoge el modelo MÁS RAZONABLE según el contexto y explícalo.
+
+════════════════════════════════════════════════════════════════
 
 INSTRUCCIONES:
 
-1. Identifica qué características de entrada causarían el MÍNIMO costo de ejecución
-2. Describe esa entrada en "input_description" de forma clara
-3. Especifica valores simbólicos en "input_characteristics" (usa "1", "n", "n/2", etc.)
-4. Analiza CADA LÍNEA del pseudocódigo numerada:
-   - Cuenta operaciones elementales (C_op) según las reglas
-   - Determina frecuencia de ejecución para ESTE caso específico (Freq)
-   - Calcula Total = C_op × Freq (expresión simbólica)
-   - Proporciona explicación clara del razonamiento
-
-5. RECUERDA: Los encabezados de loops se ejecutan n+1 veces (1 más que el cuerpo)
-   - Si el loop itera k veces, el encabezado se ejecuta k+1 veces
-   - Aplica esta regla SIEMPRE para for/while/repeat
-
-6. Suma todos los costos para obtener total_cost_T:
-   - Si es ITERATIVO: fórmula cerrada (ej: "2*n + 4", "5")
-   - Si es RECURSIVO: relación de recurrencia (ej: "T(n) = T(n-1) + 2")
-
-7. Calcula la probabilidad P(S) de que ocurra este caso
+1. Identifica la entrada que MINIMIZA operaciones (ej: elemento en primera posición)
+2. Analiza CADA LÍNEA con C_op simbólico, Freq para este caso, y Total
+3. El campo 'explanation' es OPCIONAL - usa solo para lineas criticas (maximo 3-4 lineas)
+4. Calcula T(S) como suma de todos los Total
+5. Asigna probabilidad P(S) RESUELTA (sin q)
 
 EJEMPLO DE RESPUESTA CORRECTA:
 {{
+  "scenario_id": "S_best_case",
   "scenario_type": "best_case",
   "input_description": "Elemento buscado encontrado en la primera posicion",
   "input_characteristics": {{
@@ -205,52 +311,115 @@ EJEMPLO DE RESPUESTA CORRECTA:
   "probability_P": "1/n",
   "probability_explanation": "Probabilidad de encontrar el elemento en la primera posicion"
 }}
+"""
 
 Responde SOLO con JSON siguiendo este formato (sin markdown, sin bloques ```):
 
 Para RECURSIVOS, incluye además:
 {{
-  "recurrence_relation": "T(n) = T(n-1) + 2",
-  "base_case_cost": "1",
-  "base_case_condition": "n == 0"
+  "scenario_id": "S_worst_case",
+  "scenario_type": "worst_case",
+  "input_condition": "Elemento x NO encontrado en el arreglo (no existe)",
+  "line_by_line_analysis": [
+    {{"line_number": 1, "code": "int i", "C_op": "c1", "Freq": "1", "Total": "c1"}},
+    {{"line_number": 2, "code": "bool encontrado", "C_op": "c2", "Freq": "1", "Total": "c2"}},
+    {{"line_number": 3, "code": "encontrado <- F", "C_op": "c3", "Freq": "1", "Total": "c3"}},
+    {{"line_number": 4, "code": "i <- 1", "C_op": "c4", "Freq": "1", "Total": "c4"}},
+    {{"line_number": 5, "code": "while (i <= n and not encontrado)", "C_op": "c5", "Freq": "n+1", "Total": "c5*(n+1)", "explanation": "Encabezado: se evalua n+1 veces (regla n+1 para loops completos)"}},
+    {{"line_number": 6, "code": "if (A[i] = x)", "C_op": "c6", "Freq": "n", "Total": "c6*n", "explanation": "Comparacion ejecutada n veces"}},
+    {{"line_number": 7, "code": "encontrado <- T", "C_op": "c7", "Freq": "0", "Total": "0", "explanation": "Nunca se ejecuta porque NO encuentra"}},
+    {{"line_number": 8, "code": "i <- i + 1", "C_op": "c8", "Freq": "n", "Total": "c8*n"}},
+    {{"line_number": 9, "code": "return encontrado", "C_op": "c9", "Freq": "1", "Total": "c9"}}
+  ],
+  "T_of_S": "c1 + c2 + c3 + c4 + c5*(n+1) + c6*n + c8*n + c9",
+  "T_of_S_explanation": "Suma de todos los costos - loop completo sin salida temprana",
+  "P_of_S": "1/(n+1)",
+  "P_of_S_explanation": "Probabilidad de que el elemento no este (modelo n+1 casos equiprobables)",
+  "probability_model": "Se asume modelo con n+1 casos equiprobables: elemento en posicion 1..n, o no encontrado"
 }}
-"""
 
-# ========================================
-# PROMPT PARA ANÁLISIS DE PEOR CASO
-# ========================================
-ANALYZE_WORST_CASE_FULL_PROMPT = """Analiza el siguiente pseudocódigo y determina el análisis de complejidad completo para el PEOR CASO.
+NOTA CRITICA SOBRE C_op:
+- USA LAS MISMAS CONSTANTES que en mejor caso: c1, c2, c3, etc.
+- Misma linea de codigo = misma constante en todos los casos
+- SIEMPRE strings: "c1", "c2", "c3" (NUNCA numeros: 0, 1, 2)
 
-El PEOR CASO es la entrada de datos que MAXIMIZA el número de operaciones ejecutadas.
+════════════════════════════════════════════════════════════════
 
-Pseudocódigo:
+Ahora analiza ESTE pseudocodigo:
+
+Pseudocodigo:
 ```
 {pseudocode}
 ```
 
 Nombre del algoritmo: {algorithm_name}
-Tipo de algoritmo: {algorithm_type}
+
+════════════════════════════════════════════════════════════════
+REGLAS PARA ALGORITMOS ITERATIVOS - PEOR CASO
+════════════════════════════════════════════════════════════════
+
+1. CONSTANTES SIMBÓLICAS (C_op):
+   - Usa las MISMAS constantes que el mejor caso: "c1", "c2", "c3", ...
+   - Mantén consistencia: misma línea = misma constante
+
+2. FRECUENCIAS (Freq):
+   - REGLA N+1: Encabezados ejecutan n+1 veces
+   - Para PEOR CASO típicamente:
+     * Búsquedas: elemento no encontrado → recorre todo (Freq="n" para cuerpo)
+     * Ordenamientos: array en orden inverso → máximas comparaciones
+     * Sin salidas tempranas: se ejecutan todas las iteraciones posibles
+
+3. PROBABILIDADES (P_of_S):
+   IMPORTANTE: NO uses 'q'. Probabilidades RESUELTAS:
+   
+   Para búsquedas (modelo: puede existir o no):
+   - Si peor caso es "no encontrado": P = "1/(n+1)"
+   - Si todas posiciones equiprobables: P = "1/n"
+   
+   Para algoritmos con entradas específicas:
+   - Ej: "array en orden inverso" → P = "1" (ese ES el peor caso específico)
+   
+   Escoge el modelo razonable y explícalo.
+
+════════════════════════════════════════════════════════════════
 
 INSTRUCCIONES:
 
-1. Identifica qué características de entrada causarían el MÁXIMO costo de ejecución
-2. Describe esa entrada en "input_description" de forma clara
-3. Especifica valores simbólicos en "input_characteristics"
-4. Analiza CADA LÍNEA del pseudocódigo:
-   - Cuenta operaciones elementales (C_op)
-   - Determina frecuencia de ejecución para ESTE caso específico (Freq)
-   - Calcula Total = C_op × Freq
-   - Proporciona explicación clara
+1. Identifica la entrada que MAXIMIZA operaciones
+2. Analiza CADA LÍNEA con C_op, Freq para este caso, y Total
+3. Calcula T(S) como suma de todos los Total
+4. Asigna P(S) resuelta según el modelo más razonable
 
-5. RECUERDA: Los encabezados de loops se ejecutan n+1 veces
-6. Suma todos los costos para obtener total_cost_T
-7. Calcula la probabilidad P(S) de que ocurra este caso
+Responde SOLO con JSON (sin markdown, sin ```):
+{{
+  "scenario_id": "S_worst_case",
+  "scenario_type": "worst_case",
+  "input_condition": "Descripción clara de la entrada que maximiza operaciones",
+  "line_by_line_analysis": [
+    {{
+      "line_number": 1,
+      "code": "...",
+      "C_op": "c1",
+      "Freq": "1",
+      "Total": "c1",
+      "explanation": "..."
+    }}
+  ],
+  "T_of_S": "c1 + c2*(n+1) + c3*n + c5",
+  "T_of_S_explanation": "Suma de todos los costos Total",
+  "P_of_S": "1/(n+1)",
+  "P_of_S_explanation": "Probabilidad de que el elemento no esté en el arreglo (modelo equiprobable con n+1 casos)",
+  "probability_model": "Se asume que hay n+1 casos equiprobables: elemento en posición 1..n, o no encontrado"
+}}
+"""
 
-NOTA para búsquedas:
-- Peor caso suele ser "elemento no encontrado" o "elemento en última posición"
+ANALYZE_ITERATIVE_AVERAGE_CASE_PROMPT = """Eres un experto en análisis de complejidad algorítmica. Analiza el siguiente pseudocódigo ITERATIVO para determinar el CASO PROMEDIO.
 
-NOTA para ordenamientos:
-- Peor caso suele ser "array en orden inverso" o "todos elementos iguales"
+El CASO PROMEDIO es el costo esperado E[T] = Σ T(S_i) · P(S_i) sobre todos los escenarios posibles.
+
+════════════════════════════════════════════════════════════════
+EJEMPLO COMPLETO - APRENDE DE ESTE FORMATO
+════════════════════════════════════════════════════════════════
 
 EJEMPLO DE RESPUESTA CORRECTA:
 {{
@@ -319,51 +488,73 @@ EJEMPLO DE RESPUESTA CORRECTA:
 Responde SOLO con JSON siguiendo este formato (sin markdown, sin bloques ```):
 """
 
-# ========================================
-# PROMPT PARA ANÁLISIS DE CASO PROMEDIO
-# ========================================
-ANALYZE_AVERAGE_CASE_FULL_PROMPT = """Analiza el siguiente pseudocódigo y determina el análisis de complejidad para el CASO PROMEDIO.
+NOTA CRITICA:
+- USA LAS MISMAS CONSTANTES: c1, c2, c3... (consistencia con mejor/peor caso)
+- SIEMPRE strings simbolicos para C_op: "c1", "c2", "c3"
+- NUNCA numeros: 0, 1, 2
 
-El CASO PROMEDIO es la esperanza matemática E[T] = Σ T(S)·P(S) sobre todos los escenarios posibles.
+════════════════════════════════════════════════════════════════
 
-Pseudocódigo:
+Ahora analiza ESTE pseudocodigo:
+
+Pseudocodigo:
 ```
 {pseudocode}
 ```
 
 Nombre del algoritmo: {algorithm_name}
-Tipo de algoritmo: {algorithm_type}
 
 CONTEXTO de casos ya analizados:
 - MEJOR CASO: {best_case_summary}
 - PEOR CASO: {worst_case_summary}
 
+════════════════════════════════════════════════════════════════
+REGLAS PARA ALGORITMOS ITERATIVOS - CASO PROMEDIO
+════════════════════════════════════════════════════════════════
+
+1. CONSTANTES SIMBÓLICAS (C_op):
+   - Usa las MISMAS constantes: "c1", "c2", "c3", ...
+
+2. CÁLCULO DEL PROMEDIO:
+   A) BÚSQUEDAS:
+      - Escenarios: encontrado en pos 1, 2, ..., n; no encontrado
+      - Calcula T(S_i) para cada escenario
+      - Calcula E[T] = Σ T(S_i) · P(S_i)
+      
+   B) ALGORITMOS NO SENSIBLES:
+      - Un solo escenario: E[T] = T(n)
+      - P = "1"
+   
+   C) OTROS:
+      - Identifica escenarios relevantes
+      - Asigna probabilidades equiprobables o razonables
+
+3. PROBABILIDADES (P_of_S):
+   IMPORTANTE: Probabilidades RESUELTAS (sin q):
+   
+   Modelo común para búsquedas (n+1 casos equiprobables):
+   - P(cada escenario) = "1/(n+1)"
+   - n escenarios de "encontrado" + 1 de "no encontrado"
+   
+   O modelo simplificado (asume que existe):
+   - P(pos k) = "1/n" para k=1..n
+   - No hay escenario "no encontrado"
+   
+   Para caso promedio FINAL: P_of_S = "1" (engloba todos los casos)
+
+════════════════════════════════════════════════════════════════
+
 INSTRUCCIONES:
 
-1. Identifica TODOS los posibles escenarios intermedios de ejecución
-2. Para CADA escenario:
-   - Calcula su costo T(S_i)
-   - Calcula su probabilidad P(S_i)
-3. Calcula el costo promedio: E[T] = Σ T(S_i) · P(S_i)
-
-CASOS ESPECIALES:
-
-A) BÚSQUEDAS (con parámetro q):
-   - Escenarios: encontrado en posición 1, 2, ..., n; no encontrado
-   - P(encontrado en posición k) = q·(1/n)
-   - P(no encontrado) = 1-q
-   - E[T] = q·Σ[k=1 to n](T(k)·(1/n)) + (1-q)·T(no_encontrado)
-
-B) ALGORITMOS NO SENSIBLES A ENTRADA:
-   - Un solo escenario: E[T] = T(n)
-   - P(S) = 1
-
-C) OTROS (ordenamientos, etc.):
-   - Identificar casos relevantes
-   - Asignar probabilidades (equiprobables si no hay info adicional)
+1. Describe el modelo probabilístico usado (ej: "n+1 casos equiprobables")
+2. Para búsquedas: desglosa escenarios S_1, S_2, ..., S_n, S_empty
+3. Calcula E[T] = Σ T(S_i) · P(S_i)
+4. Simplifica la expresión si es posible
+5. Opcionalmente: análisis línea por línea del caso "promedio típico"
 
 EJEMPLO DE RESPUESTA CORRECTA (Búsqueda Lineal):
 {{
+  "scenario_id": "S_avg_case",
   "scenario_type": "average_case",
   "input_condition": "Promedio sobre todos los escenarios posibles",
   "probability_model": "Se consideran n+1 casos equiprobables: elemento encontrado en posicion k (k=1 a n), o no encontrado. Cada caso tiene probabilidad 1/(n+1).",
@@ -462,38 +653,423 @@ EJEMPLO DE RESPUESTA CORRECTA (Búsqueda Lineal):
 Responde SOLO con JSON siguiendo este formato (sin markdown, sin bloques ```):
 """
 
-# Plantilla de prompt para análisis de escenarios
-ANALYZE_INPUT_SCENARIOS_PROMPT = """Eres un experto en análisis de algoritmos. Analiza el siguiente pseudocódigo y determina:
+# ========================================
+# PROMPTS PARA ALGORITMOS RECURSIVOS
+# ========================================
 
-1. **Sensibilidad a entrada**: ¿El costo de ejecución depende de CÓMO están organizados los datos de entrada?
-   - Ejemplo SÍ sensible: Búsqueda (depende de dónde esté el elemento)
-   - Ejemplo NO sensible: Suma de array (siempre recorre todo)
+ANALYZE_RECURSIVE_BEST_CASE_PROMPT = """Eres un experto en análisis de complejidad algorítmica. Analiza el siguiente pseudocódigo RECURSIVO para determinar el MEJOR CASO.
 
-2. **Tipo de sensibilidad** (si aplica):
-   - "position": Posición de un elemento afecta el costo
-   - "organization": Orden/organización de datos afecta (ej: QuickSort)
-   - "value_distribution": Distribución de valores afecta
-   - "none": No es sensible
-
-3. **Mejor caso**: Describe qué entrada causaría el MENOR costo de ejecución
-
-4. **Peor caso**: Describe qué entrada causaría el MAYOR costo de ejecución
-
-5. **Parámetro q**: ¿Hay un parámetro de probabilidad relevante? (ej: probabilidad de existencia)
+El MEJOR CASO es la entrada de datos que MINIMIZA el número de operaciones y produce la recursión MÁS CORTA.
 
 Pseudocódigo:
 ```
 {pseudocode}
 ```
 
-Responde SOLO con este JSON (sin markdown, sin bloques de código):
+Nombre del algoritmo: {algorithm_name}
+
+════════════════════════════════════════════════════════════════
+REGLAS PARA ALGORITMOS RECURSIVOS - MEJOR CASO
+════════════════════════════════════════════════════════════════
+
+1. CONSTANTES SIMBÓLICAS (C_op):
+   - Usa "c1", "c2", "c3", ... para costos de operaciones
+   - Cada línea de código tiene su constante
+   - Mantén consistencia entre casos
+
+2. ECUACIÓN DE RECURRENCIA (T_of_S):
+   FORMATO ESTÁNDAR: T(n) = a*T(n/b) + f(n)
+   
+   REGLA CRÍTICA: NO pongas constantes dentro de T()
+   
+   ✓ CORRECTO:
+   - T(n) = 2*T(n/2) + c1*n + c2
+   - T(n) = T(n/2) + c3*log(n) + c4
+   - T(n) = T(n-1) + c2*n + c3
+   - T(n) = T(n/3) + T(2*n/3) + c1*n  (dos ramas asimétricas)
+   
+   ✗ INCORRECTO:
+   - T(n/2+c2)  ← constantes NO van dentro de T()
+   - T(n-c1)    ← constantes NO van dentro de T()
+   - T(n/2+1)   ← constantes NO van dentro de T()
+   
+   Donde:
+   - a = número de llamadas recursivas
+   - n/b = tamaño del subproblema (puede ser n/2, n/3, n-1, etc.)
+   - f(n) = costo LOCAL de esta llamada (sin recursión)
+
+3. CASOS BASE:
+   - Las condiciones de parada (ej: if n <= 1) tienen costo CONSTANTE
+   - Ejemplo: "if n <= 1: return 1" → costo c1 (NO es recurrencia)
+
+4. LINE_BY_LINE_ANALYSIS:
+   - Para líneas normales: C_op="c1", Freq="1", Total="c1"
+   - Para llamadas recursivas: C_op indica costo local, Total muestra término recursivo
+   
+   Ejemplo para línea "return f(n/2) + f(n/2) + n":
+   {{
+     "line_number": 5,
+     "code": "return f(n/2) + f(n/2) + n",
+     "C_op": "c3",
+     "Freq": "2 llamadas",
+     "Total": "2*T(n/2) + c3*n",
+     "explanation": "Dos llamadas recursivas con tamaño n/2, más costo local c3*n"
+   }}
+
+5. MEJOR CASO - Entrada:
+   - Identifica entrada que minimiza profundidad recursiva
+   - Ejemplos:
+     * QuickSort: pivote perfecto (medio) → división balanceada → T(n) = 2*T(n/2) + c1*n
+     * BinarySearch: elemento en posición media → T(n) = T(n/2) + c2
+     * Fibonacci optimizado: caso base inmediato → T(1) = c1
+
+6. PROBABILIDADES (P_of_S):
+   - Probabilidad RESUELTA (sin variables indefinidas)
+   - Ejemplo: "pivote perfecto" → P = "log(n)/n" o modelo razonable
+   - Explica el modelo probabilístico usado
+
+════════════════════════════════════════════════════════════════
+
+EJEMPLO COMPLETO - QuickSort Mejor Caso (pivote perfecto):
+
 {{
-  "is_sensitive": true/false,
-  "sensitivity_type": "position" | "organization" | "value_distribution" | "none",
-  "best_case_input": "descripción clara de la entrada",
-  "worst_case_input": "descripción clara de la entrada",
-  "parameter_q_applicable": true/false,
-  "parameter_q_meaning": "qué representa q en este algoritmo"
+  "scenario_id": "S_best_case",
+  "scenario_type": "best_case",
+  "input_condition": "Pivote siempre divide el array en dos mitades exactamente iguales (caso ideal)",
+  "line_by_line_analysis": [
+    {{
+      "line_number": 1,
+      "code": "if inicio >= fin: return",
+      "C_op": "c1",
+      "Freq": "1",
+      "Total": "c1",
+      "explanation": "Comparación de caso base, se ejecuta una vez por llamada"
+    }},
+    {{
+      "line_number": 2,
+      "code": "pivote = particionar(arr, inicio, fin)",
+      "C_op": "c2",
+      "Freq": "n",
+      "Total": "c2*n",
+      "explanation": "Partición recorre los n elementos del subarreglo actual"
+    }},
+    {{
+      "line_number": 3,
+      "code": "quicksort(arr, inicio, pivote-1)",
+      "C_op": "c3",
+      "Freq": "1 llamada",
+      "Total": "T(n/2)",
+      "explanation": "Llamada recursiva a la mitad izquierda (tamaño n/2)"
+    }},
+    {{
+      "line_number": 4,
+      "code": "quicksort(arr, pivote+1, fin)",
+      "C_op": "c4",
+      "Freq": "1 llamada",
+      "Total": "T(n/2)",
+      "explanation": "Llamada recursiva a la mitad derecha (tamaño n/2)"
+    }}
+  ],
+  "T_of_S": "T(n) = 2*T(n/2) + c2*n + c1",
+  "T_of_S_explanation": "Dos llamadas recursivas con mitad del tamaño (T(n/2) cada una), más costo local de partición (c2*n) y comparación (c1)",
+  "P_of_S": "1/n!",
+  "P_of_S_explanation": "Entre todas las permutaciones posibles, solo una fracción produce pivotes perfectos consistentemente",
+  "probability_model": "Asumiendo selección aleatoria de pivote, la probabilidad de obtener particiones perfectas en cada nivel es muy baja"
+}}
+
+════════════════════════════════════════════════════════════════
+
+INSTRUCCIONES:
+
+1. Identifica la entrada que MINIMIZA la profundidad recursiva
+2. Analiza CADA LÍNEA con C_op simbólico
+3. Para llamadas recursivas: identifica cuántas y de qué tamaño
+4. Construye T(n) en formato estándar (SIN constantes dentro de T())
+5. Asigna probabilidad P(S) resuelta y explica el modelo
+
+Responde SOLO con JSON (sin markdown, sin ```):
+{{
+  "scenario_id": "S_best_case",
+  "scenario_type": "best_case",
+  "input_condition": "Descripción de la entrada que minimiza recursión",
+  "line_by_line_analysis": [ ... ],
+  "T_of_S": "T(n) = a*T(n/b) + f(n)",
+  "T_of_S_explanation": "Explicación de la recurrencia",
+  "P_of_S": "probabilidad resuelta",
+  "P_of_S_explanation": "Explicación del modelo probabilístico",
+  "probability_model": "Descripción del modelo usado"
+}}
+"""
+
+ANALYZE_RECURSIVE_WORST_CASE_PROMPT = """Eres un experto en análisis de complejidad algorítmica. Analiza el siguiente pseudocódigo RECURSIVO para determinar el PEOR CASO.
+
+El PEOR CASO es la entrada de datos que MAXIMIZA el número de operaciones y produce la recursión MÁS LARGA o MÁS PROFUNDA.
+
+Pseudocódigo:
+```
+{pseudocode}
+```
+
+Nombre del algoritmo: {algorithm_name}
+
+════════════════════════════════════════════════════════════════
+REGLAS PARA ALGORITMOS RECURSIVOS - PEOR CASO
+════════════════════════════════════════════════════════════════
+
+1. CONSTANTES SIMBÓLICAS (C_op):
+   - Usa las MISMAS constantes que el mejor caso: "c1", "c2", "c3", ...
+   - Mantén consistencia: misma línea = misma constante
+
+2. ECUACIÓN DE RECURRENCIA (T_of_S):
+   FORMATO ESTÁNDAR: T(n) = a*T(n/b) + f(n)
+   
+   REGLA CRÍTICA: NO pongas constantes dentro de T()
+   
+   ✓ CORRECTO:
+   - T(n) = T(n-1) + c2*n + c3         (recursión lineal)
+   - T(n) = 2*T(n-1) + c1              (Fibonacci)
+   - T(n) = T(n-1) + T(n-2) + c2       (recursión múltiple asimétrica)
+   - T(n) = T(n/10) + T(9*n/10) + c1*n (partición muy desbalanceada)
+   
+   ✗ INCORRECTO:
+   - T(n-1+c2)  ← NO
+   - T(n-c1)    ← NO
+   
+   Donde:
+   - a = número de llamadas recursivas
+   - tamaño puede ser n-1, n/10, etc. (lo peor posible)
+   - f(n) = costo LOCAL de esta llamada
+
+3. CASOS BASE:
+   - Condiciones de parada tienen costo CONSTANTE
+   - Ejemplo: "if n <= 1: return 1" → costo c1
+
+4. LINE_BY_LINE_ANALYSIS:
+   - Para llamadas recursivas: Total muestra término recursivo
+   - Ejemplo línea "return f(n-1) + n*n":
+   {{
+     "line_number": 5,
+     "code": "return f(n-1) + n*n",
+     "C_op": "c3",
+     "Freq": "1 llamada",
+     "Total": "T(n-1) + c3*n^2",
+     "explanation": "Una llamada recursiva con tamaño n-1, más costo local cuadrático"
+   }}
+
+5. PEOR CASO - Entrada:
+   - Identifica entrada que maximiza profundidad/llamadas
+   - Ejemplos:
+     * QuickSort: pivote pésimo (extremo) → partición degenerada → T(n) = T(n-1) + c2*n
+     * BinarySearch: elemento no existe → máxima profundidad → T(n) = T(n/2) + c2
+     * Fibonacci: n grande → árbol completo → T(n) = T(n-1) + T(n-2) + c1
+
+6. PROBABILIDADES (P_of_S):
+   - Probabilidad RESUELTA
+   - Ejemplo: "pivote pésimo" → P = "2/n" (extremos) o modelo razonable
+
+════════════════════════════════════════════════════════════════
+
+EJEMPLO COMPLETO - QuickSort Peor Caso (pivote pésimo):
+
+{{
+  "scenario_id": "S_worst_case",
+  "scenario_type": "worst_case",
+  "input_condition": "Pivote siempre es el menor o mayor elemento, generando particiones completamente desbalanceadas (ej: array ya ordenado con pivote como primer elemento)",
+  "line_by_line_analysis": [
+    {{
+      "line_number": 1,
+      "code": "if inicio >= fin: return",
+      "C_op": "c1",
+      "Freq": "1",
+      "Total": "c1",
+      "explanation": "Comparación de caso base"
+    }},
+    {{
+      "line_number": 2,
+      "code": "pivote = particionar(arr, inicio, fin)",
+      "C_op": "c2",
+      "Freq": "n",
+      "Total": "c2*n",
+      "explanation": "Partición recorre n elementos"
+    }},
+    {{
+      "line_number": 3,
+      "code": "quicksort(arr, inicio, pivote-1)",
+      "C_op": "c3",
+      "Freq": "1 llamada",
+      "Total": "T(n-1)",
+      "explanation": "Llamada recursiva al subarreglo de tamaño n-1 (partición degenerada)"
+    }},
+    {{
+      "line_number": 4,
+      "code": "quicksort(arr, pivote+1, fin)",
+      "C_op": "c4",
+      "Freq": "0",
+      "Total": "0",
+      "explanation": "Esta llamada procesa subarreglo vacío (tamaño 0)"
+    }}
+  ],
+  "T_of_S": "T(n) = T(n-1) + c2*n + c1",
+  "T_of_S_explanation": "Una llamada recursiva con casi todo el array (n-1), más costo de partición (c2*n). La otra rama es vacía.",
+  "P_of_S": "2/n",
+  "P_of_S_explanation": "Probabilidad de seleccionar el elemento más pequeño o más grande como pivote",
+  "probability_model": "Asumiendo pivote aleatorio, hay 2 elementos problemáticos de n posibles"
+}}
+
+════════════════════════════════════════════════════════════════
+
+INSTRUCCIONES:
+
+1. Identifica la entrada que MAXIMIZA la profundidad recursiva
+2. Analiza CADA LÍNEA con C_op simbólico
+3. Para llamadas recursivas: identifica cuántas y de qué tamaño (lo peor)
+4. Construye T(n) en formato estándar (SIN constantes dentro de T())
+5. Asigna probabilidad P(S) resuelta
+
+Responde SOLO con JSON (sin markdown, sin ```):
+{{
+  "scenario_id": "S_worst_case",
+  "scenario_type": "worst_case",
+  "input_condition": "Descripción de la entrada que maximiza recursión",
+  "line_by_line_analysis": [ ... ],
+  "T_of_S": "T(n) = a*T(tamaño) + f(n)",
+  "T_of_S_explanation": "Explicación de la recurrencia",
+  "P_of_S": "probabilidad resuelta",
+  "P_of_S_explanation": "Explicación del modelo probabilístico",
+  "probability_model": "Descripción del modelo usado"
+}}
+"""
+
+ANALYZE_RECURSIVE_AVERAGE_CASE_PROMPT = """Eres un experto en análisis de complejidad algorítmica. Analiza el siguiente pseudocódigo RECURSIVO para determinar el CASO PROMEDIO.
+
+El CASO PROMEDIO es la esperanza matemática E[T(n)] sobre una distribución razonable de entradas.
+
+Pseudocódigo:
+```
+{pseudocode}
+```
+
+Nombre del algoritmo: {algorithm_name}
+
+CONTEXTO de casos ya analizados:
+- MEJOR CASO: {best_case_summary}
+- PEOR CASO: {worst_case_summary}
+
+════════════════════════════════════════════════════════════════
+REGLAS PARA ALGORITMOS RECURSIVOS - CASO PROMEDIO
+════════════════════════════════════════════════════════════════
+
+1. CONSTANTES SIMBÓLICAS (C_op):
+   - Usa las MISMAS constantes: "c1", "c2", "c3", ...
+
+2. ECUACIÓN DE RECURRENCIA (T_of_S):
+   Puede ser una ESPERANZA sobre las recurrencias:
+   
+   ✓ CORRECTO:
+   - E[T(n)] = E[T(k)] + E[T(n-k-1)] + c1*n  (QuickSort con pivote aleatorio)
+   - E[T(n)] = T(n/2) + c2                   (BinarySearch promedio)
+   - E[T(n)] = (1/n)*Σ[T(k) + T(n-k-1)] + c1*n  (forma explícita de suma)
+   
+   ✗ INCORRECTO:
+   - T(n-c1) ← NO constantes dentro
+   - E[T(n+c2)] ← NO constantes dentro
+
+3. MODELO PROBABILÍSTICO:
+   - Define claramente la distribución de entradas
+   - Ejemplos:
+     * "Pivote aleatorio uniforme en [1, n]"
+     * "Elemento buscado puede estar en cualquier posición con prob. 1/n"
+     * "Todas las permutaciones son equiprobables"
+
+4. CASOS BASE:
+   - Tienen costo constante (igual que mejor/peor caso)
+
+5. PROBABILIDADES (P_of_S):
+   - P = "1" (el caso promedio engloba todos los escenarios)
+   - O especificar distribución explícita si hay múltiples escenarios
+
+════════════════════════════════════════════════════════════════
+
+EJEMPLO COMPLETO - QuickSort Caso Promedio (pivote aleatorio):
+
+{{
+  "scenario_id": "S_avg_case",
+  "scenario_type": "average_case",
+  "input_condition": "Pivote seleccionado aleatoriamente en cada partición, promediando sobre todas las posiciones posibles",
+  "probability_model": "En cada nivel, el pivote puede caer en cualquiera de las n posiciones con probabilidad uniforme 1/n. Esto genera particiones de tamaños variables: (0, n-1), (1, n-2), ..., (n-1, 0).",
+  "scenarios_breakdown": [
+    {{
+      "scenario_id": "S_pivot_k",
+      "description": "Pivote en posición k (1 ≤ k ≤ n)",
+      "T": "T(k-1) + T(n-k) + c2*n + c1",
+      "P": "1/n"
+    }}
+  ],
+  "line_by_line_analysis": [
+    {{
+      "line_number": 1,
+      "code": "if inicio >= fin: return",
+      "C_op": "c1",
+      "Freq": "1",
+      "Total": "c1",
+      "explanation": "Comparación ejecutada en cada llamada"
+    }},
+    {{
+      "line_number": 2,
+      "code": "pivote = particionar(arr, inicio, fin)",
+      "C_op": "c2",
+      "Freq": "n",
+      "Total": "c2*n",
+      "explanation": "Partición procesa n elementos"
+    }},
+    {{
+      "line_number": 3,
+      "code": "quicksort(arr, inicio, pivote-1)",
+      "C_op": "c3",
+      "Freq": "1 llamada",
+      "Total": "E[T(k-1)]",
+      "explanation": "Llamada recursiva a partición izquierda de tamaño esperado k-1"
+    }},
+    {{
+      "line_number": 4,
+      "code": "quicksort(arr, pivote+1, fin)",
+      "C_op": "c4",
+      "Freq": "1 llamada",
+      "Total": "E[T(n-k)]",
+      "explanation": "Llamada recursiva a partición derecha de tamaño esperado n-k"
+    }}
+  ],
+  "T_of_S": "E[T(n)] = (1/n)*Σ(k=1 to n)[T(k-1) + T(n-k)] + c2*n + c1",
+  "T_of_S_simplified": "E[T(n)] = (2/n)*Σ(k=0 to n-1)T(k) + c2*n + c1",
+  "T_of_S_explanation": "Promedio sobre todas las posibles posiciones del pivote. Cada posición k ocurre con probabilidad 1/n, generando dos subproblemas de tamaños k-1 y n-k. Más el costo local de partición.",
+  "P_of_S": "1",
+  "P_of_S_explanation": "El caso promedio representa la esperanza sobre todas las entradas posibles",
+  "average_cost_formula": "E[T(n)] = (1/n)*Σ(k=1 to n)[T(k-1) + T(n-k) + c2*n + c1]"
+}}
+
+════════════════════════════════════════════════════════════════
+
+INSTRUCCIONES:
+
+1. Define modelo probabilístico claro (distribución de entradas)
+2. Identifica escenarios intermedios si es relevante
+3. Analiza líneas con C_op simbólico
+4. Construye E[T(n)] como esperanza sobre las recurrencias
+5. SIN constantes dentro de T()
+6. P_of_S = "1" (o distribución explícita)
+
+Responde SOLO con JSON (sin markdown, sin ```):
+{{
+  "scenario_id": "S_avg_case",
+  "scenario_type": "average_case",
+  "input_condition": "Descripción del modelo probabilístico",
+  "probability_model": "Explicación de la distribución de entradas",
+  "scenarios_breakdown": [ ... ],
+  "line_by_line_analysis": [ ... ],
+  "T_of_S": "E[T(n)] = ...",
+  "T_of_S_explanation": "Explicación de la recurrencia esperada",
+  "P_of_S": "1",
+  "P_of_S_explanation": "Explica por qué P=1 o distribución"
 }}
 """
 
@@ -619,16 +1195,22 @@ class LLMAnalyzer:
 
         Returns:
             Dict con estructura completa: scenario_type, input_description,
-            line_by_line_analysis, total_cost_T, probability_P, etc.
+            line_by_line_analysis, total_cost_T (o T_of_S para iterativos),
+            probability_P (o P_of_S para iterativos), etc.
         """
         try:
-            algorithm_type = "iterativo" if is_iterative else "recursivo"
-
-            prompt = ANALYZE_BEST_CASE_FULL_PROMPT.format(
-                pseudocode=pseudocode,
-                algorithm_name=algorithm_name,
-                algorithm_type=algorithm_type
-            )
+            # Seleccionar prompt según tipo de algoritmo
+            if is_iterative:
+                prompt = ANALYZE_ITERATIVE_BEST_CASE_PROMPT.format(
+                    pseudocode=pseudocode,
+                    algorithm_name=algorithm_name
+                )
+            else:
+                # Algoritmo RECURSIVO: usar prompt especializado
+                prompt = ANALYZE_RECURSIVE_BEST_CASE_PROMPT.format(
+                    pseudocode=pseudocode,
+                    algorithm_name=algorithm_name
+                )
 
             messages = [
                 SystemMessage(content=BASE_SYSTEM_PROMPT),
@@ -664,13 +1246,18 @@ class LLMAnalyzer:
             Dict con estructura completa del peor caso
         """
         try:
-            algorithm_type = "iterativo" if is_iterative else "recursivo"
-
-            prompt = ANALYZE_WORST_CASE_FULL_PROMPT.format(
-                pseudocode=pseudocode,
-                algorithm_name=algorithm_name,
-                algorithm_type=algorithm_type
-            )
+            # Seleccionar prompt según tipo de algoritmo
+            if is_iterative:
+                prompt = ANALYZE_ITERATIVE_WORST_CASE_PROMPT.format(
+                    pseudocode=pseudocode,
+                    algorithm_name=algorithm_name
+                )
+            else:
+                # Algoritmo RECURSIVO: usar prompt especializado
+                prompt = ANALYZE_RECURSIVE_WORST_CASE_PROMPT.format(
+                    pseudocode=pseudocode,
+                    algorithm_name=algorithm_name
+                )
 
             messages = [
                 SystemMessage(content=BASE_SYSTEM_PROMPT),
@@ -710,15 +1297,22 @@ class LLMAnalyzer:
             Dict con estructura del caso promedio incluyendo scenarios_breakdown
         """
         try:
-            algorithm_type = "iterativo" if is_iterative else "recursivo"
-
-            prompt = ANALYZE_AVERAGE_CASE_FULL_PROMPT.format(
-                pseudocode=pseudocode,
-                algorithm_name=algorithm_name,
-                algorithm_type=algorithm_type,
-                best_case_summary=best_case_summary,
-                worst_case_summary=worst_case_summary
-            )
+            # Seleccionar prompt según tipo de algoritmo
+            if is_iterative:
+                prompt = ANALYZE_ITERATIVE_AVERAGE_CASE_PROMPT.format(
+                    pseudocode=pseudocode,
+                    algorithm_name=algorithm_name,
+                    best_case_summary=best_case_summary,
+                    worst_case_summary=worst_case_summary
+                )
+            else:
+                # Algoritmo RECURSIVO: usar prompt especializado
+                prompt = ANALYZE_RECURSIVE_AVERAGE_CASE_PROMPT.format(
+                    pseudocode=pseudocode,
+                    algorithm_name=algorithm_name,
+                    best_case_summary=best_case_summary,
+                    worst_case_summary=worst_case_summary
+                )
 
             messages = [
                 SystemMessage(content=BASE_SYSTEM_PROMPT),
@@ -729,7 +1323,7 @@ class LLMAnalyzer:
             result = self._parse_response(response.content)
 
             # Validar estructura del caso promedio
-            self._validate_average_case_result(result)
+            self._validate_average_case_result(result, is_iterative)
 
             return result
 
@@ -754,11 +1348,13 @@ class LLMAnalyzer:
             ValueError: Si falta algún campo requerido o hay errores de estructura
         """
         # Validar campos básicos requeridos
+        # AMBOS tipos (iterativo Y recursivo) usan el NUEVO formato
+        # con input_condition, T_of_S, P_of_S
         required_fields = [
             "scenario_type",
-            "input_description",
-            "total_cost_T",
-            "probability_P"
+            "input_condition",
+            "T_of_S",
+            "P_of_S"
         ]
 
         for field in required_fields:
@@ -772,7 +1368,7 @@ class LLMAnalyzer:
                 f"recibido {result['scenario_type']}"
             )
 
-        # Para iterativos: debe tener line_by_line_analysis
+        # Para iterativos: debe tener line_by_line_analysis con constantes simbólicas
         if is_iterative:
             if "line_by_line_analysis" not in result or not result["line_by_line_analysis"]:
                 raise ValueError("Falta análisis línea por línea para algoritmo iterativo")
@@ -800,15 +1396,28 @@ class LLMAnalyzer:
 
         # Para recursivos: debe tener recurrence_relation
         if not is_iterative:
-            if "recurrence_relation" not in result:
-                raise ValueError("Falta relación de recurrencia para algoritmo recursivo")
+            if "T_of_S" not in result:
+                raise ValueError("Falta campo T_of_S para algoritmo recursivo")
+            
+            # Validar formato solo si es una ecuación de recurrencia (no caso base)
+            recurrence = result["T_of_S"]
+            
+            # Si contiene T( o E[T(, validar formato de recurrencia
+            # Si NO contiene, es caso base (solo constantes) y no requiere validación
+            if 'T(' in recurrence or 'E[T(' in recurrence:
+                self._validate_recurrence_format(recurrence)
 
-    def _validate_average_case_result(self, result: Dict[str, Any]) -> None:
+    def _validate_average_case_result(
+        self, 
+        result: Dict[str, Any],
+        is_iterative: bool = True
+    ) -> None:
         """
         Valida que la respuesta del LLM para caso promedio tenga estructura correcta.
 
         Args:
             result: Dict con la respuesta del LLM
+            is_iterative: True si el algoritmo es iterativo
 
         Raises:
             ValueError: Si falta algún campo requerido
@@ -855,7 +1464,7 @@ class LLMAnalyzer:
         """
         try:
             # Crear prompt
-            prompt = ANALYZE_BEST_CASE_PROMPT.format(pseudocode=pseudocode)
+            prompt = ANALYZE_BEST_CASE_FULL_PROMPT.format(pseudocode=pseudocode)
 
             # Invocar LLM
             messages = [
@@ -1023,6 +1632,63 @@ class LLMAnalyzer:
                 "parameter_q_applicable": False,
                 "parameter_q_meaning": "No aplica"
             }
+
+    def _validate_recurrence_format(self, recurrence: str) -> None:
+        """
+        Valida que la ecuación de recurrencia esté en formato correcto.
+        
+        Formato válido: T(n) = a*T(n/b) + f(n) o variantes
+        REGLA CRÍTICA: NO debe haber constantes simbólicas dentro de T()
+        
+        Ejemplos válidos:
+          - T(n) = T(n/2) + c1*n
+          - T(n) = 2*T(n/2) + c1 + c2
+          - E[T(n)] = T(n/2) + c3
+        
+        Ejemplos inválidos:
+          - T(n) = T(n+c1) + c2*n  ← constante dentro de T()
+          - T(n) = T(n-c3) + c1    ← constante dentro de T()
+        
+        Args:
+            recurrence: String con la ecuación de recurrencia
+            
+        Raises:
+            ValueError: Si el formato es inválido
+        """
+        # Verificar que contenga "T(" o "E[T(" (es una recurrencia)
+        # Nota: Esta función solo se llama si ya detectamos T( o E[T( en el string
+        if "T(" not in recurrence and "E[T(" not in recurrence:
+            raise ValueError(
+                f"La recurrencia debe contener 'T(' o 'E[T(', recibido: {recurrence}"
+            )
+        
+        # Buscar todos los términos T(...) o E[T(...)]
+        # Patrón: T( seguido de cualquier cosa hasta )
+        t_terms = re.findall(r'T\(([^)]+)\)', recurrence)
+        et_terms = re.findall(r'E\[T\(([^)]+)\)\]', recurrence)
+        all_terms = t_terms + et_terms
+        
+        if not all_terms:
+            return  # No hay términos recursivos para validar
+        
+        # Validar cada término
+        for term in all_terms:
+            # Verificar que NO contenga constantes simbólicas (c1, c2, c3...)
+            if re.search(r'c\d+', term):
+                raise ValueError(
+                    f"FORMATO INVÁLIDO: No debe haber constantes dentro de T(). "
+                    f"Encontrado: T({term}). "
+                    f"Correcto: T(n), T(n/2), T(n-1). "
+                    f"Incorrecto: T(n+c1), T(n/2+c2), T(n-c1)"
+                )
+            
+            # Verificar que sea una expresión válida de n
+            # Debe contener 'n' o ser un número
+            if 'n' not in term and not term.strip().isdigit():
+                raise ValueError(
+                    f"Término recursivo inválido: T({term}). "
+                    f"Debe contener 'n' o ser constante numérica"
+                )
 
 
 def get_llm_analyzer(temperature: float = 0.0) -> LLMAnalyzer:
