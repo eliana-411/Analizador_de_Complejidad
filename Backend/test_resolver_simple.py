@@ -136,9 +136,9 @@ def main():
     Función principal.
     """
     # Aquí puedes cambiar las ecuaciones directamente
-    mejor_caso =    "T(n)= T(n-1) + T(n-2) + c"           
-    caso_promedio = "T(n)= T(n-1) + T(n-2) + c"            
-    peor_caso =     "T(n)= T(n-1) + T(n-2) + c"           
+    mejor_caso =    "T(n)= 2*T(n/2) + c*n"           
+    caso_promedio = "T(n)= (2/n)*SUM(k=0 to n-1)T(k) + c*n"            
+    peor_caso =     "T(n)= T(n-1) + c*n"           
 
     print(f"Probando ecuaciones:")
     print(f"  Mejor caso: {mejor_caso}")
@@ -192,7 +192,7 @@ if __name__ == "__main__":
 
 #? Quicksort
 #TODO   Mejor Caso (Ω):      T(n) = 2*T(n/2) + c*n
-#**     Caso Promedio (Θ):   T(n) = 2*T(n/2) + c*n
+#**     Caso Promedio (Θ):   T(n) = (2/n)*SUM(k=0 to n-1)T(k) + c*n
 #!      Peor Caso (O):       T(n) = T(n-1) + c*n
 #       Caso Base:           T(n) = T(n-1) + c·n
 #                            T(1) = c
@@ -201,3 +201,4 @@ if __name__ == "__main__":
 #TODO   Mejor Caso (Ω):      T(n) = 2*T(n-1) + c
 #**     Caso Promedio (Θ):   T(n) = 2*T(n- 1) +c
 #!      Peor Caso (O):       T(n) = 2*T(n-1) + c
+

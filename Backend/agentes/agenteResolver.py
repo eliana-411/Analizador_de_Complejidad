@@ -75,8 +75,9 @@ class AgenteResolver:
         
         # Paso 1: Parsear la ecuación (ahora la normalizada)
         ecuacion_parseada = self._parsear_ecuacion(ecuacion_a_parsear)
-        
         # Siempre debería retornar algo (al menos expresion_directa)
+        if ecuacion_parseada is None:
+            ecuacion_parseada = {'forma': 'expresion_directa', 'ecuacion_original': ecuacion_a_parsear}
         resultado['ecuacion_parseada'] = ecuacion_parseada
         
         # Paso 2: Intentar resolver con cada método
@@ -128,6 +129,81 @@ class AgenteResolver:
         """
         # Limpiar espacios
         ecuacion = ecuacion_str.replace(' ', '')
+
+        # Intentar parsear como sumatoria tipo QuickSort: T(n) = (a/n)*SUM(k=0 to n-1)T(k) + f(n) o con ∑
+        resultado = self._parsear_sumatoria_todos(ecuacion)
+        if resultado:
+            return resultado
+
+        # Intentar parsear como Lineal Múltiple PRIMERO (más compleja)
+        # Ej: T(n) = T(n-1) + T(n-2)
+        resultado = self._parsear_lineal_multiple(ecuacion)
+        if resultado:
+            return resultado
+
+        # Intentar parsear como División Asimétrica o Múltiple ANTES del estándar
+        # Ej: T(n) = T(n/3) + T(2n/3) + n  o  T(n) = T(n/2) + T(n/4) + n
+        resultado = self._parsear_division_multiple(ecuacion)
+        if resultado:
+            return resultado
+
+        # Intentar parsear como Divide y Conquista estándar: T(n) = aT(n/b) + f(n)
+        resultado = self._parsear_divide_conquista(ecuacion)
+        if resultado:
+            return resultado
+
+        # Intentar parsear como Decrementación: T(n) = T(n-c) + f(n)
+        resultado = self._parsear_decrementacion(ecuacion)
+        if resultado:
+            return resultado
+
+        # Intentar parsear como Decrementación Múltiple: T(n) = aT(n-c) + f(n)
+        resultado = self._parsear_decrementacion_multiple(ecuacion)
+        if resultado:
+            return resultado
+
+        # Si no es ninguna recurrencia conocida, asumir expresión directa
+        # Para el AnalizadorDirecto
+        return {
+            'forma': 'expresion_directa',
+            'ecuacion_original': ecuacion_str
+        }
+
+    def _parsear_sumatoria_todos(self, ecuacion):
+        """
+        Detecta ecuaciones del tipo T(n) = (a/n)*SUM(k=0 to n-1)T(k) + f(n) o con ∑
+        Retorna dict con forma 'sumatoria_todos' si matchea.
+        """
+        # Permitir SUM o ∑, y a puede ser numérico o simbólico
+        # Ejemplo: T(n)=(2/n)*SUM(k=0ton-1)T(k)+c*n
+        patron = r'T\(n\)=\(?([a-zA-Z0-9]+)\/n\)?\*?(SUM|∑)\(k=0to(n-1|n−1)\)T\(k\)\+(.+)'  # n−1 unicode
+        match = re.match(patron, ecuacion, re.IGNORECASE)
+        if match:
+            a = match.group(1)
+            sum_word = match.group(2)
+            f_n = match.group(4)
+            f_n = f_n.replace('^', '**')
+            return {
+                'forma': 'sumatoria_todos',
+                'a': a,
+                'f_n': f_n,
+                'ecuacion_limpia': f"T(n) = ({a}/n)*{sum_word}(k=0 to n-1)T(k) + {f_n}"
+            }
+        # Variante: permitir espacios y variantes de suma
+        patron2 = r'T\(n\)=\(?([a-zA-Z0-9]+)\/n\)?\*?(SUM|∑)\(k=0to(n-1|n−1)\)T\(k\)[\+ ](.+)'  # con espacio antes de +
+        match2 = re.match(patron2, ecuacion, re.IGNORECASE)
+        if match2:
+            a = match2.group(1)
+            sum_word = match2.group(2)
+            f_n = match2.group(4)
+            f_n = f_n.replace('^', '**')
+            return {
+                'forma': 'sumatoria_todos',
+                'a': a,
+                'f_n': f_n,
+                'ecuacion_limpia': f"T(n) = ({a}/n)*{sum_word}(k=0 to n-1)T(k) + {f_n}"
+            }
+        return None
         
         # Intentar parsear como Lineal Múltiple PRIMERO (más compleja)
         # Ej: T(n) = T(n-1) + T(n-2)
