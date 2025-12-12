@@ -67,34 +67,39 @@ class ClasificadorAlgoritmos:
                 - confianza: Probabilidad de la categoría principal (0-1)
                 - top_predicciones: Lista de (categoria, probabilidad) ordenadas
         """
-        # Preprocesar
-        texto_limpio = self._preprocesar_texto(pseudocodigo)
-        
-        # Vectorizar
-        X = self.vectorizer.transform([texto_limpio])
-        
-        # Predecir
-        prediccion = self.modelo.predict(X)[0]
-        categoria_principal = self.label_encoder.inverse_transform([prediccion])[0]
-        
-        # Obtener probabilidades
-        probabilidades = self.modelo.predict_proba(X)[0]
-        
-        # Ordenar por probabilidad
-        indices_ordenados = probabilidades.argsort()[::-1][:top_n]
-        top_predicciones = [
-            {
-                'categoria': self.label_encoder.inverse_transform([idx])[0],
-                'probabilidad': float(probabilidades[idx])
+        try:
+            # Preprocesar
+            texto_limpio = self._preprocesar_texto(pseudocodigo)
+            # Vectorizar
+            X = self.vectorizer.transform([texto_limpio])
+            # Predecir
+            prediccion = self.modelo.predict(X)[0]
+            categoria_principal = str(self.label_encoder.inverse_transform([prediccion])[0])
+            # Obtener probabilidades
+            probabilidades = self.modelo.predict_proba(X)[0]
+            # Ordenar por probabilidad
+            indices_ordenados = probabilidades.argsort()[::-1][:top_n]
+            top_predicciones = [
+                {
+                    'categoria': str(self.label_encoder.inverse_transform([idx])[0]),
+                    'probabilidad': float(probabilidades[idx])
+                }
+                for idx in indices_ordenados
+            ]
+            resultado = {
+                'categoria_principal': categoria_principal,
+                'confianza': float(probabilidades[prediccion]),
+                'top_predicciones': top_predicciones
             }
-            for idx in indices_ordenados
-        ]
-        
-        return {
-            'categoria_principal': categoria_principal,
-            'confianza': float(probabilidades[prediccion]),
-            'top_predicciones': top_predicciones
-        }
+            print(f"[CLASIFICADOR] Resultado: {resultado}")
+            return resultado
+        except Exception as e:
+            print(f"[CLASIFICADOR][ERROR] No se pudo clasificar: {e}")
+            return {
+                'categoria_principal': 'Desconocido',
+                'confianza': 0.0,
+                'top_predicciones': []
+            }
     
     def clasificar_batch(self, pseudocodigos: List[str]) -> List[Dict]:
         """Clasifica múltiples pseudocódigos de una vez"""
