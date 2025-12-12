@@ -135,7 +135,7 @@ INSTRUCCIONES:
 1. Analiza el mejor caso, caso promedio y peor caso
 2. Usa SOLO notación Big-O para todos los casos: O(1), O(n), O(n²), O(log n), O(n log n), etc.
 3. Sé preciso y conciso
-4. Si hay recursión, identifica la ecuación de recurrencia
+4. Si hay recursión, identifica la ecuación de recurrencia 
 
 IMPORTANTE: Usa O() para todo, incluso para mejor caso y caso promedio.
 
