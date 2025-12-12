@@ -3,6 +3,53 @@ import re
 from sympy import symbols, solve, Poly, simplify, apart
 
 class EcuacionCaracteristica(BaseResolver):
+    def _simplificar_asintotico(self, expr: str) -> str:
+        """
+        Devuelve únicamente el término dominante de la expresión.
+        Prioridad:
+            1. Exponencial: a^n, a**n, aⁿ
+            2. Polinómico: n^k
+            3. Lineal: n
+            4. Constante
+        """
+
+        if not expr:
+            return expr
+
+        expr = expr.replace(" ", "").lower()
+
+        # --- 1) EXPONENCIALES ---
+        # Soportar: 2^n, 2**n, 2ⁿ, (1.23)^n, a^n
+        patrones_exp = [
+            r'([0-9\.]+)\*\*n',
+            r'([0-9\.]+)\^n',
+            r'([0-9\.]+)ⁿ',
+            r'([a-z])\^n',
+            r'([a-z])ⁿ'
+        ]
+
+        for p in patrones_exp:
+            m = re.search(p, expr)
+            if m:
+                base = m.group(1)
+                return f"{base}ⁿ"
+
+        # --- 2) POLINOMIOS ---
+        match_poly = re.search(r'n\^([0-9]+)', expr)
+        if match_poly:
+            return f"n^{match_poly.group(1)}"
+
+        match_poly2 = re.search(r'n\*\*([0-9]+)', expr)
+        if match_poly2:
+            return f"n^{match_poly2.group(1)}"
+
+        # --- 3) LINEAL ---
+        if re.search(r'\bn\b', expr):
+            return "n"
+
+        # --- 4) CONSTANTE ---
+        return "1"
+
     """
     Método de Ecuaciones Características para resolver recurrencias lineales homogéneas.
     
@@ -25,62 +72,54 @@ class EcuacionCaracteristica(BaseResolver):
     def puede_resolver(self, ecuacion):
         """
         Verifica si la ecuación es una recurrencia lineal que puede resolver.
-        
-        Este método resuelve:
-        - decrementacion_multiple: T(n) = aT(n-1) + f(n)
-        - lineal_multiple: T(n) = a₁T(n-1) + a₂T(n-2) + ... + f(n)  (Fibonacci, etc)
+        Ahora reconoce coeficientes escritos como 2T(n-1), 2*T(n-1), 2.T(n-1), etc.
         """
         forma = ecuacion.get('forma')
-        
         # Puede resolver recurrencias lineales múltiples (Fibonacci, Tribonacci, etc)
         if forma == 'lineal_multiple':
             return True
-        
         # También resuelve decrementación múltiple simple
         if forma == 'decrementacion_multiple':
             # Verificar que c = 1 (decrementación de 1 en 1)
             return ecuacion.get('c', 0) == 1
-        
         return False
     
     def resolver(self, ecuacion):
         """
         Resuelve la recurrencia usando ecuaciones características.
-        
-        Para T(n) = aT(n-1) + f(n):
-        - Si f(n) = 0 (homogénea): T(n) = c·aⁿ
-        - Si f(n) ≠ 0 (no homogénea): usar solución particular
-        
-        Para T(n) = a₁T(n-1) + a₂T(n-2) + ... + f(n):
-        - Resolver ecuación característica: rᵏ = a₁rᵏ⁻¹ + a₂rᵏ⁻² + ...
-        - Construir solución basada en las raíces
+        Ahora reconoce coeficientes escritos como 2T(n-1), 2*T(n-1), 2.T(n-1), etc.
         """
         forma = ecuacion.get('forma')
-        
+        # Si la ecuación viene como string, intentar parsear coeficientes con o sin *, .
+        if 'ecuacion_str' in ecuacion:
+            ecuacion_str = ecuacion['ecuacion_str'].replace(' ', '')
+            # Buscar términos tipo coef*T(n-k) o coef.T(n-k) o coefT(n-k)
+            terminos = re.findall(r'([+-]?\d+(?:[\*\.]?)?)T\(n-\d+\)', ecuacion_str)
+            if terminos:
+                # Si hay coeficientes con *, ., o sin nada, los normalizamos
+                for t in terminos:
+                    if '*' in t or '.' in t:
+                        continue  # ya está explícito
+                    # Si es solo número, lo convertimos a número*
+                    ecuacion_str = ecuacion_str.replace(f'{t}T', f'{t}*T')
+                ecuacion['ecuacion_str'] = ecuacion_str
         if forma == 'lineal_multiple':
-            # Fibonacci, Tribonacci, etc
             return self._resolver_lineal_multiple(ecuacion)
         elif forma == 'decrementacion_multiple':
-            # Caso simple T(n) = aT(n-1) + f(n)
             pasos = []
             a = ecuacion['a']
             c = ecuacion['c']
             f_n_str = ecuacion['f_n']
-            
             pasos.append(f"📝 Ecuación: T(n) = {a}T(n-{c}) + {f_n_str}")
             pasos.append(f"")
             pasos.append(f"🔹 MÉTODO DE ECUACIONES CARACTERÍSTICAS")
             pasos.append(f"   Para recurrencias lineales de la forma T(n) = aT(n-1) + f(n)")
             pasos.append(f"")
-            
-            # Verificar si es homogénea o no homogénea
             es_homogenea = self._es_homogenea(f_n_str)
-            
             if es_homogenea:
                 return self._resolver_homogenea(a, c, pasos)
             else:
                 return self._resolver_no_homogenea(a, c, f_n_str, pasos)
-        
         return self._crear_resultado(
             exito=False,
             explicacion="Forma de ecuación no soportada por Ecuaciones Características"
@@ -146,9 +185,10 @@ class EcuacionCaracteristica(BaseResolver):
         
         explicacion = self._construir_explicacion_homogenea(a, c, solucion)
         
+        solucion_asintotica = self._simplificar_asintotico(solucion)
         return self._crear_resultado(
             exito=True,
-            solucion=solucion,
+            solucion=solucion_asintotica,
             pasos=pasos,
             explicacion=explicacion,
             detalles={
@@ -228,9 +268,10 @@ class EcuacionCaracteristica(BaseResolver):
         
         explicacion = self._construir_explicacion_no_homogenea(a, c, f_n_str, solucion)
         
+        solucion_asintotica = self._simplificar_asintotico(solucion)
         return self._crear_resultado(
             exito=True,
-            solucion=solucion,
+            solucion=solucion_asintotica,
             pasos=pasos,
             explicacion=explicacion,
             detalles={
@@ -246,28 +287,44 @@ class EcuacionCaracteristica(BaseResolver):
     def _analizar_funcion(self, f_n_str):
         """
         Analiza f(n) para determinar la forma de solución particular.
+        Reconoce constantes numéricas y simbólicas, y funciones lineales con coeficiente simbólico o numérico.
         """
-        f_n = f_n_str.lower().replace(' ', '')
-        
-        # Constante
+        f_n = f_n_str.replace(' ', '')
+        f_n_lower = f_n.lower()
+        # Constante numérica
         if f_n.isdigit():
             return {
                 'tipo': 'constante',
                 'valor': int(f_n)
             }
-        
+        # Constante simbólica (letra sola, como c, k, K, C, etc)
+        if re.fullmatch(r'[a-zA-Z]', f_n):
+            return {
+                'tipo': 'constante',
+                'valor': f_n
+            }
+        # Constante tipo "1"
         if f_n == '1':
             return {
                 'tipo': 'constante',
                 'valor': 1
             }
-        
-        # Polinomial
-        if 'n' in f_n and '**' not in f_n and '^' not in f_n:
+        # Lineal: coeficiente simbólico o numérico multiplicando n (ej: c*n, k*n, 2*n, n)
+        match_lineal = re.fullmatch(r'([a-zA-Z0-9]*)\*?n', f_n_lower)
+        if match_lineal:
+            coef = match_lineal.group(1)
+            if coef == '' or coef == '1':
+                coef = 1
             return {
-                'tipo': 'lineal'
+                'tipo': 'lineal',
+                'coef': coef
             }
-        
+        # Lineal: n solo
+        if f_n_lower == 'n':
+            return {
+                'tipo': 'lineal',
+                'coef': 1
+            }
         return {
             'tipo': 'desconocido',
             'expr': f_n_str
@@ -276,19 +333,12 @@ class EcuacionCaracteristica(BaseResolver):
     def _encontrar_solucion_particular(self, a, c, forma_fn, pasos):
         """
         Encuentra la solución particular según f(n).
-        
-        Casos comunes:
-        - f(n) = constante k, a ≠ 1 → Tₚ(n) = k/(a-1)
-        - f(n) = constante k, a = 1 → Tₚ(n) = kn
-        - f(n) = n → requiere método más complejo
+        Ahora soporta constantes simbólicas y numéricas.
         """
         tipo = forma_fn['tipo']
-        
         if tipo == 'constante':
             k = forma_fn['valor']
-            
             if a == 1:
-                # Caso especial: T(n) = T(n-1) + k
                 pasos.append(f"   f(n) = {k} (constante)")
                 pasos.append(f"   Como a = 1, probamos Tₚ(n) = An")
                 pasos.append(f"   Sustituyendo: An = A(n-1) + {k}")
@@ -296,37 +346,35 @@ class EcuacionCaracteristica(BaseResolver):
                 pasos.append(f"   A = {k}")
                 pasos.append(f"   Solución particular: Tₚ(n) = {k}n")
                 pasos.append(f"")
-                
                 return f"{k}n"
             else:
-                # Caso general: T(n) = aT(n-1) + k
                 pasos.append(f"   f(n) = {k} (constante)")
                 pasos.append(f"   Probamos Tₚ(n) = A (constante)")
                 pasos.append(f"   Sustituyendo: A = {a}·A + {k}")
                 pasos.append(f"   A - {a}A = {k}")
-                pasos.append(f"   A({1-a}) = {k}")
-                pasos.append(f"   A = {k}/{1-a} = {k/(1-a):.4f}")
-                
-                # Formatear la solución particular
-                valor_particular = k/(1-a)
-                if valor_particular >= 0:
-                    pasos.append(f"   Solución particular: Tₚ(n) = {valor_particular:.4f}")
+                pasos.append(f"   A(1-{a}) = {k}")
+                if isinstance(k, (int, float)):
+                    valor_particular = k/(1-a)
+                    pasos.append(f"   A = {k}/(1-{a}) = {valor_particular:.4f}")
+                    if abs(valor_particular - round(valor_particular)) < 0.0001:
+                        valor_particular = round(valor_particular)
+                        return f"{int(valor_particular)}" if valor_particular >= 0 else f"({int(valor_particular)})"
+                    else:
+                        return f"{valor_particular:.4f}"
                 else:
-                    pasos.append(f"   Solución particular: Tₚ(n) = {valor_particular:.4f}")
-                pasos.append(f"")
-                
-                # Retornar con el signo correcto
-                if abs(valor_particular - round(valor_particular)) < 0.0001:
-                    valor_particular = round(valor_particular)
-                    return f"{int(valor_particular)}" if valor_particular >= 0 else f"({int(valor_particular)})"
-                else:
-                    return f"{valor_particular:.4f}"
-        
-        elif tipo == 'lineal':
-            pasos.append(f"   f(n) es lineal (requiere método más avanzado)")
-            pasos.append(f"   Se recomienda usar Método de Sumas o Iteración")
-            return None
-        
+                    pasos.append(f"   A = {k}/(1-{a}) (constante simbólica)")
+                    return f"{k}/(1-{a})"
+        elif tipo == 'lineal' and c == 1:
+            k = forma_fn['coef']
+            pasos.append(f"   f(n) = {k}·n (lineal)")
+            pasos.append(f"   Probamos Tₚ(n) = A·n + B")
+            pasos.append(f"   Sustituyendo en la recurrencia y resolviendo para A y B:")
+            pasos.append(f"      A = {k}/(1-{a})")
+            pasos.append(f"      B = -{a}*{k}/(1-{a})**2")
+            A = f"({k})/(1-{a})"
+            B = f"-({a})*({k})/(1-{a})**2"
+            pasos.append(f"   Solución particular: Tₚ(n) = {A}·n + {B}")
+            return f"{A}n + {B}"
         else:
             pasos.append(f"   f(n) tiene forma desconocida: {forma_fn.get('expr', 'N/A')}")
             return None
@@ -517,6 +565,10 @@ como Torres de Hanoi, Fibonacci, y otras secuencias recursivas.
             pasos.append(f"")
             pasos.append(f"   Donde C₁, C₂, ... son constantes determinadas por condiciones iniciales")
             pasos.append(f"")
+
+            # Determinar la raíz dominante (por magnitud)
+            raices_numericas = [complex(r.evalf()) for r in raices]
+            raiz_dominante = max(raices_numericas, key=lambda x: abs(x))
             
             explicacion = self._construir_explicacion_lineal_multiple(ecuacion_str, ec_str, raices, solucion)
             
@@ -528,7 +580,8 @@ como Torres de Hanoi, Fibonacci, y otras secuencias recursivas.
                 detalles={
                     'tipo': 'lineal_multiple',
                     'orden': max_offset,
-                    'raices': [complex(r.evalf()) for r in raices],
+                    'raices': raices_numericas,
+                    'raiz_dominante': raiz_dominante,
                     'ecuacion_caracteristica': str(poly_expr)
                 }
             )
