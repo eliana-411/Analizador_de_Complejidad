@@ -14,3 +14,51 @@
 2025-12-12 00:04:50 - MathAgent - INFO -   Misses: 1
 2025-12-12 00:04:50 - MathAgent - INFO -   Size: 1
 2025-12-12 00:04:50 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-12 01:21:08 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-12 01:21:08 - MathAgent - INFO - Algoritmo: busquedaLineal
+2025-12-12 01:21:08 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-12 01:21:08 - MathAgent - INFO - Escenarios: 7
+2025-12-12 01:21:08 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-12 01:21:08 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-12 01:21:28 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-12 01:21:28 - MathAgent - INFO - Mejor caso: K1
+2025-12-12 01:21:28 - MathAgent - INFO - Caso promedio: K2 + (n/2)*C
+2025-12-12 01:21:28 - MathAgent - INFO - Peor caso: K3 + n*C
+2025-12-12 01:21:28 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-12 01:21:28 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-12 01:21:28 - MathAgent - INFO -   Hits: 0
+2025-12-12 01:21:28 - MathAgent - INFO -   Misses: 1
+2025-12-12 01:21:28 - MathAgent - INFO -   Size: 1
+2025-12-12 01:21:28 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-12 01:24:46 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-12 01:24:46 - MathAgent - INFO - Algoritmo: busquedaLineal
+2025-12-12 01:24:46 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-12 01:24:46 - MathAgent - INFO - Escenarios: 7
+2025-12-12 01:24:46 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-12 01:24:46 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-12 01:24:55 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-12 01:24:56 - MathAgent - INFO - Mejor caso: K1
+2025-12-12 01:24:56 - MathAgent - INFO - Caso promedio: K2 + (n/2)*C
+2025-12-12 01:24:56 - MathAgent - INFO - Peor caso: K3 + n*C
+2025-12-12 01:24:56 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-12 01:24:56 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-12 01:24:56 - MathAgent - INFO -   Hits: 0
+2025-12-12 01:24:56 - MathAgent - INFO -   Misses: 1
+2025-12-12 01:24:56 - MathAgent - INFO -   Size: 1
+2025-12-12 01:24:56 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-12 01:42:53 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-12 01:42:53 - MathAgent - INFO - Algoritmo: busquedaLineal
+2025-12-12 01:42:53 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-12 01:42:53 - MathAgent - INFO - Escenarios: 8
+2025-12-12 01:42:53 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-12 01:42:53 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-12 01:43:04 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-12 01:43:04 - MathAgent - INFO - Mejor caso: K1
+2025-12-12 01:43:04 - MathAgent - INFO - Caso promedio: K2 + (n/2)*C
+2025-12-12 01:43:04 - MathAgent - INFO - Peor caso: K3 + n*C
+2025-12-12 01:43:04 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-12 01:43:04 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-12 01:43:04 - MathAgent - INFO -   Hits: 0
+2025-12-12 01:43:04 - MathAgent - INFO -   Misses: 1
+2025-12-12 01:43:04 - MathAgent - INFO -   Size: 1
+2025-12-12 01:43:04 - MathAgent - INFO -   Hit Rate: 0.0%
