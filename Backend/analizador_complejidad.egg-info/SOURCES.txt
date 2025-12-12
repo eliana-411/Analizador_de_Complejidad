@@ -91,6 +91,7 @@ tests/test_arbol_desbalanceado.py
 tests/test_arbol_diagrama.py
 tests/test_arbol_tres_hijos.py
 tests/test_clasificador_integrado.py
+tests/test_connection.py
 tests/test_corrector.py
 tests/test_detector.py
 tests/test_flujo.py
