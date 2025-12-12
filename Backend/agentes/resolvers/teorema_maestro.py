@@ -118,12 +118,19 @@ class TeoremaMAestro(BaseResolver):
                     'k_log': 0,
                     'descripcion': 'lineal (n)'
                 }
-            
+            # Detectar expresiones tipo c*n, k*n, 2*n, 0.5*n, a*n, etc.
+            match_lineal = re.match(r'([a-zA-Z]|\d+\.?\d*)\*n$', f_n)
+            if match_lineal:
+                return {
+                    'tipo': 'polinomial',
+                    'exponente': 1,
+                    'k_log': 0,
+                    'descripcion': 'lineal (c·n)'
+                }
             # n**2, n^2, etc.
             match = re.search(r'n\*\*(\d+\.?\d*)', f_n)
             if not match:
                 match = re.search(r'n\^(\d+\.?\d*)', f_n)
-            
             if match:
                 exp = float(match.group(1))
                 return {
