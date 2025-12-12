@@ -311,7 +311,7 @@ EJEMPLO DE RESPUESTA CORRECTA:
   "probability_P": "1/n",
   "probability_explanation": "Probabilidad de encontrar el elemento en la primera posicion"
 }}
-"""
+""
 
 Responde SOLO con JSON siguiendo este formato (sin markdown, sin bloques ```):
 
@@ -486,7 +486,7 @@ EJEMPLO DE RESPUESTA CORRECTA:
 }}
 
 Responde SOLO con JSON siguiendo este formato (sin markdown, sin bloques ```):
-"""
+""
 
 NOTA CRITICA:
 - USA LAS MISMAS CONSTANTES: c1, c2, c3... (consistencia con mejor/peor caso)
