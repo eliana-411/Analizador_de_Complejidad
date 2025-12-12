@@ -5,7 +5,7 @@ Define la estructura de datos de entrada que el agente recibe desde el workflow.
 """
 
 from pydantic import BaseModel, Field
-from typing import Optional
+from typing import Optional, Dict, List, Any
 from core.analizador.models.omega_table import OmegaTable
 
 
@@ -20,6 +20,7 @@ class MathRepresentationRequest(BaseModel):
         omega_table: Tabla Omega completa con todos los escenarios del algoritmo
         algorithm_name: Nombre identificador del algoritmo
         is_iterative: True si es iterativo, False si es recursivo
+        workflow_data: Datos completos del workflow (opcional, para contexto adicional)
     """
     
     omega_table: OmegaTable = Field(
@@ -32,6 +33,11 @@ class MathRepresentationRequest(BaseModel):
     
     is_iterative: bool = Field(
         description="True si es iterativo (usa loops), False si es recursivo"
+    )
+    
+    workflow_data: Optional[Dict[str, Any]] = Field(
+        default=None,
+        description="Datos completos del workflow incluyendo pseudocode, lines, llm_analysis, raw_scenarios, etc."
     )
     
     class Config:

@@ -68,7 +68,7 @@ class LLMAnalysisAssistant:
         self._cache_hits = 0
         self._cache_misses = 0
     
-    def analizar_escenarios(self, omega_table: OmegaTable, is_iterative: bool) -> Dict:
+    def analizar_escenarios(self, omega_table: OmegaTable, is_iterative: bool, workflow_data: Dict = None) -> Dict:
         """
         Analiza los escenarios de la Tabla Omega y SUGIERE ecuaciones simplificadas.
         

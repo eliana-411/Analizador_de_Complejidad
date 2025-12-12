@@ -164,11 +164,23 @@ class AgenteRepresentacionMatematica:
         pasos_llm.append("🤖 MODO LLM ACTIVO - Generación Asistida")
         pasos_llm.append("")
         
+        # Log: Información adicional disponible
+        if request.workflow_data:
+            pasos_llm.append("📦 Datos completos del workflow disponibles:")
+            pasos_llm.append(f"   - Pseudocódigo: {len(request.workflow_data.get('pseudocode', ''))} caracteres")
+            pasos_llm.append(f"   - Líneas: {len(request.workflow_data.get('lines', []))}")
+            pasos_llm.append(f"   - Análisis LLM: {len(request.workflow_data.get('llm_analysis', {}))} casos")
+            pasos_llm.append(f"   - Raw scenarios: {len(request.workflow_data.get('raw_scenarios', []))}")
+            pasos_llm.append("")
+        
         # Paso 1: Análisis inicial del LLM CON SUGERENCIAS
         pasos_llm.append("📊 Fase 1: Análisis y sugerencias del LLM")
+        
+        # Pasar workflow_data al LLM si está disponible
         analisis_llm = self.llm_assistant.analizar_escenarios(
             request.omega_table,
-            request.is_iterative
+            request.is_iterative,
+            workflow_data=request.workflow_data
         )
         
         pasos_llm.append("   ✓ Análisis completado")
@@ -186,15 +198,15 @@ class AgenteRepresentacionMatematica:
         if request.is_iterative:
             resultado = process_iterative(
                 request.omega_table,
-                llm_analysis=analisis_llm
+                llm_analysis=analisis_llm,
+                workflow_data=request.workflow_data
             )
         else:
             resultado = process_recursive(
                 request.omega_table,
-                llm_analysis=analisis_llm
+                llm_analysis=analisis_llm,
+                workflow_data=request.workflow_data
             )
-        pasos_llm.append("   ✓ Ecuaciones generadas con asistencia LLM")
-        pasos_llm.append("")
         pasos_llm.append("   ✓ Ecuaciones generadas con asistencia LLM")
         pasos_llm.append("")
         
