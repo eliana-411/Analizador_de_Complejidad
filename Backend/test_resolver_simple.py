@@ -136,9 +136,9 @@ def main():
     Función principal.
     """
     # Aquí puedes cambiar las ecuaciones directamente
-    mejor_caso =    "T(n)= 2*T(n/2) + c*n"           
-    caso_promedio = "T(n)= (2/n)*SUM(k=0 to n-1)T(k) + c*n"            
-    peor_caso =     "T(n)= T(n-1) + c*n"           
+    mejor_caso =    "T(n)= K1"           
+    caso_promedio = "T(n)= K2 + (n/2)*C"            
+    peor_caso =     "T(n)= K3 + n*C"           
 
     print(f"Probando ecuaciones:")
     print(f"  Mejor caso: {mejor_caso}")
