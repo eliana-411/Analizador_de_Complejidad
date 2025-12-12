@@ -246,116 +246,29 @@ INSTRUCCIONES:
 4. Calcula T(S) como suma de todos los Total
 5. Asigna probabilidad P(S) RESUELTA (sin q)
 
-EJEMPLO DE RESPUESTA CORRECTA:
+Responde SOLO con JSON (sin markdown, sin ```):
 {{
   "scenario_id": "S_best_case",
   "scenario_type": "best_case",
-  "input_description": "Elemento buscado encontrado en la primera posicion",
-  "input_characteristics": {{
-    "position": "1",
-    "found": true
-  }},
-  "is_iterative": true,
+  "input_condition": "Descripción clara de la entrada que minimiza operaciones",
   "line_by_line_analysis": [
     {{
       "line_number": 1,
-      "code": "encontrado <- F",
+      "code": "...",
       "C_op": "c1",
       "Freq": "1",
-      "Total": "c1",
-      "explanation": "Inicializacion de variable booleana. Se ejecuta exactamente una vez."
-    }},
-    {{
-      "line_number": 2,
-      "code": "i <- 1",
-      "C_op": "c1",
-      "Freq": "1",
-      "Total": "c1",
-      "explanation": "Inicializacion del contador. Se ejecuta exactamente una vez."
-    }},
-    {{
-      "line_number": 3,
-      "code": "while (i <= n and not encontrado) do",
-      "C_op": "c2",
-      "Freq": "2",
-      "Total": "c2*2",
-      "explanation": "Encabezado del while. En el mejor caso se ejecuta 2 veces: una para entrar y una para salir."
-    }},
-    {{
-      "line_number": 4,
-      "code": "if (A[i] = x) then",
-      "C_op": "c3",
-      "Freq": "1",
-      "Total": "c3",
-      "explanation": "Comparacion con acceso a array. Se ejecuta 1 vez en el mejor caso."
-    }},
-    {{
-      "line_number": 5,
-      "code": "encontrado <- T",
-      "C_op": "c4",
-      "Freq": "1",
-      "Total": "c4",
-      "explanation": "Asignacion cuando se encuentra. Se ejecuta 1 vez."
-    }},
-    {{
-      "line_number": 6,
-      "code": "return encontrado",
-      "C_op": "c7",
-      "Freq": "1",
-      "Total": "c7",
-      "explanation": "Retorno del resultado. Se ejecuta exactamente una vez."
+      "Total": "c1"
     }}
   ],
-  "total_cost_T": "c1 + c1 + c2*2 + c3 + c4 + c7",
-  "total_cost_explanation": "Suma de todos los costos linea por linea",
-  "probability_P": "1/n",
-  "probability_explanation": "Probabilidad de encontrar el elemento en la primera posicion"
+  "T_of_S": "c1 + c2*2 + c3 + c4",
+  "T_of_S_explanation": "Suma de todos los costos Total",
+  "P_of_S": "1/n",
+  "P_of_S_explanation": "Probabilidad de que el elemento esté en la primera posición",
+  "probability_model": "Se asume que el elemento existe y puede estar en cualquiera de las n posiciones con igual probabilidad"
 }}
-""
+"""
 
-Responde SOLO con JSON siguiendo este formato (sin markdown, sin bloques ```):
-
-Para RECURSIVOS, incluye además:
-{{
-  "scenario_id": "S_worst_case",
-  "scenario_type": "worst_case",
-  "input_condition": "Elemento x NO encontrado en el arreglo (no existe)",
-  "line_by_line_analysis": [
-    {{"line_number": 1, "code": "int i", "C_op": "c1", "Freq": "1", "Total": "c1"}},
-    {{"line_number": 2, "code": "bool encontrado", "C_op": "c2", "Freq": "1", "Total": "c2"}},
-    {{"line_number": 3, "code": "encontrado <- F", "C_op": "c3", "Freq": "1", "Total": "c3"}},
-    {{"line_number": 4, "code": "i <- 1", "C_op": "c4", "Freq": "1", "Total": "c4"}},
-    {{"line_number": 5, "code": "while (i <= n and not encontrado)", "C_op": "c5", "Freq": "n+1", "Total": "c5*(n+1)", "explanation": "Encabezado: se evalua n+1 veces (regla n+1 para loops completos)"}},
-    {{"line_number": 6, "code": "if (A[i] = x)", "C_op": "c6", "Freq": "n", "Total": "c6*n", "explanation": "Comparacion ejecutada n veces"}},
-    {{"line_number": 7, "code": "encontrado <- T", "C_op": "c7", "Freq": "0", "Total": "0", "explanation": "Nunca se ejecuta porque NO encuentra"}},
-    {{"line_number": 8, "code": "i <- i + 1", "C_op": "c8", "Freq": "n", "Total": "c8*n"}},
-    {{"line_number": 9, "code": "return encontrado", "C_op": "c9", "Freq": "1", "Total": "c9"}}
-  ],
-  "T_of_S": "c1 + c2 + c3 + c4 + c5*(n+1) + c6*n + c8*n + c9",
-  "T_of_S_explanation": "Suma de todos los costos - loop completo sin salida temprana",
-  "P_of_S": "1/(n+1)",
-  "P_of_S_explanation": "Probabilidad de que el elemento no este (modelo n+1 casos equiprobables)",
-  "probability_model": "Se asume modelo con n+1 casos equiprobables: elemento en posicion 1..n, o no encontrado"
-}}
-
-NOTA CRITICA SOBRE C_op:
-- USA LAS MISMAS CONSTANTES que en mejor caso: c1, c2, c3, etc.
-- Misma linea de codigo = misma constante en todos los casos
-- SIEMPRE strings: "c1", "c2", "c3" (NUNCA numeros: 0, 1, 2)
-
-════════════════════════════════════════════════════════════════
-
-Ahora analiza ESTE pseudocodigo:
-
-Pseudocodigo:
-```
-{pseudocode}
-```
-
-Nombre del algoritmo: {algorithm_name}
-
-════════════════════════════════════════════════════════════════
-REGLAS PARA ALGORITMOS ITERATIVOS - PEOR CASO
+ANALYZE_ITERATIVE_WORST_CASE_PROMPT = """Eres un experto en análisis de complejidad algorítmica. Analiza el siguiente pseudocódigo ITERATIVO para determinar el PEOR CASO.
 ════════════════════════════════════════════════════════════════
 
 1. CONSTANTES SIMBÓLICAS (C_op):
@@ -418,82 +331,6 @@ ANALYZE_ITERATIVE_AVERAGE_CASE_PROMPT = """Eres un experto en análisis de compl
 El CASO PROMEDIO es el costo esperado E[T] = Σ T(S_i) · P(S_i) sobre todos los escenarios posibles.
 
 ════════════════════════════════════════════════════════════════
-EJEMPLO COMPLETO - APRENDE DE ESTE FORMATO
-════════════════════════════════════════════════════════════════
-
-EJEMPLO DE RESPUESTA CORRECTA:
-{{
-  "scenario_type": "worst_case",
-  "input_description": "Elemento no encontrado en el array",
-  "input_characteristics": {{
-    "found": false
-  }},
-  "is_iterative": true,
-  "line_by_line_analysis": [
-    {{
-      "line_number": 1,
-      "code": "encontrado <- F",
-      "C_op": "c1",
-      "Freq": "1",
-      "Total": "c1",
-      "explanation": "Inicializacion de variable booleana. Se ejecuta exactamente una vez."
-    }},
-    {{
-      "line_number": 2,
-      "code": "i <- 1",
-      "C_op": "c1",
-      "Freq": "1",
-      "Total": "c1",
-      "explanation": "Inicializacion del contador. Se ejecuta exactamente una vez."
-    }},
-    {{
-      "line_number": 3,
-      "code": "while (i <= n and not encontrado) do",
-      "C_op": "c2",
-      "Freq": "n+1",
-      "Total": "c2*(n+1)",
-      "explanation": "Encabezado del while. En el peor caso se ejecuta n+1 veces."
-    }},
-    {{
-      "line_number": 4,
-      "code": "if (A[i] = x) then",
-      "C_op": "c3",
-      "Freq": "n",
-      "Total": "c3*n",
-      "explanation": "Comparacion con acceso a array. Se ejecuta n veces en el peor caso."
-    }},
-    {{
-      "line_number": 5,
-      "code": "i <- i + 1",
-      "C_op": "c3",
-      "Freq": "n",
-      "Total": "c3*n",
-      "explanation": "Incremento del contador. Se ejecuta n veces."
-    }},
-    {{
-      "line_number": 6,
-      "code": "return encontrado",
-      "C_op": "c7",
-      "Freq": "1",
-      "Total": "c7",
-      "explanation": "Retorno del resultado. Se ejecuta exactamente una vez."
-    }}
-  ],
-  "total_cost_T": "c1 + c1 + c2*(n+1) + c3*n + c3*n + c7",
-  "total_cost_explanation": "Suma de todos los costos linea por linea",
-  "probability_P": "1/(n+1)",
-  "probability_explanation": "Probabilidad de que el elemento no se encuentre"
-}}
-
-Responde SOLO con JSON siguiendo este formato (sin markdown, sin bloques ```):
-""
-
-NOTA CRITICA:
-- USA LAS MISMAS CONSTANTES: c1, c2, c3... (consistencia con mejor/peor caso)
-- SIEMPRE strings simbolicos para C_op: "c1", "c2", "c3"
-- NUNCA numeros: 0, 1, 2
-
-════════════════════════════════════════════════════════════════
 
 Ahora analiza ESTE pseudocodigo:
 
@@ -552,105 +389,26 @@ INSTRUCCIONES:
 4. Simplifica la expresión si es posible
 5. Opcionalmente: análisis línea por línea del caso "promedio típico"
 
-EJEMPLO DE RESPUESTA CORRECTA (Búsqueda Lineal):
+Responde SOLO con JSON (sin markdown, sin ```):
 {{
   "scenario_id": "S_avg_case",
   "scenario_type": "average_case",
   "input_condition": "Promedio sobre todos los escenarios posibles",
-  "probability_model": "Se consideran n+1 casos equiprobables: elemento encontrado en posicion k (k=1 a n), o no encontrado. Cada caso tiene probabilidad 1/(n+1).",
+  "probability_model": "Modelo probabilístico usado",
   "scenarios_breakdown": [
     {{
       "scenario_id": "S_1",
-      "description": "Encontrado en posicion 1",
-      "T": "c1 + c2*2 + c3 + c4",
-      "P": "1/(n+1)"
-    }},
-    {{
-      "scenario_id": "S_k",
-      "description": "Encontrado en posicion k (general)",
-      "T": "c1 + c2*(k+1) + c3*k + c4",
-      "P": "1/(n+1)"
-    }},
-    {{
-      "scenario_id": "S_n",
-      "description": "Encontrado en posicion n",
-      "T": "c1 + c2*(n+1) + c3*n + c4",
-      "P": "1/(n+1)"
-    }},
-    {{
-      "scenario_id": "S_empty",
-      "description": "No encontrado",
-      "T": "c1 + c2*(n+1) + c3*n + c7",
-      "P": "1/(n+1)"
+      "description": "Descripción del escenario",
+      "T": "Costo de este escenario",
+      "P": "Probabilidad de este escenario"
     }}
   ],
-  "average_cost_formula": "E[T] = (1/(n+1)) * [SUM(k=1 to n)(c1 + c2*(k+1) + c3*k + c4) + (c1 + c2*(n+1) + c3*n + c7)]",
-  "T_of_S": "c1 + c2*(n+3)/2 + c3*(n+1)/2 + c4*n/(n+1) + c7/(n+1)",
-  "T_of_S_simplified": "c1 + c2*(n+3)/2 + c3*(n+1)/2 + c4*n/(n+1) + c7/(n+1)",
-  "T_of_S_explanation": "Costo esperado calculado como suma ponderada de todos los escenarios",
+  "average_cost_formula": "E[T] = Σ T(S_i) · P(S_i)",
+  "T_of_S": "Fórmula simplificada del costo promedio",
+  "T_of_S_explanation": "Explicación del cálculo",
   "P_of_S": "1",
-  "P_of_S_explanation": "El caso promedio engloba todos los escenarios posibles con sus probabilidades respectivas",
-  "line_by_line_analysis": [
-    {{
-      "line_number": 1,
-      "code": "encontrado <- F",
-      "C_op": "c1",
-      "Freq": "1",
-      "Total": "c1",
-      "explanation": "Inicializacion de variable booleana. Se ejecuta exactamente una vez en todos los escenarios."
-    }},
-    {{
-      "line_number": 2,
-      "code": "i <- 1",
-      "C_op": "c1",
-      "Freq": "1",
-      "Total": "c1",
-      "explanation": "Inicializacion del contador. Se ejecuta exactamente una vez en todos los escenarios."
-    }},
-    {{
-      "line_number": 3,
-      "code": "while (i <= n and not encontrado) do",
-      "C_op": "c2",
-      "Freq": "(n+3)/2",
-      "Total": "c2*(n+3)/2",
-      "explanation": "Encabezado del while con dos comparaciones y operacion logica. En promedio, el loop se detiene a mitad del arreglo. Frecuencia promedio: (1/(n+1))*[SUM(k=1 to n)(k+1) + (n+1)] = (n+3)/2."
-    }},
-    {{
-      "line_number": 4,
-      "code": "if (A[i] = x) then",
-      "C_op": "c3",
-      "Freq": "(n+1)/2",
-      "Total": "c3*(n+1)/2",
-      "explanation": "Comparacion del elemento actual con x. Se ejecuta en promedio (n+1)/2 veces."
-    }},
-    {{
-      "line_number": 5,
-      "code": "encontrado <- T",
-      "C_op": "c4",
-      "Freq": "n/(n+1)",
-      "Total": "c4*n/(n+1)",
-      "explanation": "Asignacion cuando se encuentra el elemento. Se ejecuta en n de los n+1 casos, probabilidad n/(n+1)."
-    }},
-    {{
-      "line_number": 6,
-      "code": "i <- i + 1",
-      "C_op": "c3",
-      "Freq": "(n+1)/2",
-      "Total": "c3*(n+1)/2",
-      "explanation": "Incremento del contador. Se ejecuta el mismo numero de veces que el cuerpo del while."
-    }},
-    {{
-      "line_number": 7,
-      "code": "return encontrado",
-      "C_op": "c7",
-      "Freq": "1",
-      "Total": "c7",
-      "explanation": "Retorno del resultado. Se ejecuta exactamente una vez en todos los escenarios."
-    }}
-  ]
+  "P_of_S_explanation": "El caso promedio engloba todos los escenarios"
 }}
-
-Responde SOLO con JSON siguiendo este formato (sin markdown, sin bloques ```):
 """
 
 # ========================================
@@ -659,7 +417,36 @@ Responde SOLO con JSON siguiendo este formato (sin markdown, sin bloques ```):
 
 ANALYZE_RECURSIVE_BEST_CASE_PROMPT = """Eres un experto en análisis de complejidad algorítmica. Analiza el siguiente pseudocódigo RECURSIVO para determinar el MEJOR CASO.
 
-El MEJOR CASO es la entrada de datos que MINIMIZA el número de operaciones y produce la recursión MÁS CORTA.
+════════════════════════════════════════════════════════════════
+ADVERTENCIA CRITICA - DIFERENCIA ENTRE CASO BASE Y MEJOR CASO
+════════════════════════════════════════════════════════════════
+
+INCORRECTO: El MEJOR CASO NO ES el caso base
+- Caso base (T(0), T(1)) = condicion de terminacion, NO es un caso de analisis
+- El caso base simplemente detiene la recursion con costo constante
+
+CORRECTO: El MEJOR CASO debe analizar T(n) con n > 1
+- Es la entrada que MINIMIZA las operaciones recursivas
+- Siempre debe tener formato T(n) = ... con n como variable
+- Puede tener llamadas recursivas T(n/2), T(n-1), etc.
+
+EJEMPLOS DE CONFUSION COMUN:
+
+Fibonacci:
+INCORRECTO: "Mejor caso n=0 o n=1, T(0)=c1, T(1)=c1" (Esto es CASO BASE, no mejor caso)
+CORRECTO: "Mejor caso n pequeno (ej n=2), T(2) = T(1) + T(0) + c1 = 2*c1 + c1" (Esto SI es mejor caso)
+
+Busqueda Binaria:
+INCORRECTO: "Mejor caso array vacio, T(0)=c1" (Caso base trivial)
+CORRECTO: "Mejor caso elemento en posicion media, T(n) = T(n/2) + c1" (Minimiza recursiones)
+
+Busqueda en Arbol:
+INCORRECTO: "Mejor caso arbol vacio, T(0)=c1" (Caso base)
+CORRECTO: "Mejor caso elemento en raiz, T(n) = c1 + c2" (Encuentra sin recursion adicional)
+
+════════════════════════════════════════════════════════════════
+
+El MEJOR CASO es la entrada de datos que MINIMIZA el numero de operaciones y produce la recursion MAS CORTA, pero siempre con n > 1 (problema no trivial).
 
 Pseudocódigo:
 ```
