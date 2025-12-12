@@ -25,8 +25,8 @@ class AgenteResolver:
             MetodoSumas(),
             EcuacionCaracteristica(),
             MetodoIteracion(),
-            ArbolRecursion(),  # Para divisiones asimétricas y múltiples términos
-            AnalizadorDirecto(),  # Para expresiones directas (iterativos)
+            ArbolRecursion(),  
+            AnalizadorDirecto(),  
         ]
     
     def resolver_ecuacion(self, ecuacion_str):
@@ -172,8 +172,22 @@ class AgenteResolver:
         - T(n) = T(n/2) + T(n/4) + T(n/8) + n  → múltiples divisiones
         - T(n) = 2T(n/3) + T(n/2) + n      → combinación
         
-        Detecta:
+        # Permitir espacios opcionales alrededor del asterisco: 2*T(n/2), 2 * T(n/2), etc.
+        patron = r'(\d+)\s*\*\s*T\((\d*)n/(\d+)\)|(\d*)T\((\d*)n/(\d+)\)'
         - Todos los términos T(numerador*n/divisor)
+        matches = []
+        for m in re.finditer(patron, ecuacion, re.IGNORECASE):
+            if m.group(1) is not None:
+                # Caso con asterisco y posibles espacios: 2 * T(n/2)
+                coef = m.group(1)
+                num = m.group(2)
+                div = m.group(3)
+            else:
+                # Caso sin asterisco: 2T(n/2)
+                coef = m.group(4)
+                num = m.group(5)
+                div = m.group(6)
+            matches.append((coef, num, div))
         - Si hay 2+ términos con divisores diferentes → división múltiple
         """
         # Buscar todos los términos del tipo T(n/divisor) o T(coef*n/divisor)
@@ -358,16 +372,29 @@ class AgenteResolver:
         - T(n)=T(n/2)+1      → a=1, b=2, f(n)=1  (a implícito)
         - T(n)=3T(n/2)+n^2   → a=3, b=2, f(n)=n^2
         """
-        # Patrón 1: Con 'a' explícito → T(n)=aT(n/b)+f(n)
-        patron1 = r'T\(n\)=(\d+)T\(n/(\d+)\)\+(.*)'
+        # Patrón 1: Con 'a' explícito y posible asterisco y espacios → T(n)=a*T(n/b)+f(n) o T(n)=a * T(n/b)+f(n)
+        patron1 = r'T\(n\)=(\d+)\s*\*\s*T\(n/(\d+)\)\+(.*)'
         match = re.match(patron1, ecuacion, re.IGNORECASE)
-        
         if match:
             a = int(match.group(1))
             b = int(match.group(2))
             f_n = match.group(3).strip()
             f_n = f_n.replace('^', '**')
-            
+            return {
+                'forma': 'divide_conquista',
+                'a': a,
+                'b': b,
+                'f_n': f_n,
+                'ecuacion_limpia': f"T(n) = {a}*T(n/{b}) + {f_n}"
+            }
+        # Patrón 2: Con 'a' explícito sin asterisco → T(n)=aT(n/b)+f(n)
+        patron2 = r'T\(n\)=(\d+)T\(n/(\d+)\)\+(.*)'
+        match = re.match(patron2, ecuacion, re.IGNORECASE)
+        if match:
+            a = int(match.group(1))
+            b = int(match.group(2))
+            f_n = match.group(3).strip()
+            f_n = f_n.replace('^', '**')
             return {
                 'forma': 'divide_conquista',
                 'a': a,
@@ -375,17 +402,14 @@ class AgenteResolver:
                 'f_n': f_n,
                 'ecuacion_limpia': f"T(n) = {a}T(n/{b}) + {f_n}"
             }
-        
-        # Patrón 2: Sin 'a' explícito (a=1 implícito) → T(n)=T(n/b)+f(n)
-        patron2 = r'T\(n\)=T\(n/(\d+)\)\+(.*)'
-        match = re.match(patron2, ecuacion, re.IGNORECASE)
-        
+        # Patrón 3: Sin 'a' explícito (a=1 implícito) → T(n)=T(n/b)+f(n)
+        patron3 = r'T\(n\)=T\(n/(\d+)\)\+(.*)'
+        match = re.match(patron3, ecuacion, re.IGNORECASE)
         if match:
             a = 1  # a implícito
             b = int(match.group(1))
             f_n = match.group(2).strip()
             f_n = f_n.replace('^', '**')
-            
             return {
                 'forma': 'divide_conquista',
                 'a': a,
@@ -393,7 +417,6 @@ class AgenteResolver:
                 'f_n': f_n,
                 'ecuacion_limpia': f"T(n) = T(n/{b}) + {f_n}"
             }
-        
         return None
     
     def _parsear_decrementacion(self, ecuacion):
@@ -425,20 +448,18 @@ class AgenteResolver:
     def _parsear_decrementacion_multiple(self, ecuacion):
         """
         Parsea ecuaciones de la forma: T(n) = aT(n-c) + f(n)
-        
-        Ejemplos:
-        - T(n)=2T(n-1)+1    (Torres de Hanoi)
-        - T(n)=3T(n-1)+n
+        Ahora acepta: 2T(n-1), 2*T(n-1), 2.T(n-1), 2 * T(n-1), 2 . T(n-1), etc.
         """
-        patron = r'T\(n\)=(\d+)T\(n-(\d+)\)\+(.*)'
-        match = re.match(patron, ecuacion, re.IGNORECASE)
-        
+        # Quitar espacios para facilitar el parseo
+        ecuacion_sin_espacios = ecuacion.replace(' ', '')
+        # Patron mejorado: acepta *, . o nada entre el coef y T
+        patron = r'T\(n\)\s*=\s*(\d+)\s*[\*\.]?\s*T\(n-(\d+)\)\s*\+\s*(.*)'
+        match = re.match(patron, ecuacion_sin_espacios, re.IGNORECASE)
         if match:
             a = int(match.group(1))
             c = int(match.group(2))
             f_n = match.group(3).strip()
             f_n = f_n.replace('^', '**')
-            
             return {
                 'forma': 'decrementacion_multiple',
                 'a': a,
@@ -446,7 +467,6 @@ class AgenteResolver:
                 'f_n': f_n,
                 'ecuacion_limpia': f"T(n) = {a}T(n-{c}) + {f_n}"
             }
-        
         return None
     
     def listar_metodos_disponibles(self):
@@ -537,20 +557,23 @@ class AgenteResolver:
         
         # Aplicar notaciones asintóticas
         if resultado_mejor['exito']:
+            self._detalles_ultimo_resultado = resultado_mejor.get('detalles', {})
             resultados['complejidades']['mejor_caso'] = self._aplicar_notacion(
                 resultado_mejor['solucion'],
                 'mejor_caso',
                 resultado_mejor['metodo_usado']
             )
-        
+
         if resultado_promedio['exito']:
+            self._detalles_ultimo_resultado = resultado_promedio.get('detalles', {})
             resultados['complejidades']['caso_promedio'] = self._aplicar_notacion(
                 resultado_promedio['solucion'],
                 'caso_promedio',
                 resultado_promedio['metodo_usado']
             )
-        
+
         if resultado_peor['exito']:
+            self._detalles_ultimo_resultado = resultado_peor.get('detalles', {})
             resultados['complejidades']['peor_caso'] = self._aplicar_notacion(
                 resultado_peor['solucion'],
                 'peor_caso',
@@ -622,10 +645,42 @@ class AgenteResolver:
         # Teorema Maestro ya incluye Θ, mantener si no se fuerza cambio
         if metodo_usado == 'TeoremaMAestro' and not forzar_cambio:
             return solucion  # Ya tiene Θ incluida
-        
-        # Extraer la complejidad base (sin notación previa)
-        complejidad_base = self._extraer_complejidad_base(solucion)
-        
+
+        # Si el método es EcuacionCaracteristica y hay detalles con raiz_dominante, usar ese término para la notación
+        # Se asume que self tiene acceso a los detalles del último resultado (por diseño actual)
+        detalles = getattr(self, '_detalles_ultimo_resultado', None)
+        if metodo_usado == 'EcuacionCaracteristica' and detalles and 'raiz_dominante' in detalles:
+            raiz_dom = detalles['raiz_dominante']
+            # Formatear raíz dominante
+            def format_raiz(r):
+                try:
+                    # Si es complejo
+                    if isinstance(r, complex):
+                        real = round(r.real, 4)
+                        imag = round(r.imag, 4)
+                        if imag == 0:
+                            return f"{real}"
+                        elif real == 0:
+                            return f"{imag}j"
+                        else:
+                            signo = '+' if imag > 0 else '-'
+                            return f"{real}{signo}{abs(imag)}j"
+                    else:
+                        # Si es float/int
+                        return f"{round(float(r), 4)}"
+                except Exception:
+                    return str(r)
+
+            raiz_dom_str = format_raiz(raiz_dom)
+            exponente_n = detalles.get('exponente_n', 0)
+            if exponente_n and exponente_n > 0:
+                complejidad_base = f"n^{exponente_n} * {raiz_dom_str}^n"
+            else:
+                complejidad_base = f"{raiz_dom_str}^n"
+        else:
+            # Extraer la complejidad base (sin notación previa)
+            complejidad_base = self._extraer_complejidad_base(solucion)
+
         # Aplicar notación según caso
         if caso_tipo == 'mejor_caso':
             return f"Ω({complejidad_base})"
@@ -633,7 +688,7 @@ class AgenteResolver:
             return f"Θ({complejidad_base})"
         elif caso_tipo == 'peor_caso':
             return f"O({complejidad_base})"
-        
+
         return solucion
     
     def _extraer_complejidad_base(self, solucion):

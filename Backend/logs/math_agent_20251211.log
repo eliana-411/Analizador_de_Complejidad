@@ -1,352 +1,544 @@
-2025-12-11 16:47:32 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 16:47:32 - MathAgent - INFO - Algoritmo: busquedaLineal
-2025-12-11 16:47:32 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 16:47:32 - MathAgent - INFO - Escenarios: 8
-2025-12-11 16:47:32 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 16:47:32 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 16:47:42 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 16:47:42 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 16:47:42 - MathAgent - INFO - Caso promedio: (n*(n + 1)*(2*c1 + c2*(n + 4) + c3*(n + 2) + 2*n)/2 + n*(5*c1 + c2*(k + 1) + 2*c2*(n + 1) + 5*c2 + c3*k + 2*c3*n + 3*c3 + c4*n + 4*c4 + c5*n + 4*c5 + 2*c6) + (n + 1)*(c1 + c10 + c2 + c3 + c4 + 2*c5 + c6 + c7 + c9))/(n*(n + 1))
-2025-12-11 16:47:42 - MathAgent - INFO - Peor caso: K3 + (n+4)*C
-2025-12-11 16:47:42 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 16:47:42 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 16:47:42 - MathAgent - INFO -   Hits: 0
-2025-12-11 16:47:42 - MathAgent - INFO -   Misses: 1
-2025-12-11 16:47:42 - MathAgent - INFO -   Size: 1
-2025-12-11 16:47:42 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 16:49:30 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 16:49:30 - MathAgent - INFO - Algoritmo: busquedaLineal
-2025-12-11 16:49:30 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 16:49:30 - MathAgent - INFO - Escenarios: 8
-2025-12-11 16:49:30 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 16:49:30 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 16:49:40 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 16:49:40 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 16:49:40 - MathAgent - INFO - Caso promedio: (n*(n + 1)*(2*c1 + c2*(n + 4) + c3*(n + 2) + 2*n)/2 + n*(5*c1 + c2*(k + 1) + 2*c2*(n + 1) + 5*c2 + c3*k + 2*c3*n + 3*c3 + c4*n + 4*c4 + c5*n + 4*c5 + 2*c6) + (n + 1)*(c1 + c10 + c2 + c3 + c4 + 2*c5 + c6 + c7 + c9))/(n*(n + 1))
-2025-12-11 16:49:40 - MathAgent - INFO - Peor caso: K3 + (n+4)*C
-2025-12-11 16:49:40 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 16:49:40 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 16:49:40 - MathAgent - INFO -   Hits: 0
-2025-12-11 16:49:40 - MathAgent - INFO -   Misses: 1
-2025-12-11 16:49:40 - MathAgent - INFO -   Size: 1
-2025-12-11 16:49:40 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 17:36:18 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 17:36:18 - MathAgent - INFO - Algoritmo: busquedaLineal
-2025-12-11 17:36:18 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 17:36:18 - MathAgent - INFO - Escenarios: 8
-2025-12-11 17:36:18 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 17:36:18 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 17:36:27 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 17:36:27 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 17:36:27 - MathAgent - INFO - Caso promedio: (c1*n + 7*c1 + c2*k + c2*n**2/2 + 5*c2*n + 21*c2/2 + c3*k + c3*n**2/2 + 4*c3*n + 7*c3/2 + c4*n + 4*c4 + 3*c5 + n + 1)/(n + 1)
-2025-12-11 17:36:27 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
-2025-12-11 17:36:27 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 17:36:27 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 17:36:27 - MathAgent - INFO -   Hits: 0
-2025-12-11 17:36:27 - MathAgent - INFO -   Misses: 1
-2025-12-11 17:36:27 - MathAgent - INFO -   Size: 1
-2025-12-11 17:36:27 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 17:48:03 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 17:48:03 - MathAgent - INFO - Algoritmo: busquedaLineal
-2025-12-11 17:48:03 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 17:48:03 - MathAgent - INFO - Escenarios: 8
-2025-12-11 17:48:03 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 17:48:03 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 17:48:13 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 17:48:13 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 17:48:13 - MathAgent - INFO - Caso promedio: (5*c1 + c2*(k + 1) + 2*c2*(n + 1) + 5*c2 + c3*k + 2*c3*n + 3*c3 + c4*n + 4*c4 + 2*c7 + (n + 1)*(2*c1 + c2*(n + 3) + c3*(n + 1) + 2*n + 2)/2)/(n + 1)
-2025-12-11 17:48:13 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
-2025-12-11 17:48:13 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 17:48:13 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 17:48:13 - MathAgent - INFO -   Hits: 0
-2025-12-11 17:48:13 - MathAgent - INFO -   Misses: 1
-2025-12-11 17:48:13 - MathAgent - INFO -   Size: 1
-2025-12-11 17:48:13 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 18:18:29 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 18:18:29 - MathAgent - INFO - Algoritmo: busquedaLineal
-2025-12-11 18:18:29 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 18:18:29 - MathAgent - INFO - Escenarios: 8
-2025-12-11 18:18:29 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 18:18:29 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 18:18:37 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 18:18:37 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 18:18:37 - MathAgent - INFO - Caso promedio: (5*c1 + c2*(k + 1) + 2*c2*(n + 1) + 5*c2 + c3*k + 2*c3*n + 3*c3 + c4*n + 4*c4 + 2*c7 + (n + 1)*(2*c1 + c2*(n + 3) + c3*(n + 1) + 2*n + 2)/2)/(n + 1)
-2025-12-11 18:18:37 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
-2025-12-11 18:18:37 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 18:18:37 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 18:18:37 - MathAgent - INFO -   Hits: 0
-2025-12-11 18:18:37 - MathAgent - INFO -   Misses: 1
-2025-12-11 18:18:37 - MathAgent - INFO -   Size: 1
-2025-12-11 18:18:37 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 18:21:36 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 18:21:36 - MathAgent - INFO - Algoritmo: busquedaLineal
-2025-12-11 18:21:36 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 18:21:36 - MathAgent - INFO - Escenarios: 8
-2025-12-11 18:21:36 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 18:21:36 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 18:21:44 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 18:21:44 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 18:21:44 - MathAgent - INFO - Caso promedio: (5*c1 + c2*(k + 1) + 2*c2*(n + 1) + 5*c2 + c3*k + 2*c3*n + 3*c3 + c4*n + 4*c4 + 2*c7 + (n + 1)*(2*c1 + c2*(n + 3) + c3*(n + 1) + 2*n + 2)/2)/(n + 1)
-2025-12-11 18:21:44 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
-2025-12-11 18:21:44 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 18:21:44 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 18:21:44 - MathAgent - INFO -   Hits: 0
-2025-12-11 18:21:44 - MathAgent - INFO -   Misses: 1
-2025-12-11 18:21:44 - MathAgent - INFO -   Size: 1
-2025-12-11 18:21:44 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 18:23:37 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 18:23:37 - MathAgent - INFO - Algoritmo: busquedaLineal
-2025-12-11 18:23:37 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 18:23:37 - MathAgent - INFO - Escenarios: 8
-2025-12-11 18:23:37 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 18:23:37 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 18:23:47 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 18:23:47 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 18:23:47 - MathAgent - INFO - Caso promedio: (5*c1 + c2*(k + 1) + 2*c2*(n + 1) + 5*c2 + c3*k + 2*c3*n + 3*c3 + c4*n + 4*c4 + 2*c7 + (n + 1)*(2*c1 + c2*(n + 3) + c3*(n + 1) + 2*n + 2)/2)/(n + 1)
-2025-12-11 18:23:47 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
-2025-12-11 18:23:47 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 18:23:47 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 18:23:47 - MathAgent - INFO -   Hits: 0
-2025-12-11 18:23:47 - MathAgent - INFO -   Misses: 1
-2025-12-11 18:23:47 - MathAgent - INFO -   Size: 1
-2025-12-11 18:23:47 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 18:25:07 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 18:25:07 - MathAgent - INFO - Algoritmo: busquedaLineal
-2025-12-11 18:25:07 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 18:25:07 - MathAgent - INFO - Escenarios: 8
-2025-12-11 18:25:07 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 18:25:07 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 18:25:15 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 18:25:15 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 18:25:15 - MathAgent - INFO - Caso promedio: (5*c1 + c2*(k + 1) + 2*c2*(n + 1) + 5*c2 + c3*k + 2*c3*n + 3*c3 + c4*n + 4*c4 + 2*c7 + (n + 1)*(2*c1 + c2*(n + 3) + c3*(n + 1) + 2*n + 2)/2)/(n + 1)
-2025-12-11 18:25:15 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
-2025-12-11 18:25:15 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 18:25:15 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 18:25:15 - MathAgent - INFO -   Hits: 0
-2025-12-11 18:25:15 - MathAgent - INFO -   Misses: 1
-2025-12-11 18:25:15 - MathAgent - INFO -   Size: 1
-2025-12-11 18:25:15 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 18:46:56 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 18:46:56 - MathAgent - INFO - Algoritmo: busquedaLineal
-2025-12-11 18:46:56 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 18:46:56 - MathAgent - INFO - Escenarios: 8
-2025-12-11 18:46:56 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 18:46:56 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 18:47:05 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 18:47:05 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 18:47:05 - MathAgent - INFO - Caso promedio: (c1*n + 7*c1 + c2*k + c2*n**2/2 + 5*c2*n + 21*c2/2 + c3*k + c3*n**2/2 + 4*c3*n + 7*c3/2 + c4*n + 4*c4 + c5 + 2*c7 + n + 1)/(n + 1)
-2025-12-11 18:47:05 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
-2025-12-11 18:47:05 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 18:47:05 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 18:47:05 - MathAgent - INFO -   Hits: 0
-2025-12-11 18:47:05 - MathAgent - INFO -   Misses: 1
-2025-12-11 18:47:05 - MathAgent - INFO -   Size: 1
-2025-12-11 18:47:05 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 18:52:41 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 18:52:41 - MathAgent - INFO - Algoritmo: busquedaLineal
-2025-12-11 18:52:41 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 18:52:41 - MathAgent - INFO - Escenarios: 8
-2025-12-11 18:52:41 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 18:52:41 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 18:52:50 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 18:52:50 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 18:52:50 - MathAgent - INFO - Caso promedio: (5*c1 + c2*(k + 1) + 2*c2*(n + 1) + 5*c2 + c3*k + 2*c3*n + 3*c3 + c4*n + 4*c4 + 2*c7 + (n + 1)*(2*c1 + c2*(n + 3) + c3*(n + 1) + 2*n + 2)/2)/(n + 1)
-2025-12-11 18:52:50 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
-2025-12-11 18:52:50 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 18:52:50 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 18:52:50 - MathAgent - INFO -   Hits: 0
-2025-12-11 18:52:50 - MathAgent - INFO -   Misses: 1
-2025-12-11 18:52:50 - MathAgent - INFO -   Size: 1
-2025-12-11 18:52:50 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 18:59:07 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 18:59:07 - MathAgent - INFO - Algoritmo: busquedaLineal
-2025-12-11 18:59:07 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 18:59:07 - MathAgent - INFO - Escenarios: 8
-2025-12-11 18:59:07 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 18:59:07 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 18:59:17 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 18:59:17 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 18:59:17 - MathAgent - INFO - Caso promedio: (5*c1 + c2*(k + 1) + 2*c2*(n + 1) + 5*c2 + c3*k + 2*c3*n + 3*c3 + c4*n + 4*c4 + 2*c7 + (n + 1)*(2*c1 + c2*(n + 3) + c3*(n + 1) + 2*n + 2)/2)/(n + 1)
-2025-12-11 18:59:17 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
-2025-12-11 18:59:17 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 18:59:17 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 18:59:17 - MathAgent - INFO -   Hits: 0
-2025-12-11 18:59:17 - MathAgent - INFO -   Misses: 1
-2025-12-11 18:59:17 - MathAgent - INFO -   Size: 1
-2025-12-11 18:59:17 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 20:27:36 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 20:27:36 - MathAgent - INFO - Algoritmo: busquedaLineal
-2025-12-11 20:27:36 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 20:27:36 - MathAgent - INFO - Escenarios: 8
-2025-12-11 20:27:36 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 20:27:36 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 20:27:46 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 20:27:46 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 20:27:46 - MathAgent - INFO - Caso promedio: (6*c1 + 6*c2 + 6*c3 + 6*c4 + c5*(k + 1) + 3*c5*(n + 1) + 5*c5 + c6*k + 3*c6*n + 3*c6 + c7*n + 4*c7 + c8*k + 3*c8*n + 3*c8 + 6*c9 + (n + 1)*(2*c1 + 2*c2 + 2*c3 + 2*c4 + c5*(n + 3) + c6*(n + 1) + c8*(n + 1) + 2*c9 + 2)/2)/(n + 1)
-2025-12-11 20:27:46 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
-2025-12-11 20:27:46 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 20:27:46 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 20:27:46 - MathAgent - INFO -   Hits: 0
-2025-12-11 20:27:46 - MathAgent - INFO -   Misses: 1
-2025-12-11 20:27:46 - MathAgent - INFO -   Size: 1
-2025-12-11 20:27:46 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 20:45:18 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 20:45:18 - MathAgent - INFO - Algoritmo: busquedaLineal
-2025-12-11 20:45:18 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 20:45:18 - MathAgent - INFO - Escenarios: 8
-2025-12-11 20:45:18 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 20:45:18 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 20:45:28 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 20:45:28 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 20:45:28 - MathAgent - INFO - Caso promedio: (6*c1 + 6*c2 + 6*c3 + 6*c4 + c5*(k + 1) + 3*c5*(n + 1) + 5*c5 + c6*k + 3*c6*n + 3*c6 + c7*n + 4*c7 + c8*k + 3*c8*n + 3*c8 + 6*c9 + (n + 1)*(2*c1 + 2*c2 + 2*c3 + 2*c4 + c5*(n + 3) + c6*(n + 1) + c8*(n + 1) + 2*c9 + 2)/2)/(n + 1)
-2025-12-11 20:45:28 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
-2025-12-11 20:45:28 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 20:45:28 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 20:45:28 - MathAgent - INFO -   Hits: 0
-2025-12-11 20:45:28 - MathAgent - INFO -   Misses: 1
-2025-12-11 20:45:28 - MathAgent - INFO -   Size: 1
-2025-12-11 20:45:28 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 20:51:21 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 20:51:21 - MathAgent - INFO - Algoritmo: busquedaLineal
-2025-12-11 20:51:21 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 20:51:21 - MathAgent - INFO - Escenarios: 8
-2025-12-11 20:51:21 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 20:51:21 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 20:51:32 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 20:51:32 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 20:51:32 - MathAgent - INFO - Caso promedio: (6*c1 + 6*c2 + 6*c3 + 6*c4 + c5*(k + 1) + 3*c5*(n + 1) + 5*c5 + c6*k + 3*c6*n + 3*c6 + c7*n + 4*c7 + c8*k + 3*c8*n + 3*c8 + 6*c9 + (n + 1)*(2*c1 + 2*c2 + 2*c3 + 2*c4 + c5*(n + 3) + c6*(n + 1) + c8*(n + 1) + 2*c9 + 2)/2)/(n + 1)
-2025-12-11 20:51:32 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
-2025-12-11 20:51:32 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 20:51:32 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 20:51:32 - MathAgent - INFO -   Hits: 0
-2025-12-11 20:51:32 - MathAgent - INFO -   Misses: 1
-2025-12-11 20:51:32 - MathAgent - INFO -   Size: 1
-2025-12-11 20:51:32 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 20:53:02 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 20:53:02 - MathAgent - INFO - Algoritmo: busquedaLineal
-2025-12-11 20:53:02 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 20:53:02 - MathAgent - INFO - Escenarios: 8
-2025-12-11 20:53:02 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 20:53:02 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 20:53:12 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 20:53:12 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 20:53:12 - MathAgent - INFO - Caso promedio: (6*c1 + 6*c2 + 6*c3 + 6*c4 + c5*(k + 1) + 3*c5*(n + 1) + 5*c5 + c6*k + 3*c6*n + 3*c6 + c7*n + 4*c7 + c8*k + 3*c8*n + 3*c8 + 6*c9 + (n + 1)*(2*c1 + 2*c2 + 2*c3 + 2*c4 + c5*(n + 3) + c6*(n + 1) + c8*(n + 1) + 2*c9 + 2)/2)/(n + 1)
-2025-12-11 20:53:12 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
-2025-12-11 20:53:12 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 20:53:12 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 20:53:12 - MathAgent - INFO -   Hits: 0
-2025-12-11 20:53:12 - MathAgent - INFO -   Misses: 1
-2025-12-11 20:53:12 - MathAgent - INFO -   Size: 1
-2025-12-11 20:53:12 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 20:58:11 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 20:58:11 - MathAgent - INFO - Algoritmo: busquedaLineal
-2025-12-11 20:58:11 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 20:58:11 - MathAgent - INFO - Escenarios: 8
-2025-12-11 20:58:11 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 20:58:11 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 20:58:23 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 20:58:23 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 20:58:23 - MathAgent - INFO - Caso promedio: (6*c1 + 6*c2 + 6*c3 + 6*c4 + c5*(k + 1) + 3*c5*(n + 1) + 5*c5 + c6*k + 3*c6*n + 3*c6 + c7*n + 4*c7 + c8*k + 3*c8*n + 3*c8 + 6*c9 + (n + 1)*(2*c1 + 2*c2 + 2*c3 + 2*c4 + c5*(n + 3) + c6*(n + 1) + c8*(n + 1) + 2*c9 + 2)/2)/(n + 1)
-2025-12-11 20:58:23 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
-2025-12-11 20:58:23 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 20:58:23 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 20:58:23 - MathAgent - INFO -   Hits: 0
-2025-12-11 20:58:23 - MathAgent - INFO -   Misses: 1
-2025-12-11 20:58:23 - MathAgent - INFO -   Size: 1
-2025-12-11 20:58:23 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 21:01:03 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 21:01:03 - MathAgent - INFO - Algoritmo: busquedaLineal
-2025-12-11 21:01:03 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 21:01:03 - MathAgent - INFO - Escenarios: 8
-2025-12-11 21:01:03 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 21:01:03 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 21:01:12 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 21:01:12 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 21:01:12 - MathAgent - INFO - Caso promedio: (6*c1 + 6*c2 + 6*c3 + 6*c4 + c5*(k + 1) + 3*c5*(n + 1) + 5*c5 + c6*k + 3*c6*n + 3*c6 + c7*n + 4*c7 + c8*k + 3*c8*n + 3*c8 + 6*c9 + (n + 1)*(2*c1 + 2*c2 + 2*c3 + 2*c4 + c5*(n + 3) + c6*(n + 1) + c8*(n + 1) + 2*c9 + 2)/2)/(n + 1)
-2025-12-11 21:01:12 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
-2025-12-11 21:01:12 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 21:01:12 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 21:01:12 - MathAgent - INFO -   Hits: 0
-2025-12-11 21:01:12 - MathAgent - INFO -   Misses: 1
-2025-12-11 21:01:12 - MathAgent - INFO -   Size: 1
-2025-12-11 21:01:12 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 21:02:58 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 21:02:58 - MathAgent - INFO - Algoritmo: busquedaLineal
-2025-12-11 21:02:58 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 21:02:58 - MathAgent - INFO - Escenarios: 8
-2025-12-11 21:02:58 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 21:02:58 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 21:03:07 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 21:03:07 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 21:03:07 - MathAgent - INFO - Caso promedio: (6*c1 + 6*c2 + 6*c3 + 6*c4 + c5*(k + 1) + 3*c5*(n + 1) + 5*c5 + c6*k + 3*c6*n + 3*c6 + c7*n + 4*c7 + c8*k + 3*c8*n + 3*c8 + 6*c9 + (n + 1)*(2*c1 + 2*c2 + 2*c3 + 2*c4 + c5*(n + 3) + c6*(n + 1) + c8*(n + 1) + 2*c9 + 2)/2)/(n + 1)
-2025-12-11 21:03:07 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
-2025-12-11 21:03:07 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 21:03:07 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 21:03:07 - MathAgent - INFO -   Hits: 0
-2025-12-11 21:03:07 - MathAgent - INFO -   Misses: 1
-2025-12-11 21:03:07 - MathAgent - INFO -   Size: 1
-2025-12-11 21:03:07 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 21:07:18 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 21:07:18 - MathAgent - INFO - Algoritmo: busquedaBinaria
-2025-12-11 21:07:18 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 21:07:18 - MathAgent - INFO - Escenarios: 7
-2025-12-11 21:07:18 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 21:07:18 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 21:07:28 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 21:07:28 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 21:07:28 - MathAgent - INFO - Caso promedio: (4*c1 + c10*log2(n) + 3*c10 + c11*log2(n)/2 + 3*c11 + c12*log2(n)/2 + 2*c12 + 2*c13 + c14 + c15 + c16 + c17 + c18 + c19 + 4*c2 + c20 + 2*c21 + 4*c3 + 4*c4 + 4*c5 + c6*(log2(n) + 1) + c6*(log2(n) + 2) + 3*c6 + c7*(log2(n) + 1) + c7*log2(n) + 3*c7 + c8*log2(n) + 3*c8 + 3*c9 + n*(c10 + c11 + c12 + c8 + c9) + (n + 1)*(Dependedelaprofundidadenelarbolbinario*(c1 + c10 + c11 + c12 + c2 + c3 + c4 + c5 + c6*(k + 1) + c7*k + c8 + c9 + (k - 1)*(c13 + c14 + c15 + c16 + c17 + c18 + c19 + c20)) + c1 + c2 + c3 + c4 + c5 + 2*c6 + c7 + (c6 + c7)*log2(n) + (log2(n) - 1)*(c13 + c14 + c15 + c16 + c17 + c18 + c19 + c20) + 1) + (c13 + c14 + c15 + c16 + c17 + c18 + c19 + c20)*log2(n))/(n + 1)
-2025-12-11 21:07:28 - MathAgent - INFO - Peor caso: K3 + log2(n)*C + (n)*C
-2025-12-11 21:07:28 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 21:07:28 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 21:07:28 - MathAgent - INFO -   Hits: 0
-2025-12-11 21:07:28 - MathAgent - INFO -   Misses: 1
-2025-12-11 21:07:28 - MathAgent - INFO -   Size: 1
-2025-12-11 21:07:28 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 21:16:54 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 21:16:54 - MathAgent - INFO - Algoritmo: busquedaBinaria
-2025-12-11 21:16:54 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 21:16:54 - MathAgent - INFO - Escenarios: 7
-2025-12-11 21:16:54 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 21:16:54 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 21:17:03 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 21:17:03 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 21:17:03 - MathAgent - INFO - Caso promedio: (4*c1 + c10*log2(n) + 3*c10 + c11*log2(n)/2 + 3*c11 + c12*log2(n)/2 + 2*c12 + 2*c13 + c14 + c15 + c16 + c17 + c18 + c19 + 4*c2 + c20 + 2*c21 + 4*c3 + 4*c4 + 4*c5 + c6*(log2(n) + 1) + c6*(log2(n) + 2) + 3*c6 + c7*(log2(n) + 1) + c7*log2(n) + 3*c7 + c8*log2(n) + 3*c8 + 3*c9 + n*(c10 + c11 + c12 + c8 + c9) + (n + 1)*(Dependedelaprofundidadenelarbolbinario*(c1 + c10 + c11 + c12 + c2 + c3 + c4 + c5 + c6*(k + 1) + c7*k + c8 + c9 + (k - 1)*(c13 + c14 + c15 + c16 + c17 + c18 + c19 + c20)) + c1 + c2 + c3 + c4 + c5 + 2*c6 + c7 + (c6 + c7)*log2(n) + (log2(n) - 1)*(c13 + c14 + c15 + c16 + c17 + c18 + c19 + c20) + 1) + (c13 + c14 + c15 + c16 + c17 + c18 + c19 + c20)*log2(n))/(n + 1)
-2025-12-11 21:17:03 - MathAgent - INFO - Peor caso: K3 + log2(n)*C + (n)*C
-2025-12-11 21:17:03 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 21:17:03 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 21:17:03 - MathAgent - INFO -   Hits: 0
-2025-12-11 21:17:03 - MathAgent - INFO -   Misses: 1
-2025-12-11 21:17:03 - MathAgent - INFO -   Size: 1
-2025-12-11 21:17:03 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 21:26:38 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 21:26:38 - MathAgent - INFO - Algoritmo: fibonacci
-2025-12-11 21:26:38 - MathAgent - INFO - Tipo: RECURSIVO
-2025-12-11 21:26:38 - MathAgent - INFO - Escenarios: 5
-2025-12-11 21:26:38 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 21:26:38 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 21:26:50 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 21:26:50 - MathAgent - INFO - Mejor caso: T(1) = c
-2025-12-11 21:26:50 - MathAgent - INFO - Caso promedio: T(n) = T(n-1) + T(n-2) + c
-2025-12-11 21:26:50 - MathAgent - INFO - Peor caso: T(1) = c
-2025-12-11 21:26:50 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 21:26:50 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 21:26:50 - MathAgent - INFO -   Hits: 0
-2025-12-11 21:26:50 - MathAgent - INFO -   Misses: 1
-2025-12-11 21:26:50 - MathAgent - INFO -   Size: 1
-2025-12-11 21:26:50 - MathAgent - INFO -   Hit Rate: 0.0%
-2025-12-11 23:06:31 - MathAgent - INFO - === NUEVA SOLICITUD ===
-2025-12-11 23:06:31 - MathAgent - INFO - Algoritmo: busquedaLineal
-2025-12-11 23:06:31 - MathAgent - INFO - Tipo: ITERATIVO
-2025-12-11 23:06:31 - MathAgent - INFO - Escenarios: 8
-2025-12-11 23:06:31 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
-2025-12-11 23:06:31 - MathAgent - INFO -   Razón: use_llm=True en configuración
-2025-12-11 23:06:42 - MathAgent - INFO - === RESPUESTA GENERADA ===
-2025-12-11 23:06:42 - MathAgent - INFO - Mejor caso: K1
-2025-12-11 23:06:42 - MathAgent - INFO - Caso promedio: (n*(n + 1)*(2*c1 + 2*c2 + 2*c3 + 2*c4 + c5*(n + 3) + c6*(n + 1) + c8*(n + 1) + 2*c9)/2 + n*(6*c1 + 6*c2 + 6*c3 + 6*c4 + c5*(k + 1) + 3*c5*(n + 1) + 5*c5 + c6*k + 3*c6*n + 3*c6 + c7*n + 4*c7 + c8*k + 3*c8*n + 3*c8 + 6*c9) + (n + 1)*(c1 + c2 + c3 + c4 + 2*c5 + c6 + c7 + c8 + c9))/(n*(n + 1))
-2025-12-11 23:06:42 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
-2025-12-11 23:06:42 - MathAgent - INFO - Ecuaciones iguales: False
-2025-12-11 23:06:42 - MathAgent - INFO - 📊 Cache Stats:
-2025-12-11 23:06:42 - MathAgent - INFO -   Hits: 0
-2025-12-11 23:06:42 - MathAgent - INFO -   Misses: 1
-2025-12-11 23:06:42 - MathAgent - INFO -   Size: 1
-2025-12-11 23:06:42 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 20:24:13 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 20:24:13 - MathAgent - INFO - Algoritmo: busqueda_lineal
+2025-12-11 20:24:13 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-11 20:24:13 - MathAgent - INFO - Escenarios: 8
+2025-12-11 20:24:13 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 20:24:13 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 20:24:22 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 20:24:22 - MathAgent - INFO - Mejor caso: K1
+2025-12-11 20:24:22 - MathAgent - INFO - Caso promedio: (5*c1 + c2*(k + 1) + 2*c2*(n + 1) + 5*c2 + c3*k + 2*c3*n + 3*c3 + c4*n + 4*c4 + 2*c7 + (n + 1)*(2*c1 + c2*(n + 3) + c3*(n + 1) + 2*n + 2)/2)/(n + 1)
+2025-12-11 20:24:22 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
+2025-12-11 20:24:22 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 20:24:22 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 20:24:22 - MathAgent - INFO -   Hits: 0
+2025-12-11 20:24:22 - MathAgent - INFO -   Misses: 1
+2025-12-11 20:24:22 - MathAgent - INFO -   Size: 1
+2025-12-11 20:24:22 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 20:26:58 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 20:26:58 - MathAgent - INFO - Algoritmo: busqueda_lineal
+2025-12-11 20:26:58 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-11 20:26:58 - MathAgent - INFO - Escenarios: 8
+2025-12-11 20:26:58 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 20:26:58 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 20:27:07 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 20:27:07 - MathAgent - INFO - Mejor caso: K1
+2025-12-11 20:27:07 - MathAgent - INFO - Caso promedio: (5*c1 + c2*(k + 1) + 2*c2*(n + 1) + 5*c2 + c3*k + 2*c3*n + 3*c3 + c4*n + 4*c4 + 2*c7 + (n + 1)*(2*c1 + c2*(n + 3) + c3*(n + 1) + 2*n + 2)/2)/(n + 1)
+2025-12-11 20:27:07 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
+2025-12-11 20:27:07 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 20:27:07 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 20:27:07 - MathAgent - INFO -   Hits: 0
+2025-12-11 20:27:07 - MathAgent - INFO -   Misses: 1
+2025-12-11 20:27:07 - MathAgent - INFO -   Size: 1
+2025-12-11 20:27:07 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 20:30:11 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 20:30:11 - MathAgent - INFO - Algoritmo: busqueda_lineal
+2025-12-11 20:30:11 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-11 20:30:11 - MathAgent - INFO - Escenarios: 8
+2025-12-11 20:30:11 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 20:30:11 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 20:30:21 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 20:30:21 - MathAgent - INFO - Mejor caso: K1
+2025-12-11 20:30:21 - MathAgent - INFO - Caso promedio: (5*c1 + c2*(k + 1) + 2*c2*(n + 1) + 5*c2 + c3*k + 2*c3*n + 3*c3 + c4*n + 4*c4 + 2*c7 + (n + 1)*(2*c1 + c2*(n + 3) + c3*(n + 1) + 2*n + 2)/2)/(n + 1)
+2025-12-11 20:30:21 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
+2025-12-11 20:30:21 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 20:30:21 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 20:30:21 - MathAgent - INFO -   Hits: 0
+2025-12-11 20:30:21 - MathAgent - INFO -   Misses: 1
+2025-12-11 20:30:21 - MathAgent - INFO -   Size: 1
+2025-12-11 20:30:21 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 20:35:03 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 20:35:03 - MathAgent - INFO - Algoritmo: busqueda_lineal
+2025-12-11 20:35:03 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-11 20:35:03 - MathAgent - INFO - Escenarios: 8
+2025-12-11 20:35:03 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 20:35:03 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 20:35:13 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 20:35:13 - MathAgent - INFO - Mejor caso: K1
+2025-12-11 20:35:13 - MathAgent - INFO - Caso promedio: (5*c1 + c2*(k + 1) + 2*c2*(n + 1) + 5*c2 + c3*k + 2*c3*n + 3*c3 + c4*n + 4*c4 + 2*c7 + (n + 1)*(2*c1 + c2*(n + 3) + c3*(n + 1) + 2*n + 2)/2)/(n + 1)
+2025-12-11 20:35:13 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
+2025-12-11 20:35:13 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 20:35:13 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 20:35:13 - MathAgent - INFO -   Hits: 0
+2025-12-11 20:35:13 - MathAgent - INFO -   Misses: 1
+2025-12-11 20:35:13 - MathAgent - INFO -   Size: 1
+2025-12-11 20:35:13 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 20:37:20 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 20:37:20 - MathAgent - INFO - Algoritmo: busqueda_lineal
+2025-12-11 20:37:20 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-11 20:37:20 - MathAgent - INFO - Escenarios: 8
+2025-12-11 20:37:20 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 20:37:20 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 20:37:30 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 20:37:30 - MathAgent - INFO - Mejor caso: K1
+2025-12-11 20:37:30 - MathAgent - INFO - Caso promedio: (5*c1 + c2*(k + 1) + 2*c2*(n + 1) + 5*c2 + c3*k + 2*c3*n + 3*c3 + c4*n + 4*c4 + 2*c7 + (n + 1)*(2*c1 + c2*(n + 3) + c3*(n + 1) + 2*n + 2)/2)/(n + 1)
+2025-12-11 20:37:30 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
+2025-12-11 20:37:30 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 20:37:30 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 20:37:30 - MathAgent - INFO -   Hits: 0
+2025-12-11 20:37:30 - MathAgent - INFO -   Misses: 1
+2025-12-11 20:37:30 - MathAgent - INFO -   Size: 1
+2025-12-11 20:37:30 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 20:38:48 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 20:38:48 - MathAgent - INFO - Algoritmo: busqueda_lineal
+2025-12-11 20:38:48 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-11 20:38:48 - MathAgent - INFO - Escenarios: 8
+2025-12-11 20:38:48 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 20:38:48 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 20:38:59 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 20:38:59 - MathAgent - INFO - Mejor caso: K1
+2025-12-11 20:38:59 - MathAgent - INFO - Caso promedio: (5*c1 + c2*(k + 1) + 2*c2*(n + 1) + 5*c2 + c3*k + 2*c3*n + 3*c3 + c4*n + 4*c4 + 2*c7 + (n + 1)*(2*c1 + c2*(n + 3) + c3*(n + 1) + 2*n + 2)/2)/(n + 1)
+2025-12-11 20:38:59 - MathAgent - INFO - Peor caso: K3 + (n+3)*C
+2025-12-11 20:38:59 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 20:38:59 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 20:38:59 - MathAgent - INFO -   Hits: 0
+2025-12-11 20:38:59 - MathAgent - INFO -   Misses: 1
+2025-12-11 20:38:59 - MathAgent - INFO -   Size: 1
+2025-12-11 20:38:59 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 20:50:26 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 20:50:26 - MathAgent - INFO - Algoritmo: busqueda_lineal
+2025-12-11 20:50:26 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-11 20:50:26 - MathAgent - INFO - Escenarios: 8
+2025-12-11 20:50:26 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 20:50:26 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 20:50:36 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 20:50:36 - MathAgent - INFO - Mejor caso: K1
+2025-12-11 20:50:36 - MathAgent - INFO - Caso promedio: K2 + (n/2)*C
+2025-12-11 20:50:36 - MathAgent - INFO - Peor caso: K3 + n*C
+2025-12-11 20:50:36 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 20:50:36 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 20:50:36 - MathAgent - INFO -   Hits: 0
+2025-12-11 20:50:36 - MathAgent - INFO -   Misses: 1
+2025-12-11 20:50:36 - MathAgent - INFO -   Size: 1
+2025-12-11 20:50:36 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 20:50:44 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 20:50:44 - MathAgent - INFO - Algoritmo: busqueda_lineal
+2025-12-11 20:50:44 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-11 20:50:44 - MathAgent - INFO - Escenarios: 8
+2025-12-11 20:50:44 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 20:50:44 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 20:50:53 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 20:50:53 - MathAgent - INFO - Mejor caso: K1
+2025-12-11 20:50:53 - MathAgent - INFO - Caso promedio: K2 + (n/2)*C
+2025-12-11 20:50:53 - MathAgent - INFO - Peor caso: K3 + n*C
+2025-12-11 20:50:53 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 20:50:53 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 20:50:53 - MathAgent - INFO -   Hits: 0
+2025-12-11 20:50:53 - MathAgent - INFO -   Misses: 1
+2025-12-11 20:50:53 - MathAgent - INFO -   Size: 1
+2025-12-11 20:50:53 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 21:33:43 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 21:33:43 - MathAgent - INFO - Algoritmo: busqueda_binaria
+2025-12-11 21:33:43 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-11 21:33:43 - MathAgent - INFO - Escenarios: 5
+2025-12-11 21:33:43 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 21:33:43 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 21:33:53 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 21:33:53 - MathAgent - INFO - Mejor caso: T(1) = c
+2025-12-11 21:33:53 - MathAgent - INFO - Caso promedio: T(n) = T(n-1) + T(n-2) + c
+2025-12-11 21:33:53 - MathAgent - INFO - Peor caso: T(n) = T(n-1) + T(n-2) + c
+2025-12-11 21:33:53 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 21:33:53 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 21:33:53 - MathAgent - INFO -   Hits: 0
+2025-12-11 21:33:53 - MathAgent - INFO -   Misses: 1
+2025-12-11 21:33:53 - MathAgent - INFO -   Size: 1
+2025-12-11 21:33:53 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 22:04:48 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 22:04:48 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-11 22:04:48 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-11 22:04:48 - MathAgent - INFO - Escenarios: 2
+2025-12-11 22:04:48 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 22:04:48 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 22:04:52 - MathAgent - ERROR - ❌ ERROR: Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': None}
+2025-12-11 22:04:52 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-11 22:04:52 - MathAgent - ERROR - Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': None}
+Traceback (most recent call last):
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 169, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+        request.omega_table,
+        request.is_iterative
+    )
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 328, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+    ~~~~~~~~~~~~~~~~~~~~^
+        [self._convert_input(input)],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ).generations[0][0],
+    ^
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        m,
+        ^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+        messages, stop=stop, run_manager=run_manager, **kwargs
+    )
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/v1/messages",
+        ^^^^^^^^^^^^^^^
+    ...<26 lines>...
+        stream_cls=Stream[RawMessageStreamEvent],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.InternalServerError: Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': None}
+2025-12-11 22:05:33 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 22:05:33 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-11 22:05:33 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-11 22:05:33 - MathAgent - INFO - Escenarios: 4
+2025-12-11 22:05:33 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 22:05:33 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 22:05:43 - MathAgent - ERROR - ❌ ERROR: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': None}
+2025-12-11 22:05:43 - MathAgent - ERROR -   Contexto: Error procesando quickSort
+2025-12-11 22:05:43 - MathAgent - ERROR - Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': None}
+Traceback (most recent call last):
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 169, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+        request.omega_table,
+        request.is_iterative
+    )
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 328, in _invocar_llm
+    respuesta = self.llm.invoke(messages)
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\langchain_core\language_models\chat_models.py", line 398, in invoke
+    self.generate_prompt(
+    ~~~~~~~~~~~~~~~~~~~~^
+        [self._convert_input(input)],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ).generations[0][0],
+    ^
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1117, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\langchain_core\language_models\chat_models.py", line 927, in generate
+    self._generate_with_cache(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        m,
+        ^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1221, in _generate_with_cache
+    result = self._generate(
+        messages, stop=stop, run_manager=run_manager, **kwargs
+    )
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\langchain_anthropic\chat_models.py", line 1915, in _generate
+    data = self._create(payload)
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\langchain_anthropic\chat_models.py", line 1777, in _create
+    return self._client.messages.create(**payload)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\_utils\_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\resources\messages\messages.py", line 930, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/v1/messages",
+        ^^^^^^^^^^^^^^^
+    ...<26 lines>...
+        stream_cls=Stream[RawMessageStreamEvent],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\_base_client.py", line 1326, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\_base_client.py", line 1114, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic._exceptions.OverloadedError: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': None}
+2025-12-11 22:08:20 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 22:08:20 - MathAgent - INFO - Algoritmo: busqueda_lineal
+2025-12-11 22:08:20 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-11 22:08:20 - MathAgent - INFO - Escenarios: 8
+2025-12-11 22:08:20 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 22:08:20 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 22:08:20 - MathAgent - ERROR - ❌ ERROR: cannot import name 'OverloadedError' from 'anthropic' (C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\__init__.py)
+2025-12-11 22:08:20 - MathAgent - ERROR -   Contexto: Error procesando busqueda_lineal
+2025-12-11 22:08:20 - MathAgent - ERROR - cannot import name 'OverloadedError' from 'anthropic' (C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\__init__.py)
+Traceback (most recent call last):
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 169, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+        request.omega_table,
+        request.is_iterative
+    )
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 324, in _invocar_llm
+    from anthropic import OverloadedError
+ImportError: cannot import name 'OverloadedError' from 'anthropic' (C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\__init__.py)
+2025-12-11 22:27:04 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 22:27:04 - MathAgent - INFO - Algoritmo: busqueda_lineal
+2025-12-11 22:27:04 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-11 22:27:04 - MathAgent - INFO - Escenarios: 8
+2025-12-11 22:27:04 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 22:27:04 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 22:27:04 - MathAgent - ERROR - ❌ ERROR: cannot import name 'OverloadedError' from 'anthropic' (C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\__init__.py)
+2025-12-11 22:27:04 - MathAgent - ERROR -   Contexto: Error procesando busqueda_lineal
+2025-12-11 22:27:04 - MathAgent - ERROR - cannot import name 'OverloadedError' from 'anthropic' (C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\__init__.py)
+Traceback (most recent call last):
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 169, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+        request.omega_table,
+        request.is_iterative
+    )
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 324, in _invocar_llm
+    from anthropic import OverloadedError
+ImportError: cannot import name 'OverloadedError' from 'anthropic' (C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\__init__.py)
+2025-12-11 22:52:16 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 22:52:16 - MathAgent - INFO - Algoritmo: busquedaLineal
+2025-12-11 22:52:16 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-11 22:52:16 - MathAgent - INFO - Escenarios: 8
+2025-12-11 22:52:16 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 22:52:16 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 22:52:16 - MathAgent - ERROR - ❌ ERROR: cannot import name 'OverloadedError' from 'anthropic' (C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\__init__.py)
+2025-12-11 22:52:16 - MathAgent - ERROR -   Contexto: Error procesando busquedaLineal
+2025-12-11 22:52:16 - MathAgent - ERROR - cannot import name 'OverloadedError' from 'anthropic' (C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\__init__.py)
+Traceback (most recent call last):
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 97, in generar_ecuaciones
+    resultado = self._generar_con_llm(request)
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\agents\math_representation_agent.py", line 169, in _generar_con_llm
+    analisis_llm = self.llm_assistant.analizar_escenarios(
+        request.omega_table,
+        request.is_iterative
+    )
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 101, in analizar_escenarios
+    respuesta = self._invocar_llm(prompt)
+  File "C:\Users\linaN\OneDrive\Documentos\Universidad\Semestre 10\analisis\Analizador_de_Complejidad\Backend\representacion\processors\llm_equation_generator.py", line 324, in _invocar_llm
+    from anthropic import OverloadedError
+ImportError: cannot import name 'OverloadedError' from 'anthropic' (C:\Users\linaN\AppData\Local\Programs\Python\Python313\Lib\site-packages\anthropic\__init__.py)
+2025-12-11 22:53:09 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 22:53:09 - MathAgent - INFO - Algoritmo: busquedaLineal
+2025-12-11 22:53:09 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-11 22:53:09 - MathAgent - INFO - Escenarios: 8
+2025-12-11 22:53:09 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 22:53:09 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 22:53:23 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 22:53:23 - MathAgent - INFO - Mejor caso: K1
+2025-12-11 22:53:23 - MathAgent - INFO - Caso promedio: K2 + (n/2)*C
+2025-12-11 22:53:23 - MathAgent - INFO - Peor caso: K3 + n*C
+2025-12-11 22:53:23 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 22:53:23 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 22:53:23 - MathAgent - INFO -   Hits: 0
+2025-12-11 22:53:23 - MathAgent - INFO -   Misses: 1
+2025-12-11 22:53:23 - MathAgent - INFO -   Size: 1
+2025-12-11 22:53:23 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 22:56:15 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 22:56:15 - MathAgent - INFO - Algoritmo: busquedaBinaria
+2025-12-11 22:56:15 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-11 22:56:15 - MathAgent - INFO - Escenarios: 8
+2025-12-11 22:56:15 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 22:56:15 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 22:56:29 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 22:56:29 - MathAgent - INFO - Mejor caso: K1
+2025-12-11 22:56:29 - MathAgent - INFO - Caso promedio: K2 + log(n)*C
+2025-12-11 22:56:29 - MathAgent - INFO - Peor caso: K3 + log(n)*C
+2025-12-11 22:56:29 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 22:56:29 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 22:56:29 - MathAgent - INFO -   Hits: 0
+2025-12-11 22:56:29 - MathAgent - INFO -   Misses: 1
+2025-12-11 22:56:29 - MathAgent - INFO -   Size: 1
+2025-12-11 22:56:29 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 23:00:30 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 23:00:30 - MathAgent - INFO - Algoritmo: bubbleSort
+2025-12-11 23:00:30 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-11 23:00:30 - MathAgent - INFO - Escenarios: 4
+2025-12-11 23:00:30 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 23:00:30 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 23:00:42 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 23:00:42 - MathAgent - INFO - Mejor caso: K1 + n*C
+2025-12-11 23:00:42 - MathAgent - INFO - Caso promedio: K2 + n**2*C
+2025-12-11 23:00:42 - MathAgent - INFO - Peor caso: K3 + n**2*C
+2025-12-11 23:00:42 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 23:00:42 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 23:00:42 - MathAgent - INFO -   Hits: 0
+2025-12-11 23:00:42 - MathAgent - INFO -   Misses: 1
+2025-12-11 23:00:42 - MathAgent - INFO -   Size: 1
+2025-12-11 23:00:42 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 23:05:12 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 23:05:12 - MathAgent - INFO - Algoritmo: mergeSort
+2025-12-11 23:05:12 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-11 23:05:12 - MathAgent - INFO - Escenarios: 4
+2025-12-11 23:05:12 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 23:05:12 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 23:05:23 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 23:05:23 - MathAgent - INFO - Mejor caso: T(n) = 2*T(n/2) + c*n
+2025-12-11 23:05:23 - MathAgent - INFO - Caso promedio: T(n) = 2*T(n/2) + c*n
+2025-12-11 23:05:23 - MathAgent - INFO - Peor caso: T(n) = 2*T(n/2) + c*n
+2025-12-11 23:05:23 - MathAgent - INFO - Ecuaciones iguales: True
+2025-12-11 23:05:23 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 23:05:23 - MathAgent - INFO -   Hits: 0
+2025-12-11 23:05:23 - MathAgent - INFO -   Misses: 1
+2025-12-11 23:05:23 - MathAgent - INFO -   Size: 1
+2025-12-11 23:05:23 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 23:08:43 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 23:08:43 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-11 23:08:43 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-11 23:08:43 - MathAgent - INFO - Escenarios: 4
+2025-12-11 23:08:43 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 23:08:43 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 23:08:54 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 23:08:54 - MathAgent - INFO - Mejor caso: T(n) = 2*T(n/2) + c*n
+2025-12-11 23:08:54 - MathAgent - INFO - Caso promedio: T(n) = (2/n)*SUM(k=0 to n-1)T(k) + c*n
+2025-12-11 23:08:54 - MathAgent - INFO - Peor caso: T(n) = T(n-1) + c
+2025-12-11 23:08:54 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 23:08:54 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 23:08:54 - MathAgent - INFO -   Hits: 0
+2025-12-11 23:08:54 - MathAgent - INFO -   Misses: 1
+2025-12-11 23:08:54 - MathAgent - INFO -   Size: 1
+2025-12-11 23:08:54 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 23:15:08 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 23:15:08 - MathAgent - INFO - Algoritmo: busqueda_lineal
+2025-12-11 23:15:08 - MathAgent - INFO - Tipo: ITERATIVO
+2025-12-11 23:15:08 - MathAgent - INFO - Escenarios: 6
+2025-12-11 23:15:08 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 23:15:08 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 23:15:22 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 23:15:22 - MathAgent - INFO - Mejor caso: K1 + n*C
+2025-12-11 23:15:22 - MathAgent - INFO - Caso promedio: K2 + n*C
+2025-12-11 23:15:22 - MathAgent - INFO - Peor caso: K3 + n*C
+2025-12-11 23:15:22 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 23:15:22 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 23:15:22 - MathAgent - INFO -   Hits: 0
+2025-12-11 23:15:22 - MathAgent - INFO -   Misses: 1
+2025-12-11 23:15:22 - MathAgent - INFO -   Size: 1
+2025-12-11 23:15:22 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 23:18:12 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 23:18:12 - MathAgent - INFO - Algoritmo: quickSort
+2025-12-11 23:18:12 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-11 23:18:12 - MathAgent - INFO - Escenarios: 4
+2025-12-11 23:18:12 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 23:18:12 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 23:18:24 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 23:18:24 - MathAgent - INFO - Mejor caso: T(n) = 2*T(n/2) + c*n
+2025-12-11 23:18:24 - MathAgent - INFO - Caso promedio: T(n) = (2/n)*SUM(k=0 to n-1)T(k) + c*n
+2025-12-11 23:18:24 - MathAgent - INFO - Peor caso: T(n) = T(n-1) + c*n
+2025-12-11 23:18:24 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 23:18:24 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 23:18:24 - MathAgent - INFO -   Hits: 0
+2025-12-11 23:18:24 - MathAgent - INFO -   Misses: 1
+2025-12-11 23:18:24 - MathAgent - INFO -   Size: 1
+2025-12-11 23:18:24 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 23:24:02 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 23:24:02 - MathAgent - INFO - Algoritmo: fibonacci
+2025-12-11 23:24:02 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-11 23:24:02 - MathAgent - INFO - Escenarios: 5
+2025-12-11 23:24:02 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 23:24:02 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 23:24:12 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 23:24:12 - MathAgent - INFO - Mejor caso: T(1) = c
+2025-12-11 23:24:12 - MathAgent - INFO - Caso promedio: T(n) = T(n-1) + T(n-2) + c
+2025-12-11 23:24:12 - MathAgent - INFO - Peor caso: T(n) = T(n-1) + c
+2025-12-11 23:24:12 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 23:24:12 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 23:24:12 - MathAgent - INFO -   Hits: 0
+2025-12-11 23:24:12 - MathAgent - INFO -   Misses: 1
+2025-12-11 23:24:12 - MathAgent - INFO -   Size: 1
+2025-12-11 23:24:12 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 23:24:31 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 23:24:31 - MathAgent - INFO - Algoritmo: fibonacci
+2025-12-11 23:24:31 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-11 23:24:31 - MathAgent - INFO - Escenarios: 5
+2025-12-11 23:24:31 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 23:24:31 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 23:24:41 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 23:24:41 - MathAgent - INFO - Mejor caso: T(1) = c
+2025-12-11 23:24:41 - MathAgent - INFO - Caso promedio: T(n) = T(n-1) + T(n-2) + c
+2025-12-11 23:24:41 - MathAgent - INFO - Peor caso: T(n) = T(n-1) + c
+2025-12-11 23:24:41 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 23:24:41 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 23:24:41 - MathAgent - INFO -   Hits: 0
+2025-12-11 23:24:41 - MathAgent - INFO -   Misses: 1
+2025-12-11 23:24:41 - MathAgent - INFO -   Size: 1
+2025-12-11 23:24:41 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 23:25:04 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 23:25:04 - MathAgent - INFO - Algoritmo: fibonacci
+2025-12-11 23:25:04 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-11 23:25:04 - MathAgent - INFO - Escenarios: 5
+2025-12-11 23:25:04 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 23:25:04 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 23:25:14 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 23:25:14 - MathAgent - INFO - Mejor caso: T(1) = c
+2025-12-11 23:25:14 - MathAgent - INFO - Caso promedio: T(n) = T(n-1) + T(n-2) + c
+2025-12-11 23:25:14 - MathAgent - INFO - Peor caso: T(n) = T(n-1) + T(n-2) + c
+2025-12-11 23:25:14 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 23:25:14 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 23:25:14 - MathAgent - INFO -   Hits: 0
+2025-12-11 23:25:14 - MathAgent - INFO -   Misses: 1
+2025-12-11 23:25:14 - MathAgent - INFO -   Size: 1
+2025-12-11 23:25:14 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 23:27:25 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 23:27:25 - MathAgent - INFO - Algoritmo: fibonacci
+2025-12-11 23:27:25 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-11 23:27:25 - MathAgent - INFO - Escenarios: 5
+2025-12-11 23:27:25 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 23:27:25 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 23:27:34 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 23:27:34 - MathAgent - INFO - Mejor caso: T(1) = c
+2025-12-11 23:27:34 - MathAgent - INFO - Caso promedio: T(n) = T(n-1) + T(n-2) + c
+2025-12-11 23:27:34 - MathAgent - INFO - Peor caso: T(n) = T(n-1) + c
+2025-12-11 23:27:34 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 23:27:34 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 23:27:34 - MathAgent - INFO -   Hits: 0
+2025-12-11 23:27:34 - MathAgent - INFO -   Misses: 1
+2025-12-11 23:27:34 - MathAgent - INFO -   Size: 1
+2025-12-11 23:27:34 - MathAgent - INFO -   Hit Rate: 0.0%
+2025-12-11 23:27:41 - MathAgent - INFO - === NUEVA SOLICITUD ===
+2025-12-11 23:27:41 - MathAgent - INFO - Algoritmo: fibonacci
+2025-12-11 23:27:41 - MathAgent - INFO - Tipo: RECURSIVO
+2025-12-11 23:27:41 - MathAgent - INFO - Escenarios: 5
+2025-12-11 23:27:41 - MathAgent - INFO - 🤔 DECISIÓN: Usar LLM
+2025-12-11 23:27:41 - MathAgent - INFO -   Razón: use_llm=True en configuración
+2025-12-11 23:27:51 - MathAgent - INFO - === RESPUESTA GENERADA ===
+2025-12-11 23:27:51 - MathAgent - INFO - Mejor caso: T(1) = c
+2025-12-11 23:27:51 - MathAgent - INFO - Caso promedio: T(n) = T(n-1) + T(n-2) + c
+2025-12-11 23:27:51 - MathAgent - INFO - Peor caso: T(n) = T(n-1) + c
+2025-12-11 23:27:51 - MathAgent - INFO - Ecuaciones iguales: False
+2025-12-11 23:27:51 - MathAgent - INFO - 📊 Cache Stats:
+2025-12-11 23:27:51 - MathAgent - INFO -   Hits: 0
+2025-12-11 23:27:51 - MathAgent - INFO -   Misses: 1
+2025-12-11 23:27:51 - MathAgent - INFO -   Size: 1
+2025-12-11 23:27:51 - MathAgent - INFO -   Hit Rate: 0.0%

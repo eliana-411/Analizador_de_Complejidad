@@ -130,11 +130,17 @@ class LLMAnalysisAssistant:
         # Caso 1: Buscar por nombres de estado explícitos
         for scenario in scenarios:
             state_lower = scenario.state.lower()
-            if 'mejor' in state_lower or state_lower == 'mejor_caso':
+            semantic_lower = scenario.semantic_id.lower() if hasattr(scenario, 'semantic_id') else ''
+            
+            # Buscar por state o semantic_id
+            if ('mejor' in state_lower or 'best' in state_lower or 
+                'mejor' in semantic_lower or 'best' in semantic_lower):
                 casos['mejor_caso'] = scenario
-            elif 'promedio' in state_lower or state_lower == 'caso_promedio':
+            elif ('promedio' in state_lower or 'average' in state_lower or 
+                  'promedio' in semantic_lower or 'average' in semantic_lower):
                 casos['caso_promedio'] = scenario
-            elif 'peor' in state_lower or state_lower == 'peor_caso':
+            elif ('peor' in state_lower or 'worst' in state_lower or 
+                  'peor' in semantic_lower or 'worst' in semantic_lower):
                 casos['peor_caso'] = scenario
         
         # Caso 2: Si todos tienen P=1 y son 3, asignar por costo
@@ -313,14 +319,35 @@ RESPONDE EN JSON (sin markdown, solo JSON puro):
         return prompt
     
     def _invocar_llm(self, prompt: str) -> str:
-        """Invoca el LLM con el prompt dado."""
+        """Invoca el LLM con el prompt dado, con reintentos en caso de sobrecarga."""
+        import time
+        
         messages = [
             SystemMessage(content="Eres experto en complejidad algoritmica. Sugieres como simplificar ecuaciones correctamente."),
             HumanMessage(content=prompt)
         ]
         
-        respuesta = self.llm.invoke(messages)
-        return respuesta.content
+        max_reintentos = 3
+        tiempo_espera = 2  # segundos iniciales
+        
+        for intento in range(max_reintentos):
+            try:
+                respuesta = self.llm.invoke(messages)
+                return respuesta.content
+            except Exception as e:
+                error_str = str(e)
+                # Detectar error de sobrecarga (529 o "overloaded" en el mensaje)
+                if "529" in error_str or "overloaded" in error_str.lower():
+                    if intento < max_reintentos - 1:
+                        print(f"⚠️  Servidor sobrecargado. Reintentando en {tiempo_espera}s... (intento {intento + 1}/{max_reintentos})")
+                        time.sleep(tiempo_espera)
+                        tiempo_espera *= 2  # Backoff exponencial
+                    else:
+                        print(f"❌ Servidor sobrecargado después de {max_reintentos} intentos.")
+                        raise
+                else:
+                    # Otro tipo de error, no reintentar
+                    raise
     
     def _parsear_analisis_con_sugerencias(self, respuesta: str, escenarios: Dict) -> Dict:
         """Parsea la respuesta del LLM que incluye SUGERENCIAS de ecuaciones."""

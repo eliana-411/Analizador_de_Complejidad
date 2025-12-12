@@ -76,7 +76,7 @@ def llm_analyze_best_case_node(state: ScenarioState) -> ScenarioState:
         print()
 
         # Convertir respuesta del LLM a formato interno
-        scenario = convert_llm_to_scenario(llm_result, "best_case")
+        scenario = convert_llm_to_scenario(llm_result, "best_case", state.is_iterative)
 
         print("[OK] Escenario convertido a formato interno")
         print(f"  - ID: {scenario['id']}")
@@ -107,7 +107,7 @@ def llm_analyze_best_case_node(state: ScenarioState) -> ScenarioState:
         })
 
 
-def convert_llm_to_scenario(llm_result: Dict[str, Any], scenario_type: str) -> Dict[str, Any]:
+def convert_llm_to_scenario(llm_result: Dict[str, Any], scenario_type: str, is_iterative: bool) -> Dict[str, Any]:
     """
     Convierte respuesta del LLM al formato ScenarioEntry esperado.
     Compatible con ambos formatos: antiguo (recursivo) y nuevo (iterativo).
@@ -118,40 +118,29 @@ def convert_llm_to_scenario(llm_result: Dict[str, Any], scenario_type: str) -> D
     Args:
         llm_result: Dict con la respuesta del LLM
         scenario_type: "best_case", "worst_case", "average_case"
+        is_iterative: True si el algoritmo es iterativo, False si es recursivo
 
     Returns:
-        Dict con formato compatible con ScenarioEntry (estructura simplificada)
+        Dict con formato compatible con ScenarioEntry (estructura completa)
     """
-    # Detectar formato: nuevo iterativo usa 'input_condition', antiguo usa 'input_description'
-    is_new_format = "input_condition" in llm_result
+    # Extraer input_condition (puede venir como input_description o input_condition)
+    input_condition = llm_result.get("input_condition") or llm_result.get("input_description", "")
     
-    # Extraer campos según formato
-    if is_new_format:
-        # Formato NUEVO (iterativo): input_condition, T_of_S, P_of_S
-        condition = llm_result.get("input_condition", "")
-        cost_T = llm_result.get("T_of_S", "n")
-        probability_P = llm_result.get("P_of_S", "1")
-    else:
-        # Formato ANTIGUO (recursivo): input_description, total_cost_T, probability_P
-        condition = llm_result.get("input_description", "")
-        cost_T = llm_result.get("total_cost_T", "n")
-        probability_P = llm_result.get("probability_P", "1")
-    
-    # Construir escenario en formato interno (sin line_costs)
+    # Construir escenario en formato interno completo
     scenario = {
         "id": f"S_{scenario_type}",
         "semantic_id": scenario_type,
-        "condition": condition,
+        "condition": input_condition,
         "state": scenario_type.upper(),
-        "cost_T": cost_T,
-        "probability_P": probability_P,
-        "input_description": condition,  # Mantener para compatibilidad
+        "cost_T": llm_result.get("total_cost_T") or llm_result.get("T_of_S", "n"),
+        "probability_P": llm_result.get("probability_P") or llm_result.get("P_of_S", "1"),
+        "input_description": input_condition,
         "input_characteristics": llm_result.get("input_characteristics", {}),
-        "is_iterative": llm_result.get("is_iterative", True)
+        "is_iterative": is_iterative
     }
 
     # Para recursivos, agregar información de recurrencia
-    if not llm_result.get("is_iterative", True):
+    if not is_iterative:
         scenario["recurrence_relation"] = llm_result.get("recurrence_relation", "")
         scenario["base_case_cost"] = llm_result.get("base_case_cost", "")
         scenario["base_case_condition"] = llm_result.get("base_case_condition", "")
