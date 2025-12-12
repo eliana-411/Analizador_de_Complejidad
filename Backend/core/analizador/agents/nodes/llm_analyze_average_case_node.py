@@ -74,15 +74,31 @@ def llm_analyze_average_case_node(state: ScenarioState) -> ScenarioState:
         print()
 
         # Convertir respuesta del LLM a escenarios
-        scenarios = convert_average_case_to_scenarios(llm_result)
+        scenarios = convert_average_case_to_scenarios(llm_result, state.is_iterative)
 
         print(f"[OK] Generados {len(scenarios)} escenarios del caso promedio")
         for scen in scenarios:
             print(f"  - {scen['id']}: {scen['condition'][:60]}...")
         print()
 
-        # Agregar escenarios a los existentes
+        # Agregar escenarios a los existentes (incluyendo el escenario S_avg)
+        # Primero agregar escenarios intermedios, luego el escenario agregado
         updated_scenarios = list(state.raw_scenarios) + scenarios
+        
+        # Crear escenario agregado del caso promedio (S_avg)
+        avg_scenario = {
+            "id": "S_avg",
+            "semantic_id": "average_case",
+            "condition": llm_result.get("input_condition", "Caso promedio"),
+            "state": "AVERAGE",
+            "cost_T": llm_result.get("T_of_S_simplified") or llm_result.get("T_of_S", "n"),
+            "probability_P": llm_result.get("P_of_S", "1"),
+            "input_description": llm_result.get("input_condition", ""),
+            "input_characteristics": {},
+            "average_cost_formula": llm_result.get("average_cost_formula", ""),
+            "average_cost_simplified": llm_result.get("T_of_S_simplified", "")
+        }
+        updated_scenarios.append(avg_scenario)
 
         # Actualizar análisis LLM con caso promedio
         updated_llm_analysis = dict(state.llm_analysis) if state.llm_analysis else {}
@@ -129,51 +145,40 @@ def _get_case_summary(state: ScenarioState, case_type: str) -> str:
     return f"T(S) = {cost_T}, P(S) = {prob_P}"
 
 
-def convert_average_case_to_scenarios(llm_result: Dict[str, Any]) -> List[Dict[str, Any]]:
+def convert_average_case_to_scenarios(llm_result: Dict[str, Any], is_iterative: bool) -> List[Dict[str, Any]]:
     """
-    Convierte respuesta del caso promedio a lista de escenarios.
+    Convierte respuesta del caso promedio a lista de escenarios INTERMEDIOS.
 
     El caso promedio puede generar múltiples escenarios intermedios:
     - S_1, S_2, ..., S_k (encontrado en posiciones)
     - S_∅ (no encontrado)
-    - S_avg (escenario consolidado de promedio)
 
+    NOTA: No incluye el escenario S_avg consolidado, ese se agrega después.
     NOTA: No incluye line_costs. El análisis completo se almacena en metadata.
 
     Args:
         llm_result: Dict con la respuesta del LLM
+        is_iterative: True si el algoritmo es iterativo, False si es recursivo
 
     Returns:
-        Lista de escenarios en formato interno (estructura simplificada)
+        Lista de escenarios intermedios en formato interno
     """
     scenarios = []
 
-    # Procesar scenarios_breakdown si existe
+    # Procesar scenarios_breakdown si existe (solo escenarios intermedios)
     if "scenarios_breakdown" in llm_result and llm_result["scenarios_breakdown"]:
-        for scenario_info in llm_result["scenarios_breakdown"]:
+        for idx, scenario_info in enumerate(llm_result["scenarios_breakdown"], 1):
+            description = scenario_info.get("description", "")
             scenarios.append({
-                "id": scenario_info.get("scenario_id", f"S_{len(scenarios)+1}"),
-                "semantic_id": f"S_intermediate_{len(scenarios)+1}",
-                "condition": scenario_info.get("description", ""),
+                "id": scenario_info.get("scenario_id", f"S_intermediate_{idx}"),
+                "semantic_id": f"S_intermediate_{idx}",
+                "condition": description,
                 "state": "INTERMEDIATE",
                 "cost_T": scenario_info.get("T", "n"),
                 "probability_P": scenario_info.get("P", "1/n"),
-                "input_description": scenario_info.get("description", ""),
+                "input_description": description,
                 "input_characteristics": {}
+                # NOTA: Los escenarios intermedios NO llevan is_iterative según la estructura de referencia
             })
-
-    # Agregar escenario consolidado de caso promedio
-    scenarios.append({
-        "id": "S_avg",
-        "semantic_id": "average_case",
-        "condition": llm_result.get("input_description", "Caso promedio (esperanza)"),
-        "state": "AVERAGE",
-        "cost_T": llm_result.get("average_cost_simplified", llm_result.get("total_cost_T", "n")),
-        "probability_P": llm_result.get("probability_P", "1"),
-        "input_description": llm_result.get("input_description", "Caso promedio"),
-        "input_characteristics": {},
-        "average_cost_formula": llm_result.get("average_cost_formula", ""),
-        "average_cost_simplified": llm_result.get("average_cost_simplified", "")
-    })
 
     return scenarios

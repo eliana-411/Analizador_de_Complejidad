@@ -1,0 +1,37 @@
+{
+  "tabla_omega": {
+    "algorithm_name": "mergeSort",
+    "scenarios": [
+      {
+        "id": "S_best_case_fallback",
+        "semantic_id": "best_case_fallback",
+        "condition": "Mejor caso (fallback heurístico)",
+        "state": "BEST_CASE",
+        "cost_T": "T(n) = 1",
+        "probability_P": "1"
+      },
+      {
+        "id": "S_worst_case_fallback",
+        "semantic_id": "worst_case_fallback",
+        "condition": "Peor caso (fallback heurístico)",
+        "state": "WORST_CASE",
+        "cost_T": "T(n) = T(n-1) + 1",
+        "probability_P": "1"
+      }
+    ],
+    "control_variables": [],
+    "metadata": {
+      "algorithm_type": "recursive",
+      "loop_count": 0,
+      "nesting_level": 0,
+      "parameters": {},
+      "llm_analysis": {},
+      "best_case": {},
+      "worst_case": {},
+      "average_case": {}
+    }
+  },
+  "pseudocodigo": "mergeSort(int A[], int izq, int der)\nbegin\n    int medio\n\n    if (izq < der) then\n    begin\n        medio 🡨 └(izq + der) / 2┘\n\n        CALL mergeSort(A[], izq, medio)\n        CALL mergeSort(A[], medio + 1, der)\n        CALL merge(A[], izq, medio, der)\n    end\nend\n\nmerge(int A[], int izq, int medio, int der)\nbegin\n    int n1, n2, i, j, k\n    int L[100], R[100]\n\n    n1 🡨 medio - izq + 1\n    n2 🡨 der - medio\n\n    for i 🡨 1 to n1 do\n    begin\n        L[i] 🡨 A[izq + i - 1]\n    end\n\n    for j 🡨 1 to n2 do\n    begin\n        R[j] 🡨 A[medio + j]\n    end\n\n    i 🡨 1\n    j 🡨 1\n    k 🡨 izq\n\n    while (i ≤ n1 and j ≤ n2) do\n    begin\n        if (L[i] ≤ R[j]) then\n        begin\n            A[k] 🡨 L[i]\n            i 🡨 i + 1\n        end\n        else\n        begin\n            A[k] 🡨 R[j]\n            j 🡨 j + 1\n        end\n        k 🡨 k + 1\n    end\n\n    while (i ≤ n1) do\n    begin\n        A[k] 🡨 L[i]\n        i 🡨 i + 1\n        k 🡨 k + 1\n    end\n\n    while (j ≤ n2) do\n    begin\n        A[k] 🡨 R[j]\n        j 🡨 j + 1\n        k 🡨 k + 1\n    end\nend",
+  "algoritmo": "mergeSort",
+  "tipo": "recursive"
+}

@@ -1,0 +1,402 @@
+{
+  "pseudocode": "busquedaLineal(int A[], int n, int x)\n    begin\n        int i\n        bool encontrado\n\n        encontrado 🡨 F\n        i 🡨 1\n\n        while (i ≤ n and not encontrado) do\n        begin\n            if (A[i] = x) then\n            begin\n                encontrado 🡨 T\n            end\n            i 🡨 i + 1\n        end\n\n        return encontrado\n    end",
+  "algorithm_name": "busquedaLineal",
+  "is_iterative": true,
+  "parameters": {},
+  "lines": [],
+  "loops": [],
+  "recursive_calls": [],
+  "is_recursive": false,
+  "control_variables": [],
+  "raw_scenarios": [],
+  "llm_analysis": {},
+  "omega_table": {
+    "algorithm_name": "busquedaLineal",
+    "scenarios": [
+      {
+        "id": "S_best_case",
+        "semantic_id": "best_case",
+        "condition": "Elemento buscado encontrado en la primera posicion del arreglo",
+        "state": "BEST_CASE",
+        "cost_T": "c1 + c1 + c2*2 + c3 + c4 + c3 + c1",
+        "probability_P": "q/n"
+      },
+      {
+        "id": "S_worst_case",
+        "semantic_id": "worst_case",
+        "condition": "Elemento x no se encuentra en el array A, o se encuentra en la ultima posicion. El algoritmo debe recorrer todo el array completo.",
+        "state": "WORST_CASE",
+        "cost_T": "c1 + c1 + c2*(n+1) + c3*n + 0 + c3*n + c1",
+        "probability_P": "1-q"
+      },
+      {
+        "id": "S_1",
+        "semantic_id": "S_intermediate_1",
+        "condition": "Elemento encontrado en posicin 1",
+        "state": "INTERMEDIATE",
+        "cost_T": "c1 + c1 + c2*2 + c3 + c4 + c3 + c1",
+        "probability_P": "q/n"
+      },
+      {
+        "id": "S_2",
+        "semantic_id": "S_intermediate_2",
+        "condition": "Elemento encontrado en posicin 2",
+        "state": "INTERMEDIATE",
+        "cost_T": "c1 + c1 + c2*3 + c3*2 + c4 + c3*2 + c1",
+        "probability_P": "q/n"
+      },
+      {
+        "id": "S_k",
+        "semantic_id": "S_intermediate_3",
+        "condition": "Elemento encontrado en posicin k (caso general, 1 <= k <= n)",
+        "state": "INTERMEDIATE",
+        "cost_T": "c1 + c1 + c2*(k+1) + c3*k + c4 + c3*k + c1",
+        "probability_P": "q/n"
+      },
+      {
+        "id": "S_n",
+        "semantic_id": "S_intermediate_4",
+        "condition": "Elemento encontrado en posicin n",
+        "state": "INTERMEDIATE",
+        "cost_T": "c1 + c1 + c2*(n+1) + c3*n + c4 + c3*n + c1",
+        "probability_P": "q/n"
+      },
+      {
+        "id": "S_not_found",
+        "semantic_id": "S_intermediate_5",
+        "condition": "Elemento no encontrado",
+        "state": "INTERMEDIATE",
+        "cost_T": "c1 + c1 + c2*(n+1) + c3*n + 0 + c3*n + c1",
+        "probability_P": "1-q"
+      },
+      {
+        "id": "S_avg",
+        "semantic_id": "average_case",
+        "condition": "Promedio sobre todos los escenarios posibles de bsqueda",
+        "state": "AVERAGE",
+        "cost_T": "3*c1 + c2*(q*n/2 + q + n + 1 - q*n - q) + c3*(q*n + 2*n - 2*q*n) + c4*q",
+        "probability_P": "1"
+      }
+    ],
+    "control_variables": [],
+    "metadata": {
+      "algorithm_type": "iterative",
+      "loop_count": 0,
+      "nesting_level": 0,
+      "parameters": {},
+      "llm_analysis": {
+        "best_case": {
+          "scenario_type": "best_case",
+          "input_description": "Elemento buscado encontrado en la primera posicion del arreglo",
+          "input_characteristics": {
+            "position": "1",
+            "found": true,
+            "iterations": "1"
+          },
+          "is_iterative": true,
+          "line_by_line_analysis": [
+            {
+              "line_number": 1,
+              "code": "encontrado <- F",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Asignacion simple de valor booleano falso. Se ejecuta exactamente una vez al inicio del algoritmo."
+            },
+            {
+              "line_number": 2,
+              "code": "i <- 1",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Asignacion simple del contador inicial. Se ejecuta exactamente una vez al inicio del algoritmo."
+            },
+            {
+              "line_number": 3,
+              "code": "while (i <= n and not encontrado) do",
+              "C_op": "c2",
+              "Freq": "2",
+              "Total": "c2*2",
+              "explanation": "Encabezado del while con dos operaciones de comparacion y una logica. En el mejor caso, el loop itera 1 vez, por lo que el encabezado se ejecuta 2 veces: una para entrar (i=1, encontrado=F) y otra para salir (i=2, encontrado=T)."
+            },
+            {
+              "line_number": 4,
+              "code": "if (A[i] = x) then",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Comparacion con acceso a arreglo. Se ejecuta 1 vez en el mejor caso, cuando i=1 y A[1]=x."
+            },
+            {
+              "line_number": 5,
+              "code": "encontrado <- T",
+              "C_op": "c4",
+              "Freq": "1",
+              "Total": "c4",
+              "explanation": "Asignacion dentro del condicional. Se ejecuta 1 vez porque la condicion es verdadera en la primera iteracion."
+            },
+            {
+              "line_number": 6,
+              "code": "i <- i + 1",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Incremento del contador con operacion aritmetica. Se ejecuta 1 vez al final de la primera iteracion del loop."
+            },
+            {
+              "line_number": 7,
+              "code": "return encontrado",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Retorno del valor booleano. Se ejecuta exactamente una vez al finalizar el algoritmo."
+            }
+          ],
+          "total_cost_T": "c1 + c1 + c2*2 + c3 + c4 + c3 + c1",
+          "total_cost_explanation": "Suma de todos los costos linea por linea. Simplificando: 3*c1 + 2*c2 + 2*c3 + c4. Este es el costo minimo cuando el elemento se encuentra en la primera posicion.",
+          "probability_P": "q/n",
+          "probability_explanation": "La probabilidad de que el elemento buscado este en la primera posicion es q/n, donde q es la probabilidad de que el elemento exista en el arreglo y 1/n es la probabilidad de que este en cualquier posicion especifica."
+        },
+        "worst_case": {
+          "scenario_type": "worst_case",
+          "input_description": "Elemento x no se encuentra en el array A, o se encuentra en la ultima posicion. El algoritmo debe recorrer todo el array completo.",
+          "input_characteristics": {
+            "element_found": false,
+            "search_iterations": "n"
+          },
+          "is_iterative": true,
+          "line_by_line_analysis": [
+            {
+              "line_number": 1,
+              "code": "encontrado <- F",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Asignacion simple de valor booleano False a la variable encontrado. Se ejecuta exactamente una vez al inicio del algoritmo."
+            },
+            {
+              "line_number": 2,
+              "code": "i <- 1",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Asignacion simple del valor inicial 1 al contador i. Se ejecuta exactamente una vez al inicio del algoritmo."
+            },
+            {
+              "line_number": 3,
+              "code": "while (i <= n and not encontrado) do",
+              "C_op": "c2",
+              "Freq": "n+1",
+              "Total": "c2*(n+1)",
+              "explanation": "Encabezado del while con dos comparaciones logicas (i <= n y not encontrado). En el peor caso, el elemento no esta en el array, por lo que la condicion se evalua n veces (cuando i va de 1 a n) mas una vez adicional cuando i=n+1 y la condicion falla. Total: n+1 evaluaciones."
+            },
+            {
+              "line_number": 4,
+              "code": "if (A[i] = x) then",
+              "C_op": "c3",
+              "Freq": "n",
+              "Total": "c3*n",
+              "explanation": "Comparacion que incluye acceso al array A[i] y comparacion con x. En el peor caso se ejecuta n veces, una por cada iteracion del while (cuando i va de 1 a n). La condicion siempre es falsa en este caso."
+            },
+            {
+              "line_number": 5,
+              "code": "encontrado <- T",
+              "C_op": "c4",
+              "Freq": "0",
+              "Total": "0",
+              "explanation": "Asignacion dentro del condicional if. En el peor caso (elemento no encontrado), esta linea nunca se ejecuta porque la condicion del if siempre es falsa. Frecuencia = 0."
+            },
+            {
+              "line_number": 6,
+              "code": "i <- i + 1",
+              "C_op": "c3",
+              "Freq": "n",
+              "Total": "c3*n",
+              "explanation": "Incremento del contador que incluye suma aritmetica y asignacion. Se ejecuta n veces, una por cada iteracion completa del while (cuando i va de 1 a n)."
+            },
+            {
+              "line_number": 7,
+              "code": "return encontrado",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Retorno del valor de la variable encontrado. Se ejecuta exactamente una vez al finalizar el algoritmo."
+            }
+          ],
+          "total_cost_T": "c1 + c1 + c2*(n+1) + c3*n + 0 + c3*n + c1",
+          "total_cost_simplified": "3*c1 + c2*(n+1) + 2*c3*n",
+          "total_cost_explanation": "Suma de todos los costos linea por linea. Las inicializaciones y el retorno suman 3*c1. El encabezado del while aporta c2*(n+1). La comparacion del if y el incremento aportan 2*c3*n. La asignacion dentro del if no se ejecuta (costo 0). Simplificando: 3*c1 + c2*n + c2 + 2*c3*n = 3*c1 + c2 + n*(c2 + 2*c3).",
+          "probability_P": "1-q",
+          "probability_explanation": "Para un algoritmo de busqueda con parametro q (probabilidad de que el elemento exista en el array), el peor caso ocurre cuando el elemento NO se encuentra. Por lo tanto, P(peor caso) = 1-q, donde q es la probabilidad de que x este en A."
+        },
+        "average_case": {
+          "scenario_type": "average_case",
+          "input_condition": "Promedio sobre todos los escenarios posibles de bsqueda",
+          "probability_model": "Se usa el parmetro q (probabilidad de que el elemento exista). Si existe, puede estar en cualquiera de las n posiciones con igual probabilidad 1/n. P(encontrado en posicin k) = q*(1/n). P(no encontrado) = 1-q.",
+          "scenarios_breakdown": [
+            {
+              "scenario_id": "S_1",
+              "description": "Elemento encontrado en posicin 1",
+              "T": "c1 + c1 + c2*2 + c3 + c4 + c3 + c1",
+              "P": "q/n"
+            },
+            {
+              "scenario_id": "S_2",
+              "description": "Elemento encontrado en posicin 2",
+              "T": "c1 + c1 + c2*3 + c3*2 + c4 + c3*2 + c1",
+              "P": "q/n"
+            },
+            {
+              "scenario_id": "S_k",
+              "description": "Elemento encontrado en posicin k (caso general, 1 <= k <= n)",
+              "T": "c1 + c1 + c2*(k+1) + c3*k + c4 + c3*k + c1",
+              "P": "q/n"
+            },
+            {
+              "scenario_id": "S_n",
+              "description": "Elemento encontrado en posicin n",
+              "T": "c1 + c1 + c2*(n+1) + c3*n + c4 + c3*n + c1",
+              "P": "q/n"
+            },
+            {
+              "scenario_id": "S_not_found",
+              "description": "Elemento no encontrado",
+              "T": "c1 + c1 + c2*(n+1) + c3*n + 0 + c3*n + c1",
+              "P": "1-q"
+            }
+          ],
+          "average_cost_formula": "E[T] = q*SUM(k=1 to n)[(c1 + c1 + c2*(k+1) + c3*k + c4 + c3*k + c1)*(1/n)] + (1-q)*(c1 + c1 + c2*(n+1) + c3*n + 0 + c3*n + c1)",
+          "T_of_S": "3*c1 + c2*(q*(n+2)/2 + (1-q)*(n+1)) + c3*(q*n + (1-q)*2*n) + c4*q",
+          "T_of_S_simplified": "3*c1 + c2*(q*n/2 + q + n + 1 - q*n - q) + c3*(q*n + 2*n - 2*q*n) + c4*q",
+          "T_of_S_explanation": "Costo esperado calculado como E[T] = suma de costos ponderados por probabilidades. Para los casos donde se encuentra (k=1 a n): suma de c2*(k+1) da c2*SUM(k+1) = c2*(n*(n+1)/2 + n) = c2*n*(n+3)/2, dividido por n da c2*(n+3)/2. Para c3*k: SUM(k) = n*(n+1)/2, dividido por n da c3*(n+1)/2. Multiplicando por q y sumando el caso no encontrado con probabilidad (1-q).",
+          "P_of_S": "1",
+          "P_of_S_explanation": "El caso promedio engloba todos los escenarios posibles con sus probabilidades respectivas. La suma de todas las probabilidades es q*SUM(1/n) + (1-q) = q*n*(1/n) + (1-q) = q + 1 - q = 1.",
+          "line_by_line_analysis": [
+            {
+              "line_number": 1,
+              "code": "encontrado <- F",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Inicializacin de variable booleana. Se ejecuta exactamente una vez en todos los escenarios."
+            },
+            {
+              "line_number": 2,
+              "code": "i <- 1",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Inicializacin del contador. Se ejecuta exactamente una vez en todos los escenarios."
+            },
+            {
+              "line_number": 3,
+              "code": "while (i <= n and not encontrado) do",
+              "C_op": "c2",
+              "Freq": "q*(n+2)/2 + (1-q)*(n+1)",
+              "Total": "c2*(q*(n+2)/2 + (1-q)*(n+1))",
+              "explanation": "Encabezado del while con comparacin y operacin lgica. En promedio, cuando se encuentra (prob q), el loop se ejecuta en posicin promedio (n+1)/2, dando frecuencia (n+2)/2 para el encabezado. Cuando no se encuentra (prob 1-q), frecuencia es n+1. Frecuencia promedio ponderada: q*SUM(k=1 to n)[(k+1)*(1/n)] + (1-q)*(n+1) = q*(n+2)/2 + (1-q)*(n+1)."
+            },
+            {
+              "line_number": 4,
+              "code": "if (A[i] = x) then",
+              "C_op": "c3",
+              "Freq": "q*(n+1)/2 + (1-q)*n",
+              "Total": "c3*(q*(n+1)/2 + (1-q)*n)",
+              "explanation": "Comparacin del elemento actual con x. Se ejecuta tantas veces como el cuerpo del while. Cuando se encuentra (prob q), promedio (n+1)/2 veces. Cuando no se encuentra (prob 1-q), n veces. Frecuencia promedio: q*SUM(k=1 to n)[k*(1/n)] + (1-q)*n = q*(n+1)/2 + (1-q)*n."
+            },
+            {
+              "line_number": 5,
+              "code": "encontrado <- T",
+              "C_op": "c4",
+              "Freq": "q",
+              "Total": "c4*q",
+              "explanation": "Asignacin cuando se encuentra el elemento. Solo se ejecuta en los casos donde el elemento existe, que ocurre con probabilidad q. En esos casos, se ejecuta exactamente una vez."
+            },
+            {
+              "line_number": 6,
+              "code": "i <- i + 1",
+              "C_op": "c3",
+              "Freq": "q*(n+1)/2 + (1-q)*n",
+              "Total": "c3*(q*(n+1)/2 + (1-q)*n)",
+              "explanation": "Incremento del contador. Se ejecuta el mismo nmero de veces que el cuerpo del while, es decir, la misma frecuencia que la lnea 4."
+            },
+            {
+              "line_number": 7,
+              "code": "return encontrado",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Retorno del resultado. Se ejecuta exactamente una vez en todos los escenarios."
+            }
+          ],
+          "average_cost_simplified": "3*c1 + c2*(q*n/2 + q + n + 1 - q*n - q) + c3*(q*n + 2*n - 2*q*n) + c4*q"
+        }
+      },
+      "best_case": {
+        "scenario_id": "S_best_case",
+        "semantic_id": "best_case",
+        "T": "c1 + c1 + c2*2 + c3 + c4 + c3 + c1",
+        "P": "q/n",
+        "description": "Elemento buscado encontrado en la primera posicion del arreglo",
+        "input_characteristics": {
+          "position": "1",
+          "found": true,
+          "iterations": "1"
+        }
+      },
+      "worst_case": {
+        "scenario_id": "S_worst_case",
+        "semantic_id": "worst_case",
+        "T": "c1 + c1 + c2*(n+1) + c3*n + 0 + c3*n + c1",
+        "P": "1-q",
+        "description": "Elemento x no se encuentra en el array A, o se encuentra en la ultima posicion. El algoritmo debe recorrer todo el array completo.",
+        "input_characteristics": {
+          "element_found": false,
+          "search_iterations": "n"
+        }
+      },
+      "average_case": {
+        "scenario_id": "S_avg",
+        "semantic_id": "average_case",
+        "T_avg": "3*c1 + c2*(q*n/2 + q + n + 1 - q*n - q) + c3*(q*n + 2*n - 2*q*n) + c4*q",
+        "formula": "E[T] = q*SUM(k=1 to n)[(c1 + c1 + c2*(k+1) + c3*k + c4 + c3*k + c1)*(1/n)] + (1-q)*(c1 + c1 + c2*(n+1) + c3*n + 0 + c3*n + c1)",
+        "simplified": "3*c1 + c2*(q*n/2 + q + n + 1 - q*n - q) + c3*(q*n + 2*n - 2*q*n) + c4*q",
+        "description": "Promedio sobre todos los escenarios posibles de bsqueda",
+        "scenarios_breakdown": [
+          {
+            "scenario_id": "S_1",
+            "description": "Elemento encontrado en posicin 1",
+            "T": "c1 + c1 + c2*2 + c3 + c4 + c3 + c1",
+            "P": "q/n"
+          },
+          {
+            "scenario_id": "S_2",
+            "description": "Elemento encontrado en posicin 2",
+            "T": "c1 + c1 + c2*3 + c3*2 + c4 + c3*2 + c1",
+            "P": "q/n"
+          },
+          {
+            "scenario_id": "S_k",
+            "description": "Elemento encontrado en posicin k (caso general, 1 <= k <= n)",
+            "T": "c1 + c1 + c2*(k+1) + c3*k + c4 + c3*k + c1",
+            "P": "q/n"
+          },
+          {
+            "scenario_id": "S_n",
+            "description": "Elemento encontrado en posicin n",
+            "T": "c1 + c1 + c2*(n+1) + c3*n + c4 + c3*n + c1",
+            "P": "q/n"
+          },
+          {
+            "scenario_id": "S_not_found",
+            "description": "Elemento no encontrado",
+            "T": "c1 + c1 + c2*(n+1) + c3*n + 0 + c3*n + c1",
+            "P": "1-q"
+          }
+        ]
+      }
+    }
+  },
+  "errors": [],
+  "warnings": []
+}
