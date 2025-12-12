@@ -26,14 +26,26 @@ BASE_SYSTEM_PROMPT = """Eres un experto en análisis de complejidad algorítmica
 REGLAS FUNDAMENTALES que debes seguir:
 
 1. CONTEO DE OPERACIONES ELEMENTALES (C_op):
-   - Asignaciones (←, =): 1 operación
-   - Operaciones aritméticas (+, -, *, /, mod): 1 operación cada una
-   - Comparaciones (<, >, =, ≤, ≥, ≠, ==): 1 operación
-   - Accesos a array (A[i], A[j]): 1 operación
-   - Operaciones lógicas (and, or, not): 1 operación cada una
-   - return: 1 operación
-   - CALL: 1 operación base
-   - Líneas estructurales (begin, end, then, else, do): 0 operaciones
+   ⚠️ IMPORTANTE: C_op SIEMPRE debe ser una CONSTANTE SIMBÓLICA (c1, c2, c3, c4, ...)
+   
+   REGLAS DE ASIGNACIÓN DE CONSTANTES:
+   - Usa c1 para asignaciones simples (←, =)
+   - Usa c2 para operaciones de comparación (<, >, ≤, ≥, ==, ≠) y lógicas (and, or, not)
+   - Usa c3 para operaciones aritméticas (+, -, *, /) y accesos a array (A[i])
+   - Usa c4 para asignaciones dentro de condicionales
+   - Usa c5, c6, c7... para otras operaciones según el contexto
+   - NUNCA uses valores numéricos como 0, 1, 2 en C_op
+   
+   Ejemplos CORRECTOS:
+   ✓ C_op = "c1" para "encontrado ← F"
+   ✓ C_op = "c2" para "while (i ≤ n and not encontrado)"
+   ✓ C_op = "c3" para "if (A[i] = x)"
+   ✓ C_op = "c4" para "encontrado ← T"
+   
+   Ejemplos INCORRECTOS:
+   ✗ C_op = 0 (valor numérico)
+   ✗ C_op = 1 (valor numérico)
+   ✗ C_op = "K" (constante abstracta no permitida en C_op)
 
 2. FRECUENCIAS DE EJECUCIÓN (Freq):
    REGLA CRÍTICA - ENCABEZADOS DE LOOPS:
@@ -129,10 +141,10 @@ INSTRUCCIONES:
 
 7. Calcula la probabilidad P(S) de que ocurra este caso
 
-Responde SOLO con JSON (sin markdown, sin bloques ```):
+EJEMPLO DE RESPUESTA CORRECTA:
 {{
   "scenario_type": "best_case",
-  "input_description": "...",
+  "input_description": "Elemento buscado encontrado en la primera posicion",
   "input_characteristics": {{
     "position": "1",
     "found": true
@@ -141,18 +153,60 @@ Responde SOLO con JSON (sin markdown, sin bloques ```):
   "line_by_line_analysis": [
     {{
       "line_number": 1,
-      "code": "...",
-      "C_op": 1,
+      "code": "encontrado <- F",
+      "C_op": "c1",
       "Freq": "1",
-      "Total": "1",
-      "explanation": "..."
+      "Total": "c1",
+      "explanation": "Inicializacion de variable booleana. Se ejecuta exactamente una vez."
+    }},
+    {{
+      "line_number": 2,
+      "code": "i <- 1",
+      "C_op": "c1",
+      "Freq": "1",
+      "Total": "c1",
+      "explanation": "Inicializacion del contador. Se ejecuta exactamente una vez."
+    }},
+    {{
+      "line_number": 3,
+      "code": "while (i <= n and not encontrado) do",
+      "C_op": "c2",
+      "Freq": "2",
+      "Total": "c2*2",
+      "explanation": "Encabezado del while. En el mejor caso se ejecuta 2 veces: una para entrar y una para salir."
+    }},
+    {{
+      "line_number": 4,
+      "code": "if (A[i] = x) then",
+      "C_op": "c3",
+      "Freq": "1",
+      "Total": "c3",
+      "explanation": "Comparacion con acceso a array. Se ejecuta 1 vez en el mejor caso."
+    }},
+    {{
+      "line_number": 5,
+      "code": "encontrado <- T",
+      "C_op": "c4",
+      "Freq": "1",
+      "Total": "c4",
+      "explanation": "Asignacion cuando se encuentra. Se ejecuta 1 vez."
+    }},
+    {{
+      "line_number": 6,
+      "code": "return encontrado",
+      "C_op": "c7",
+      "Freq": "1",
+      "Total": "c7",
+      "explanation": "Retorno del resultado. Se ejecuta exactamente una vez."
     }}
   ],
-  "total_cost_T": "...",
-  "total_cost_explanation": "...",
-  "probability_P": "...",
-  "probability_explanation": "..."
+  "total_cost_T": "c1 + c1 + c2*2 + c3 + c4 + c7",
+  "total_cost_explanation": "Suma de todos los costos linea por linea",
+  "probability_P": "1/n",
+  "probability_explanation": "Probabilidad de encontrar el elemento en la primera posicion"
 }}
+
+Responde SOLO con JSON siguiendo este formato (sin markdown, sin bloques ```):
 
 Para RECURSIVOS, incluye además:
 {{
@@ -198,18 +252,71 @@ NOTA para búsquedas:
 NOTA para ordenamientos:
 - Peor caso suele ser "array en orden inverso" o "todos elementos iguales"
 
-Responde SOLO con JSON (sin markdown, sin bloques ```):
+EJEMPLO DE RESPUESTA CORRECTA:
 {{
   "scenario_type": "worst_case",
-  "input_description": "...",
-  "input_characteristics": {{ ... }},
+  "input_description": "Elemento no encontrado en el array",
+  "input_characteristics": {{
+    "found": false
+  }},
   "is_iterative": true,
-  "line_by_line_analysis": [ ... ],
-  "total_cost_T": "...",
-  "total_cost_explanation": "...",
-  "probability_P": "...",
-  "probability_explanation": "..."
+  "line_by_line_analysis": [
+    {{
+      "line_number": 1,
+      "code": "encontrado <- F",
+      "C_op": "c1",
+      "Freq": "1",
+      "Total": "c1",
+      "explanation": "Inicializacion de variable booleana. Se ejecuta exactamente una vez."
+    }},
+    {{
+      "line_number": 2,
+      "code": "i <- 1",
+      "C_op": "c1",
+      "Freq": "1",
+      "Total": "c1",
+      "explanation": "Inicializacion del contador. Se ejecuta exactamente una vez."
+    }},
+    {{
+      "line_number": 3,
+      "code": "while (i <= n and not encontrado) do",
+      "C_op": "c2",
+      "Freq": "n+1",
+      "Total": "c2*(n+1)",
+      "explanation": "Encabezado del while. En el peor caso se ejecuta n+1 veces."
+    }},
+    {{
+      "line_number": 4,
+      "code": "if (A[i] = x) then",
+      "C_op": "c3",
+      "Freq": "n",
+      "Total": "c3*n",
+      "explanation": "Comparacion con acceso a array. Se ejecuta n veces en el peor caso."
+    }},
+    {{
+      "line_number": 5,
+      "code": "i <- i + 1",
+      "C_op": "c3",
+      "Freq": "n",
+      "Total": "c3*n",
+      "explanation": "Incremento del contador. Se ejecuta n veces."
+    }},
+    {{
+      "line_number": 6,
+      "code": "return encontrado",
+      "C_op": "c7",
+      "Freq": "1",
+      "Total": "c7",
+      "explanation": "Retorno del resultado. Se ejecuta exactamente una vez."
+    }}
+  ],
+  "total_cost_T": "c1 + c1 + c2*(n+1) + c3*n + c3*n + c7",
+  "total_cost_explanation": "Suma de todos los costos linea por linea",
+  "probability_P": "1/(n+1)",
+  "probability_explanation": "Probabilidad de que el elemento no se encuentre"
 }}
+
+Responde SOLO con JSON siguiendo este formato (sin markdown, sin bloques ```):
 """
 
 # ========================================
@@ -255,37 +362,104 @@ C) OTROS (ordenamientos, etc.):
    - Identificar casos relevantes
    - Asignar probabilidades (equiprobables si no hay info adicional)
 
-Responde SOLO con JSON (sin markdown, sin bloques ```):
+EJEMPLO DE RESPUESTA CORRECTA (Búsqueda Lineal):
 {{
   "scenario_type": "average_case",
-  "input_description": "Combinación ponderada de todos los casos",
+  "input_condition": "Promedio sobre todos los escenarios posibles",
+  "probability_model": "Se consideran n+1 casos equiprobables: elemento encontrado en posicion k (k=1 a n), o no encontrado. Cada caso tiene probabilidad 1/(n+1).",
   "scenarios_breakdown": [
     {{
       "scenario_id": "S_1",
-      "description": "Encontrado en posición 1",
-      "T": "...",
-      "P": "q·(1/n)"
+      "description": "Encontrado en posicion 1",
+      "T": "c1 + c2*2 + c3 + c4",
+      "P": "1/(n+1)"
     }},
     {{
-      "scenario_id": "S_2",
-      "description": "Encontrado en posición 2",
-      "T": "...",
-      "P": "q·(1/n)"
+      "scenario_id": "S_k",
+      "description": "Encontrado en posicion k (general)",
+      "T": "c1 + c2*(k+1) + c3*k + c4",
+      "P": "1/(n+1)"
     }},
-    ...
     {{
-      "scenario_id": "S_∅",
+      "scenario_id": "S_n",
+      "description": "Encontrado en posicion n",
+      "T": "c1 + c2*(n+1) + c3*n + c4",
+      "P": "1/(n+1)"
+    }},
+    {{
+      "scenario_id": "S_empty",
       "description": "No encontrado",
-      "T": "...",
-      "P": "1-q"
+      "T": "c1 + c2*(n+1) + c3*n + c7",
+      "P": "1/(n+1)"
     }}
   ],
-  "average_cost_formula": "q·Σ[k=1 to n](T(k)·(1/n)) + (1-q)·T(∅)",
-  "average_cost_simplified": "...",
-  "probability_P": "1",
-  "total_cost_T": "...",
-  "line_by_line_analysis": [ ... ]
+  "average_cost_formula": "E[T] = (1/(n+1)) * [SUM(k=1 to n)(c1 + c2*(k+1) + c3*k + c4) + (c1 + c2*(n+1) + c3*n + c7)]",
+  "T_of_S": "c1 + c2*(n+3)/2 + c3*(n+1)/2 + c4*n/(n+1) + c7/(n+1)",
+  "T_of_S_simplified": "c1 + c2*(n+3)/2 + c3*(n+1)/2 + c4*n/(n+1) + c7/(n+1)",
+  "T_of_S_explanation": "Costo esperado calculado como suma ponderada de todos los escenarios",
+  "P_of_S": "1",
+  "P_of_S_explanation": "El caso promedio engloba todos los escenarios posibles con sus probabilidades respectivas",
+  "line_by_line_analysis": [
+    {{
+      "line_number": 1,
+      "code": "encontrado <- F",
+      "C_op": "c1",
+      "Freq": "1",
+      "Total": "c1",
+      "explanation": "Inicializacion de variable booleana. Se ejecuta exactamente una vez en todos los escenarios."
+    }},
+    {{
+      "line_number": 2,
+      "code": "i <- 1",
+      "C_op": "c1",
+      "Freq": "1",
+      "Total": "c1",
+      "explanation": "Inicializacion del contador. Se ejecuta exactamente una vez en todos los escenarios."
+    }},
+    {{
+      "line_number": 3,
+      "code": "while (i <= n and not encontrado) do",
+      "C_op": "c2",
+      "Freq": "(n+3)/2",
+      "Total": "c2*(n+3)/2",
+      "explanation": "Encabezado del while con dos comparaciones y operacion logica. En promedio, el loop se detiene a mitad del arreglo. Frecuencia promedio: (1/(n+1))*[SUM(k=1 to n)(k+1) + (n+1)] = (n+3)/2."
+    }},
+    {{
+      "line_number": 4,
+      "code": "if (A[i] = x) then",
+      "C_op": "c3",
+      "Freq": "(n+1)/2",
+      "Total": "c3*(n+1)/2",
+      "explanation": "Comparacion del elemento actual con x. Se ejecuta en promedio (n+1)/2 veces."
+    }},
+    {{
+      "line_number": 5,
+      "code": "encontrado <- T",
+      "C_op": "c4",
+      "Freq": "n/(n+1)",
+      "Total": "c4*n/(n+1)",
+      "explanation": "Asignacion cuando se encuentra el elemento. Se ejecuta en n de los n+1 casos, probabilidad n/(n+1)."
+    }},
+    {{
+      "line_number": 6,
+      "code": "i <- i + 1",
+      "C_op": "c3",
+      "Freq": "(n+1)/2",
+      "Total": "c3*(n+1)/2",
+      "explanation": "Incremento del contador. Se ejecuta el mismo numero de veces que el cuerpo del while."
+    }},
+    {{
+      "line_number": 7,
+      "code": "return encontrado",
+      "C_op": "c7",
+      "Freq": "1",
+      "Total": "c7",
+      "explanation": "Retorno del resultado. Se ejecuta exactamente una vez en todos los escenarios."
+    }}
+  ]
 }}
+
+Responde SOLO con JSON siguiendo este formato (sin markdown, sin bloques ```):
 """
 
 # Plantilla de prompt para análisis de escenarios
@@ -343,13 +517,46 @@ class LLMAnalyzer:
             raise ValueError(
                 "ANTHROPIC_API_KEY no está configurada en el archivo .env"
             )
-
+        
         self.llm = ChatAnthropic(
             model=settings.model_name,
             anthropic_api_key=settings.anthropic_api_key,
             max_tokens=settings.max_tokens,
             temperature=temperature,
         )
+    
+    def _invoke_llm_with_retry(self, messages: list, max_retries: int = 3) -> Any:
+        """
+        Invoca el LLM con reintentos en caso de sobrecarga.
+        
+        Args:
+            messages: Lista de mensajes para enviar al LLM
+            max_retries: Número máximo de reintentos
+            
+        Returns:
+            Respuesta del LLM
+        """
+        import time
+        
+        wait_time = 2  # segundos iniciales
+        
+        for attempt in range(max_retries):
+            try:
+                return self.llm.invoke(messages)
+            except Exception as e:
+                error_str = str(e)
+                # Detectar error de sobrecarga (529 o "overloaded")
+                if "529" in error_str or "overloaded" in error_str.lower():
+                    if attempt < max_retries - 1:
+                        print(f"⚠️  Servidor sobrecargado. Reintentando en {wait_time}s... (intento {attempt + 1}/{max_retries})")
+                        time.sleep(wait_time)
+                        wait_time *= 2  # Backoff exponencial
+                    else:
+                        print(f"❌ Servidor sobrecargado después de {max_retries} intentos.")
+                        raise
+                else:
+                    # Otro tipo de error, no reintentar
+                    raise
 
     def analyze_input_scenarios(self, pseudocode: str, algorithm_name: str = "") -> Dict[str, Any]:
         """
@@ -571,11 +778,25 @@ class LLMAnalyzer:
                 raise ValueError("Falta análisis línea por línea para algoritmo iterativo")
 
             # Validar estructura de cada línea
-            for line in result["line_by_line_analysis"]:
+            for idx, line in enumerate(result["line_by_line_analysis"]):
                 required_line_fields = ["line_number", "code", "C_op", "Freq", "Total"]
                 for field in required_line_fields:
                     if field not in line:
                         raise ValueError(f"Campo faltante en línea: {field}")
+                
+                # Validar que C_op sea una constante simbólica (c1, c2, c3, etc.)
+                c_op = line.get("C_op")
+                if c_op is not None:
+                    # Convertir a string si es necesario
+                    c_op_str = str(c_op).strip()
+                    
+                    # Verificar que sea una constante simbólica válida
+                    # Patrones válidos: c1, c2, c3, c10, c15, etc.
+                    if not re.match(r'^c\d+$', c_op_str):
+                        raise ValueError(
+                            f"C_op debe ser constante simbólica (c1, c2, c3...), "
+                            f"recibido: {c_op_str} en línea {line.get('line_number', idx+1)}"
+                        )
 
         # Para recursivos: debe tener recurrence_relation
         if not is_iterative:
@@ -593,9 +814,7 @@ class LLMAnalyzer:
             ValueError: Si falta algún campo requerido
         """
         required_fields = [
-            "scenario_type",
-            "average_cost_formula",
-            "average_cost_simplified"
+            "scenario_type"
         ]
 
         for field in required_fields:
@@ -604,6 +823,14 @@ class LLMAnalyzer:
 
         if result["scenario_type"] != "average_case":
             raise ValueError("El scenario_type debe ser 'average_case'")
+        
+        # Normalizar campos: T_of_S_simplified puede venir como average_cost_simplified
+        if "T_of_S_simplified" in result and "average_cost_simplified" not in result:
+            result["average_cost_simplified"] = result["T_of_S_simplified"]
+        
+        # Normalizar campos: T_of_S puede venir como average_cost_formula
+        if "T_of_S" in result and "average_cost_formula" not in result:
+            result["average_cost_formula"] = result["T_of_S"]
 
     def analyze_best_case_only(self, pseudocode: str, algorithm_name: str = "") -> Dict[str, Any]:
         """

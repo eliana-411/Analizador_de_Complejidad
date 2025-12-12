@@ -1,0 +1,426 @@
+{
+  "pseudocode": "quickSort(int A[], int izq, int der)\nbegin\n    int pivote\n\n    if (izq < der) then\n    begin\n        pivote 🡨 CALL particionar(A[], izq, der)\n        CALL quickSort(A[], izq, pivote - 1)\n        CALL quickSort(A[], pivote + 1, der)\n    end\nend\n\nparticionar(int A[], int izq, int der)\nbegin\n    int pivote, i, j, temp\n\n    pivote 🡨 A[der]\n    i 🡨 izq - 1\n\n    for j 🡨 izq to der - 1 do\n    begin\n        if (A[j] ≤ pivote) then\n        begin\n            i 🡨 i + 1\n            temp 🡨 A[i]\n            A[i] 🡨 A[j]\n            A[j] 🡨 temp\n        end\n    end\n\n    temp 🡨 A[i + 1]\n    A[i + 1] 🡨 A[der]\n    A[der] 🡨 temp\n\n    return i + 1\nend",
+  "algorithm_name": "quickSort",
+  "is_iterative": false,
+  "parameters": {},
+  "lines": [],
+  "loops": [],
+  "recursive_calls": [],
+  "is_recursive": false,
+  "control_variables": [],
+  "raw_scenarios": [],
+  "llm_analysis": {},
+  "omega_table": {
+    "algorithm_name": "quickSort",
+    "scenarios": [
+      {
+        "id": "S_best_case",
+        "semantic_id": "best_case",
+        "condition": "Array ya ordenado o particiones perfectamente balanceadas donde el pivote siempre divide el array en dos mitades iguales",
+        "state": "BEST_CASE",
+        "cost_T": "T(n) = 2*T(n/2) + c*n",
+        "probability_P": "1"
+      },
+      {
+        "id": "S_worst_case_fallback",
+        "semantic_id": "worst_case_fallback",
+        "condition": "Peor caso (fallback heurístico)",
+        "state": "WORST_CASE",
+        "cost_T": "T(n) = T(n-1) + 1",
+        "probability_P": "1"
+      },
+      {
+        "id": "S_p",
+        "semantic_id": "S_intermediate_1",
+        "condition": "Pivote termina en posicion p (1 <= p <= n)",
+        "state": "INTERMEDIATE",
+        "cost_T": "T(p-1) + T(n-p) + c*n",
+        "probability_P": "1/n"
+      },
+      {
+        "id": "S_avg",
+        "semantic_id": "average_case",
+        "condition": "Promedio sobre todas las posibles particiones del arreglo",
+        "state": "AVERAGE",
+        "cost_T": "T(n) = (2/n)*SUM(k=0 to n-1)T(k) + c*n",
+        "probability_P": "1"
+      }
+    ],
+    "control_variables": [],
+    "metadata": {
+      "algorithm_type": "recursive",
+      "loop_count": 0,
+      "nesting_level": 0,
+      "parameters": {},
+      "llm_analysis": {
+        "best_case": {
+          "scenario_type": "best_case",
+          "input_description": "Array ya ordenado o particiones perfectamente balanceadas donde el pivote siempre divide el array en dos mitades iguales",
+          "input_characteristics": {
+            "array_state": "particiones balanceadas",
+            "pivot_position": "n/2",
+            "left_partition_size": "n/2",
+            "right_partition_size": "n/2"
+          },
+          "is_iterative": false,
+          "line_by_line_analysis": [
+            {
+              "line_number": 1,
+              "code": "quickSort(int A[], int izq, int der)",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Declaracion de la funcion recursiva. Se ejecuta una vez por cada llamada recursiva."
+            },
+            {
+              "line_number": 2,
+              "code": "int pivote",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Declaracion de variable local. Se ejecuta una vez por llamada."
+            },
+            {
+              "line_number": 3,
+              "code": "if (izq < der) then",
+              "C_op": "c2",
+              "Freq": "1",
+              "Total": "c2",
+              "explanation": "Comparacion para verificar caso base. Se ejecuta una vez por llamada."
+            },
+            {
+              "line_number": 4,
+              "code": "pivote <- CALL particionar(A[], izq, der)",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1 + T_particionar(n)",
+              "explanation": "Asignacion del resultado de particionar. Incluye el costo de la funcion particionar."
+            },
+            {
+              "line_number": 5,
+              "code": "CALL quickSort(A[], izq, pivote - 1)",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1 + T(n/2)",
+              "explanation": "Llamada recursiva sobre la mitad izquierda. En el mejor caso, el pivote divide en n/2."
+            },
+            {
+              "line_number": 6,
+              "code": "CALL quickSort(A[], pivote + 1, der)",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1 + T(n/2)",
+              "explanation": "Llamada recursiva sobre la mitad derecha. En el mejor caso, el pivote divide en n/2."
+            },
+            {
+              "line_number": 7,
+              "code": "particionar(int A[], int izq, int der)",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Declaracion de la funcion particionar. Se ejecuta una vez por llamada."
+            },
+            {
+              "line_number": 8,
+              "code": "int pivote, i, j, temp",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Declaracion de variables locales. Se ejecuta una vez."
+            },
+            {
+              "line_number": 9,
+              "code": "pivote <- A[der]",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Acceso a array y asignacion del pivote. Se ejecuta una vez."
+            },
+            {
+              "line_number": 10,
+              "code": "i <- izq - 1",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Operacion aritmetica y asignacion. Se ejecuta una vez."
+            },
+            {
+              "line_number": 11,
+              "code": "for j <- izq to der - 1 do",
+              "C_op": "c2",
+              "Freq": "n",
+              "Total": "c2*n",
+              "explanation": "Encabezado del for. Itera n-1 veces, por lo que se ejecuta n veces (n-1 iteraciones + 1 verificacion final)."
+            },
+            {
+              "line_number": 12,
+              "code": "if (A[j] <= pivote) then",
+              "C_op": "c3",
+              "Freq": "n-1",
+              "Total": "c3*(n-1)",
+              "explanation": "Comparacion con acceso a array. Se ejecuta n-1 veces (una por cada iteracion del for)."
+            },
+            {
+              "line_number": 13,
+              "code": "i <- i + 1",
+              "C_op": "c3",
+              "Freq": "(n-1)/2",
+              "Total": "c3*(n-1)/2",
+              "explanation": "Operacion aritmetica y asignacion. En el mejor caso balanceado, aproximadamente la mitad de los elementos son menores o iguales al pivote."
+            },
+            {
+              "line_number": 14,
+              "code": "temp <- A[i]",
+              "C_op": "c3",
+              "Freq": "(n-1)/2",
+              "Total": "c3*(n-1)/2",
+              "explanation": "Acceso a array y asignacion. Se ejecuta cuando la condicion es verdadera."
+            },
+            {
+              "line_number": 15,
+              "code": "A[i] <- A[j]",
+              "C_op": "c3",
+              "Freq": "(n-1)/2",
+              "Total": "c3*(n-1)/2",
+              "explanation": "Acceso a array y asignacion. Parte del intercambio."
+            },
+            {
+              "line_number": 16,
+              "code": "A[j] <- temp",
+              "C_op": "c3",
+              "Freq": "(n-1)/2",
+              "Total": "c3*(n-1)/2",
+              "explanation": "Asignacion a array. Completa el intercambio."
+            },
+            {
+              "line_number": 17,
+              "code": "temp <- A[i + 1]",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Acceso a array con operacion aritmetica y asignacion. Se ejecuta una vez al finalizar el for."
+            },
+            {
+              "line_number": 18,
+              "code": "A[i + 1] <- A[der]",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Acceso a array y asignacion. Coloca el pivote en su posicion final."
+            },
+            {
+              "line_number": 19,
+              "code": "A[der] <- temp",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Asignacion a array. Completa el intercambio del pivote."
+            },
+            {
+              "line_number": 20,
+              "code": "return i + 1",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Operacion aritmetica y retorno. Se ejecuta una vez al finalizar particionar."
+            }
+          ],
+          "total_cost_T": "T(n) = 2*T(n/2) + c*n",
+          "total_cost_explanation": "El costo total de quickSort en el mejor caso es una relacion de recurrencia donde se hacen dos llamadas recursivas sobre mitades del array (T(n/2) cada una) mas el costo lineal de particionar el array (c*n). La funcion particionar tiene costo O(n) ya que recorre todo el subarreglo una vez. El termino c*n representa la suma de todas las operaciones en particionar: c1 + c1 + c3 + c3 + c2*n + c3*(n-1) + c3*(n-1)/2 + c3*(n-1)/2 + c3*(n-1)/2 + c3*(n-1)/2 + c3 + c3 + c3 + c3, que se simplifica a una expresion lineal en n.",
+          "probability_P": "1",
+          "probability_explanation": "En el analisis teorico del mejor caso, asumimos que siempre ocurre la particion balanceada. En la practica, la probabilidad de obtener particiones perfectamente balanceadas en cada nivel es muy baja, pero para el analisis del mejor caso consideramos P=1.",
+          "recurrence_relation": "T(n) = 2*T(n/2) + c*n",
+          "base_case_cost": "c1 + c1 + c2",
+          "base_case_condition": "izq >= der"
+        },
+        "average_case": {
+          "scenario_type": "average_case",
+          "input_condition": "Promedio sobre todas las posibles particiones del arreglo",
+          "probability_model": "En el caso promedio, asumimos que todas las particiones son equiprobables. Para un arreglo de tamao n, el pivote puede terminar en cualquier posicion p (donde 1 <= p <= n) con probabilidad 1/n. Esto genera dos subarreglos de tamaos p-1 y n-p.",
+          "scenarios_breakdown": [
+            {
+              "scenario_id": "S_p",
+              "description": "Pivote termina en posicion p (1 <= p <= n)",
+              "T": "T(p-1) + T(n-p) + c*n",
+              "P": "1/n"
+            }
+          ],
+          "average_cost_formula": "E[T(n)] = (1/n) * SUM(p=1 to n)[T(p-1) + T(n-p) + c*n]",
+          "T_of_S": "T(n) = (2/n)*SUM(k=0 to n-1)T(k) + c*n",
+          "T_of_S_simplified": "T(n) = (2/n)*SUM(k=0 to n-1)T(k) + c*n",
+          "T_of_S_explanation": "El costo promedio se obtiene sumando sobre todas las posibles posiciones del pivote. Para cada posicion p, tenemos dos llamadas recursivas T(p-1) y T(n-p), mas el costo de particionar c*n. Como cada posicion es equiprobable (probabilidad 1/n), el costo esperado es la suma ponderada. Simplificando: SUM(p=1 to n)[T(p-1) + T(n-p)] = 2*SUM(k=0 to n-1)T(k), ya que cada termino T(k) aparece exactamente dos veces en la suma.",
+          "P_of_S": "1",
+          "P_of_S_explanation": "El caso promedio engloba todos los escenarios posibles con sus probabilidades respectivas (1/n para cada posicion del pivote)",
+          "line_by_line_analysis": [
+            {
+              "line_number": 1,
+              "code": "quickSort(int A[], int izq, int der)",
+              "C_op": "c1",
+              "Freq": "depende de recursion",
+              "Total": "variable",
+              "explanation": "Encabezado de la funcion recursiva. El numero de llamadas depende del arbol de recursion generado."
+            },
+            {
+              "line_number": 2,
+              "code": "int pivote",
+              "C_op": "c1",
+              "Freq": "depende de recursion",
+              "Total": "variable",
+              "explanation": "Declaracion de variable local en cada llamada recursiva."
+            },
+            {
+              "line_number": 3,
+              "code": "if (izq < der) then",
+              "C_op": "c2",
+              "Freq": "depende de recursion",
+              "Total": "variable",
+              "explanation": "Condicion de parada de la recursion. Se evalua en cada llamada."
+            },
+            {
+              "line_number": 4,
+              "code": "pivote <- CALL particionar(A[], izq, der)",
+              "C_op": "c1",
+              "Freq": "depende de recursion",
+              "Total": "variable",
+              "explanation": "Llamada a particionar y asignacion del resultado. El costo de particionar es c*n para un subarreglo de tamao n."
+            },
+            {
+              "line_number": 5,
+              "code": "CALL quickSort(A[], izq, pivote - 1)",
+              "C_op": "c1",
+              "Freq": "depende de recursion",
+              "Total": "T(p-1)",
+              "explanation": "Primera llamada recursiva sobre el subarreglo izquierdo de tamao p-1."
+            },
+            {
+              "line_number": 6,
+              "code": "CALL quickSort(A[], pivote + 1, der)",
+              "C_op": "c1",
+              "Freq": "depende de recursion",
+              "Total": "T(n-p)",
+              "explanation": "Segunda llamada recursiva sobre el subarreglo derecho de tamao n-p."
+            },
+            {
+              "line_number": 7,
+              "code": "particionar(int A[], int izq, int der)",
+              "C_op": "c1",
+              "Freq": "1 por llamada",
+              "Total": "c1",
+              "explanation": "Encabezado de la funcion particionar."
+            },
+            {
+              "line_number": 8,
+              "code": "int pivote, i, j, temp",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Declaracion de variables locales."
+            },
+            {
+              "line_number": 9,
+              "code": "pivote <- A[der]",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Seleccion del pivote (ultimo elemento) con acceso a array."
+            },
+            {
+              "line_number": 10,
+              "code": "i <- izq - 1",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Inicializacion del indice i con operacion aritmetica."
+            },
+            {
+              "line_number": 11,
+              "code": "for j <- izq to der - 1 do",
+              "C_op": "c2",
+              "Freq": "n",
+              "Total": "c2*n",
+              "explanation": "Encabezado del for que itera n-1 veces (de izq a der-1). Para un subarreglo de tamao n, se ejecuta n veces (n-1 iteraciones + 1 evaluacion final)."
+            },
+            {
+              "line_number": 12,
+              "code": "if (A[j] <= pivote) then",
+              "C_op": "c3",
+              "Freq": "n-1",
+              "Total": "c3*(n-1)",
+              "explanation": "Comparacion del elemento actual con el pivote. Se ejecuta n-1 veces (una por cada iteracion del for)."
+            },
+            {
+              "line_number": 13,
+              "code": "i <- i + 1",
+              "C_op": "c3",
+              "Freq": "(n-1)/2",
+              "Total": "c3*(n-1)/2",
+              "explanation": "Incremento de i cuando se encuentra elemento menor o igual al pivote. En promedio, la mitad de los elementos cumplen la condicion."
+            },
+            {
+              "line_number": 14,
+              "code": "temp <- A[i]",
+              "C_op": "c3",
+              "Freq": "(n-1)/2",
+              "Total": "c3*(n-1)/2",
+              "explanation": "Primera asignacion del intercambio. Se ejecuta cuando la condicion es verdadera."
+            },
+            {
+              "line_number": 15,
+              "code": "A[i] <- A[j]",
+              "C_op": "c3",
+              "Freq": "(n-1)/2",
+              "Total": "c3*(n-1)/2",
+              "explanation": "Segunda asignacion del intercambio con accesos a array."
+            },
+            {
+              "line_number": 16,
+              "code": "A[j] <- temp",
+              "C_op": "c3",
+              "Freq": "(n-1)/2",
+              "Total": "c3*(n-1)/2",
+              "explanation": "Tercera asignacion del intercambio completando el swap."
+            },
+            {
+              "line_number": 17,
+              "code": "temp <- A[i + 1]",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Primera asignacion para colocar el pivote en su posicion final."
+            },
+            {
+              "line_number": 18,
+              "code": "A[i + 1] <- A[der]",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Segunda asignacion del intercambio final del pivote."
+            },
+            {
+              "line_number": 19,
+              "code": "A[der] <- temp",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Tercera asignacion completando la colocacion del pivote."
+            },
+            {
+              "line_number": 20,
+              "code": "return i + 1",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Retorno de la posicion final del pivote con operacion aritmetica."
+            }
+          ],
+          "average_cost_simplified": "T(n) = (2/n)*SUM(k=0 to n-1)T(k) + c*n"
+        }
+      },
+      "best_case": {},
+      "worst_case": {},
+      "average_case": {}
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

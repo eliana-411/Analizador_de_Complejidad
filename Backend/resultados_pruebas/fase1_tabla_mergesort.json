@@ -1,0 +1,420 @@
+{
+  "pseudocode": "mergeSort(int A[], int izq, int der)\nbegin\n    int medio\n\n    if (izq < der) then\n    begin\n        medio 🡨 └(izq + der) / 2┘\n\n        CALL mergeSort(A[], izq, medio)\n        CALL mergeSort(A[], medio + 1, der)\n        CALL merge(A[], izq, medio, der)\n    end\nend\n\nmerge(int A[], int izq, int medio, int der)\nbegin\n    int n1, n2, i, j, k\n    int L[100], R[100]\n\n    n1 🡨 medio - izq + 1\n    n2 🡨 der - medio\n\n    for i 🡨 1 to n1 do\n    begin\n        L[i] 🡨 A[izq + i - 1]\n    end\n\n    for j 🡨 1 to n2 do\n    begin\n        R[j] 🡨 A[medio + j]\n    end\n\n    i 🡨 1\n    j 🡨 1\n    k 🡨 izq\n\n    while (i ≤ n1 and j ≤ n2) do\n    begin\n        if (L[i] ≤ R[j]) then\n        begin\n            A[k] 🡨 L[i]\n            i 🡨 i + 1\n        end\n        else\n        begin\n            A[k] 🡨 R[j]\n            j 🡨 j + 1\n        end\n        k 🡨 k + 1\n    end\n\n    while (i ≤ n1) do\n    begin\n        A[k] 🡨 L[i]\n        i 🡨 i + 1\n        k 🡨 k + 1\n    end\n\n    while (j ≤ n2) do\n    begin\n        A[k] 🡨 R[j]\n        j 🡨 j + 1\n        k 🡨 k + 1\n    end\nend",
+  "algorithm_name": "mergeSort",
+  "is_iterative": false,
+  "parameters": {},
+  "lines": [],
+  "loops": [],
+  "recursive_calls": [],
+  "is_recursive": false,
+  "control_variables": [],
+  "raw_scenarios": [],
+  "llm_analysis": {},
+  "omega_table": {
+    "algorithm_name": "mergeSort",
+    "scenarios": [
+      {
+        "id": "S_best_case",
+        "semantic_id": "best_case",
+        "condition": "Array ya ordenado de cualquier tamao. MergeSort no es sensible a la entrada, siempre realiza el mismo numero de operaciones independientemente del orden inicial de los elementos.",
+        "state": "BEST_CASE",
+        "cost_T": "T(n) = 2*T(n/2) + M(n)",
+        "probability_P": "1"
+      },
+      {
+        "id": "S_worst_case_fallback",
+        "semantic_id": "worst_case_fallback",
+        "condition": "Peor caso (fallback heurístico)",
+        "state": "WORST_CASE",
+        "cost_T": "T(n) = T(n-1) + 1",
+        "probability_P": "1"
+      },
+      {
+        "id": "S_all",
+        "semantic_id": "S_intermediate_1",
+        "condition": "Cualquier permutacion de entrada de tamao n",
+        "state": "INTERMEDIATE",
+        "cost_T": "T(n) = 2*T(n/2) + M(n)",
+        "probability_P": "1"
+      },
+      {
+        "id": "S_avg",
+        "semantic_id": "average_case",
+        "condition": "Promedio sobre todas las posibles permutaciones de entrada",
+        "state": "AVERAGE",
+        "cost_T": "T(n) = 2*T(n/2) + M(n)",
+        "probability_P": "1"
+      }
+    ],
+    "control_variables": [],
+    "metadata": {
+      "algorithm_type": "recursive",
+      "loop_count": 0,
+      "nesting_level": 0,
+      "parameters": {},
+      "llm_analysis": {
+        "best_case": {
+          "scenario_type": "best_case",
+          "input_description": "Array ya ordenado de cualquier tamao. MergeSort no es sensible a la entrada, siempre realiza el mismo numero de operaciones independientemente del orden inicial de los elementos.",
+          "input_characteristics": {
+            "array_state": "ordenado",
+            "size": "n",
+            "note": "El mejor caso tiene el mismo costo que el peor caso en MergeSort"
+          },
+          "is_iterative": false,
+          "line_by_line_analysis": [
+            {
+              "line_number": 1,
+              "code": "int medio",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Declaracion de variable. Se ejecuta una vez por cada llamada recursiva."
+            },
+            {
+              "line_number": 2,
+              "code": "if (izq < der) then",
+              "C_op": "c2",
+              "Freq": "1",
+              "Total": "c2",
+              "explanation": "Comparacion para verificar caso base. Se ejecuta una vez por cada llamada recursiva."
+            },
+            {
+              "line_number": 3,
+              "code": "medio <- (izq + der) / 2",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Calculo del punto medio (suma, division, floor). Se ejecuta cuando izq < der."
+            },
+            {
+              "line_number": 4,
+              "code": "CALL mergeSort(A[], izq, medio)",
+              "C_op": "c4",
+              "Freq": "1",
+              "Total": "c4 + T(n/2)",
+              "explanation": "Llamada recursiva a la mitad izquierda. Costo de la llamada mas el costo recursivo T(n/2)."
+            },
+            {
+              "line_number": 5,
+              "code": "CALL mergeSort(A[], medio + 1, der)",
+              "C_op": "c4",
+              "Freq": "1",
+              "Total": "c4 + T(n/2)",
+              "explanation": "Llamada recursiva a la mitad derecha. Costo de la llamada mas el costo recursivo T(n/2)."
+            },
+            {
+              "line_number": 6,
+              "code": "CALL merge(A[], izq, medio, der)",
+              "C_op": "c4",
+              "Freq": "1",
+              "Total": "c4 + M(n)",
+              "explanation": "Llamada a merge. Costo de la llamada mas el costo de merge M(n) que es lineal en n."
+            }
+          ],
+          "merge_function_analysis": [
+            {
+              "line_number": 1,
+              "code": "int n1, n2, i, j, k",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Declaracion de 5 variables enteras."
+            },
+            {
+              "line_number": 2,
+              "code": "int L[100], R[100]",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Declaracion de arrays auxiliares."
+            },
+            {
+              "line_number": 3,
+              "code": "n1 <- medio - izq + 1",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Calculo del tamao de la mitad izquierda."
+            },
+            {
+              "line_number": 4,
+              "code": "n2 <- der - medio",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Calculo del tamao de la mitad derecha."
+            },
+            {
+              "line_number": 5,
+              "code": "for i <- 1 to n1 do",
+              "C_op": "c2",
+              "Freq": "n1+1",
+              "Total": "c2*(n1+1)",
+              "explanation": "Encabezado del for. Se ejecuta n1+1 veces (n1 iteraciones mas una verificacion final)."
+            },
+            {
+              "line_number": 6,
+              "code": "L[i] <- A[izq + i - 1]",
+              "C_op": "c3",
+              "Freq": "n1",
+              "Total": "c3*n1",
+              "explanation": "Copia elementos al array izquierdo. Acceso a array y asignacion, se ejecuta n1 veces."
+            },
+            {
+              "line_number": 7,
+              "code": "for j <- 1 to n2 do",
+              "C_op": "c2",
+              "Freq": "n2+1",
+              "Total": "c2*(n2+1)",
+              "explanation": "Encabezado del for. Se ejecuta n2+1 veces (n2 iteraciones mas una verificacion final)."
+            },
+            {
+              "line_number": 8,
+              "code": "R[j] <- A[medio + j]",
+              "C_op": "c3",
+              "Freq": "n2",
+              "Total": "c3*n2",
+              "explanation": "Copia elementos al array derecho. Acceso a array y asignacion, se ejecuta n2 veces."
+            },
+            {
+              "line_number": 9,
+              "code": "i <- 1",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Inicializacion del indice i."
+            },
+            {
+              "line_number": 10,
+              "code": "j <- 1",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Inicializacion del indice j."
+            },
+            {
+              "line_number": 11,
+              "code": "k <- izq",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Inicializacion del indice k."
+            },
+            {
+              "line_number": 12,
+              "code": "while (i <= n1 and j <= n2) do",
+              "C_op": "c2",
+              "Freq": "min(n1,n2)+1",
+              "Total": "c2*(min(n1,n2)+1)",
+              "explanation": "Encabezado del while principal. Se ejecuta hasta que uno de los arrays se agote, mas una verificacion final."
+            },
+            {
+              "line_number": 13,
+              "code": "if (L[i] <= R[j]) then",
+              "C_op": "c3",
+              "Freq": "min(n1,n2)",
+              "Total": "c3*min(n1,n2)",
+              "explanation": "Comparacion de elementos. Se ejecuta min(n1,n2) veces."
+            },
+            {
+              "line_number": 14,
+              "code": "A[k] <- L[i]",
+              "C_op": "c3",
+              "Freq": "varia",
+              "Total": "c3*x",
+              "explanation": "Asignacion cuando L[i] es menor. La frecuencia x depende de cuantas veces se toma esta rama."
+            },
+            {
+              "line_number": 15,
+              "code": "i <- i + 1",
+              "C_op": "c3",
+              "Freq": "varia",
+              "Total": "c3*x",
+              "explanation": "Incremento de i. Se ejecuta x veces cuando se toma la rama then."
+            },
+            {
+              "line_number": 16,
+              "code": "A[k] <- R[j]",
+              "C_op": "c3",
+              "Freq": "varia",
+              "Total": "c3*y",
+              "explanation": "Asignacion cuando R[j] es menor. La frecuencia y depende de cuantas veces se toma esta rama."
+            },
+            {
+              "line_number": 17,
+              "code": "j <- j + 1",
+              "C_op": "c3",
+              "Freq": "varia",
+              "Total": "c3*y",
+              "explanation": "Incremento de j. Se ejecuta y veces cuando se toma la rama else."
+            },
+            {
+              "line_number": 18,
+              "code": "k <- k + 1",
+              "C_op": "c3",
+              "Freq": "min(n1,n2)",
+              "Total": "c3*min(n1,n2)",
+              "explanation": "Incremento de k. Se ejecuta en cada iteracion del while principal."
+            },
+            {
+              "line_number": 19,
+              "code": "while (i <= n1) do",
+              "C_op": "c2",
+              "Freq": "max(n1-min(n1,n2),0)+1",
+              "Total": "c2*(max(n1-min(n1,n2),0)+1)",
+              "explanation": "Encabezado del while para elementos restantes de L. Se ejecuta si quedan elementos en L."
+            },
+            {
+              "line_number": 20,
+              "code": "A[k] <- L[i]",
+              "C_op": "c3",
+              "Freq": "max(n1-min(n1,n2),0)",
+              "Total": "c3*max(n1-min(n1,n2),0)",
+              "explanation": "Copia elementos restantes de L."
+            },
+            {
+              "line_number": 21,
+              "code": "i <- i + 1",
+              "C_op": "c3",
+              "Freq": "max(n1-min(n1,n2),0)",
+              "Total": "c3*max(n1-min(n1,n2),0)",
+              "explanation": "Incremento de i para elementos restantes."
+            },
+            {
+              "line_number": 22,
+              "code": "k <- k + 1",
+              "C_op": "c3",
+              "Freq": "max(n1-min(n1,n2),0)",
+              "Total": "c3*max(n1-min(n1,n2),0)",
+              "explanation": "Incremento de k para elementos restantes."
+            },
+            {
+              "line_number": 23,
+              "code": "while (j <= n2) do",
+              "C_op": "c2",
+              "Freq": "max(n2-min(n1,n2),0)+1",
+              "Total": "c2*(max(n2-min(n1,n2),0)+1)",
+              "explanation": "Encabezado del while para elementos restantes de R. Se ejecuta si quedan elementos en R."
+            },
+            {
+              "line_number": 24,
+              "code": "A[k] <- R[j]",
+              "C_op": "c3",
+              "Freq": "max(n2-min(n1,n2),0)",
+              "Total": "c3*max(n2-min(n1,n2),0)",
+              "explanation": "Copia elementos restantes de R."
+            },
+            {
+              "line_number": 25,
+              "code": "j <- j + 1",
+              "C_op": "c3",
+              "Freq": "max(n2-min(n1,n2),0)",
+              "Total": "c3*max(n2-min(n1,n2),0)",
+              "explanation": "Incremento de j para elementos restantes."
+            },
+            {
+              "line_number": 26,
+              "code": "k <- k + 1",
+              "C_op": "c3",
+              "Freq": "max(n2-min(n1,n2),0)",
+              "Total": "c3*max(n2-min(n1,n2),0)",
+              "explanation": "Incremento de k para elementos restantes."
+            }
+          ],
+          "merge_cost_summary": "M(n) = c1 + c1 + c3 + c3 + c2*(n1+1) + c3*n1 + c2*(n2+1) + c3*n2 + c1 + c1 + c1 + c2*(min(n1,n2)+1) + c3*min(n1,n2) + c3*min(n1,n2) + c3*min(n1,n2) + c2*(max(n1-min(n1,n2),0)+1) + 3*c3*max(n1-min(n1,n2),0) + c2*(max(n2-min(n1,n2),0)+1) + 3*c3*max(n2-min(n1,n2),0). Dado que n1+n2=n, el costo de merge es lineal: M(n) = O(n)",
+          "total_cost_T": "T(n) = 2*T(n/2) + M(n)",
+          "total_cost_explanation": "El costo total de mergeSort incluye: el costo de las operaciones en la funcion principal (c1 + c2 + c3 + 3*c4), mas dos llamadas recursivas a mitades del array (2*T(n/2)), mas el costo de merge que es lineal M(n). Simplificando: T(n) = 2*T(n/2) + M(n), donde M(n) es proporcional a n.",
+          "recurrence_relation": "T(n) = 2*T(n/2) + c*n",
+          "base_case_cost": "c1 + c2",
+          "base_case_condition": "n == 1 o izq >= der",
+          "probability_P": "1",
+          "probability_explanation": "MergeSort no es sensible a la entrada. Siempre realiza el mismo numero de divisiones y mezclas independientemente del orden inicial de los elementos. Por lo tanto, el mejor caso, caso promedio y peor caso tienen la misma complejidad temporal. La probabilidad de este comportamiento es 1 (siempre ocurre)."
+        },
+        "average_case": {
+          "scenario_type": "average_case",
+          "input_condition": "Promedio sobre todas las posibles permutaciones de entrada",
+          "probability_model": "MergeSort es un algoritmo NO SENSIBLE a la entrada. Su comportamiento no depende del orden inicial de los elementos, sino solo del tamao n del arreglo. Siempre divide el arreglo en mitades iguales y realiza el mismo numero de comparaciones y movimientos independientemente de la distribucion de los datos. Por lo tanto, el caso promedio es identico al mejor y peor caso.",
+          "scenarios_breakdown": [
+            {
+              "scenario_id": "S_all",
+              "description": "Cualquier permutacion de entrada de tamao n",
+              "T": "T(n) = 2*T(n/2) + M(n)",
+              "P": "1"
+            }
+          ],
+          "average_cost_formula": "E[T] = T(n) = 2*T(n/2) + M(n)",
+          "T_of_S": "T(n) = 2*T(n/2) + M(n)",
+          "T_of_S_simplified": "T(n) = 2*T(n/2) + M(n)",
+          "T_of_S_explanation": "MergeSort es un algoritmo de divide y conquista que siempre divide el arreglo en dos mitades de tamao n/2, procesa recursivamente cada mitad, y luego las combina con la funcion merge que tiene costo M(n). Este comportamiento es independiente del orden de los elementos de entrada, por lo que el caso promedio coincide con el mejor y peor caso. La recurrencia T(n) = 2*T(n/2) + M(n) donde M(n) es el costo de la funcion merge.",
+          "P_of_S": "1",
+          "P_of_S_explanation": "Como el algoritmo no es sensible a la entrada, existe un unico escenario con probabilidad 1. Todas las permutaciones de entrada producen el mismo patron de ejecucion y el mismo numero de operaciones.",
+          "line_by_line_analysis": [
+            {
+              "line_number": 1,
+              "code": "mergeSort(int A[], int izq, int der)",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Encabezado de la funcion mergeSort. Se ejecuta una vez por cada llamada recursiva."
+            },
+            {
+              "line_number": 2,
+              "code": "int medio",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Declaracion de variable local. Se ejecuta una vez por llamada."
+            },
+            {
+              "line_number": 3,
+              "code": "if (izq < der) then",
+              "C_op": "c2",
+              "Freq": "1",
+              "Total": "c2",
+              "explanation": "Comparacion para verificar caso base. Se ejecuta una vez por llamada."
+            },
+            {
+              "line_number": 4,
+              "code": "medio <- (izq + der) / 2",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Calculo del punto medio con suma, division y floor. Se ejecuta una vez si la condicion es verdadera."
+            },
+            {
+              "line_number": 5,
+              "code": "CALL mergeSort(A[], izq, medio)",
+              "C_op": "T(n/2)",
+              "Freq": "1",
+              "Total": "T(n/2)",
+              "explanation": "Llamada recursiva para la mitad izquierda del arreglo. Costo recursivo T(n/2)."
+            },
+            {
+              "line_number": 6,
+              "code": "CALL mergeSort(A[], medio + 1, der)",
+              "C_op": "T(n/2)",
+              "Freq": "1",
+              "Total": "T(n/2)",
+              "explanation": "Llamada recursiva para la mitad derecha del arreglo. Costo recursivo T(n/2)."
+            },
+            {
+              "line_number": 7,
+              "code": "CALL merge(A[], izq, medio, der)",
+              "C_op": "M(n)",
+              "Freq": "1",
+              "Total": "M(n)",
+              "explanation": "Llamada a la funcion merge para combinar las dos mitades ordenadas. Costo M(n) donde n = der - izq + 1."
+            }
+          ],
+          "average_cost_simplified": "T(n) = 2*T(n/2) + M(n)"
+        }
+      },
+      "best_case": {},
+      "worst_case": {},
+      "average_case": {}
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

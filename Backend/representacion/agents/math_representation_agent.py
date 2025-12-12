@@ -110,6 +110,7 @@ class AgenteRepresentacionMatematica:
                 caso_promedio=resultado['caso_promedio'],
                 peor_caso=resultado['peor_caso'],
                 ecuaciones_iguales=resultado['ecuaciones_iguales'],
+                casos_base=resultado.get('casos_base', None),
                 tipo_analisis=resultado['tipo_analisis'],
                 derivacion_caso_promedio=resultado.get('derivacion_caso_promedio', ''),
                 metadata=self._construir_metadata(request, resultado),
@@ -202,6 +203,23 @@ class AgenteRepresentacionMatematica:
         
         # Combinar pasos del LLM con los del procesador
         resultado['pasos_generacion'] = pasos_llm + resultado['pasos_generacion']
+        
+        # Guardar análisis completo en metadata antes de reemplazar
+        resultado['ecuaciones_completas'] = {
+            'mejor_caso': resultado['mejor_caso'],
+            'peor_caso': resultado['peor_caso'],
+            'caso_promedio': resultado['caso_promedio']
+        }
+        
+        # REEMPLAZAR con sugerencias del LLM si existen
+        if 'mejor_caso' in analisis_llm and analisis_llm['mejor_caso'].get('ecuacion_sugerida'):
+            resultado['mejor_caso'] = analisis_llm['mejor_caso']['ecuacion_sugerida']
+        
+        if 'peor_caso' in analisis_llm and analisis_llm['peor_caso'].get('ecuacion_sugerida'):
+            resultado['peor_caso'] = analisis_llm['peor_caso']['ecuacion_sugerida']
+        
+        if 'caso_promedio' in analisis_llm and analisis_llm['caso_promedio'].get('ecuacion_sugerida'):
+            resultado['caso_promedio'] = analisis_llm['caso_promedio']['ecuacion_sugerida']
         
         # Agregar información de análisis LLM a metadata
         resultado['analisis_llm'] = {
