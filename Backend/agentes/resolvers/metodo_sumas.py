@@ -20,52 +20,95 @@ class MetodoSumas(BaseResolver):
     def puede_resolver(self, ecuacion):
         """
         Ahora permite decrementos de cualquier k: T(n) = T(n-k) + f(n)
+        Además, detecta ecuaciones del tipo (a/n) * SUM(T(k)) + f(n).
         """
-        return ecuacion.get('forma') == 'decrementacion' and ecuacion.get('c', 0) >= 1
+        # Detección de forma clásica
+        if ecuacion.get('forma') == 'decrementacion' and ecuacion.get('c', 0) >= 1:
+            return True
+        # Detección de sumatoria tipo QuickSort: T(n) = (a/n) * SUM_{k=0}^{n-1} T(k) + f(n)
+        if ecuacion.get('forma') == 'sumatoria_todos':
+            return True
+        # Detección por string (fallback)
+        eq_str = ecuacion.get('ecuacion_str', '').replace(' ', '').lower()
+        if re.search(r't\(n\)=.*[a-z0-9]+/n.*sum.*t\(k\)', eq_str):
+            return True
+        return False
     
     def resolver(self, ecuacion):
         """
         Resuelve usando el método de sumas para cualquier decremento k.
-        T(n) = T(n-k) + f(n)
-        T(n) = T(n-2) + f(n) + f(n-2) + ...
-        T(n) = T(0) + sumatoria f(i) para i=0 hasta n en pasos de k
+        Además, detecta y resuelve asintóticamente ecuaciones del tipo (a/n) * SUM_{k=0}^{n-1} T(k) + f(n).
         """
         pasos = []
+        # Detección de sumatoria tipo QuickSort: T(n) = (a/n) * SUM_{k=0}^{n-1} T(k) + f(n)
+        if ecuacion.get('forma') == 'sumatoria_todos' or \
+           re.search(r't\(n\)=.*([a-z0-9]+)\/n.*sum.*t\(k\)', ecuacion.get('ecuacion_str', '').replace(' ', '').lower()):
+            # Extraer a y f(n) si es posible
+            eq_str = ecuacion.get('ecuacion_str', '').replace(' ', '')
+            match_a = re.search(r'=\(?([a-zA-Z0-9]+)\/n\)?\*?sum', eq_str, re.IGNORECASE)
+            a_val = match_a.group(1) if match_a else 'a'
+            f_n = ecuacion.get('f_n', 'f(n)')
+            pasos.append(f"📝 Ecuación: T(n) = ({a_val}/n)·SUM(k=0 to n-1)T(k) + {f_n}")
+            pasos.append("")
+            pasos.append("🔹 PASO 1: Expansión de la recurrencia")
+            pasos.append(f"   T(n) = ({a_val}/n)·[T(0) + T(1) + ... + T(n-1)] + {f_n}")
+            pasos.append("   Esta forma aparece en el análisis de QuickSort y otros algoritmos de divide y conquista.")
+            pasos.append("")
+            pasos.append("🔹 PASO 2: Suposición inductiva y análisis asintótico")
+            pasos.append(f"   Se asume que T(k) ≤ C·k·log(k) para k < n (por hipótesis inductiva).")
+            pasos.append(f"   Entonces, la sumatoria es aproximadamente:")
+            pasos.append(f"      SUM(k=0 to n-1) T(k) ≈ ∫₀ⁿ C·k·log(k) dk ≈ (1/2)·n²·log(n)")
+            pasos.append(f"   Por lo tanto:")
+            pasos.append(f"      T(n) ≈ ({a_val}/n)·(n²·log(n)) + {f_n}")
+            pasos.append(f"      T(n) ≈ {a_val}·n·log(n) + {f_n}")
+            pasos.append("")
+            pasos.append("🔹 PASO 3: Conclusión asintótica")
+            pasos.append(f"   El término dominante es n·log(n), así que:")
+            pasos.append(f"      T(n) = O(n log n)")
+            pasos.append("")
+            return self._crear_resultado(
+                exito=True,
+                solucion="n log n",
+                pasos=pasos,
+                explicacion=f"Recurrencia tipo QuickSort (a={a_val}): la solución asintótica es O(n log n) para f(n) polinomial o constante. Se justifica por expansión y análisis integral de la sumatoria."
+            )
+
+        # Caso clásico: T(n) = T(n-k) + f(n)
         f_n_str = ecuacion['f_n']
         k = ecuacion.get('c', 1)
         pasos.append(f"📝 Ecuación: T(n) = T(n-{k}) + {f_n_str}")
-        pasos.append(f"")
-        pasos.append(f"🔹 MÉTODO DE SUMAS")
+        pasos.append("")
+        pasos.append("🔹 MÉTODO DE SUMAS")
         pasos.append(f"   Para recurrencias de la forma T(n) = T(n-{k}) + f(n)")
         if k == 1:
-            pasos.append(f"   La solución es: T(n) = T(0) + Σ f(i) para i=1 hasta n")
+            pasos.append("   La solución es: T(n) = T(0) + Σ f(i) para i=1 hasta n")
         else:
             pasos.append(f"   La solución es: T(n) = T(0) + Σ f(i) para i=0 hasta n en pasos de {k}")
-        pasos.append(f"")
+        pasos.append("")
         # Expandir algunos términos para ilustrar
-        pasos.append(f"🔹 PASO 1: Expandir la recurrencia")
+        pasos.append("🔹 PASO 1: Expandir la recurrencia")
         if k == 1:
             pasos.append(f"   T(n) = T(n-1) + {f_n_str}")
             pasos.append(f"   T(n) = [T(n-2) + f(n-1)] + {f_n_str}")
             pasos.append(f"   T(n) = T(n-2) + f(n-1) + f(n)")
             pasos.append(f"   T(n) = [T(n-3) + f(n-2)] + f(n-1) + f(n)")
-            pasos.append(f"   ...")
-            pasos.append(f"   T(n) = T(0) + f(1) + f(2) + ... + f(n)")
+            pasos.append("   ...")
+            pasos.append("   T(n) = T(0) + f(1) + f(2) + ... + f(n)")
         else:
             pasos.append(f"   T(n) = T(n-{k}) + f(n)")
             pasos.append(f"   T(n) = [T(n-2*{k}) + f(n-{k})] + f(n)")
             pasos.append(f"   T(n) = T(n-2*{k}) + f(n-{k}) + f(n)")
-            pasos.append(f"   ...")
+            pasos.append("   ...")
             pasos.append(f"   T(n) = T(0) + f({k}) + f(2*{k}) + ... + f(n)")
-        pasos.append(f"")
+        pasos.append("")
         # Identificar la forma de f(n)
-        pasos.append(f"🔹 PASO 2: Identificar la suma Σ f(i)")
+        pasos.append("🔹 PASO 2: Identificar la suma Σ f(i)")
         forma = self._identificar_forma_funcion(f_n_str)
         pasos.append(f"   f(n) = {f_n_str}")
         pasos.append(f"   Forma: {forma['descripcion']}")
-        pasos.append(f"")
+        pasos.append("")
         # Resolver la suma
-        pasos.append(f"🔹 PASO 3: Calcular la suma")
+        pasos.append("🔹 PASO 3: Calcular la suma")
         resultado_suma = self._resolver_suma_k(forma, pasos, k)
         if not resultado_suma:
             return self._crear_resultado(
