@@ -55,6 +55,7 @@ class AnalisisResponse(BaseModel):
     errores: list
     clasificacion: Optional[dict] = None
     flowchart: Optional[str] = None
+    validacion_complejidades: Optional[dict] = None
 
 
 class AnalisisConReporteResponse(AnalisisResponse):
@@ -137,7 +138,8 @@ async def analizar_complejidad(request: AnalisisRequest) -> AnalisisResponse:
             costos_por_linea=resultado.get('costos_por_linea'),
             ecuaciones=resultado.get('ecuaciones'),
             complejidades=complejidades,
-            errores=resultado.get('errores', [])
+            errores=resultado.get('errores', []),
+            validacion_complejidades=resultado.get('validacion_complejidades')
         )
 
         return response
