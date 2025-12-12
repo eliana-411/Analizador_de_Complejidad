@@ -28,73 +28,53 @@
     {
       "id": "S_best_case",
       "semantic_id": "best_case",
-      "condition": "Arreglo ordenado de forma descendente donde arr[0] es el elemento maximo (ningun elemento posterior es mayor)",
+      "condition": "Arreglo ordenado de forma descendente donde arr[0] es el elemento maximo",
       "state": "BEST_CASE",
       "cost_T": "c1 + c2*n + c3*(n-1) + c5",
       "probability_P": "1",
-      "input_description": "Arreglo ordenado de forma descendente donde arr[0] es el elemento maximo (ningun elemento posterior es mayor)",
+      "input_description": "Arreglo ordenado de forma descendente donde arr[0] es el elemento maximo",
       "input_characteristics": {},
       "is_iterative": true
     },
     {
       "id": "S_worst_case",
       "semantic_id": "worst_case",
-      "condition": "Arreglo en orden estrictamente creciente (cada elemento es mayor que el anterior), maximizando las asignaciones dentro del if",
+      "condition": "El elemento x no se encuentra en el arreglo A, obligando a recorrer todas las n posiciones sin encontrarlo",
       "state": "WORST_CASE",
-      "cost_T": "c1 + c2*n + c3*(n-1) + c4*(n-1) + c5",
-      "probability_P": "1",
-      "input_description": "Arreglo en orden estrictamente creciente (cada elemento es mayor que el anterior), maximizando las asignaciones dentro del if",
+      "cost_T": "3*c1 + c2*(n+1) + 2*c3*n",
+      "probability_P": "1/(n+1)",
+      "input_description": "El elemento x no se encuentra en el arreglo A, obligando a recorrer todas las n posiciones sin encontrarlo",
       "input_characteristics": {},
       "is_iterative": true
     },
     {
-      "id": "S_no_updates",
+      "id": "S_unico",
       "semantic_id": "S_intermediate_1",
-      "condition": "Array ordenado descendente - max nunca se actualiza (0 actualizaciones)",
+      "condition": "Unico escenario: el algoritmo siempre ejecuta n-1 iteraciones completas del loop, realizando n-1 comparaciones. El numero de asignaciones dentro del if varia segun los datos, pero el costo total en terminos de n permanece O(n).",
       "state": "INTERMEDIATE",
-      "cost_T": "c1 + c2 + c3*(n+1) + c4*n + c5*n + c8 + c9",
-      "probability_P": "1/n!",
-      "input_description": "Array ordenado descendente - max nunca se actualiza (0 actualizaciones)",
-      "input_characteristics": {}
-    },
-    {
-      "id": "S_all_updates",
-      "semantic_id": "S_intermediate_2",
-      "condition": "Array ordenado ascendente - max se actualiza en cada iteracion (n-1 actualizaciones)",
-      "state": "INTERMEDIATE",
-      "cost_T": "c1 + c2 + c3*(n+1) + c4*n + c5*n + c6*n + c7*(n-1) + c8 + c9",
-      "probability_P": "1/n!",
-      "input_description": "Array ordenado ascendente - max se actualiza en cada iteracion (n-1 actualizaciones)",
-      "input_characteristics": {}
-    },
-    {
-      "id": "S_typical",
-      "semantic_id": "S_intermediate_3",
-      "condition": "Configuracion tipica - numero promedio de actualizaciones",
-      "state": "INTERMEDIATE",
-      "cost_T": "c1 + c2 + c3*(n+1) + c4*n + c5*n + c6*k + c7*k + c8 + c9, donde k es el numero esperado de actualizaciones",
-      "probability_P": "(n!-2)/n!",
-      "input_description": "Configuracion tipica - numero promedio de actualizaciones",
+      "cost_T": "c1 + c2*(n) + c3*(n-1) + c4*k",
+      "probability_P": "1",
+      "input_description": "Unico escenario: el algoritmo siempre ejecuta n-1 iteraciones completas del loop, realizando n-1 comparaciones. El numero de asignaciones dentro del if varia segun los datos, pero el costo total en terminos de n permanece O(n).",
       "input_characteristics": {}
     },
     {
       "id": "S_avg",
       "semantic_id": "average_case",
-      "condition": "Promedio sobre todas las posibles configuraciones del array",
+      "condition": "Promedio sobre todos los arreglos posibles de n elementos",
       "state": "AVERAGE",
-      "cost_T": "c1 + c2 + c3 + c8 + c9 + n*(c3 + c4 + c5 + c6/2 + c7/2)",
+      "cost_T": "c1 + c2*n + c3*(n-1) + c4*k = c1 + c2*n + c3*n - c3 + c4*k = (c2+c3)*n + (c1-c3) + c4*k",
       "probability_P": "1",
-      "input_description": "Promedio sobre todas las posibles configuraciones del array",
+      "input_description": "Promedio sobre todos los arreglos posibles de n elementos",
       "input_characteristics": {},
-      "average_cost_formula": "E[T] = c1 + c2 + c3*(n+1) + c4*n + c5*n + c6*H(n) + c7*H(n) + c8 + c9, donde H(n) es el numero armonico que aproxima el numero esperado de actualizaciones",
-      "average_cost_simplified": "c1 + c2 + c3 + c8 + c9 + n*(c3 + c4 + c5 + c6/2 + c7/2)"
+      "average_cost_formula": "E[T] = T(unico) * P(unico) = T(n) * 1",
+      "average_cost_simplified": ""
     }
   ],
   "llm_analysis": {
     "best_case": {
       "scenario_id": "S_best_case",
       "scenario_type": "best_case",
-      "input_condition": "Arreglo ordenado de forma descendente donde arr[0] es el elemento maximo (ningun elemento posterior es mayor)",
+      "input_condition": "Arreglo ordenado de forma descendente donde arr[0] es el elemento maximo",
       "line_by_line_analysis": [
         {
           "line_number": 1,
@@ -109,7 +89,7 @@
           "C_op": "c2",
           "Freq": "n",
           "Total": "c2*n",
-          "explanation": "Encabezado del loop: se ejecuta n veces"
+          "explanation": "Encabezado del loop: se ejecuta n veces (n-1+1)"
         },
         {
           "line_number": 3,
@@ -136,224 +116,97 @@
         }
       ],
       "T_of_S": "c1 + c2*n + c3*(n-1) + c5",
-      "T_of_S_explanation": "Suma de todos los costos: inicializacion + encabezado loop + comparaciones (todas falsas) + return. La asignacion dentro del if nunca se ejecuta",
+      "T_of_S_explanation": "Suma de todos los costos individuales. La asignacion dentro del if no se ejecuta",
       "P_of_S": "1",
-      "P_of_S_explanation": "Este algoritmo no es sensible a la distribucion de datos para el mejor caso. Siempre recorre todo el arreglo independientemente del orden",
-      "probability_model": "Aunque el mejor caso ocurre cuando el maximo esta al inicio (minimizando asignaciones), el algoritmo siempre ejecuta n-1 iteraciones completas. P=1 porque el comportamiento del mejor caso es deterministico respecto al numero de iteraciones"
+      "P_of_S_explanation": "El mejor caso ocurre cuando el arreglo esta ordenado descendentemente",
+      "probability_model": "Para un arreglo aleatorio, la probabilidad de que este ordenado descendentemente es muy baja, pero se considera P=1 para el analisis del mejor caso como escenario deterministico"
     },
     "worst_case": {
       "scenario_id": "S_worst_case",
       "scenario_type": "worst_case",
-      "input_condition": "Arreglo en orden estrictamente creciente (cada elemento es mayor que el anterior), maximizando las asignaciones dentro del if",
+      "input_condition": "El elemento x no se encuentra en el arreglo A, obligando a recorrer todas las n posiciones sin encontrarlo",
       "line_by_line_analysis": [
         {
           "line_number": 1,
-          "code": "max <- arr[0]",
+          "code": "encontrado <- F",
           "C_op": "c1",
           "Freq": "1",
           "Total": "c1",
-          "explanation": "Asignacion inicial ejecutada una vez"
+          "explanation": "Asignacion inicial que se ejecuta una sola vez al inicio del algoritmo"
         },
         {
           "line_number": 2,
-          "code": "for i <- 1 to n-1 do",
-          "C_op": "c2",
-          "Freq": "n",
-          "Total": "c2*n",
-          "explanation": "Encabezado del for: se evalua n veces (desde i=1 hasta i=n-1, son n-1 iteraciones, encabezado se ejecuta (n-1)+1=n veces)"
+          "code": "i <- 1",
+          "C_op": "c1",
+          "Freq": "1",
+          "Total": "c1",
+          "explanation": "Inicializacion del contador que se ejecuta una sola vez"
         },
         {
           "line_number": 3,
-          "code": "if (arr[i] > max) then",
-          "C_op": "c3",
-          "Freq": "n-1",
-          "Total": "c3*(n-1)",
-          "explanation": "Comparacion ejecutada n-1 veces (cuerpo del loop). En peor caso SIEMPRE es verdadera"
+          "code": "while (i <= n and not encontrado)",
+          "C_op": "c2",
+          "Freq": "n+1",
+          "Total": "c2*(n+1)",
+          "explanation": "Encabezado del loop que se ejecuta n+1 veces: n veces evalua verdadero (i=1..n con encontrado=F), y 1 vez evalua falso (i=n+1)"
         },
         {
           "line_number": 4,
-          "code": "max <- arr[i]",
-          "C_op": "c4",
-          "Freq": "n-1",
-          "Total": "c4*(n-1)",
-          "explanation": "En peor caso (arreglo creciente), esta asignacion se ejecuta en TODAS las iteraciones: n-1 veces"
+          "code": "if (A[i] = x)",
+          "C_op": "c3",
+          "Freq": "n",
+          "Total": "c3*n",
+          "explanation": "Comparacion que se ejecuta n veces (una por cada iteracion del loop). En peor caso siempre evalua falso porque x no esta en A"
         },
         {
           "line_number": 5,
-          "code": "return max",
-          "C_op": "c5",
+          "code": "encontrado <- T",
+          "C_op": "c4",
+          "Freq": "0",
+          "Total": "0",
+          "explanation": "Esta linea NUNCA se ejecuta en el peor caso porque la condicion A[i]=x siempre es falsa"
+        },
+        {
+          "line_number": 6,
+          "code": "i <- i + 1",
+          "C_op": "c3",
+          "Freq": "n",
+          "Total": "c3*n",
+          "explanation": "Incremento del contador que se ejecuta n veces, una por cada iteracion del loop"
+        },
+        {
+          "line_number": 7,
+          "code": "return encontrado",
+          "C_op": "c1",
           "Freq": "1",
-          "Total": "c5",
-          "explanation": "Return ejecutado una vez al final"
+          "Total": "c1",
+          "explanation": "Retorno final que se ejecuta una sola vez al terminar el algoritmo"
         }
       ],
-      "T_of_S": "c1 + c2*n + c3*(n-1) + c4*(n-1) + c5",
-      "T_of_S_explanation": "Suma de todos los costos. El peor caso ocurre cuando el arreglo esta en orden creciente, forzando que la condicion arr[i] > max sea verdadera en cada iteracion, ejecutando la asignacion max <- arr[i] el maximo numero de veces posible (n-1 veces)",
-      "P_of_S": "1",
-      "P_of_S_explanation": "El peor caso es una configuracion especifica del arreglo (orden estrictamente creciente). Este es EL peor caso deterministico del algoritmo",
-      "probability_model": "No se usa modelo probabilistico equiprobable. El peor caso es deterministico: arreglo en orden creciente es la entrada que maximiza operaciones"
+      "T_of_S": "3*c1 + c2*(n+1) + 2*c3*n",
+      "T_of_S_explanation": "Suma de todos los costos: c1 (linea 1) + c1 (linea 2) + c2*(n+1) (linea 3) + c3*n (linea 4) + 0 (linea 5) + c3*n (linea 6) + c1 (linea 7) = 3*c1 + c2*(n+1) + 2*c3*n",
+      "P_of_S": "1/(n+1)",
+      "P_of_S_explanation": "Probabilidad de que el elemento x no este en el arreglo A. Bajo el modelo equiprobable, hay n+1 casos posibles: x en posicion 1, x en posicion 2, ..., x en posicion n, o x no encontrado. Cada caso tiene probabilidad 1/(n+1)",
+      "probability_model": "Modelo equiprobable con n+1 casos: el elemento puede estar en cualquiera de las n posiciones del arreglo, o no estar presente. Cada escenario tiene la misma probabilidad 1/(n+1)"
     },
     "average_case": {
       "scenario_id": "S_avg_case",
       "scenario_type": "average_case",
-      "input_condition": "Promedio sobre todas las posibles configuraciones del array",
-      "probability_model": "Para el algoritmo de busqueda del maximo, el caso promedio considera la distribucion de actualizaciones de max. En promedio, se espera que max se actualice aproximadamente log(n) veces para arrays aleatorios, pero el analisis completo requiere considerar todas las permutaciones posibles. Sin embargo, dado que el algoritmo SIEMPRE recorre todo el array independientemente del contenido, el costo total es determinista y no depende de la configuracion especifica de los datos.",
+      "input_condition": "Promedio sobre todos los arreglos posibles de n elementos",
+      "probability_model": "Algoritmo no sensible a la entrada: el numero de comparaciones y asignaciones es constante independientemente del orden o valores del arreglo. Siempre se recorren n-1 elementos y se realizan las mismas operaciones.",
       "scenarios_breakdown": [
         {
-          "scenario_id": "S_no_updates",
-          "description": "Array ordenado descendente - max nunca se actualiza (0 actualizaciones)",
-          "T": "c1 + c2 + c3*(n+1) + c4*n + c5*n + c8 + c9",
-          "P": "1/n!"
-        },
-        {
-          "scenario_id": "S_all_updates",
-          "description": "Array ordenado ascendente - max se actualiza en cada iteracion (n-1 actualizaciones)",
-          "T": "c1 + c2 + c3*(n+1) + c4*n + c5*n + c6*n + c7*(n-1) + c8 + c9",
-          "P": "1/n!"
-        },
-        {
-          "scenario_id": "S_typical",
-          "description": "Configuracion tipica - numero promedio de actualizaciones",
-          "T": "c1 + c2 + c3*(n+1) + c4*n + c5*n + c6*k + c7*k + c8 + c9, donde k es el numero esperado de actualizaciones",
-          "P": "(n!-2)/n!"
+          "scenario_id": "S_unico",
+          "description": "Unico escenario: el algoritmo siempre ejecuta n-1 iteraciones completas del loop, realizando n-1 comparaciones. El numero de asignaciones dentro del if varia segun los datos, pero el costo total en terminos de n permanece O(n).",
+          "T": "c1 + c2*(n) + c3*(n-1) + c4*k",
+          "P": "1"
         }
       ],
-      "average_cost_formula": "E[T] = c1 + c2 + c3*(n+1) + c4*n + c5*n + c6*H(n) + c7*H(n) + c8 + c9, donde H(n) es el numero armonico que aproxima el numero esperado de actualizaciones",
-      "T_of_S": "c1 + c2 + c3*n + c3 + c4*n + c5*n + c6*n/2 + c7*n/2 + c8 + c9",
-      "T_of_S_simplified": "c1 + c2 + c3 + c8 + c9 + n*(c3 + c4 + c5 + c6/2 + c7/2)",
-      "T_of_S_explanation": "El algoritmo maximoArray tiene comportamiento determinista en cuanto a iteraciones (siempre recorre n elementos). La variabilidad esta en cuantas veces se actualiza max. Para el caso promedio, asumimos que la condicion arr[i] > max se cumple aproximadamente n/2 veces en arrays aleatorios, resultando en n/2 actualizaciones esperadas. El costo total es lineal O(n) en todos los casos.",
+      "average_cost_formula": "E[T] = T(unico) * P(unico) = T(n) * 1",
+      "T_of_S": "c1 + c2*n + c3*(n-1) + c4*k = c1 + c2*n + c3*n - c3 + c4*k = (c2+c3)*n + (c1-c3) + c4*k",
+      "T_of_S_explanation": "Este algoritmo NO es sensible a la distribucion de datos en el sentido de cambiar su complejidad asintotica. Siempre recorre n-1 elementos (n iteraciones del encabezado del loop). La variable k representa el numero promedio de veces que se encuentra un nuevo maximo (arr[i] > max), lo cual depende de la distribucion de datos. En promedio, para un arreglo aleatorio, k es aproximadamente O(log n), pero esto no cambia que el costo dominante sea lineal: T(n) = O(n). Por lo tanto, el caso promedio tiene la misma complejidad que el mejor y peor caso: T_avg(n) = O(n).",
       "P_of_S": "1",
-      "P_of_S_explanation": "El caso promedio engloba todas las posibles configuraciones del array con sus probabilidades respectivas, por lo que la probabilidad total es 1",
-      "line_by_line_analysis": [
-        {
-          "line_number": 1,
-          "code": "maximoArray(int arr[], int n)",
-          "C_op": "0",
-          "Freq": "1",
-          "Total": "0",
-          "explanation": "Encabezado de funcion, no cuenta como operacion elemental"
-        },
-        {
-          "line_number": 2,
-          "code": "begin",
-          "C_op": "0",
-          "Freq": "1",
-          "Total": "0",
-          "explanation": "Estructura de control, no cuenta como operacion"
-        },
-        {
-          "line_number": 3,
-          "code": "max <- arr[0]",
-          "C_op": "c1",
-          "Freq": "1",
-          "Total": "c1",
-          "explanation": "Acceso a array (1) + asignacion (1) = 2 operaciones, pero se cuenta como c1 constante simbolica"
-        },
-        {
-          "line_number": 4,
-          "code": "for i <- 1 to n-1 do",
-          "C_op": "c2",
-          "Freq": "1",
-          "Total": "c2",
-          "explanation": "Inicializacion del loop (asignacion i <- 1), se ejecuta una vez"
-        },
-        {
-          "line_number": 4,
-          "code": "for i <- 1 to n-1 do (encabezado)",
-          "C_op": "c3",
-          "Freq": "n",
-          "Total": "c3*n",
-          "explanation": "Comparacion i <= n-1 se ejecuta n veces (n-1 iteraciones + 1 comparacion final que falla)"
-        },
-        {
-          "line_number": 4,
-          "code": "for i <- 1 to n-1 do (incremento)",
-          "C_op": "c3",
-          "Freq": "1",
-          "Total": "c3",
-          "explanation": "Incremento i++ al final de cada iteracion, se ejecuta n-1 veces, incluido en c3*(n+1) total"
-        },
-        {
-          "line_number": 5,
-          "code": "begin",
-          "C_op": "0",
-          "Freq": "n-1",
-          "Total": "0",
-          "explanation": "Estructura de control del cuerpo del loop"
-        },
-        {
-          "line_number": 6,
-          "code": "if (arr[i] > max) then",
-          "C_op": "c4",
-          "Freq": "n-1",
-          "Total": "c4*n",
-          "explanation": "Acceso arr[i] (1) + comparacion > (1) = 2 ops, se ejecuta en cada iteracion (n-1 veces), aproximado como c4*n"
-        },
-        {
-          "line_number": 7,
-          "code": "begin",
-          "C_op": "0",
-          "Freq": "n/2",
-          "Total": "0",
-          "explanation": "Estructura condicional, se ejecuta aproximadamente n/2 veces en promedio"
-        },
-        {
-          "line_number": 8,
-          "code": "max <- arr[i]",
-          "C_op": "c5",
-          "Freq": "n-1",
-          "Total": "c5*n",
-          "explanation": "Acceso arr[i] se ejecuta siempre en la comparacion, contado en c4"
-        },
-        {
-          "line_number": 8,
-          "code": "max <- arr[i] (asignacion)",
-          "C_op": "c6",
-          "Freq": "n/2",
-          "Total": "c6*n/2",
-          "explanation": "Asignacion se ejecuta solo cuando la condicion es verdadera, aproximadamente n/2 veces en promedio"
-        },
-        {
-          "line_number": 8,
-          "code": "max <- arr[i] (acceso)",
-          "C_op": "c7",
-          "Freq": "n/2",
-          "Total": "c7*n/2",
-          "explanation": "Acceso a arr[i] para la asignacion, se ejecuta aproximadamente n/2 veces en promedio"
-        },
-        {
-          "line_number": 9,
-          "code": "end",
-          "C_op": "0",
-          "Freq": "n/2",
-          "Total": "0",
-          "explanation": "Cierre del bloque if"
-        },
-        {
-          "line_number": 10,
-          "code": "end",
-          "C_op": "0",
-          "Freq": "n-1",
-          "Total": "0",
-          "explanation": "Cierre del cuerpo del loop"
-        },
-        {
-          "line_number": 11,
-          "code": "return max",
-          "C_op": "c8",
-          "Freq": "1",
-          "Total": "c8",
-          "explanation": "Retorno del valor maximo, se ejecuta una vez"
-        },
-        {
-          "line_number": 12,
-          "code": "end",
-          "C_op": "c9",
-          "Freq": "1",
-          "Total": "c9",
-          "explanation": "Cierre de la funcion"
-        }
-      ]
+      "P_of_S_explanation": "El caso promedio engloba todos los escenarios posibles. Como el algoritmo no es sensible a la entrada en terminos de numero de iteraciones (siempre n-1), existe un unico escenario con probabilidad 1. La variacion en el numero de asignaciones max <- arr[i] no afecta la complejidad asintotica O(n)."
     }
   },
   "omega_table": {
@@ -362,7 +215,7 @@
       {
         "id": "S_best_case",
         "semantic_id": "best_case",
-        "condition": "Arreglo ordenado de forma descendente donde arr[0] es el elemento maximo (ningun elemento posterior es mayor)",
+        "condition": "Arreglo ordenado de forma descendente donde arr[0] es el elemento maximo",
         "state": "BEST_CASE",
         "cost_T": "c1 + c2*n + c3*(n-1) + c5",
         "probability_P": "1"
@@ -370,41 +223,25 @@
       {
         "id": "S_worst_case",
         "semantic_id": "worst_case",
-        "condition": "Arreglo en orden estrictamente creciente (cada elemento es mayor que el anterior), maximizando las asignaciones dentro del if",
+        "condition": "El elemento x no se encuentra en el arreglo A, obligando a recorrer todas las n posiciones sin encontrarlo",
         "state": "WORST_CASE",
-        "cost_T": "c1 + c2*n + c3*(n-1) + c4*(n-1) + c5",
-        "probability_P": "1"
+        "cost_T": "3*c1 + c2*(n+1) + 2*c3*n",
+        "probability_P": "1/(n+1)"
       },
       {
-        "id": "S_no_updates",
+        "id": "S_unico",
         "semantic_id": "S_intermediate_1",
-        "condition": "Array ordenado descendente - max nunca se actualiza (0 actualizaciones)",
+        "condition": "Unico escenario: el algoritmo siempre ejecuta n-1 iteraciones completas del loop, realizando n-1 comparaciones. El numero de asignaciones dentro del if varia segun los datos, pero el costo total en terminos de n permanece O(n).",
         "state": "INTERMEDIATE",
-        "cost_T": "c1 + c2 + c3*(n+1) + c4*n + c5*n + c8 + c9",
-        "probability_P": "1/n!"
-      },
-      {
-        "id": "S_all_updates",
-        "semantic_id": "S_intermediate_2",
-        "condition": "Array ordenado ascendente - max se actualiza en cada iteracion (n-1 actualizaciones)",
-        "state": "INTERMEDIATE",
-        "cost_T": "c1 + c2 + c3*(n+1) + c4*n + c5*n + c6*n + c7*(n-1) + c8 + c9",
-        "probability_P": "1/n!"
-      },
-      {
-        "id": "S_typical",
-        "semantic_id": "S_intermediate_3",
-        "condition": "Configuracion tipica - numero promedio de actualizaciones",
-        "state": "INTERMEDIATE",
-        "cost_T": "c1 + c2 + c3*(n+1) + c4*n + c5*n + c6*k + c7*k + c8 + c9, donde k es el numero esperado de actualizaciones",
-        "probability_P": "(n!-2)/n!"
+        "cost_T": "c1 + c2*(n) + c3*(n-1) + c4*k",
+        "probability_P": "1"
       },
       {
         "id": "S_avg",
         "semantic_id": "average_case",
-        "condition": "Promedio sobre todas las posibles configuraciones del array",
+        "condition": "Promedio sobre todos los arreglos posibles de n elementos",
         "state": "AVERAGE",
-        "cost_T": "c1 + c2 + c3 + c8 + c9 + n*(c3 + c4 + c5 + c6/2 + c7/2)",
+        "cost_T": "c1 + c2*n + c3*(n-1) + c4*k = c1 + c2*n + c3*n - c3 + c4*k = (c2+c3)*n + (c1-c3) + c4*k",
         "probability_P": "1"
       }
     ],
@@ -421,7 +258,7 @@
         "best_case": {
           "scenario_id": "S_best_case",
           "scenario_type": "best_case",
-          "input_condition": "Arreglo ordenado de forma descendente donde arr[0] es el elemento maximo (ningun elemento posterior es mayor)",
+          "input_condition": "Arreglo ordenado de forma descendente donde arr[0] es el elemento maximo",
           "line_by_line_analysis": [
             {
               "line_number": 1,
@@ -436,7 +273,7 @@
               "C_op": "c2",
               "Freq": "n",
               "Total": "c2*n",
-              "explanation": "Encabezado del loop: se ejecuta n veces"
+              "explanation": "Encabezado del loop: se ejecuta n veces (n-1+1)"
             },
             {
               "line_number": 3,
@@ -463,224 +300,97 @@
             }
           ],
           "T_of_S": "c1 + c2*n + c3*(n-1) + c5",
-          "T_of_S_explanation": "Suma de todos los costos: inicializacion + encabezado loop + comparaciones (todas falsas) + return. La asignacion dentro del if nunca se ejecuta",
+          "T_of_S_explanation": "Suma de todos los costos individuales. La asignacion dentro del if no se ejecuta",
           "P_of_S": "1",
-          "P_of_S_explanation": "Este algoritmo no es sensible a la distribucion de datos para el mejor caso. Siempre recorre todo el arreglo independientemente del orden",
-          "probability_model": "Aunque el mejor caso ocurre cuando el maximo esta al inicio (minimizando asignaciones), el algoritmo siempre ejecuta n-1 iteraciones completas. P=1 porque el comportamiento del mejor caso es deterministico respecto al numero de iteraciones"
+          "P_of_S_explanation": "El mejor caso ocurre cuando el arreglo esta ordenado descendentemente",
+          "probability_model": "Para un arreglo aleatorio, la probabilidad de que este ordenado descendentemente es muy baja, pero se considera P=1 para el analisis del mejor caso como escenario deterministico"
         },
         "worst_case": {
           "scenario_id": "S_worst_case",
           "scenario_type": "worst_case",
-          "input_condition": "Arreglo en orden estrictamente creciente (cada elemento es mayor que el anterior), maximizando las asignaciones dentro del if",
+          "input_condition": "El elemento x no se encuentra en el arreglo A, obligando a recorrer todas las n posiciones sin encontrarlo",
           "line_by_line_analysis": [
             {
               "line_number": 1,
-              "code": "max <- arr[0]",
+              "code": "encontrado <- F",
               "C_op": "c1",
               "Freq": "1",
               "Total": "c1",
-              "explanation": "Asignacion inicial ejecutada una vez"
+              "explanation": "Asignacion inicial que se ejecuta una sola vez al inicio del algoritmo"
             },
             {
               "line_number": 2,
-              "code": "for i <- 1 to n-1 do",
-              "C_op": "c2",
-              "Freq": "n",
-              "Total": "c2*n",
-              "explanation": "Encabezado del for: se evalua n veces (desde i=1 hasta i=n-1, son n-1 iteraciones, encabezado se ejecuta (n-1)+1=n veces)"
+              "code": "i <- 1",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Inicializacion del contador que se ejecuta una sola vez"
             },
             {
               "line_number": 3,
-              "code": "if (arr[i] > max) then",
-              "C_op": "c3",
-              "Freq": "n-1",
-              "Total": "c3*(n-1)",
-              "explanation": "Comparacion ejecutada n-1 veces (cuerpo del loop). En peor caso SIEMPRE es verdadera"
+              "code": "while (i <= n and not encontrado)",
+              "C_op": "c2",
+              "Freq": "n+1",
+              "Total": "c2*(n+1)",
+              "explanation": "Encabezado del loop que se ejecuta n+1 veces: n veces evalua verdadero (i=1..n con encontrado=F), y 1 vez evalua falso (i=n+1)"
             },
             {
               "line_number": 4,
-              "code": "max <- arr[i]",
-              "C_op": "c4",
-              "Freq": "n-1",
-              "Total": "c4*(n-1)",
-              "explanation": "En peor caso (arreglo creciente), esta asignacion se ejecuta en TODAS las iteraciones: n-1 veces"
+              "code": "if (A[i] = x)",
+              "C_op": "c3",
+              "Freq": "n",
+              "Total": "c3*n",
+              "explanation": "Comparacion que se ejecuta n veces (una por cada iteracion del loop). En peor caso siempre evalua falso porque x no esta en A"
             },
             {
               "line_number": 5,
-              "code": "return max",
-              "C_op": "c5",
+              "code": "encontrado <- T",
+              "C_op": "c4",
+              "Freq": "0",
+              "Total": "0",
+              "explanation": "Esta linea NUNCA se ejecuta en el peor caso porque la condicion A[i]=x siempre es falsa"
+            },
+            {
+              "line_number": 6,
+              "code": "i <- i + 1",
+              "C_op": "c3",
+              "Freq": "n",
+              "Total": "c3*n",
+              "explanation": "Incremento del contador que se ejecuta n veces, una por cada iteracion del loop"
+            },
+            {
+              "line_number": 7,
+              "code": "return encontrado",
+              "C_op": "c1",
               "Freq": "1",
-              "Total": "c5",
-              "explanation": "Return ejecutado una vez al final"
+              "Total": "c1",
+              "explanation": "Retorno final que se ejecuta una sola vez al terminar el algoritmo"
             }
           ],
-          "T_of_S": "c1 + c2*n + c3*(n-1) + c4*(n-1) + c5",
-          "T_of_S_explanation": "Suma de todos los costos. El peor caso ocurre cuando el arreglo esta en orden creciente, forzando que la condicion arr[i] > max sea verdadera en cada iteracion, ejecutando la asignacion max <- arr[i] el maximo numero de veces posible (n-1 veces)",
-          "P_of_S": "1",
-          "P_of_S_explanation": "El peor caso es una configuracion especifica del arreglo (orden estrictamente creciente). Este es EL peor caso deterministico del algoritmo",
-          "probability_model": "No se usa modelo probabilistico equiprobable. El peor caso es deterministico: arreglo en orden creciente es la entrada que maximiza operaciones"
+          "T_of_S": "3*c1 + c2*(n+1) + 2*c3*n",
+          "T_of_S_explanation": "Suma de todos los costos: c1 (linea 1) + c1 (linea 2) + c2*(n+1) (linea 3) + c3*n (linea 4) + 0 (linea 5) + c3*n (linea 6) + c1 (linea 7) = 3*c1 + c2*(n+1) + 2*c3*n",
+          "P_of_S": "1/(n+1)",
+          "P_of_S_explanation": "Probabilidad de que el elemento x no este en el arreglo A. Bajo el modelo equiprobable, hay n+1 casos posibles: x en posicion 1, x en posicion 2, ..., x en posicion n, o x no encontrado. Cada caso tiene probabilidad 1/(n+1)",
+          "probability_model": "Modelo equiprobable con n+1 casos: el elemento puede estar en cualquiera de las n posiciones del arreglo, o no estar presente. Cada escenario tiene la misma probabilidad 1/(n+1)"
         },
         "average_case": {
           "scenario_id": "S_avg_case",
           "scenario_type": "average_case",
-          "input_condition": "Promedio sobre todas las posibles configuraciones del array",
-          "probability_model": "Para el algoritmo de busqueda del maximo, el caso promedio considera la distribucion de actualizaciones de max. En promedio, se espera que max se actualice aproximadamente log(n) veces para arrays aleatorios, pero el analisis completo requiere considerar todas las permutaciones posibles. Sin embargo, dado que el algoritmo SIEMPRE recorre todo el array independientemente del contenido, el costo total es determinista y no depende de la configuracion especifica de los datos.",
+          "input_condition": "Promedio sobre todos los arreglos posibles de n elementos",
+          "probability_model": "Algoritmo no sensible a la entrada: el numero de comparaciones y asignaciones es constante independientemente del orden o valores del arreglo. Siempre se recorren n-1 elementos y se realizan las mismas operaciones.",
           "scenarios_breakdown": [
             {
-              "scenario_id": "S_no_updates",
-              "description": "Array ordenado descendente - max nunca se actualiza (0 actualizaciones)",
-              "T": "c1 + c2 + c3*(n+1) + c4*n + c5*n + c8 + c9",
-              "P": "1/n!"
-            },
-            {
-              "scenario_id": "S_all_updates",
-              "description": "Array ordenado ascendente - max se actualiza en cada iteracion (n-1 actualizaciones)",
-              "T": "c1 + c2 + c3*(n+1) + c4*n + c5*n + c6*n + c7*(n-1) + c8 + c9",
-              "P": "1/n!"
-            },
-            {
-              "scenario_id": "S_typical",
-              "description": "Configuracion tipica - numero promedio de actualizaciones",
-              "T": "c1 + c2 + c3*(n+1) + c4*n + c5*n + c6*k + c7*k + c8 + c9, donde k es el numero esperado de actualizaciones",
-              "P": "(n!-2)/n!"
+              "scenario_id": "S_unico",
+              "description": "Unico escenario: el algoritmo siempre ejecuta n-1 iteraciones completas del loop, realizando n-1 comparaciones. El numero de asignaciones dentro del if varia segun los datos, pero el costo total en terminos de n permanece O(n).",
+              "T": "c1 + c2*(n) + c3*(n-1) + c4*k",
+              "P": "1"
             }
           ],
-          "average_cost_formula": "E[T] = c1 + c2 + c3*(n+1) + c4*n + c5*n + c6*H(n) + c7*H(n) + c8 + c9, donde H(n) es el numero armonico que aproxima el numero esperado de actualizaciones",
-          "T_of_S": "c1 + c2 + c3*n + c3 + c4*n + c5*n + c6*n/2 + c7*n/2 + c8 + c9",
-          "T_of_S_simplified": "c1 + c2 + c3 + c8 + c9 + n*(c3 + c4 + c5 + c6/2 + c7/2)",
-          "T_of_S_explanation": "El algoritmo maximoArray tiene comportamiento determinista en cuanto a iteraciones (siempre recorre n elementos). La variabilidad esta en cuantas veces se actualiza max. Para el caso promedio, asumimos que la condicion arr[i] > max se cumple aproximadamente n/2 veces en arrays aleatorios, resultando en n/2 actualizaciones esperadas. El costo total es lineal O(n) en todos los casos.",
+          "average_cost_formula": "E[T] = T(unico) * P(unico) = T(n) * 1",
+          "T_of_S": "c1 + c2*n + c3*(n-1) + c4*k = c1 + c2*n + c3*n - c3 + c4*k = (c2+c3)*n + (c1-c3) + c4*k",
+          "T_of_S_explanation": "Este algoritmo NO es sensible a la distribucion de datos en el sentido de cambiar su complejidad asintotica. Siempre recorre n-1 elementos (n iteraciones del encabezado del loop). La variable k representa el numero promedio de veces que se encuentra un nuevo maximo (arr[i] > max), lo cual depende de la distribucion de datos. En promedio, para un arreglo aleatorio, k es aproximadamente O(log n), pero esto no cambia que el costo dominante sea lineal: T(n) = O(n). Por lo tanto, el caso promedio tiene la misma complejidad que el mejor y peor caso: T_avg(n) = O(n).",
           "P_of_S": "1",
-          "P_of_S_explanation": "El caso promedio engloba todas las posibles configuraciones del array con sus probabilidades respectivas, por lo que la probabilidad total es 1",
-          "line_by_line_analysis": [
-            {
-              "line_number": 1,
-              "code": "maximoArray(int arr[], int n)",
-              "C_op": "0",
-              "Freq": "1",
-              "Total": "0",
-              "explanation": "Encabezado de funcion, no cuenta como operacion elemental"
-            },
-            {
-              "line_number": 2,
-              "code": "begin",
-              "C_op": "0",
-              "Freq": "1",
-              "Total": "0",
-              "explanation": "Estructura de control, no cuenta como operacion"
-            },
-            {
-              "line_number": 3,
-              "code": "max <- arr[0]",
-              "C_op": "c1",
-              "Freq": "1",
-              "Total": "c1",
-              "explanation": "Acceso a array (1) + asignacion (1) = 2 operaciones, pero se cuenta como c1 constante simbolica"
-            },
-            {
-              "line_number": 4,
-              "code": "for i <- 1 to n-1 do",
-              "C_op": "c2",
-              "Freq": "1",
-              "Total": "c2",
-              "explanation": "Inicializacion del loop (asignacion i <- 1), se ejecuta una vez"
-            },
-            {
-              "line_number": 4,
-              "code": "for i <- 1 to n-1 do (encabezado)",
-              "C_op": "c3",
-              "Freq": "n",
-              "Total": "c3*n",
-              "explanation": "Comparacion i <= n-1 se ejecuta n veces (n-1 iteraciones + 1 comparacion final que falla)"
-            },
-            {
-              "line_number": 4,
-              "code": "for i <- 1 to n-1 do (incremento)",
-              "C_op": "c3",
-              "Freq": "1",
-              "Total": "c3",
-              "explanation": "Incremento i++ al final de cada iteracion, se ejecuta n-1 veces, incluido en c3*(n+1) total"
-            },
-            {
-              "line_number": 5,
-              "code": "begin",
-              "C_op": "0",
-              "Freq": "n-1",
-              "Total": "0",
-              "explanation": "Estructura de control del cuerpo del loop"
-            },
-            {
-              "line_number": 6,
-              "code": "if (arr[i] > max) then",
-              "C_op": "c4",
-              "Freq": "n-1",
-              "Total": "c4*n",
-              "explanation": "Acceso arr[i] (1) + comparacion > (1) = 2 ops, se ejecuta en cada iteracion (n-1 veces), aproximado como c4*n"
-            },
-            {
-              "line_number": 7,
-              "code": "begin",
-              "C_op": "0",
-              "Freq": "n/2",
-              "Total": "0",
-              "explanation": "Estructura condicional, se ejecuta aproximadamente n/2 veces en promedio"
-            },
-            {
-              "line_number": 8,
-              "code": "max <- arr[i]",
-              "C_op": "c5",
-              "Freq": "n-1",
-              "Total": "c5*n",
-              "explanation": "Acceso arr[i] se ejecuta siempre en la comparacion, contado en c4"
-            },
-            {
-              "line_number": 8,
-              "code": "max <- arr[i] (asignacion)",
-              "C_op": "c6",
-              "Freq": "n/2",
-              "Total": "c6*n/2",
-              "explanation": "Asignacion se ejecuta solo cuando la condicion es verdadera, aproximadamente n/2 veces en promedio"
-            },
-            {
-              "line_number": 8,
-              "code": "max <- arr[i] (acceso)",
-              "C_op": "c7",
-              "Freq": "n/2",
-              "Total": "c7*n/2",
-              "explanation": "Acceso a arr[i] para la asignacion, se ejecuta aproximadamente n/2 veces en promedio"
-            },
-            {
-              "line_number": 9,
-              "code": "end",
-              "C_op": "0",
-              "Freq": "n/2",
-              "Total": "0",
-              "explanation": "Cierre del bloque if"
-            },
-            {
-              "line_number": 10,
-              "code": "end",
-              "C_op": "0",
-              "Freq": "n-1",
-              "Total": "0",
-              "explanation": "Cierre del cuerpo del loop"
-            },
-            {
-              "line_number": 11,
-              "code": "return max",
-              "C_op": "c8",
-              "Freq": "1",
-              "Total": "c8",
-              "explanation": "Retorno del valor maximo, se ejecuta una vez"
-            },
-            {
-              "line_number": 12,
-              "code": "end",
-              "C_op": "c9",
-              "Freq": "1",
-              "Total": "c9",
-              "explanation": "Cierre de la funcion"
-            }
-          ]
+          "P_of_S_explanation": "El caso promedio engloba todos los escenarios posibles. Como el algoritmo no es sensible a la entrada en terminos de numero de iteraciones (siempre n-1), existe un unico escenario con probabilidad 1. La variacion en el numero de asignaciones max <- arr[i] no afecta la complejidad asintotica O(n)."
         }
       },
       "best_case": {
@@ -688,42 +398,30 @@
         "semantic_id": "best_case",
         "T": "c1 + c2*n + c3*(n-1) + c5",
         "P": "1",
-        "description": "Arreglo ordenado de forma descendente donde arr[0] es el elemento maximo (ningun elemento posterior es mayor)",
+        "description": "Arreglo ordenado de forma descendente donde arr[0] es el elemento maximo",
         "input_characteristics": {}
       },
       "worst_case": {
         "scenario_id": "S_worst_case",
         "semantic_id": "worst_case",
-        "T": "c1 + c2*n + c3*(n-1) + c4*(n-1) + c5",
-        "P": "1",
-        "description": "Arreglo en orden estrictamente creciente (cada elemento es mayor que el anterior), maximizando las asignaciones dentro del if",
+        "T": "3*c1 + c2*(n+1) + 2*c3*n",
+        "P": "1/(n+1)",
+        "description": "El elemento x no se encuentra en el arreglo A, obligando a recorrer todas las n posiciones sin encontrarlo",
         "input_characteristics": {}
       },
       "average_case": {
         "scenario_id": "S_avg",
         "semantic_id": "average_case",
-        "T_avg": "c1 + c2 + c3 + c8 + c9 + n*(c3 + c4 + c5 + c6/2 + c7/2)",
-        "formula": "E[T] = c1 + c2 + c3*(n+1) + c4*n + c5*n + c6*H(n) + c7*H(n) + c8 + c9, donde H(n) es el numero armonico que aproxima el numero esperado de actualizaciones",
-        "simplified": "c1 + c2 + c3 + c8 + c9 + n*(c3 + c4 + c5 + c6/2 + c7/2)",
-        "description": "Promedio sobre todas las posibles configuraciones del array",
+        "T_avg": "c1 + c2*n + c3*(n-1) + c4*k = c1 + c2*n + c3*n - c3 + c4*k = (c2+c3)*n + (c1-c3) + c4*k",
+        "formula": "E[T] = T(unico) * P(unico) = T(n) * 1",
+        "simplified": "",
+        "description": "Promedio sobre todos los arreglos posibles de n elementos",
         "scenarios_breakdown": [
           {
-            "scenario_id": "S_no_updates",
-            "description": "Array ordenado descendente - max nunca se actualiza (0 actualizaciones)",
-            "T": "c1 + c2 + c3*(n+1) + c4*n + c5*n + c8 + c9",
-            "P": "1/n!"
-          },
-          {
-            "scenario_id": "S_all_updates",
-            "description": "Array ordenado ascendente - max se actualiza en cada iteracion (n-1 actualizaciones)",
-            "T": "c1 + c2 + c3*(n+1) + c4*n + c5*n + c6*n + c7*(n-1) + c8 + c9",
-            "P": "1/n!"
-          },
-          {
-            "scenario_id": "S_typical",
-            "description": "Configuracion tipica - numero promedio de actualizaciones",
-            "T": "c1 + c2 + c3*(n+1) + c4*n + c5*n + c6*k + c7*k + c8 + c9, donde k es el numero esperado de actualizaciones",
-            "P": "(n!-2)/n!"
+            "scenario_id": "S_unico",
+            "description": "Unico escenario: el algoritmo siempre ejecuta n-1 iteraciones completas del loop, realizando n-1 comparaciones. El numero de asignaciones dentro del if varia segun los datos, pero el costo total en terminos de n permanece O(n).",
+            "T": "c1 + c2*(n) + c3*(n-1) + c4*k",
+            "P": "1"
           }
         ]
       }
