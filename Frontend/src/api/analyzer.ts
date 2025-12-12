@@ -66,13 +66,20 @@ export interface AnalisisResponse {
 }
 
 export interface ComplejidadesResult {
-  complejidades?: {
-    mejor_caso?: string;
-    caso_promedio?: string;
-    peor_caso?: string;
-  };
+  algorithm_name?: string;
+  mejor_caso?: string;
+  caso_promedio?: string;
+  peor_caso?: string;
+  derivacion_caso_promedio?: string;
   metodo_usado?: string;
   ecuaciones?: Record<string, string>;
+  ecuaciones_matematicas?: {
+    mejor_caso?: string;
+    peor_caso?: string;
+    caso_promedio?: string;
+    ecuaciones_iguales?: boolean;
+    casos_base?: string[];
+  };
   pasos_resolucion?: Record<string, any>;
   observacion?: string;
 }
