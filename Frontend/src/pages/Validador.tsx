@@ -1,4 +1,4 @@
-import { createSignal } from 'solid-js';
+import { createSignal, Show } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
 import { H1 } from '../components/ui/Typography';
 import Button from '../components/ui/Button';
@@ -10,7 +10,7 @@ import ErrorModal from '../components/ui/ErrorModal';
 import CorrectionFeedback from '../components/ui/CorrectionFeedback';
 import { mockPseudocode } from '../mock-data/validador';
 import { validatePseudocode, type ValidationResponse } from '../api/validator';
-import { analyzeCode, type AnalisisResponse } from '../api/analyzer';
+import { analyzeCode, type AnalisisResponse, type ClasificacionResult } from '../api/analyzer';
 import type { ValidationStatus } from '../types';
 import { useAnalysis } from '../contexts/AnalysisContext';
 
@@ -140,9 +140,8 @@ export default function Validador() {
           </div>
         </div>
 
-        {/* Main Content: Two-Column Layout */}
+        {/* Main Content: One-Column Layout (Textarea only) */}
         <div class="grid grid-cols-12 gap-6">
-          {/* Left Column: Textarea (60%) */}
           <div class="col-span-7">
             <Textarea
               placeholder="IN(pseudocodigo)"
@@ -174,14 +173,6 @@ export default function Validador() {
             <CorrectionFeedback
               correccion={analysisResult()?.correccion}
               validacionInicial={analysisResult()?.validacion_inicial}
-            />
-          </div>
-
-          {/* Right Column: Classification Panel (40%) */}
-          <div class="col-span-5">
-            <ClassificationPanel
-              classification={validationResult()?.clasificacion}
-              isLoading={isAnalyzing()}
             />
           </div>
         </div>
