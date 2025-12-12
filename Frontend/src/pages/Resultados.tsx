@@ -17,6 +17,7 @@ export default function Resultados() {
   const [classification, setClassification] = createSignal<any>(null);
   const [recurrence, setRecurrence] = createSignal<any>(null);
   const [timeComplexity, setTimeComplexity] = createSignal<any>(null);
+  const [validacionLLM, setValidacionLLM] = createSignal<any>(null);
   const [error, setError] = createSignal<string | null>(null);
 
   // Procesar los datos del contexto cuando cambien
@@ -67,6 +68,15 @@ export default function Resultados() {
           average: resultado.complejidades.complejidades.caso_promedio || 'No disponible',
           worst: resultado.complejidades.complejidades.peor_caso || 'No disponible'
         });
+      }
+
+      // Validación de complejidades (Comparación con LLM)
+      if (resultado.validacion_complejidades) {
+        console.log('✅ Datos de validación LLM encontrados:', resultado.validacion_complejidades);
+        setValidacionLLM(resultado.validacion_complejidades);
+      } else {
+        console.log('⚠️ No hay datos de validacion_complejidades');
+        setValidacionLLM(null);
       }
 
     } catch (err: any) {
@@ -134,31 +144,31 @@ export default function Resultados() {
 
               {/* Recurrence Card - mostrar todos los casos */}
               <Show when={analysisResult()?.complejidades?.pasos_resolucion}>
-                <div class="glass rounded-lg overflow-hidden elevation-2">
-                  <div class="bg-gradient-to-br from-red-400 to-pink-500 p-4">
-                    <h3 class="text-lg font-bold text-white">Ecuaciones de Recurrencia</h3>
+                <div class="rounded-lg overflow-hidden border border-neutral-700 bg-[#232834] shadow-lg">
+                  <div class="px-6 py-4 border-b border-neutral-700">
+                    <h3 class="text-lg font-bold text-green-400 tracking-wide">Ecuaciones de Recurrencia</h3>
                   </div>
-                  <div class="p-6 space-y-8">
+                  <div class="p-6 space-y-8 max-h-[32rem] overflow-y-auto">
                     {/* Mejor caso */}
                     <Show when={analysisResult()?.complejidades?.pasos_resolucion?.mejor_caso}>
                       <div>
-                        <p class="text-xs font-semibold text-green-700 uppercase tracking-wide mb-2">Mejor caso</p>
-                        <p class="text-xs text-gray-500 mb-1">Fórmula</p>
-                        <code class="text-sm font-mono text-green-700 bg-green-50/50 px-2 py-1 rounded block break-words">
-                          {analysisResult()?.complejidades?.pasos_resolucion?.mejor_caso?.ecuacion || 'No disponible'}
-                        </code>
-                        <p class="text-xs text-gray-500 mt-2 mb-1">Solución</p>
-                        <code class="text-base font-mono font-bold text-green-600 bg-green-50/50 px-2 py-1 rounded block break-words">
-                          {analysisResult()?.complejidades?.pasos_resolucion?.mejor_caso?.solucion || 'No disponible'}
-                        </code>
+                        <p class="text-xs font-semibold text-green-400 uppercase tracking-wide mb-2">Mejor caso</p>
+                        <div class="mb-2">
+                          <span class="text-xs text-gray-400">Fórmula</span>
+                          <pre class="bg-[#1a1d23] border border-green-900/40 rounded px-3 py-2 mt-1 text-green-300 font-mono text-sm whitespace-pre-wrap break-words">{analysisResult()?.complejidades?.pasos_resolucion?.mejor_caso?.ecuacion || 'No disponible'}</pre>
+                        </div>
+                        <div class="mb-2">
+                          <span class="text-xs text-gray-400">Solución</span>
+                          <pre class="bg-[#1a1d23] border border-green-900/40 rounded px-3 py-2 mt-1 text-green-200 font-mono text-base font-bold whitespace-pre-wrap break-words">{analysisResult()?.complejidades?.pasos_resolucion?.mejor_caso?.solucion || 'No disponible'}</pre>
+                        </div>
                         <Show when={analysisResult()?.complejidades?.pasos_resolucion?.mejor_caso?.pasos?.length > 0}>
                           <div class="mt-2">
-                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Pasos de Resolución</p>
-                            <ol class="space-y-2 text-sm text-gray-700">
+                            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Pasos de Resolución</p>
+                            <ol class="space-y-2 text-sm text-gray-300">
                               {analysisResult()?.complejidades?.pasos_resolucion?.mejor_caso?.pasos.map((step: string, index: number) => (
                                 <li class="flex">
-                                  <span class="text-green-500 font-semibold mr-2 flex-shrink-0">{index + 1}.</span>
-                                  <span class="break-words">{step}</span>
+                                  <span class="text-green-400 font-semibold mr-2 flex-shrink-0">{index + 1}.</span>
+                                  <span class="break-words font-mono">{step}</span>
                                 </li>
                               ))}
                             </ol>
@@ -169,23 +179,23 @@ export default function Resultados() {
                     {/* Caso promedio */}
                     <Show when={analysisResult()?.complejidades?.pasos_resolucion?.caso_promedio}>
                       <div>
-                        <p class="text-xs font-semibold text-yellow-700 uppercase tracking-wide mb-2">Caso promedio</p>
-                        <p class="text-xs text-gray-500 mb-1">Fórmula</p>
-                        <code class="text-sm font-mono text-yellow-700 bg-yellow-50/50 px-2 py-1 rounded block break-words">
-                          {analysisResult()?.complejidades?.pasos_resolucion?.caso_promedio?.ecuacion || 'No disponible'}
-                        </code>
-                        <p class="text-xs text-gray-500 mt-2 mb-1">Solución</p>
-                        <code class="text-base font-mono font-bold text-yellow-600 bg-yellow-50/50 px-2 py-1 rounded block break-words">
-                          {analysisResult()?.complejidades?.pasos_resolucion?.caso_promedio?.solucion || 'No disponible'}
-                        </code>
+                        <p class="text-xs font-semibold text-yellow-400 uppercase tracking-wide mb-2">Caso promedio</p>
+                        <div class="mb-2">
+                          <span class="text-xs text-gray-400">Fórmula</span>
+                          <pre class="bg-[#1a1d23] border border-yellow-900/40 rounded px-3 py-2 mt-1 text-yellow-300 font-mono text-sm whitespace-pre-wrap break-words">{analysisResult()?.complejidades?.pasos_resolucion?.caso_promedio?.ecuacion || 'No disponible'}</pre>
+                        </div>
+                        <div class="mb-2">
+                          <span class="text-xs text-gray-400">Solución</span>
+                          <pre class="bg-[#1a1d23] border border-yellow-900/40 rounded px-3 py-2 mt-1 text-yellow-200 font-mono text-base font-bold whitespace-pre-wrap break-words">{analysisResult()?.complejidades?.pasos_resolucion?.caso_promedio?.solucion || 'No disponible'}</pre>
+                        </div>
                         <Show when={analysisResult()?.complejidades?.pasos_resolucion?.caso_promedio?.pasos?.length > 0}>
                           <div class="mt-2">
-                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Pasos de Resolución</p>
-                            <ol class="space-y-2 text-sm text-gray-700">
+                            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Pasos de Resolución</p>
+                            <ol class="space-y-2 text-sm text-gray-300">
                               {analysisResult()?.complejidades?.pasos_resolucion?.caso_promedio?.pasos.map((step: string, index: number) => (
                                 <li class="flex">
-                                  <span class="text-yellow-500 font-semibold mr-2 flex-shrink-0">{index + 1}.</span>
-                                  <span class="break-words">{step}</span>
+                                  <span class="text-yellow-400 font-semibold mr-2 flex-shrink-0">{index + 1}.</span>
+                                  <span class="break-words font-mono">{step}</span>
                                 </li>
                               ))}
                             </ol>
@@ -196,23 +206,23 @@ export default function Resultados() {
                     {/* Peor caso */}
                     <Show when={analysisResult()?.complejidades?.pasos_resolucion?.peor_caso}>
                       <div>
-                        <p class="text-xs font-semibold text-red-700 uppercase tracking-wide mb-2">Peor caso</p>
-                        <p class="text-xs text-gray-500 mb-1">Fórmula</p>
-                        <code class="text-sm font-mono text-red-700 bg-red-50/50 px-2 py-1 rounded block break-words">
-                          {analysisResult()?.complejidades?.pasos_resolucion?.peor_caso?.ecuacion || 'No disponible'}
-                        </code>
-                        <p class="text-xs text-gray-500 mt-2 mb-1">Solución</p>
-                        <code class="text-base font-mono font-bold text-red-600 bg-red-50/50 px-2 py-1 rounded block break-words">
-                          {analysisResult()?.complejidades?.pasos_resolucion?.peor_caso?.solucion || 'No disponible'}
-                        </code>
+                        <p class="text-xs font-semibold text-red-400 uppercase tracking-wide mb-2">Peor caso</p>
+                        <div class="mb-2">
+                          <span class="text-xs text-gray-400">Fórmula</span>
+                          <pre class="bg-[#1a1d23] border border-red-900/40 rounded px-3 py-2 mt-1 text-red-300 font-mono text-sm whitespace-pre-wrap break-words">{analysisResult()?.complejidades?.pasos_resolucion?.peor_caso?.ecuacion || 'No disponible'}</pre>
+                        </div>
+                        <div class="mb-2">
+                          <span class="text-xs text-gray-400">Solución</span>
+                          <pre class="bg-[#1a1d23] border border-red-900/40 rounded px-3 py-2 mt-1 text-red-200 font-mono text-base font-bold whitespace-pre-wrap break-words">{analysisResult()?.complejidades?.pasos_resolucion?.peor_caso?.solucion || 'No disponible'}</pre>
+                        </div>
                         <Show when={analysisResult()?.complejidades?.pasos_resolucion?.peor_caso?.pasos?.length > 0}>
                           <div class="mt-2">
-                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Pasos de Resolución</p>
-                            <ol class="space-y-2 text-sm text-gray-700">
+                            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Pasos de Resolución</p>
+                            <ol class="space-y-2 text-sm text-gray-300">
                               {analysisResult()?.complejidades?.pasos_resolucion?.peor_caso?.pasos.map((step: string, index: number) => (
                                 <li class="flex">
-                                  <span class="text-red-500 font-semibold mr-2 flex-shrink-0">{index + 1}.</span>
-                                  <span class="break-words">{step}</span>
+                                  <span class="text-red-400 font-semibold mr-2 flex-shrink-0">{index + 1}.</span>
+                                  <span class="break-words font-mono">{step}</span>
                                 </li>
                               ))}
                             </ol>
@@ -293,6 +303,187 @@ export default function Resultados() {
                   </Show>
                 </div>
               </div>
+
+              {/* Comparación con LLM */}
+              <Show when={validacionLLM()}>
+                <div class="bg-indigo-500/10 backdrop-blur-xl border-2 border-indigo-300 rounded-lg p-8 elevation-2 mt-6">
+                  <H2 class="mb-6 text-indigo-900">📊 Comparación con LLM</H2>
+
+                  <div class="space-y-6">
+                    {/* Tabla de comparación */}
+                    <div class="bg-white/80 rounded-lg overflow-hidden border-2 border-indigo-200">
+                      <table class="w-full">
+                        <thead>
+                          <tr class="bg-indigo-100 border-b-2 border-indigo-200">
+                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">Caso</th>
+                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">Sistema</th>
+                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">LLM</th>
+                            <th class="px-6 py-4 text-center text-sm font-bold text-gray-700 uppercase tracking-wider">Estado</th>
+                          </tr>
+                        </thead>
+                        <tbody class="divide-y divide-indigo-100">
+                          {/* Mejor caso */}
+                          <tr class="hover:bg-indigo-50/30 transition-colors">
+                            <td class="px-6 py-4 text-sm font-semibold text-gray-700">mejor caso</td>
+                            <td class="px-6 py-4">
+                              <code class="text-base font-mono font-bold text-green-600 bg-green-50 px-3 py-1 rounded">
+                                {validacionLLM()?.complejidades_sistema?.mejor_caso || 'N/A'}
+                              </code>
+                            </td>
+                            <td class="px-6 py-4">
+                              <code class="text-base font-mono font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded">
+                                {validacionLLM()?.complejidades_llm?.mejor_caso || 'N/A'}
+                              </code>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                              <span class={`inline-flex items-center gap-1 font-semibold ${
+                                validacionLLM()?.complejidades_sistema?.mejor_caso === validacionLLM()?.complejidades_llm?.mejor_caso
+                                  ? 'text-green-700'
+                                  : 'text-red-700'
+                              }`}>
+                                <span class="text-xl">
+                                  {validacionLLM()?.complejidades_sistema?.mejor_caso === validacionLLM()?.complejidades_llm?.mejor_caso ? '✅' : '❌'}
+                                </span>
+                                <span class="text-sm">
+                                  {validacionLLM()?.complejidades_sistema?.mejor_caso === validacionLLM()?.complejidades_llm?.mejor_caso ? 'Igual' : 'Diferente'}
+                                </span>
+                              </span>
+                            </td>
+                          </tr>
+
+                          {/* Caso promedio */}
+                          <tr class="hover:bg-indigo-50/30 transition-colors">
+                            <td class="px-6 py-4 text-sm font-semibold text-gray-700">caso promedio</td>
+                            <td class="px-6 py-4">
+                              <code class="text-base font-mono font-bold text-yellow-600 bg-yellow-50 px-3 py-1 rounded">
+                                {validacionLLM()?.complejidades_sistema?.caso_promedio || 'N/A'}
+                              </code>
+                            </td>
+                            <td class="px-6 py-4">
+                              <code class="text-base font-mono font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded">
+                                {validacionLLM()?.complejidades_llm?.caso_promedio || 'N/A'}
+                              </code>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                              <span class={`inline-flex items-center gap-1 font-semibold ${
+                                validacionLLM()?.complejidades_sistema?.caso_promedio === validacionLLM()?.complejidades_llm?.caso_promedio
+                                  ? 'text-green-700'
+                                  : 'text-red-700'
+                              }`}>
+                                <span class="text-xl">
+                                  {validacionLLM()?.complejidades_sistema?.caso_promedio === validacionLLM()?.complejidades_llm?.caso_promedio ? '✅' : '❌'}
+                                </span>
+                                <span class="text-sm">
+                                  {validacionLLM()?.complejidades_sistema?.caso_promedio === validacionLLM()?.complejidades_llm?.caso_promedio ? 'Igual' : 'Diferente'}
+                                </span>
+                              </span>
+                            </td>
+                          </tr>
+
+                          {/* Peor caso */}
+                          <tr class="hover:bg-indigo-50/30 transition-colors">
+                            <td class="px-6 py-4 text-sm font-semibold text-gray-700">peor caso</td>
+                            <td class="px-6 py-4">
+                              <code class="text-base font-mono font-bold text-red-600 bg-red-50 px-3 py-1 rounded">
+                                {validacionLLM()?.complejidades_sistema?.peor_caso || 'N/A'}
+                              </code>
+                            </td>
+                            <td class="px-6 py-4">
+                              <code class="text-base font-mono font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded">
+                                {validacionLLM()?.complejidades_llm?.peor_caso || 'N/A'}
+                              </code>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                              <span class={`inline-flex items-center gap-1 font-semibold ${
+                                validacionLLM()?.complejidades_sistema?.peor_caso === validacionLLM()?.complejidades_llm?.peor_caso
+                                  ? 'text-green-700'
+                                  : 'text-red-700'
+                              }`}>
+                                <span class="text-xl">
+                                  {validacionLLM()?.complejidades_sistema?.peor_caso === validacionLLM()?.complejidades_llm?.peor_caso ? '✅' : '❌'}
+                                </span>
+                                <span class="text-sm">
+                                  {validacionLLM()?.complejidades_sistema?.peor_caso === validacionLLM()?.complejidades_llm?.peor_caso ? 'Igual' : 'Diferente'}
+                                </span>
+                              </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    {/* Línea separadora decorativa */}
+                    <div class="border-t-2 border-indigo-200 my-4"></div>
+
+                    {/* Resumen dinámico */}
+                    <div class={`border-2 rounded-lg p-4 text-center ${
+                      validacionLLM()?.concordancia
+                        ? 'bg-green-50/80 border-green-300'
+                        : 'bg-amber-50/80 border-amber-300'
+                    }`}>
+                      <p class="text-sm font-semibold text-gray-600 mb-2">Validación Completa</p>
+                      <div class="flex items-center justify-center gap-2">
+                        <span class="text-2xl">{validacionLLM()?.concordancia ? '✅' : '⚠️'}</span>
+                        <span class={`text-lg font-bold ${
+                          validacionLLM()?.concordancia ? 'text-green-700' : 'text-amber-700'
+                        }`}>
+                          {validacionLLM()?.concordancia 
+                            ? 'Todas las complejidades coinciden' 
+                            : 'Existen diferencias en las complejidades'}
+                        </span>
+                      </div>
+                      <Show when={validacionLLM()?.confianza !== undefined}>
+                        <p class="text-sm text-gray-600 mt-2">
+                          Confianza: {(validacionLLM()?.confianza * 100).toFixed(1)}%
+                        </p>
+                      </Show>
+                    </div>
+
+                    {/* Análisis de divergencias */}
+                    <Show when={validacionLLM()?.analisis_divergencias?.length > 0}>
+                      <div class="bg-amber-50/80 border-2 border-amber-300 rounded-lg p-6">
+                        <p class="text-sm font-semibold text-gray-900 mb-3">⚠️ Análisis de Divergencias</p>
+                        <div class="space-y-3">
+                          {validacionLLM()?.analisis_divergencias.map((div: any, index: number) => (
+                            <div class="bg-white/70 rounded-lg p-4 border border-amber-200">
+                              <div class="flex items-start gap-2">
+                                <span class="text-amber-600 font-bold flex-shrink-0">{index + 1}.</span>
+                                <div class="flex-1">
+                                  <p class="font-semibold text-gray-900 mb-2">{div.caso}</p>
+                                  <div class="grid grid-cols-2 gap-4 text-sm">
+                                    <div>
+                                      <span class="text-gray-600 font-medium">Sistema:</span>
+                                      <code class="block bg-gray-100 px-2 py-1 rounded mt-1 font-mono">{div.sistema}</code>
+                                    </div>
+                                    <div>
+                                      <span class="text-gray-600 font-medium">LLM:</span>
+                                      <code class="block bg-gray-100 px-2 py-1 rounded mt-1 font-mono">{div.llm}</code>
+                                    </div>
+                                  </div>
+                                  <div class="mt-2 flex gap-4 text-xs text-gray-600">
+                                    <span><strong>Tipo:</strong> {div.tipo}</span>
+                                    <span><strong>Severidad:</strong> {div.severidad}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </Show>
+
+                    {/* Recomendación */}
+                    <Show when={validacionLLM()?.recomendacion}>
+                      <div class="bg-indigo-50/80 border-2 border-indigo-300 rounded-lg p-6">
+                        <p class="text-sm font-semibold text-gray-900 mb-2">💡 Recomendación</p>
+                        <p class="text-sm text-gray-700 leading-relaxed">
+                          {validacionLLM()?.recomendacion}
+                        </p>
+                      </div>
+                    </Show>
+                  </div>
+                </div>
+              </Show>
             </div>
           </div>
         </Show>
