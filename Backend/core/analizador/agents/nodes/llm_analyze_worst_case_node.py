@@ -69,7 +69,7 @@ def llm_analyze_worst_case_node(state: ScenarioState) -> ScenarioState:
         print()
 
         # Convertir respuesta del LLM a formato interno
-        scenario = convert_llm_to_scenario(llm_result, "worst_case")
+        scenario = convert_llm_to_scenario(llm_result, "worst_case", state.is_iterative)
 
         print("[OK] Escenario convertido a formato interno")
         print(f"  - ID: {scenario['id']}")
