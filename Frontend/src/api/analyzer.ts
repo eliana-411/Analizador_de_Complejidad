@@ -65,8 +65,15 @@ export interface AnalisisResponse {
   validacion_complejidades?: ValidacionComplejidadesResult | null;
 }
 
+export interface ComplejidadesInternas {
+  mejor_caso?: string;
+  caso_promedio?: string;
+  peor_caso?: string;
+}
+
 export interface ComplejidadesResult {
   algorithm_name?: string;
+  complejidades?: ComplejidadesInternas;
   mejor_caso?: string;
   caso_promedio?: string;
   peor_caso?: string;

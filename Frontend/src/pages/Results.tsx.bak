@@ -64,7 +64,7 @@ export default function Results() {
     if (!complexity) return 'info';
     const lower = complexity.toLowerCase();
     if (lower.includes('o(1)') || lower.includes('θ(1)')) return 'success';
-    if (lower.includes('o(n)') || lower.includes('θ(n)') || lower.includes('o(log')) return 'warning';
+    if (lower.includes('o(n)') || lower.includes('θ(n)') || lower.includes('o(log')) return 'warning');
     return 'danger';
   };
 
