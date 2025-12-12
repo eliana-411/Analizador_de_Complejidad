@@ -1,0 +1,417 @@
+{
+  "pseudocode": "fibonacci(int n)\nbegin\n    if (n ≤ 1) then\n    begin\n        return n\n    end\n    else\n    begin\n        return CALL fibonacci(n - 1) + CALL fibonacci(n - 2)\n    end\nend\n",
+  "algorithm_name": "busqueda_binaria",
+  "is_iterative": false,
+  "parameters": {
+    "arr": "array",
+    "objetivo": "int",
+    "inicio": "int",
+    "fin": "int"
+  },
+  "lines": [
+    "fibonacci(int n)",
+    "begin",
+    "    if (n ≤ 1) then",
+    "    begin",
+    "        return n",
+    "    end",
+    "    else",
+    "    begin",
+    "        return CALL fibonacci(n - 1) + CALL fibonacci(n - 2)",
+    "    end",
+    "end"
+  ],
+  "loops": [],
+  "recursive_calls": [],
+  "is_recursive": false,
+  "control_variables": [],
+  "raw_scenarios": [
+    {
+      "id": "S_best_case",
+      "semantic_id": "best_case",
+      "condition": "n <= 1 (caso base inmediato: n = 0 o n = 1)",
+      "state": "BEST_CASE",
+      "cost_T": "T(n) = c1 + c2",
+      "probability_P": "2/(n+1)",
+      "input_description": "n <= 1 (caso base inmediato: n = 0 o n = 1)",
+      "input_characteristics": {},
+      "is_iterative": true
+    },
+    {
+      "id": "S_worst_case",
+      "semantic_id": "worst_case",
+      "condition": "Cualquier valor de n mayor que 1, ya que Fibonacci siempre genera el arbol recursivo completo con dos llamadas por nivel hasta llegar a los casos base",
+      "state": "WORST_CASE",
+      "cost_T": "T(n) = T(n-1) + T(n-2) + c1 + c3",
+      "probability_P": "1",
+      "input_description": "Cualquier valor de n mayor que 1, ya que Fibonacci siempre genera el arbol recursivo completo con dos llamadas por nivel hasta llegar a los casos base",
+      "input_characteristics": {},
+      "is_iterative": true
+    },
+    {
+      "id": "S_base_case",
+      "semantic_id": "S_intermediate_1",
+      "condition": "Caso base cuando n <= 1",
+      "state": "INTERMEDIATE",
+      "cost_T": "c1",
+      "probability_P": "Proporcin despreciable para n grande",
+      "input_description": "Caso base cuando n <= 1",
+      "input_characteristics": {}
+    },
+    {
+      "id": "S_recursive_case",
+      "semantic_id": "S_intermediate_2",
+      "condition": "Caso recursivo cuando n > 1",
+      "state": "INTERMEDIATE",
+      "cost_T": "T(n-1) + T(n-2) + c2",
+      "probability_P": "Dominante para n >= 2",
+      "input_description": "Caso recursivo cuando n > 1",
+      "input_characteristics": {}
+    },
+    {
+      "id": "S_avg",
+      "semantic_id": "average_case",
+      "condition": "Valores de n distribuidos uniformemente en el rango de entradas tpicas. El caso promedio para Fibonacci considera el comportamiento esperado sobre el conjunto de todas las posibles entradas n >= 0.",
+      "state": "AVERAGE",
+      "cost_T": "E[T(n)] = T(n-1) + T(n-2) + c3",
+      "probability_P": "1",
+      "input_description": "Valores de n distribuidos uniformemente en el rango de entradas tpicas. El caso promedio para Fibonacci considera el comportamiento esperado sobre el conjunto de todas las posibles entradas n >= 0.",
+      "input_characteristics": {},
+      "average_cost_formula": "E[T(n)] = T(n-1) + T(n-2) + c3",
+      "average_cost_simplified": "E[T(n)] = T(n-1) + T(n-2) + c3"
+    }
+  ],
+  "llm_analysis": {
+    "best_case": {
+      "scenario_id": "S_best_case",
+      "scenario_type": "best_case",
+      "input_condition": "n <= 1 (caso base inmediato: n = 0 o n = 1)",
+      "line_by_line_analysis": [
+        {
+          "line_number": 1,
+          "code": "if (n <= 1) then",
+          "C_op": "c1",
+          "Freq": "1",
+          "Total": "c1",
+          "explanation": "Comparacion del caso base, se ejecuta una vez"
+        },
+        {
+          "line_number": 2,
+          "code": "return n",
+          "C_op": "c2",
+          "Freq": "1",
+          "Total": "c2",
+          "explanation": "Retorno directo del valor n sin recursion"
+        }
+      ],
+      "T_of_S": "T(n) = c1 + c2",
+      "T_of_S_explanation": "En el mejor caso (n <= 1), el algoritmo ejecuta solo la comparacion (c1) y el retorno (c2), sin realizar ninguna llamada recursiva. Es un costo constante.",
+      "P_of_S": "2/(n+1)",
+      "P_of_S_explanation": "De todos los valores posibles de n en el rango [0, n], solo dos valores (n=0 y n=1) producen el mejor caso. Asumiendo distribucion uniforme de entradas.",
+      "probability_model": "Modelo de distribucion uniforme: si n puede tomar cualquier valor entero no negativo hasta un maximo N, la probabilidad de que n sea 0 o 1 es 2/(N+1). Para valores grandes de N, esta probabilidad tiende a ser muy pequena."
+    },
+    "worst_case": {
+      "scenario_id": "S_worst_case",
+      "scenario_type": "worst_case",
+      "input_condition": "Cualquier valor de n mayor que 1, ya que Fibonacci siempre genera el arbol recursivo completo con dos llamadas por nivel hasta llegar a los casos base",
+      "line_by_line_analysis": [
+        {
+          "line_number": 1,
+          "code": "if (n <= 1) then",
+          "C_op": "c1",
+          "Freq": "1",
+          "Total": "c1",
+          "explanation": "Comparacion del caso base, se ejecuta una vez por cada llamada recursiva"
+        },
+        {
+          "line_number": 2,
+          "code": "return n",
+          "C_op": "c2",
+          "Freq": "0",
+          "Total": "0",
+          "explanation": "En el peor caso (n > 1), esta linea NO se ejecuta, solo se ejecuta en casos base"
+        },
+        {
+          "line_number": 3,
+          "code": "return CALL fibonacci(n - 1) + CALL fibonacci(n - 2)",
+          "C_op": "c3",
+          "Freq": "2 llamadas",
+          "Total": "T(n-1) + T(n-2) + c3",
+          "explanation": "Dos llamadas recursivas: una con tamano n-1 y otra con tamano n-2, mas el costo de la suma (c3)"
+        }
+      ],
+      "T_of_S": "T(n) = T(n-1) + T(n-2) + c1 + c3",
+      "T_of_S_explanation": "Para n > 1, se realizan dos llamadas recursivas con tamanos n-1 y n-2. El costo local incluye la comparacion (c1) y la operacion de suma (c3). Esta recurrencia genera un arbol binario completo de llamadas, maximizando el numero total de operaciones.",
+      "P_of_S": "1",
+      "P_of_S_explanation": "Para cualquier n > 1, el algoritmo siempre ejecuta ambas ramas recursivas completas",
+      "probability_model": "Deterministico: Fibonacci no tiene casos variables. Para todo n > 1, siempre se generan exactamente dos llamadas recursivas, creando el arbol de recursion completo. No hay entradas que eviten la recursion maxima."
+    },
+    "average_case": {
+      "scenario_id": "S_avg_case",
+      "scenario_type": "average_case",
+      "input_condition": "Valores de n distribuidos uniformemente en el rango de entradas tpicas. El caso promedio para Fibonacci considera el comportamiento esperado sobre el conjunto de todas las posibles entradas n >= 0.",
+      "probability_model": "Para Fibonacci, el caso promedio coincide con el comportamiento general del algoritmo, ya que para cada valor de n, la estructura del rbol de recursin es determinstica. No hay variabilidad en la entrada que afecte la complejidad: siempre se realizan las mismas llamadas recursivas T(n-1) y T(n-2). Por tanto, el caso promedio es idntico al peor caso.",
+      "scenarios_breakdown": [
+        {
+          "scenario_id": "S_base_case",
+          "description": "Caso base cuando n <= 1",
+          "T": "c1",
+          "P": "Proporcin despreciable para n grande"
+        },
+        {
+          "scenario_id": "S_recursive_case",
+          "description": "Caso recursivo cuando n > 1",
+          "T": "T(n-1) + T(n-2) + c2",
+          "P": "Dominante para n >= 2"
+        }
+      ],
+      "line_by_line_analysis": [
+        {
+          "line_number": 1,
+          "code": "if (n <= 1) then",
+          "C_op": "c1",
+          "Freq": "1",
+          "Total": "c1",
+          "explanation": "Comparacin ejecutada en cada llamada recursiva para verificar caso base"
+        },
+        {
+          "line_number": 2,
+          "code": "return n",
+          "C_op": "c2",
+          "Freq": "1 (solo en caso base)",
+          "Total": "c2",
+          "explanation": "Retorno ejecutado solo cuando n <= 1. Costo constante del caso base."
+        },
+        {
+          "line_number": 3,
+          "code": "return CALL fibonacci(n - 1) + CALL fibonacci(n - 2)",
+          "C_op": "c3",
+          "Freq": "1 (solo en caso recursivo)",
+          "Total": "T(n-1) + T(n-2) + c3",
+          "explanation": "En caso recursivo: dos llamadas recursivas mas una suma. c3 incluye el costo de la suma y el retorno."
+        }
+      ],
+      "T_of_S": "E[T(n)] = T(n-1) + T(n-2) + c3 para n > 1; E[T(n)] = c1 + c2 para n <= 1",
+      "T_of_S_simplified": "E[T(n)] = T(n-1) + T(n-2) + c3",
+      "T_of_S_explanation": "Para Fibonacci, el caso promedio es idntico al peor caso porque el algoritmo es determinstico: para cada valor de n, siempre se ejecutan exactamente las mismas operaciones y llamadas recursivas. No existe variabilidad en la entrada que genere diferentes caminos de ejecucin. La recurrencia refleja que cada llamada genera dos subproblemas de tamaos n-1 y n-2, ms un costo constante c3 para la comparacin inicial, las dos llamadas recursivas y la suma final. El caso base tiene costo constante c1 + c2.",
+      "P_of_S": "1",
+      "P_of_S_explanation": "P = 1 porque el caso promedio engloba todo el comportamiento del algoritmo. En Fibonacci no hay distribucin probabilstica de entradas que afecte la complejidad: cada valor de n produce exactamente el mismo rbol de recursin, por lo que el caso promedio, mejor caso y peor caso son idnticos en estructura (aunque pueden diferir en constantes segn la implementacin especfica).",
+      "average_cost_formula": "E[T(n)] = T(n-1) + T(n-2) + c3"
+    }
+  },
+  "omega_table": {
+    "algorithm_name": "busqueda_binaria",
+    "scenarios": [
+      {
+        "id": "S_best_case",
+        "semantic_id": "best_case",
+        "condition": "n <= 1 (caso base inmediato: n = 0 o n = 1)",
+        "state": "BEST_CASE",
+        "cost_T": "T(n) = c1 + c2",
+        "probability_P": "2/(n+1)"
+      },
+      {
+        "id": "S_worst_case",
+        "semantic_id": "worst_case",
+        "condition": "Cualquier valor de n mayor que 1, ya que Fibonacci siempre genera el arbol recursivo completo con dos llamadas por nivel hasta llegar a los casos base",
+        "state": "WORST_CASE",
+        "cost_T": "T(n) = T(n-1) + T(n-2) + c1 + c3",
+        "probability_P": "1"
+      },
+      {
+        "id": "S_base_case",
+        "semantic_id": "S_intermediate_1",
+        "condition": "Caso base cuando n <= 1",
+        "state": "INTERMEDIATE",
+        "cost_T": "c1",
+        "probability_P": "Proporcin despreciable para n grande"
+      },
+      {
+        "id": "S_recursive_case",
+        "semantic_id": "S_intermediate_2",
+        "condition": "Caso recursivo cuando n > 1",
+        "state": "INTERMEDIATE",
+        "cost_T": "T(n-1) + T(n-2) + c2",
+        "probability_P": "Dominante para n >= 2"
+      },
+      {
+        "id": "S_avg",
+        "semantic_id": "average_case",
+        "condition": "Valores de n distribuidos uniformemente en el rango de entradas tpicas. El caso promedio para Fibonacci considera el comportamiento esperado sobre el conjunto de todas las posibles entradas n >= 0.",
+        "state": "AVERAGE",
+        "cost_T": "E[T(n)] = T(n-1) + T(n-2) + c3",
+        "probability_P": "1"
+      }
+    ],
+    "control_variables": [],
+    "metadata": {
+      "algorithm_type": "recursive",
+      "loop_count": 0,
+      "nesting_level": 0,
+      "parameters": {
+        "arr": "array",
+        "objetivo": "int",
+        "inicio": "int",
+        "fin": "int"
+      },
+      "llm_analysis": {
+        "best_case": {
+          "scenario_id": "S_best_case",
+          "scenario_type": "best_case",
+          "input_condition": "n <= 1 (caso base inmediato: n = 0 o n = 1)",
+          "line_by_line_analysis": [
+            {
+              "line_number": 1,
+              "code": "if (n <= 1) then",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Comparacion del caso base, se ejecuta una vez"
+            },
+            {
+              "line_number": 2,
+              "code": "return n",
+              "C_op": "c2",
+              "Freq": "1",
+              "Total": "c2",
+              "explanation": "Retorno directo del valor n sin recursion"
+            }
+          ],
+          "T_of_S": "T(n) = c1 + c2",
+          "T_of_S_explanation": "En el mejor caso (n <= 1), el algoritmo ejecuta solo la comparacion (c1) y el retorno (c2), sin realizar ninguna llamada recursiva. Es un costo constante.",
+          "P_of_S": "2/(n+1)",
+          "P_of_S_explanation": "De todos los valores posibles de n en el rango [0, n], solo dos valores (n=0 y n=1) producen el mejor caso. Asumiendo distribucion uniforme de entradas.",
+          "probability_model": "Modelo de distribucion uniforme: si n puede tomar cualquier valor entero no negativo hasta un maximo N, la probabilidad de que n sea 0 o 1 es 2/(N+1). Para valores grandes de N, esta probabilidad tiende a ser muy pequena."
+        },
+        "worst_case": {
+          "scenario_id": "S_worst_case",
+          "scenario_type": "worst_case",
+          "input_condition": "Cualquier valor de n mayor que 1, ya que Fibonacci siempre genera el arbol recursivo completo con dos llamadas por nivel hasta llegar a los casos base",
+          "line_by_line_analysis": [
+            {
+              "line_number": 1,
+              "code": "if (n <= 1) then",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Comparacion del caso base, se ejecuta una vez por cada llamada recursiva"
+            },
+            {
+              "line_number": 2,
+              "code": "return n",
+              "C_op": "c2",
+              "Freq": "0",
+              "Total": "0",
+              "explanation": "En el peor caso (n > 1), esta linea NO se ejecuta, solo se ejecuta en casos base"
+            },
+            {
+              "line_number": 3,
+              "code": "return CALL fibonacci(n - 1) + CALL fibonacci(n - 2)",
+              "C_op": "c3",
+              "Freq": "2 llamadas",
+              "Total": "T(n-1) + T(n-2) + c3",
+              "explanation": "Dos llamadas recursivas: una con tamano n-1 y otra con tamano n-2, mas el costo de la suma (c3)"
+            }
+          ],
+          "T_of_S": "T(n) = T(n-1) + T(n-2) + c1 + c3",
+          "T_of_S_explanation": "Para n > 1, se realizan dos llamadas recursivas con tamanos n-1 y n-2. El costo local incluye la comparacion (c1) y la operacion de suma (c3). Esta recurrencia genera un arbol binario completo de llamadas, maximizando el numero total de operaciones.",
+          "P_of_S": "1",
+          "P_of_S_explanation": "Para cualquier n > 1, el algoritmo siempre ejecuta ambas ramas recursivas completas",
+          "probability_model": "Deterministico: Fibonacci no tiene casos variables. Para todo n > 1, siempre se generan exactamente dos llamadas recursivas, creando el arbol de recursion completo. No hay entradas que eviten la recursion maxima."
+        },
+        "average_case": {
+          "scenario_id": "S_avg_case",
+          "scenario_type": "average_case",
+          "input_condition": "Valores de n distribuidos uniformemente en el rango de entradas tpicas. El caso promedio para Fibonacci considera el comportamiento esperado sobre el conjunto de todas las posibles entradas n >= 0.",
+          "probability_model": "Para Fibonacci, el caso promedio coincide con el comportamiento general del algoritmo, ya que para cada valor de n, la estructura del rbol de recursin es determinstica. No hay variabilidad en la entrada que afecte la complejidad: siempre se realizan las mismas llamadas recursivas T(n-1) y T(n-2). Por tanto, el caso promedio es idntico al peor caso.",
+          "scenarios_breakdown": [
+            {
+              "scenario_id": "S_base_case",
+              "description": "Caso base cuando n <= 1",
+              "T": "c1",
+              "P": "Proporcin despreciable para n grande"
+            },
+            {
+              "scenario_id": "S_recursive_case",
+              "description": "Caso recursivo cuando n > 1",
+              "T": "T(n-1) + T(n-2) + c2",
+              "P": "Dominante para n >= 2"
+            }
+          ],
+          "line_by_line_analysis": [
+            {
+              "line_number": 1,
+              "code": "if (n <= 1) then",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Comparacin ejecutada en cada llamada recursiva para verificar caso base"
+            },
+            {
+              "line_number": 2,
+              "code": "return n",
+              "C_op": "c2",
+              "Freq": "1 (solo en caso base)",
+              "Total": "c2",
+              "explanation": "Retorno ejecutado solo cuando n <= 1. Costo constante del caso base."
+            },
+            {
+              "line_number": 3,
+              "code": "return CALL fibonacci(n - 1) + CALL fibonacci(n - 2)",
+              "C_op": "c3",
+              "Freq": "1 (solo en caso recursivo)",
+              "Total": "T(n-1) + T(n-2) + c3",
+              "explanation": "En caso recursivo: dos llamadas recursivas mas una suma. c3 incluye el costo de la suma y el retorno."
+            }
+          ],
+          "T_of_S": "E[T(n)] = T(n-1) + T(n-2) + c3 para n > 1; E[T(n)] = c1 + c2 para n <= 1",
+          "T_of_S_simplified": "E[T(n)] = T(n-1) + T(n-2) + c3",
+          "T_of_S_explanation": "Para Fibonacci, el caso promedio es idntico al peor caso porque el algoritmo es determinstico: para cada valor de n, siempre se ejecutan exactamente las mismas operaciones y llamadas recursivas. No existe variabilidad en la entrada que genere diferentes caminos de ejecucin. La recurrencia refleja que cada llamada genera dos subproblemas de tamaos n-1 y n-2, ms un costo constante c3 para la comparacin inicial, las dos llamadas recursivas y la suma final. El caso base tiene costo constante c1 + c2.",
+          "P_of_S": "1",
+          "P_of_S_explanation": "P = 1 porque el caso promedio engloba todo el comportamiento del algoritmo. En Fibonacci no hay distribucin probabilstica de entradas que afecte la complejidad: cada valor de n produce exactamente el mismo rbol de recursin, por lo que el caso promedio, mejor caso y peor caso son idnticos en estructura (aunque pueden diferir en constantes segn la implementacin especfica).",
+          "average_cost_formula": "E[T(n)] = T(n-1) + T(n-2) + c3"
+        }
+      },
+      "best_case": {
+        "scenario_id": "S_best_case",
+        "semantic_id": "best_case",
+        "T": "T(n) = c1 + c2",
+        "P": "2/(n+1)",
+        "description": "n <= 1 (caso base inmediato: n = 0 o n = 1)",
+        "input_characteristics": {}
+      },
+      "worst_case": {
+        "scenario_id": "S_worst_case",
+        "semantic_id": "worst_case",
+        "T": "T(n) = T(n-1) + T(n-2) + c1 + c3",
+        "P": "1",
+        "description": "Cualquier valor de n mayor que 1, ya que Fibonacci siempre genera el arbol recursivo completo con dos llamadas por nivel hasta llegar a los casos base",
+        "input_characteristics": {}
+      },
+      "average_case": {
+        "scenario_id": "S_avg",
+        "semantic_id": "average_case",
+        "T_avg": "E[T(n)] = T(n-1) + T(n-2) + c3",
+        "formula": "E[T(n)] = T(n-1) + T(n-2) + c3",
+        "simplified": "E[T(n)] = T(n-1) + T(n-2) + c3",
+        "description": "Valores de n distribuidos uniformemente en el rango de entradas tpicas. El caso promedio para Fibonacci considera el comportamiento esperado sobre el conjunto de todas las posibles entradas n >= 0.",
+        "scenarios_breakdown": [
+          {
+            "scenario_id": "S_base_case",
+            "description": "Caso base cuando n <= 1",
+            "T": "c1",
+            "P": "Proporcin despreciable para n grande"
+          },
+          {
+            "scenario_id": "S_recursive_case",
+            "description": "Caso recursivo cuando n > 1",
+            "T": "T(n-1) + T(n-2) + c2",
+            "P": "Dominante para n >= 2"
+          }
+        ]
+      }
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

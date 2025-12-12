@@ -52,7 +52,7 @@ def build_omega_table_node(state: ScenarioState) -> ScenarioState:
     case_summary_metadata = build_case_summary_metadata(state)
 
     if case_summary_metadata:
-        print("📊 RESUMEN DE CASOS:")
+        print("RESUMEN DE CASOS:")
         print(f"  - Mejor caso: T={case_summary_metadata['best_case']['T']}, P={case_summary_metadata['best_case']['P']}")
         print(f"  - Peor caso: T={case_summary_metadata['worst_case']['T']}, P={case_summary_metadata['worst_case']['P']}")
         if case_summary_metadata.get('average_case'):

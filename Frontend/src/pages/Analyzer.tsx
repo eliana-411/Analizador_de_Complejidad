@@ -5,6 +5,7 @@ import Table, { type Column } from '../components/ui/Table';
 import ContentContainer from '../components/layout/ContentContainer';
 import { analyzeCode } from '../api/analyzer';
 import type { LineCost } from '../types';
+import { useAnalysis } from '../contexts/AnalysisContext';
 
 interface ScenarioRow {
   id: string;
@@ -22,6 +23,8 @@ interface ScenarioRow {
 export default function Analyzer() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const { analysisResult } = useAnalysis();
+
   const [expandedRows, setExpandedRows] = createSignal<Set<number>>(new Set());
   const [scenarios, setScenarios] = createSignal<ScenarioRow[]>([]);
   const [isLoading, setIsLoading] = createSignal(true);
@@ -29,23 +32,17 @@ export default function Analyzer() {
   const [algorithmName, setAlgorithmName] = createSignal('Algoritmo');
 
   onMount(async () => {
-    const pseudocodigo = searchParams.pseudocodigo;
-    if (!pseudocodigo) {
-      setError('No se proporcionó pseudocódigo');
+    // LEER DESDE CONTEXTO GLOBAL (no llamar backend)
+    const resultado = analysisResult();
+
+    if (!resultado) {
+      setError('No hay datos de análisis. Por favor, analiza el pseudocódigo primero en la página de Validación.');
       setIsLoading(false);
       return;
     }
 
     try {
-      console.log('Analizando para tabla Omega...');
-
-      const resultado = await analyzeCode({
-        entrada: pseudocodigo,
-        tipo_entrada: 'auto',
-        auto_corregir: true
-      });
-
-      console.log('Resultado:', resultado);
+      console.log('Leyendo resultado desde contexto:', resultado);
 
       if (resultado.costos_por_linea) {
         const omega = resultado.costos_por_linea;
@@ -87,8 +84,8 @@ export default function Analyzer() {
       }
 
     } catch (err: any) {
-      console.error('Error:', err);
-      setError(err.message || 'Error al analizar');
+      console.error('Error procesando resultado:', err);
+      setError(err.message || 'Error al procesar datos');
     } finally {
       setIsLoading(false);
     }

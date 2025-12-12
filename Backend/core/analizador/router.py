@@ -6,7 +6,7 @@ from pathlib import Path
 from datetime import datetime
 
 from pydantic import BaseModel, Field
-from tests.flujo_analisis import FlujoAnalisis
+from flujo_analisis import FlujoAnalisis
 from agentes.agenteReportador import AgenteReportador
 
 class AnalisisConReporteResponse(BaseModel):
