@@ -303,5 +303,6 @@ export default function Notaciones() {
         </Show>
       </div>
     </ContentContainer>
+    
   );
 }
