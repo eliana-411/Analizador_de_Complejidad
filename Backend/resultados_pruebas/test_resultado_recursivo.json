@@ -1,0 +1,758 @@
+{
+  "pseudocode": "def busqueda_binaria(arr, objetivo, inicio, fin):\n    if inicio > fin:\n        return -1\n    \n    medio = (inicio + fin) // 2\n    \n    if arr[medio] == objetivo:\n        return medio\n    elif arr[medio] > objetivo:\n        return busqueda_binaria(arr, objetivo, inicio, medio - 1)\n    else:\n        return busqueda_binaria(arr, objetivo, medio + 1, fin)\n",
+  "algorithm_name": "busqueda_binaria",
+  "is_iterative": false,
+  "parameters": {
+    "arr": "array",
+    "objetivo": "int",
+    "inicio": "int",
+    "fin": "int"
+  },
+  "lines": [
+    "def busqueda_binaria(arr, objetivo, inicio, fin):",
+    "    if inicio > fin:",
+    "        return -1",
+    "    ",
+    "    medio = (inicio + fin) // 2",
+    "    ",
+    "    if arr[medio] == objetivo:",
+    "        return medio",
+    "    elif arr[medio] > objetivo:",
+    "        return busqueda_binaria(arr, objetivo, inicio, medio - 1)",
+    "    else:",
+    "        return busqueda_binaria(arr, objetivo, medio + 1, fin)"
+  ],
+  "loops": [],
+  "recursive_calls": [],
+  "is_recursive": false,
+  "control_variables": [],
+  "raw_scenarios": [
+    {
+      "id": "S_best_case",
+      "semantic_id": "best_case",
+      "condition": "El elemento objetivo se encuentra exactamente en la posicion media del arreglo en la primera comparacion",
+      "state": "BEST_CASE",
+      "cost_T": "T(n) = c1 + c3 + c4 + c5",
+      "probability_P": "1/n",
+      "input_description": "El elemento objetivo se encuentra exactamente en la posicion media del arreglo en la primera comparacion",
+      "input_characteristics": {},
+      "is_iterative": true
+    },
+    {
+      "id": "S_worst_case",
+      "semantic_id": "worst_case",
+      "condition": "El elemento objetivo no existe en el arreglo, forzando la bsqueda a recorrer toda la profundidad del rbol de recursin hasta llegar a un subarreglo vaco (inicio > fin)",
+      "state": "WORST_CASE",
+      "cost_T": "T(n) = T(n/2) + c1 + c3 + c4 + c6",
+      "probability_P": "1/(n+1)",
+      "input_description": "El elemento objetivo no existe en el arreglo, forzando la bsqueda a recorrer toda la profundidad del rbol de recursin hasta llegar a un subarreglo vaco (inicio > fin)",
+      "input_characteristics": {},
+      "is_iterative": true
+    },
+    {
+      "id": "S_found_at_middle",
+      "semantic_id": "S_intermediate_1",
+      "condition": "Elemento encontrado en la posicion media (nivel 1)",
+      "state": "INTERMEDIATE",
+      "cost_T": "c1 + c2 + c3",
+      "probability_P": "1/(n+1)",
+      "input_description": "Elemento encontrado en la posicion media (nivel 1)",
+      "input_characteristics": {}
+    },
+    {
+      "id": "S_found_at_level_k",
+      "semantic_id": "S_intermediate_2",
+      "condition": "Elemento encontrado en nivel k de recursion (k >= 2)",
+      "state": "INTERMEDIATE",
+      "cost_T": "T(n/2^k) + c1 + c2 + c4 + c5",
+      "probability_P": "2^(k-1)/(n+1)",
+      "input_description": "Elemento encontrado en nivel k de recursion (k >= 2)",
+      "input_characteristics": {}
+    },
+    {
+      "id": "S_not_found",
+      "semantic_id": "S_intermediate_3",
+      "condition": "Elemento no encontrado (caso base inicio > fin)",
+      "state": "INTERMEDIATE",
+      "cost_T": "T(0) + c1",
+      "probability_P": "1/(n+1)",
+      "input_description": "Elemento no encontrado (caso base inicio > fin)",
+      "input_characteristics": {}
+    },
+    {
+      "id": "S_avg",
+      "semantic_id": "average_case",
+      "condition": "El elemento buscado puede estar en cualquiera de las n posiciones del arreglo ordenado, o no estar presente. Modelo de n+1 casos equiprobables.",
+      "state": "AVERAGE",
+      "cost_T": "E[T(n)] = T(n/2) + c",
+      "probability_P": "1",
+      "input_description": "El elemento buscado puede estar en cualquiera de las n posiciones del arreglo ordenado, o no estar presente. Modelo de n+1 casos equiprobables.",
+      "input_characteristics": {},
+      "average_cost_formula": "E[T(n)] = (1/(n+1)) * [(k=1 to log2(n)) 2^(k-1)*(c1 + c3 + c4 + c5) + (c1 + c2)] = T(n/2) + c1 + c3 + c4",
+      "average_cost_simplified": "E[T(n)] = T(n/2) + c"
+    }
+  ],
+  "llm_analysis": {
+    "best_case": {
+      "scenario_id": "S_best_case",
+      "scenario_type": "best_case",
+      "input_condition": "El elemento objetivo se encuentra exactamente en la posicion media del arreglo en la primera comparacion",
+      "line_by_line_analysis": [
+        {
+          "line_number": 1,
+          "code": "if inicio > fin:",
+          "C_op": "c1",
+          "Freq": "1",
+          "Total": "c1",
+          "explanation": "Comparacion del caso base, se ejecuta una vez pero la condicion es falsa"
+        },
+        {
+          "line_number": 2,
+          "code": "return -1",
+          "C_op": "c2",
+          "Freq": "0",
+          "Total": "0",
+          "explanation": "No se ejecuta en el mejor caso porque la condicion anterior es falsa"
+        },
+        {
+          "line_number": 3,
+          "code": "medio = (inicio + fin) // 2",
+          "C_op": "c3",
+          "Freq": "1",
+          "Total": "c3",
+          "explanation": "Calculo del indice medio: suma, division entera (2 operaciones)"
+        },
+        {
+          "line_number": 4,
+          "code": "if arr[medio] == objetivo:",
+          "C_op": "c4",
+          "Freq": "1",
+          "Total": "c4",
+          "explanation": "Acceso al arreglo y comparacion, la condicion es verdadera en el mejor caso"
+        },
+        {
+          "line_number": 5,
+          "code": "return medio",
+          "C_op": "c5",
+          "Freq": "1",
+          "Total": "c5",
+          "explanation": "Retorna el indice encontrado, termina la recursion inmediatamente"
+        },
+        {
+          "line_number": 6,
+          "code": "elif arr[medio] > objetivo:",
+          "C_op": "c6",
+          "Freq": "0",
+          "Total": "0",
+          "explanation": "No se ejecuta porque ya se encontro el elemento en la linea 4"
+        },
+        {
+          "line_number": 7,
+          "code": "return busqueda_binaria(arr, objetivo, inicio, medio - 1)",
+          "C_op": "c7",
+          "Freq": "0",
+          "Total": "0",
+          "explanation": "No se ejecuta en el mejor caso, no hay llamada recursiva"
+        },
+        {
+          "line_number": 8,
+          "code": "else:",
+          "C_op": "c8",
+          "Freq": "0",
+          "Total": "0",
+          "explanation": "No se ejecuta porque la condicion de la linea 4 fue verdadera"
+        },
+        {
+          "line_number": 9,
+          "code": "return busqueda_binaria(arr, objetivo, medio + 1, fin)",
+          "C_op": "c9",
+          "Freq": "0",
+          "Total": "0",
+          "explanation": "No se ejecuta en el mejor caso, no hay llamada recursiva"
+        }
+      ],
+      "T_of_S": "T(n) = c1 + c3 + c4 + c5",
+      "T_of_S_explanation": "En el mejor caso no hay recursion. El algoritmo encuentra el elemento en la primera comparacion (posicion media), ejecutando solo: comparacion de caso base (c1), calculo del medio (c3), comparacion exitosa (c4) y retorno (c5). El costo es constante, sin terminos recursivos.",
+      "P_of_S": "1/n",
+      "P_of_S_explanation": "Usando Modelo 2 simplificado para mejor caso: considerando solo las n posiciones donde el elemento puede estar (excluyendo el caso no encontrado del analisis de mejor caso), la probabilidad de que este exactamente en la posicion media es 1/n",
+      "probability_model": "Modelo 2 adaptado: Para el mejor caso de busqueda binaria, consideramos n posiciones equiprobables donde el objetivo puede estar. La probabilidad de que este en la posicion media especifica es 1/n"
+    },
+    "worst_case": {
+      "scenario_id": "S_worst_case",
+      "scenario_type": "worst_case",
+      "input_condition": "El elemento objetivo no existe en el arreglo, forzando la bsqueda a recorrer toda la profundidad del rbol de recursin hasta llegar a un subarreglo vaco (inicio > fin)",
+      "line_by_line_analysis": [
+        {
+          "line_number": 1,
+          "code": "if inicio > fin:",
+          "C_op": "c1",
+          "Freq": "1",
+          "Total": "c1",
+          "explanation": "Comparacin que se evala en cada llamada recursiva. En el peor caso, esta condicin es falsa hasta la ltima llamada"
+        },
+        {
+          "line_number": 2,
+          "code": "return -1",
+          "C_op": "c2",
+          "Freq": "0",
+          "Total": "0",
+          "explanation": "En el peor caso, este return solo se ejecuta en la ltima llamada (caso base), pero su costo se cuenta en esa llamada final"
+        },
+        {
+          "line_number": 3,
+          "code": "medio = (inicio + fin) // 2",
+          "C_op": "c3",
+          "Freq": "1",
+          "Total": "c3",
+          "explanation": "Clculo del ndice medio: suma, divisin entera (3 operaciones aritmticas), asignacin"
+        },
+        {
+          "line_number": 4,
+          "code": "if arr[medio] == objetivo:",
+          "C_op": "c4",
+          "Freq": "1",
+          "Total": "c4",
+          "explanation": "Acceso al arreglo y comparacin. En peor caso esta condicin es siempre falsa"
+        },
+        {
+          "line_number": 5,
+          "code": "return medio",
+          "C_op": "c5",
+          "Freq": "0",
+          "Total": "0",
+          "explanation": "En peor caso nunca se ejecuta porque el elemento no se encuentra"
+        },
+        {
+          "line_number": 6,
+          "code": "elif arr[medio] > objetivo:",
+          "C_op": "c6",
+          "Freq": "1",
+          "Total": "c6",
+          "explanation": "Acceso al arreglo y comparacin. Se evala en cada llamada recursiva"
+        },
+        {
+          "line_number": 7,
+          "code": "return busqueda_binaria(arr, objetivo, inicio, medio - 1)",
+          "C_op": "c7",
+          "Freq": "1 llamada",
+          "Total": "T(n/2) + c7",
+          "explanation": "Llamada recursiva a la mitad izquierda del arreglo. En peor caso, se ejecuta aproximadamente la mitad de las veces"
+        },
+        {
+          "line_number": 8,
+          "code": "else:",
+          "C_op": "0",
+          "Freq": "1",
+          "Total": "0",
+          "explanation": "Estructura de control, sin operaciones"
+        },
+        {
+          "line_number": 9,
+          "code": "return busqueda_binaria(arr, objetivo, medio + 1, fin)",
+          "C_op": "c8",
+          "Freq": "1 llamada",
+          "Total": "T(n/2) + c8",
+          "explanation": "Llamada recursiva a la mitad derecha del arreglo. En peor caso, se ejecuta aproximadamente la mitad de las veces"
+        }
+      ],
+      "T_of_S": "T(n) = T(n/2) + c1 + c3 + c4 + c6",
+      "T_of_S_explanation": "En cada llamada recursiva se realiza exactamente UNA llamada recursiva con la mitad del tamao (n/2), ms el costo local constante de: verificar inicio > fin (c1), calcular medio (c3), comparar arr[medio] == objetivo (c4), y comparar arr[medio] > objetivo (c6). El algoritmo contina dividiendo el espacio de bsqueda a la mitad hasta que inicio > fin, alcanzando profundidad logartmica log(n)",
+      "P_of_S": "1/(n+1)",
+      "P_of_S_explanation": "Usando Modelo 2 para algoritmos de bsqueda: consideramos n+1 casos equiprobables (n posiciones donde podra estar el elemento + 1 caso donde no existe). El peor caso ocurre cuando el elemento no est en el arreglo, lo cual es 1 de los n+1 casos posibles, por tanto P = 1/(n+1)",
+      "probability_model": "Modelo 2: n+1 casos equiprobables. Hay n posiciones posibles donde el elemento podra encontrarse, ms 1 caso donde el elemento no existe en el arreglo. Cada caso tiene probabilidad 1/(n+1). El peor caso corresponde al escenario donde el elemento no existe, forzando mxima profundidad de recursin"
+    },
+    "average_case": {
+      "scenario_id": "S_avg_case",
+      "scenario_type": "average_case",
+      "input_condition": "El elemento buscado puede estar en cualquiera de las n posiciones del arreglo ordenado, o no estar presente. Modelo de n+1 casos equiprobables.",
+      "probability_model": "Asumimos que el elemento objetivo tiene igual probabilidad de estar en cualquiera de las n posiciones (1/(n+1) cada una), o de no estar en el arreglo (1/(n+1)). Total: n+1 casos equiprobables. En promedio, la busqueda binaria divide el espacio de busqueda a la mitad en cada paso.",
+      "scenarios_breakdown": [
+        {
+          "scenario_id": "S_found_at_middle",
+          "description": "Elemento encontrado en la posicion media (nivel 1)",
+          "T": "c1 + c2 + c3",
+          "P": "1/(n+1)"
+        },
+        {
+          "scenario_id": "S_found_at_level_k",
+          "description": "Elemento encontrado en nivel k de recursion (k >= 2)",
+          "T": "T(n/2^k) + c1 + c2 + c4 + c5",
+          "P": "2^(k-1)/(n+1)"
+        },
+        {
+          "scenario_id": "S_not_found",
+          "description": "Elemento no encontrado (caso base inicio > fin)",
+          "T": "T(0) + c1",
+          "P": "1/(n+1)"
+        }
+      ],
+      "line_by_line_analysis": [
+        {
+          "line_number": 1,
+          "code": "if inicio > fin:",
+          "C_op": "c1",
+          "Freq": "1",
+          "Total": "c1",
+          "explanation": "Comparacion ejecutada en cada llamada recursiva"
+        },
+        {
+          "line_number": 2,
+          "code": "return -1",
+          "C_op": "c2",
+          "Freq": "0 o 1",
+          "Total": "c2 (solo si inicio > fin)",
+          "explanation": "Retorno del caso base cuando no se encuentra el elemento"
+        },
+        {
+          "line_number": 3,
+          "code": "medio = (inicio + fin) // 2",
+          "C_op": "c3",
+          "Freq": "1",
+          "Total": "c3",
+          "explanation": "Calculo del indice medio: suma, division entera (3 operaciones contadas como c3)"
+        },
+        {
+          "line_number": 4,
+          "code": "if arr[medio] == objetivo:",
+          "C_op": "c4",
+          "Freq": "1",
+          "Total": "c4",
+          "explanation": "Acceso al arreglo y comparacion con el objetivo"
+        },
+        {
+          "line_number": 5,
+          "code": "return medio",
+          "C_op": "c5",
+          "Freq": "0 o 1",
+          "Total": "c5 (solo si se encuentra)",
+          "explanation": "Retorno exitoso cuando se encuentra el elemento"
+        },
+        {
+          "line_number": 6,
+          "code": "elif arr[medio] > objetivo:",
+          "C_op": "c6",
+          "Freq": "0 o 1",
+          "Total": "c6 (si no se encontro antes)",
+          "explanation": "Comparacion para decidir buscar en mitad izquierda"
+        },
+        {
+          "line_number": 7,
+          "code": "return busqueda_binaria(arr, objetivo, inicio, medio - 1)",
+          "C_op": "c7",
+          "Freq": "0 o 1",
+          "Total": "T(n/2) (si arr[medio] > objetivo)",
+          "explanation": "Llamada recursiva a la mitad izquierda del arreglo"
+        },
+        {
+          "line_number": 8,
+          "code": "else:",
+          "C_op": "0",
+          "Freq": "0 o 1",
+          "Total": "0",
+          "explanation": "Estructura de control, sin operaciones"
+        },
+        {
+          "line_number": 9,
+          "code": "return busqueda_binaria(arr, objetivo, medio + 1, fin)",
+          "C_op": "c8",
+          "Freq": "0 o 1",
+          "Total": "T(n/2) (si arr[medio] < objetivo)",
+          "explanation": "Llamada recursiva a la mitad derecha del arreglo"
+        }
+      ],
+      "T_of_S": "E[T(n)] = T(n/2) + c1 + c3 + c4",
+      "T_of_S_simplified": "E[T(n)] = T(n/2) + c",
+      "T_of_S_explanation": "En el caso promedio, la busqueda binaria siempre reduce el espacio de busqueda a la mitad (T(n/2)), independientemente de si el elemento esta en la mitad izquierda o derecha. El costo local incluye: verificar caso base (c1), calcular el medio (c3), y comparar con el objetivo (c4). Las constantes c6, c7, c8 se absorben en la llamada recursiva. El numero esperado de niveles de recursion es log2(n), por lo que E[T(n)] = c*log2(n) + c_base.",
+      "P_of_S": "1",
+      "P_of_S_explanation": "El caso promedio representa la esperanza matematica sobre todos los n+1 casos equiprobables (elemento en cada una de las n posiciones, o no presente). La probabilidad total es la suma de todos los casos individuales: n*(1/(n+1)) + 1/(n+1) = (n+1)/(n+1) = 1.",
+      "average_cost_formula": "E[T(n)] = (1/(n+1)) * [(k=1 to log2(n)) 2^(k-1)*(c1 + c3 + c4 + c5) + (c1 + c2)] = T(n/2) + c1 + c3 + c4"
+    }
+  },
+  "omega_table": {
+    "algorithm_name": "busqueda_binaria",
+    "scenarios": [
+      {
+        "id": "S_best_case",
+        "semantic_id": "best_case",
+        "condition": "El elemento objetivo se encuentra exactamente en la posicion media del arreglo en la primera comparacion",
+        "state": "BEST_CASE",
+        "cost_T": "T(n) = c1 + c3 + c4 + c5",
+        "probability_P": "1/n"
+      },
+      {
+        "id": "S_worst_case",
+        "semantic_id": "worst_case",
+        "condition": "El elemento objetivo no existe en el arreglo, forzando la bsqueda a recorrer toda la profundidad del rbol de recursin hasta llegar a un subarreglo vaco (inicio > fin)",
+        "state": "WORST_CASE",
+        "cost_T": "T(n) = T(n/2) + c1 + c3 + c4 + c6",
+        "probability_P": "1/(n+1)"
+      },
+      {
+        "id": "S_found_at_middle",
+        "semantic_id": "S_intermediate_1",
+        "condition": "Elemento encontrado en la posicion media (nivel 1)",
+        "state": "INTERMEDIATE",
+        "cost_T": "c1 + c2 + c3",
+        "probability_P": "1/(n+1)"
+      },
+      {
+        "id": "S_found_at_level_k",
+        "semantic_id": "S_intermediate_2",
+        "condition": "Elemento encontrado en nivel k de recursion (k >= 2)",
+        "state": "INTERMEDIATE",
+        "cost_T": "T(n/2^k) + c1 + c2 + c4 + c5",
+        "probability_P": "2^(k-1)/(n+1)"
+      },
+      {
+        "id": "S_not_found",
+        "semantic_id": "S_intermediate_3",
+        "condition": "Elemento no encontrado (caso base inicio > fin)",
+        "state": "INTERMEDIATE",
+        "cost_T": "T(0) + c1",
+        "probability_P": "1/(n+1)"
+      },
+      {
+        "id": "S_avg",
+        "semantic_id": "average_case",
+        "condition": "El elemento buscado puede estar en cualquiera de las n posiciones del arreglo ordenado, o no estar presente. Modelo de n+1 casos equiprobables.",
+        "state": "AVERAGE",
+        "cost_T": "E[T(n)] = T(n/2) + c",
+        "probability_P": "1"
+      }
+    ],
+    "control_variables": [],
+    "metadata": {
+      "algorithm_type": "recursive",
+      "loop_count": 0,
+      "nesting_level": 0,
+      "parameters": {
+        "arr": "array",
+        "objetivo": "int",
+        "inicio": "int",
+        "fin": "int"
+      },
+      "llm_analysis": {
+        "best_case": {
+          "scenario_id": "S_best_case",
+          "scenario_type": "best_case",
+          "input_condition": "El elemento objetivo se encuentra exactamente en la posicion media del arreglo en la primera comparacion",
+          "line_by_line_analysis": [
+            {
+              "line_number": 1,
+              "code": "if inicio > fin:",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Comparacion del caso base, se ejecuta una vez pero la condicion es falsa"
+            },
+            {
+              "line_number": 2,
+              "code": "return -1",
+              "C_op": "c2",
+              "Freq": "0",
+              "Total": "0",
+              "explanation": "No se ejecuta en el mejor caso porque la condicion anterior es falsa"
+            },
+            {
+              "line_number": 3,
+              "code": "medio = (inicio + fin) // 2",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Calculo del indice medio: suma, division entera (2 operaciones)"
+            },
+            {
+              "line_number": 4,
+              "code": "if arr[medio] == objetivo:",
+              "C_op": "c4",
+              "Freq": "1",
+              "Total": "c4",
+              "explanation": "Acceso al arreglo y comparacion, la condicion es verdadera en el mejor caso"
+            },
+            {
+              "line_number": 5,
+              "code": "return medio",
+              "C_op": "c5",
+              "Freq": "1",
+              "Total": "c5",
+              "explanation": "Retorna el indice encontrado, termina la recursion inmediatamente"
+            },
+            {
+              "line_number": 6,
+              "code": "elif arr[medio] > objetivo:",
+              "C_op": "c6",
+              "Freq": "0",
+              "Total": "0",
+              "explanation": "No se ejecuta porque ya se encontro el elemento en la linea 4"
+            },
+            {
+              "line_number": 7,
+              "code": "return busqueda_binaria(arr, objetivo, inicio, medio - 1)",
+              "C_op": "c7",
+              "Freq": "0",
+              "Total": "0",
+              "explanation": "No se ejecuta en el mejor caso, no hay llamada recursiva"
+            },
+            {
+              "line_number": 8,
+              "code": "else:",
+              "C_op": "c8",
+              "Freq": "0",
+              "Total": "0",
+              "explanation": "No se ejecuta porque la condicion de la linea 4 fue verdadera"
+            },
+            {
+              "line_number": 9,
+              "code": "return busqueda_binaria(arr, objetivo, medio + 1, fin)",
+              "C_op": "c9",
+              "Freq": "0",
+              "Total": "0",
+              "explanation": "No se ejecuta en el mejor caso, no hay llamada recursiva"
+            }
+          ],
+          "T_of_S": "T(n) = c1 + c3 + c4 + c5",
+          "T_of_S_explanation": "En el mejor caso no hay recursion. El algoritmo encuentra el elemento en la primera comparacion (posicion media), ejecutando solo: comparacion de caso base (c1), calculo del medio (c3), comparacion exitosa (c4) y retorno (c5). El costo es constante, sin terminos recursivos.",
+          "P_of_S": "1/n",
+          "P_of_S_explanation": "Usando Modelo 2 simplificado para mejor caso: considerando solo las n posiciones donde el elemento puede estar (excluyendo el caso no encontrado del analisis de mejor caso), la probabilidad de que este exactamente en la posicion media es 1/n",
+          "probability_model": "Modelo 2 adaptado: Para el mejor caso de busqueda binaria, consideramos n posiciones equiprobables donde el objetivo puede estar. La probabilidad de que este en la posicion media especifica es 1/n"
+        },
+        "worst_case": {
+          "scenario_id": "S_worst_case",
+          "scenario_type": "worst_case",
+          "input_condition": "El elemento objetivo no existe en el arreglo, forzando la bsqueda a recorrer toda la profundidad del rbol de recursin hasta llegar a un subarreglo vaco (inicio > fin)",
+          "line_by_line_analysis": [
+            {
+              "line_number": 1,
+              "code": "if inicio > fin:",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Comparacin que se evala en cada llamada recursiva. En el peor caso, esta condicin es falsa hasta la ltima llamada"
+            },
+            {
+              "line_number": 2,
+              "code": "return -1",
+              "C_op": "c2",
+              "Freq": "0",
+              "Total": "0",
+              "explanation": "En el peor caso, este return solo se ejecuta en la ltima llamada (caso base), pero su costo se cuenta en esa llamada final"
+            },
+            {
+              "line_number": 3,
+              "code": "medio = (inicio + fin) // 2",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Clculo del ndice medio: suma, divisin entera (3 operaciones aritmticas), asignacin"
+            },
+            {
+              "line_number": 4,
+              "code": "if arr[medio] == objetivo:",
+              "C_op": "c4",
+              "Freq": "1",
+              "Total": "c4",
+              "explanation": "Acceso al arreglo y comparacin. En peor caso esta condicin es siempre falsa"
+            },
+            {
+              "line_number": 5,
+              "code": "return medio",
+              "C_op": "c5",
+              "Freq": "0",
+              "Total": "0",
+              "explanation": "En peor caso nunca se ejecuta porque el elemento no se encuentra"
+            },
+            {
+              "line_number": 6,
+              "code": "elif arr[medio] > objetivo:",
+              "C_op": "c6",
+              "Freq": "1",
+              "Total": "c6",
+              "explanation": "Acceso al arreglo y comparacin. Se evala en cada llamada recursiva"
+            },
+            {
+              "line_number": 7,
+              "code": "return busqueda_binaria(arr, objetivo, inicio, medio - 1)",
+              "C_op": "c7",
+              "Freq": "1 llamada",
+              "Total": "T(n/2) + c7",
+              "explanation": "Llamada recursiva a la mitad izquierda del arreglo. En peor caso, se ejecuta aproximadamente la mitad de las veces"
+            },
+            {
+              "line_number": 8,
+              "code": "else:",
+              "C_op": "0",
+              "Freq": "1",
+              "Total": "0",
+              "explanation": "Estructura de control, sin operaciones"
+            },
+            {
+              "line_number": 9,
+              "code": "return busqueda_binaria(arr, objetivo, medio + 1, fin)",
+              "C_op": "c8",
+              "Freq": "1 llamada",
+              "Total": "T(n/2) + c8",
+              "explanation": "Llamada recursiva a la mitad derecha del arreglo. En peor caso, se ejecuta aproximadamente la mitad de las veces"
+            }
+          ],
+          "T_of_S": "T(n) = T(n/2) + c1 + c3 + c4 + c6",
+          "T_of_S_explanation": "En cada llamada recursiva se realiza exactamente UNA llamada recursiva con la mitad del tamao (n/2), ms el costo local constante de: verificar inicio > fin (c1), calcular medio (c3), comparar arr[medio] == objetivo (c4), y comparar arr[medio] > objetivo (c6). El algoritmo contina dividiendo el espacio de bsqueda a la mitad hasta que inicio > fin, alcanzando profundidad logartmica log(n)",
+          "P_of_S": "1/(n+1)",
+          "P_of_S_explanation": "Usando Modelo 2 para algoritmos de bsqueda: consideramos n+1 casos equiprobables (n posiciones donde podra estar el elemento + 1 caso donde no existe). El peor caso ocurre cuando el elemento no est en el arreglo, lo cual es 1 de los n+1 casos posibles, por tanto P = 1/(n+1)",
+          "probability_model": "Modelo 2: n+1 casos equiprobables. Hay n posiciones posibles donde el elemento podra encontrarse, ms 1 caso donde el elemento no existe en el arreglo. Cada caso tiene probabilidad 1/(n+1). El peor caso corresponde al escenario donde el elemento no existe, forzando mxima profundidad de recursin"
+        },
+        "average_case": {
+          "scenario_id": "S_avg_case",
+          "scenario_type": "average_case",
+          "input_condition": "El elemento buscado puede estar en cualquiera de las n posiciones del arreglo ordenado, o no estar presente. Modelo de n+1 casos equiprobables.",
+          "probability_model": "Asumimos que el elemento objetivo tiene igual probabilidad de estar en cualquiera de las n posiciones (1/(n+1) cada una), o de no estar en el arreglo (1/(n+1)). Total: n+1 casos equiprobables. En promedio, la busqueda binaria divide el espacio de busqueda a la mitad en cada paso.",
+          "scenarios_breakdown": [
+            {
+              "scenario_id": "S_found_at_middle",
+              "description": "Elemento encontrado en la posicion media (nivel 1)",
+              "T": "c1 + c2 + c3",
+              "P": "1/(n+1)"
+            },
+            {
+              "scenario_id": "S_found_at_level_k",
+              "description": "Elemento encontrado en nivel k de recursion (k >= 2)",
+              "T": "T(n/2^k) + c1 + c2 + c4 + c5",
+              "P": "2^(k-1)/(n+1)"
+            },
+            {
+              "scenario_id": "S_not_found",
+              "description": "Elemento no encontrado (caso base inicio > fin)",
+              "T": "T(0) + c1",
+              "P": "1/(n+1)"
+            }
+          ],
+          "line_by_line_analysis": [
+            {
+              "line_number": 1,
+              "code": "if inicio > fin:",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Comparacion ejecutada en cada llamada recursiva"
+            },
+            {
+              "line_number": 2,
+              "code": "return -1",
+              "C_op": "c2",
+              "Freq": "0 o 1",
+              "Total": "c2 (solo si inicio > fin)",
+              "explanation": "Retorno del caso base cuando no se encuentra el elemento"
+            },
+            {
+              "line_number": 3,
+              "code": "medio = (inicio + fin) // 2",
+              "C_op": "c3",
+              "Freq": "1",
+              "Total": "c3",
+              "explanation": "Calculo del indice medio: suma, division entera (3 operaciones contadas como c3)"
+            },
+            {
+              "line_number": 4,
+              "code": "if arr[medio] == objetivo:",
+              "C_op": "c4",
+              "Freq": "1",
+              "Total": "c4",
+              "explanation": "Acceso al arreglo y comparacion con el objetivo"
+            },
+            {
+              "line_number": 5,
+              "code": "return medio",
+              "C_op": "c5",
+              "Freq": "0 o 1",
+              "Total": "c5 (solo si se encuentra)",
+              "explanation": "Retorno exitoso cuando se encuentra el elemento"
+            },
+            {
+              "line_number": 6,
+              "code": "elif arr[medio] > objetivo:",
+              "C_op": "c6",
+              "Freq": "0 o 1",
+              "Total": "c6 (si no se encontro antes)",
+              "explanation": "Comparacion para decidir buscar en mitad izquierda"
+            },
+            {
+              "line_number": 7,
+              "code": "return busqueda_binaria(arr, objetivo, inicio, medio - 1)",
+              "C_op": "c7",
+              "Freq": "0 o 1",
+              "Total": "T(n/2) (si arr[medio] > objetivo)",
+              "explanation": "Llamada recursiva a la mitad izquierda del arreglo"
+            },
+            {
+              "line_number": 8,
+              "code": "else:",
+              "C_op": "0",
+              "Freq": "0 o 1",
+              "Total": "0",
+              "explanation": "Estructura de control, sin operaciones"
+            },
+            {
+              "line_number": 9,
+              "code": "return busqueda_binaria(arr, objetivo, medio + 1, fin)",
+              "C_op": "c8",
+              "Freq": "0 o 1",
+              "Total": "T(n/2) (si arr[medio] < objetivo)",
+              "explanation": "Llamada recursiva a la mitad derecha del arreglo"
+            }
+          ],
+          "T_of_S": "E[T(n)] = T(n/2) + c1 + c3 + c4",
+          "T_of_S_simplified": "E[T(n)] = T(n/2) + c",
+          "T_of_S_explanation": "En el caso promedio, la busqueda binaria siempre reduce el espacio de busqueda a la mitad (T(n/2)), independientemente de si el elemento esta en la mitad izquierda o derecha. El costo local incluye: verificar caso base (c1), calcular el medio (c3), y comparar con el objetivo (c4). Las constantes c6, c7, c8 se absorben en la llamada recursiva. El numero esperado de niveles de recursion es log2(n), por lo que E[T(n)] = c*log2(n) + c_base.",
+          "P_of_S": "1",
+          "P_of_S_explanation": "El caso promedio representa la esperanza matematica sobre todos los n+1 casos equiprobables (elemento en cada una de las n posiciones, o no presente). La probabilidad total es la suma de todos los casos individuales: n*(1/(n+1)) + 1/(n+1) = (n+1)/(n+1) = 1.",
+          "average_cost_formula": "E[T(n)] = (1/(n+1)) * [(k=1 to log2(n)) 2^(k-1)*(c1 + c3 + c4 + c5) + (c1 + c2)] = T(n/2) + c1 + c3 + c4"
+        }
+      },
+      "best_case": {
+        "scenario_id": "S_best_case",
+        "semantic_id": "best_case",
+        "T": "T(n) = c1 + c3 + c4 + c5",
+        "P": "1/n",
+        "description": "El elemento objetivo se encuentra exactamente en la posicion media del arreglo en la primera comparacion",
+        "input_characteristics": {}
+      },
+      "worst_case": {
+        "scenario_id": "S_worst_case",
+        "semantic_id": "worst_case",
+        "T": "T(n) = T(n/2) + c1 + c3 + c4 + c6",
+        "P": "1/(n+1)",
+        "description": "El elemento objetivo no existe en el arreglo, forzando la bsqueda a recorrer toda la profundidad del rbol de recursin hasta llegar a un subarreglo vaco (inicio > fin)",
+        "input_characteristics": {}
+      },
+      "average_case": {
+        "scenario_id": "S_avg",
+        "semantic_id": "average_case",
+        "T_avg": "E[T(n)] = T(n/2) + c",
+        "formula": "E[T(n)] = (1/(n+1)) * [(k=1 to log2(n)) 2^(k-1)*(c1 + c3 + c4 + c5) + (c1 + c2)] = T(n/2) + c1 + c3 + c4",
+        "simplified": "E[T(n)] = T(n/2) + c",
+        "description": "El elemento buscado puede estar en cualquiera de las n posiciones del arreglo ordenado, o no estar presente. Modelo de n+1 casos equiprobables.",
+        "scenarios_breakdown": [
+          {
+            "scenario_id": "S_found_at_middle",
+            "description": "Elemento encontrado en la posicion media (nivel 1)",
+            "T": "c1 + c2 + c3",
+            "P": "1/(n+1)"
+          },
+          {
+            "scenario_id": "S_found_at_level_k",
+            "description": "Elemento encontrado en nivel k de recursion (k >= 2)",
+            "T": "T(n/2^k) + c1 + c2 + c4 + c5",
+            "P": "2^(k-1)/(n+1)"
+          },
+          {
+            "scenario_id": "S_not_found",
+            "description": "Elemento no encontrado (caso base inicio > fin)",
+            "T": "T(0) + c1",
+            "P": "1/(n+1)"
+          }
+        ]
+      }
+    }
+  },
+  "errors": [],
+  "warnings": []
+}
