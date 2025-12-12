@@ -291,14 +291,31 @@ class FlujoAnalisis:
             self._log("FASE 7: REPRESENTACIÓN MATEMÁTICA")
             self._log("="*80)
             
-            # Generar ecuaciones matemáticas desde la tabla omega
+            # Generar ecuaciones matemáticas desde el análisis completo
             if resultado.get('omega_table'):
                 try:
-                    # Crear request con la tabla omega del workflow
+                    # Extraer información completa del workflow_result
+                    workflow_data = {
+                        'pseudocode': pseudocodigo,
+                        'algorithm_name': algorithm_name,
+                        'is_iterative': is_iterative,
+                        'parameters': parameters,
+                        'lines': workflow_result.get('lines', []),
+                        'loops': workflow_result.get('loops', []),
+                        'recursive_calls': workflow_result.get('recursive_calls', []),
+                        'is_recursive': not is_iterative,
+                        'control_variables': workflow_result.get('control_variables', []),
+                        'raw_scenarios': workflow_result.get('raw_scenarios', []),
+                        'llm_analysis': workflow_result.get('llm_analysis', {}),
+                        'omega_table': resultado['omega_table']
+                    }
+                    
+                    # Crear request con toda la información del análisis
                     math_request = MathRepresentationRequest(
                         omega_table=resultado['omega_table'],
                         algorithm_name=algorithm_name,
-                        is_iterative=is_iterative
+                        is_iterative=is_iterative,
+                        workflow_data=workflow_data
                     )
                     
                     self._log("[WAIT] Generando ecuaciones matemáticas desde Tabla Omega...")

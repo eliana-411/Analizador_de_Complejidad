@@ -12,7 +12,7 @@ from representacion.utils.equation_formatter import simplificar_con_constantes
 from representacion.processors.esperanza_calculator import calculate_expected_value
 
 
-def process_iterative(omega_table: OmegaTable, llm_analysis: Dict = None) -> Dict:
+def process_iterative(omega_table: OmegaTable, llm_analysis: Dict = None, workflow_data: Dict = None) -> Dict:
     """
     Procesa un algoritmo iterativo para generar sus ecuaciones.
     
@@ -26,6 +26,7 @@ def process_iterative(omega_table: OmegaTable, llm_analysis: Dict = None) -> Dic
     Args:
         omega_table: Tabla Omega con escenarios del algoritmo iterativo
         llm_analysis: Análisis opcional del LLM con términos dominantes y sugerencias
+        workflow_data: Datos completos del workflow (pseudocode, lines, llm_analysis, raw_scenarios, etc.)
     
     Returns:
         Dict con:

@@ -9,7 +9,7 @@ from core.analizador.models.omega_table import OmegaTable
 from core.analizador.models.recursion_info import RecursionInfo
 
 
-def process_recursive(omega_table: OmegaTable, llm_analysis: Dict = None) -> Dict:
+def process_recursive(omega_table: OmegaTable, llm_analysis: Dict = None, workflow_data: Dict = None) -> Dict:
     """
     Procesa un algoritmo recursivo para generar su relación de recurrencia.
     
