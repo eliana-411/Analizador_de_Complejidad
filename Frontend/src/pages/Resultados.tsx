@@ -134,31 +134,31 @@ export default function Resultados() {
 
               {/* Recurrence Card - mostrar todos los casos */}
               <Show when={analysisResult()?.complejidades?.pasos_resolucion}>
-                <div class="glass rounded-lg overflow-hidden elevation-2">
-                  <div class="bg-gradient-to-br from-red-400 to-pink-500 p-4">
-                    <h3 class="text-lg font-bold text-white">Ecuaciones de Recurrencia</h3>
+                <div class="rounded-lg overflow-hidden border border-neutral-700 bg-[#232834] shadow-lg">
+                  <div class="px-6 py-4 border-b border-neutral-700">
+                    <h3 class="text-lg font-bold text-green-400 tracking-wide">Ecuaciones de Recurrencia</h3>
                   </div>
-                  <div class="p-6 space-y-8">
+                  <div class="p-6 space-y-8 max-h-[32rem] overflow-y-auto">
                     {/* Mejor caso */}
                     <Show when={analysisResult()?.complejidades?.pasos_resolucion?.mejor_caso}>
                       <div>
-                        <p class="text-xs font-semibold text-green-700 uppercase tracking-wide mb-2">Mejor caso</p>
-                        <p class="text-xs text-gray-500 mb-1">Fórmula</p>
-                        <code class="text-sm font-mono text-green-700 bg-green-50/50 px-2 py-1 rounded block break-words">
-                          {analysisResult()?.complejidades?.pasos_resolucion?.mejor_caso?.ecuacion || 'No disponible'}
-                        </code>
-                        <p class="text-xs text-gray-500 mt-2 mb-1">Solución</p>
-                        <code class="text-base font-mono font-bold text-green-600 bg-green-50/50 px-2 py-1 rounded block break-words">
-                          {analysisResult()?.complejidades?.pasos_resolucion?.mejor_caso?.solucion || 'No disponible'}
-                        </code>
+                        <p class="text-xs font-semibold text-green-400 uppercase tracking-wide mb-2">Mejor caso</p>
+                        <div class="mb-2">
+                          <span class="text-xs text-gray-400">Fórmula</span>
+                          <pre class="bg-[#1a1d23] border border-green-900/40 rounded px-3 py-2 mt-1 text-green-300 font-mono text-sm whitespace-pre-wrap break-words">{analysisResult()?.complejidades?.pasos_resolucion?.mejor_caso?.ecuacion || 'No disponible'}</pre>
+                        </div>
+                        <div class="mb-2">
+                          <span class="text-xs text-gray-400">Solución</span>
+                          <pre class="bg-[#1a1d23] border border-green-900/40 rounded px-3 py-2 mt-1 text-green-200 font-mono text-base font-bold whitespace-pre-wrap break-words">{analysisResult()?.complejidades?.pasos_resolucion?.mejor_caso?.solucion || 'No disponible'}</pre>
+                        </div>
                         <Show when={analysisResult()?.complejidades?.pasos_resolucion?.mejor_caso?.pasos?.length > 0}>
                           <div class="mt-2">
-                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Pasos de Resolución</p>
-                            <ol class="space-y-2 text-sm text-gray-700">
+                            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Pasos de Resolución</p>
+                            <ol class="space-y-2 text-sm text-gray-300">
                               {analysisResult()?.complejidades?.pasos_resolucion?.mejor_caso?.pasos.map((step: string, index: number) => (
                                 <li class="flex">
-                                  <span class="text-green-500 font-semibold mr-2 flex-shrink-0">{index + 1}.</span>
-                                  <span class="break-words">{step}</span>
+                                  <span class="text-green-400 font-semibold mr-2 flex-shrink-0">{index + 1}.</span>
+                                  <span class="break-words font-mono">{step}</span>
                                 </li>
                               ))}
                             </ol>
@@ -169,23 +169,23 @@ export default function Resultados() {
                     {/* Caso promedio */}
                     <Show when={analysisResult()?.complejidades?.pasos_resolucion?.caso_promedio}>
                       <div>
-                        <p class="text-xs font-semibold text-yellow-700 uppercase tracking-wide mb-2">Caso promedio</p>
-                        <p class="text-xs text-gray-500 mb-1">Fórmula</p>
-                        <code class="text-sm font-mono text-yellow-700 bg-yellow-50/50 px-2 py-1 rounded block break-words">
-                          {analysisResult()?.complejidades?.pasos_resolucion?.caso_promedio?.ecuacion || 'No disponible'}
-                        </code>
-                        <p class="text-xs text-gray-500 mt-2 mb-1">Solución</p>
-                        <code class="text-base font-mono font-bold text-yellow-600 bg-yellow-50/50 px-2 py-1 rounded block break-words">
-                          {analysisResult()?.complejidades?.pasos_resolucion?.caso_promedio?.solucion || 'No disponible'}
-                        </code>
+                        <p class="text-xs font-semibold text-yellow-400 uppercase tracking-wide mb-2">Caso promedio</p>
+                        <div class="mb-2">
+                          <span class="text-xs text-gray-400">Fórmula</span>
+                          <pre class="bg-[#1a1d23] border border-yellow-900/40 rounded px-3 py-2 mt-1 text-yellow-300 font-mono text-sm whitespace-pre-wrap break-words">{analysisResult()?.complejidades?.pasos_resolucion?.caso_promedio?.ecuacion || 'No disponible'}</pre>
+                        </div>
+                        <div class="mb-2">
+                          <span class="text-xs text-gray-400">Solución</span>
+                          <pre class="bg-[#1a1d23] border border-yellow-900/40 rounded px-3 py-2 mt-1 text-yellow-200 font-mono text-base font-bold whitespace-pre-wrap break-words">{analysisResult()?.complejidades?.pasos_resolucion?.caso_promedio?.solucion || 'No disponible'}</pre>
+                        </div>
                         <Show when={analysisResult()?.complejidades?.pasos_resolucion?.caso_promedio?.pasos?.length > 0}>
                           <div class="mt-2">
-                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Pasos de Resolución</p>
-                            <ol class="space-y-2 text-sm text-gray-700">
+                            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Pasos de Resolución</p>
+                            <ol class="space-y-2 text-sm text-gray-300">
                               {analysisResult()?.complejidades?.pasos_resolucion?.caso_promedio?.pasos.map((step: string, index: number) => (
                                 <li class="flex">
-                                  <span class="text-yellow-500 font-semibold mr-2 flex-shrink-0">{index + 1}.</span>
-                                  <span class="break-words">{step}</span>
+                                  <span class="text-yellow-400 font-semibold mr-2 flex-shrink-0">{index + 1}.</span>
+                                  <span class="break-words font-mono">{step}</span>
                                 </li>
                               ))}
                             </ol>
@@ -196,23 +196,23 @@ export default function Resultados() {
                     {/* Peor caso */}
                     <Show when={analysisResult()?.complejidades?.pasos_resolucion?.peor_caso}>
                       <div>
-                        <p class="text-xs font-semibold text-red-700 uppercase tracking-wide mb-2">Peor caso</p>
-                        <p class="text-xs text-gray-500 mb-1">Fórmula</p>
-                        <code class="text-sm font-mono text-red-700 bg-red-50/50 px-2 py-1 rounded block break-words">
-                          {analysisResult()?.complejidades?.pasos_resolucion?.peor_caso?.ecuacion || 'No disponible'}
-                        </code>
-                        <p class="text-xs text-gray-500 mt-2 mb-1">Solución</p>
-                        <code class="text-base font-mono font-bold text-red-600 bg-red-50/50 px-2 py-1 rounded block break-words">
-                          {analysisResult()?.complejidades?.pasos_resolucion?.peor_caso?.solucion || 'No disponible'}
-                        </code>
+                        <p class="text-xs font-semibold text-red-400 uppercase tracking-wide mb-2">Peor caso</p>
+                        <div class="mb-2">
+                          <span class="text-xs text-gray-400">Fórmula</span>
+                          <pre class="bg-[#1a1d23] border border-red-900/40 rounded px-3 py-2 mt-1 text-red-300 font-mono text-sm whitespace-pre-wrap break-words">{analysisResult()?.complejidades?.pasos_resolucion?.peor_caso?.ecuacion || 'No disponible'}</pre>
+                        </div>
+                        <div class="mb-2">
+                          <span class="text-xs text-gray-400">Solución</span>
+                          <pre class="bg-[#1a1d23] border border-red-900/40 rounded px-3 py-2 mt-1 text-red-200 font-mono text-base font-bold whitespace-pre-wrap break-words">{analysisResult()?.complejidades?.pasos_resolucion?.peor_caso?.solucion || 'No disponible'}</pre>
+                        </div>
                         <Show when={analysisResult()?.complejidades?.pasos_resolucion?.peor_caso?.pasos?.length > 0}>
                           <div class="mt-2">
-                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Pasos de Resolución</p>
-                            <ol class="space-y-2 text-sm text-gray-700">
+                            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Pasos de Resolución</p>
+                            <ol class="space-y-2 text-sm text-gray-300">
                               {analysisResult()?.complejidades?.pasos_resolucion?.peor_caso?.pasos.map((step: string, index: number) => (
                                 <li class="flex">
-                                  <span class="text-red-500 font-semibold mr-2 flex-shrink-0">{index + 1}.</span>
-                                  <span class="break-words">{step}</span>
+                                  <span class="text-red-400 font-semibold mr-2 flex-shrink-0">{index + 1}.</span>
+                                  <span class="break-words font-mono">{step}</span>
                                 </li>
                               ))}
                             </ol>

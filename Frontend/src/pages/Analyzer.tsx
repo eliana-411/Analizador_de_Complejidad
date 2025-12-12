@@ -3,7 +3,7 @@ import { useSearchParams, useNavigate } from '@solidjs/router';
 import { H1, H2 } from '../components/ui/Typography';
 import Table, { type Column } from '../components/ui/Table';
 import ContentContainer from '../components/layout/ContentContainer';
-import { analyzeCode } from '../api/analyzer';
+// import { analyzeCode } from '../api/analyzer';
 import type { LineCost } from '../types';
 import { useAnalysis } from '../contexts/AnalysisContext';
 
@@ -218,7 +218,7 @@ export default function Analyzer() {
           <Show when={!isLoading() && !error() && scenarios().length > 0}>
             <div class="flex justify-end mt-8">
               <button
-                onClick={() => navigate(`/notaciones?pseudocodigo=${encodeURIComponent(searchParams.pseudocodigo || '')}`)}
+                onClick={() => navigate(`/notaciones?pseudocodigo=${encodeURIComponent((searchParams.pseudocodigo as string) || '')}`)}
                 class="flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-white transition-all duration-200 shadow-md hover:shadow-lg"
                 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);"
               >
