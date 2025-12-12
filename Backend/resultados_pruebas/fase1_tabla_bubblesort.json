@@ -1,0 +1,435 @@
+{
+  "pseudocode": "bubbleSort(int A[], int n)\nbegin\n    int i, j, temp\n    bool intercambio\n\n    for i 🡨 1 to n - 1 do\n    begin\n        intercambio 🡨 F\n\n        for j 🡨 1 to n - i do\n        begin\n            if (A[j] > A[j + 1]) then\n            begin\n                temp 🡨 A[j]\n                A[j] 🡨 A[j + 1]\n                A[j + 1] 🡨 temp\n                intercambio 🡨 T\n            end\n        end\n\n        if (not intercambio) then\n        begin\n            return\n        end\n    end\nend",
+  "algorithm_name": "bubbleSort",
+  "is_iterative": true,
+  "parameters": {},
+  "lines": [],
+  "loops": [],
+  "recursive_calls": [],
+  "is_recursive": false,
+  "control_variables": [],
+  "raw_scenarios": [],
+  "llm_analysis": {},
+  "omega_table": {
+    "algorithm_name": "bubbleSort",
+    "scenarios": [
+      {
+        "id": "S_best_case",
+        "semantic_id": "best_case",
+        "condition": "Arreglo ya ordenado en orden ascendente. No se requiere ningun intercambio.",
+        "state": "BEST_CASE",
+        "cost_T": "c1 + c1 + c1*2 + c1 + c1*n + c3*(n-1) + c2 + c7",
+        "probability_P": "1/n!"
+      },
+      {
+        "id": "S_worst_case",
+        "semantic_id": "worst_case",
+        "condition": "Array ordenado en orden inverso (descendente), lo que requiere el maximo numero de comparaciones e intercambios en cada pasada, y nunca se activa la salida temprana",
+        "state": "WORST_CASE",
+        "cost_T": "c1 + c1 + c1*n + c1*(n-1) + c1*((n-1)*n/2 + (n-1)) + c3*(n-1)*n/2 + c3*(n-1)*n/2 + c3*(n-1)*n/2 + c3*(n-1)*n/2 + c1*(n-1)*n/2 + c2*(n-1)",
+        "probability_P": "1/n!"
+      },
+      {
+        "id": "S_avg",
+        "semantic_id": "S_intermediate_1",
+        "condition": "Caso promedio: arreglo con inversiones aleatorias",
+        "state": "INTERMEDIATE",
+        "cost_T": "c1 + c1 + c1*n + c1*(n-1) + c1*((n-1)*n/2 + (n-1)) + c3*(n-1)*n/2 + c3*n(n-1)/4 + c3*n(n-1)/4 + c3*n(n-1)/4 + c1*n(n-1)/4 + c2*(n-1)",
+        "probability_P": "1"
+      },
+      {
+        "id": "S_avg",
+        "semantic_id": "average_case",
+        "condition": "Promedio sobre todas las permutaciones posibles del arreglo de entrada",
+        "state": "AVERAGE",
+        "cost_T": "2*c1 + c1*n + c1*(n-1) + c1*(n^2-n)/2 + c1*(n-1) + c3*(n^2-n)/2 + 3*c3*n(n-1)/4 + c1*n(n-1)/4 + c2*(n-1)",
+        "probability_P": "1"
+      }
+    ],
+    "control_variables": [],
+    "metadata": {
+      "algorithm_type": "iterative",
+      "loop_count": 0,
+      "nesting_level": 0,
+      "parameters": {},
+      "llm_analysis": {
+        "best_case": {
+          "scenario_type": "best_case",
+          "input_description": "Arreglo ya ordenado en orden ascendente. No se requiere ningun intercambio.",
+          "input_characteristics": {
+            "array_state": "ordenado ascendente",
+            "swaps_needed": "0",
+            "early_exit": "primera iteracion del loop externo"
+          },
+          "is_iterative": true,
+          "line_by_line_analysis": [
+            {
+              "line_number": 1,
+              "code": "int i, j, temp",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Declaracion de variables. Se ejecuta exactamente una vez."
+            },
+            {
+              "line_number": 2,
+              "code": "bool intercambio",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Declaracion de variable booleana. Se ejecuta exactamente una vez."
+            },
+            {
+              "line_number": 3,
+              "code": "for i <- 1 to n - 1 do",
+              "C_op": "c1",
+              "Freq": "2",
+              "Total": "c1*2",
+              "explanation": "Encabezado del loop externo. En el mejor caso se ejecuta 2 veces: una para inicializar i=1 y entrar, y otra para verificar la salida temprana."
+            },
+            {
+              "line_number": 4,
+              "code": "intercambio <- F",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Inicializacion de bandera. Se ejecuta 1 vez en el mejor caso (solo primera iteracion del loop externo)."
+            },
+            {
+              "line_number": 5,
+              "code": "for j <- 1 to n - i do",
+              "C_op": "c1",
+              "Freq": "n",
+              "Total": "c1*n",
+              "explanation": "Encabezado del loop interno. Con i=1, itera de 1 a n-1, por lo que se ejecuta n veces (n-1+1 para el encabezado)."
+            },
+            {
+              "line_number": 6,
+              "code": "if (A[j] > A[j + 1]) then",
+              "C_op": "c3",
+              "Freq": "n-1",
+              "Total": "c3*(n-1)",
+              "explanation": "Comparacion con accesos a array. Se ejecuta n-1 veces (cuerpo del loop interno). En el mejor caso (arreglo ordenado), esta condicion siempre es falsa."
+            },
+            {
+              "line_number": 7,
+              "code": "temp <- A[j]",
+              "C_op": "c1",
+              "Freq": "0",
+              "Total": "0",
+              "explanation": "Asignacion temporal para intercambio. No se ejecuta en el mejor caso porque el arreglo ya esta ordenado."
+            },
+            {
+              "line_number": 8,
+              "code": "A[j] <- A[j + 1]",
+              "C_op": "c1",
+              "Freq": "0",
+              "Total": "0",
+              "explanation": "Primer paso del intercambio. No se ejecuta en el mejor caso."
+            },
+            {
+              "line_number": 9,
+              "code": "A[j + 1] <- temp",
+              "C_op": "c1",
+              "Freq": "0",
+              "Total": "0",
+              "explanation": "Segundo paso del intercambio. No se ejecuta en el mejor caso."
+            },
+            {
+              "line_number": 10,
+              "code": "intercambio <- T",
+              "C_op": "c1",
+              "Freq": "0",
+              "Total": "0",
+              "explanation": "Activacion de bandera. No se ejecuta en el mejor caso porque no hay intercambios."
+            },
+            {
+              "line_number": 11,
+              "code": "if (not intercambio) then",
+              "C_op": "c2",
+              "Freq": "1",
+              "Total": "c2",
+              "explanation": "Verificacion de salida temprana. Se ejecuta 1 vez. En el mejor caso, intercambio es F, por lo que (not intercambio) es T."
+            },
+            {
+              "line_number": 12,
+              "code": "return",
+              "C_op": "c7",
+              "Freq": "1",
+              "Total": "c7",
+              "explanation": "Salida temprana del algoritmo. Se ejecuta 1 vez en el mejor caso, terminando la ejecucion."
+            }
+          ],
+          "total_cost_T": "c1 + c1 + c1*2 + c1 + c1*n + c3*(n-1) + c2 + c7",
+          "total_cost_explanation": "Suma de todos los costos linea por linea. Simplificando: 5*c1 + c1*n + c3*(n-1) + c2 + c7 = c1*(5+n) + c3*(n-1) + c2 + c7. El termino dominante es lineal en n.",
+          "probability_P": "1/n!",
+          "probability_explanation": "La probabilidad de que un arreglo aleatorio este completamente ordenado es 1 entre todas las permutaciones posibles, que es 1/n!. Sin embargo, si consideramos casos de entrada especificos, esta probabilidad depende de la distribucion de entrada."
+        },
+        "worst_case": {
+          "scenario_type": "worst_case",
+          "input_description": "Array ordenado en orden inverso (descendente), lo que requiere el maximo numero de comparaciones e intercambios en cada pasada, y nunca se activa la salida temprana",
+          "input_characteristics": {
+            "array_order": "descending",
+            "early_exit": false,
+            "swaps_per_pass": "maximum"
+          },
+          "is_iterative": true,
+          "line_by_line_analysis": [
+            {
+              "line_number": 1,
+              "code": "int i, j, temp",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Declaracion de variables. Se ejecuta exactamente una vez."
+            },
+            {
+              "line_number": 2,
+              "code": "bool intercambio",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Declaracion de variable booleana. Se ejecuta exactamente una vez."
+            },
+            {
+              "line_number": 3,
+              "code": "for i <- 1 to n - 1 do",
+              "C_op": "c1",
+              "Freq": "n",
+              "Total": "c1*n",
+              "explanation": "Encabezado del for externo. Se ejecuta n veces (n-1+1) porque itera de 1 a n-1."
+            },
+            {
+              "line_number": 4,
+              "code": "intercambio <- F",
+              "C_op": "c1",
+              "Freq": "n-1",
+              "Total": "c1*(n-1)",
+              "explanation": "Inicializacion de bandera en cada pasada. Se ejecuta n-1 veces (cuerpo del for externo)."
+            },
+            {
+              "line_number": 5,
+              "code": "for j <- 1 to n - i do",
+              "C_op": "c1",
+              "Freq": "(n-1)*n/2 + (n-1)",
+              "Total": "c1*((n-1)*n/2 + (n-1))",
+              "explanation": "Encabezado del for interno. Para i=1 se ejecuta n veces, para i=2 se ejecuta n-1 veces, etc. Total: suma de (n-i+1) para i de 1 a n-1, que es n + (n-1) + ... + 1 = (n-1)*n/2 + (n-1)."
+            },
+            {
+              "line_number": 6,
+              "code": "if (A[j] > A[j + 1]) then",
+              "C_op": "c3",
+              "Freq": "(n-1)*n/2",
+              "Total": "c3*(n-1)*n/2",
+              "explanation": "Comparacion con accesos a array. Se ejecuta en cada iteracion del for interno: n-1 + n-2 + ... + 1 = (n-1)*n/2 veces."
+            },
+            {
+              "line_number": 7,
+              "code": "temp <- A[j]",
+              "C_op": "c3",
+              "Freq": "(n-1)*n/2",
+              "Total": "c3*(n-1)*n/2",
+              "explanation": "Asignacion con acceso a array. En el peor caso (array inverso), la condicion siempre es verdadera, se ejecuta (n-1)*n/2 veces."
+            },
+            {
+              "line_number": 8,
+              "code": "A[j] <- A[j + 1]",
+              "C_op": "c3",
+              "Freq": "(n-1)*n/2",
+              "Total": "c3*(n-1)*n/2",
+              "explanation": "Asignacion con accesos a array. Se ejecuta (n-1)*n/2 veces en el peor caso."
+            },
+            {
+              "line_number": 9,
+              "code": "A[j + 1] <- temp",
+              "C_op": "c3",
+              "Freq": "(n-1)*n/2",
+              "Total": "c3*(n-1)*n/2",
+              "explanation": "Asignacion con acceso a array. Se ejecuta (n-1)*n/2 veces en el peor caso."
+            },
+            {
+              "line_number": 10,
+              "code": "intercambio <- T",
+              "C_op": "c1",
+              "Freq": "(n-1)*n/2",
+              "Total": "c1*(n-1)*n/2",
+              "explanation": "Asignacion de bandera. Se ejecuta (n-1)*n/2 veces en el peor caso."
+            },
+            {
+              "line_number": 11,
+              "code": "if (not intercambio) then",
+              "C_op": "c2",
+              "Freq": "n-1",
+              "Total": "c2*(n-1)",
+              "explanation": "Evaluacion de condicion para salida temprana. Se ejecuta n-1 veces (una por cada pasada del for externo)."
+            },
+            {
+              "line_number": 12,
+              "code": "return",
+              "C_op": "c7",
+              "Freq": "0",
+              "Total": "0",
+              "explanation": "Retorno temprano. En el peor caso nunca se ejecuta porque siempre hay intercambios."
+            }
+          ],
+          "total_cost_T": "c1 + c1 + c1*n + c1*(n-1) + c1*((n-1)*n/2 + (n-1)) + c3*(n-1)*n/2 + c3*(n-1)*n/2 + c3*(n-1)*n/2 + c3*(n-1)*n/2 + c1*(n-1)*n/2 + c2*(n-1)",
+          "total_cost_explanation": "Suma de todos los costos linea por linea. Simplificando: 2*c1 + c1*n + c1*(n-1) + c1*((n-1)*n/2 + (n-1)) + 4*c3*(n-1)*n/2 + c1*(n-1)*n/2 + c2*(n-1). El termino dominante es O(n^2) debido a los loops anidados.",
+          "probability_P": "1/n!",
+          "probability_explanation": "La probabilidad de que el array este en orden inverso (peor caso) es 1 entre todas las permutaciones posibles de n elementos, que es 1/n!. Sin embargo, si consideramos casos equiprobables de ordenamiento, podria ser 1/2 (ordenado vs desordenado) o simplemente 1 si analizamos solo este caso especifico."
+        },
+        "average_case": {
+          "scenario_type": "average_case",
+          "input_condition": "Promedio sobre todas las permutaciones posibles del arreglo de entrada",
+          "probability_model": "Para BubbleSort, el caso promedio considera todas las n! permutaciones posibles del arreglo. En promedio, cada par de elementos est invertido con probabilidad 1/2. El nmero esperado de intercambios es n(n-1)/4, y el nmero esperado de pasadas es aproximadamente n-1 (similar al peor caso, ya que la optimizacin de salida temprana rara vez se activa significativamente).",
+          "scenarios_breakdown": [
+            {
+              "scenario_id": "S_avg",
+              "description": "Caso promedio: arreglo con inversiones aleatorias",
+              "T": "c1 + c1 + c1*n + c1*(n-1) + c1*((n-1)*n/2 + (n-1)) + c3*(n-1)*n/2 + c3*n(n-1)/4 + c3*n(n-1)/4 + c3*n(n-1)/4 + c1*n(n-1)/4 + c2*(n-1)",
+              "P": "1"
+            }
+          ],
+          "average_cost_formula": "E[T] = c1 + c1 + c1*n + c1*(n-1) + c1*((n-1)*n/2 + (n-1)) + c3*(n-1)*n/2 + c3*n(n-1)/4 + c3*n(n-1)/4 + c3*n(n-1)/4 + c1*n(n-1)/4 + c2*(n-1)",
+          "T_of_S": "c1 + c1 + c1*n + c1*(n-1) + c1*((n-1)*n/2 + (n-1)) + c3*(n-1)*n/2 + c3*n(n-1)/4 + c3*n(n-1)/4 + c3*n(n-1)/4 + c1*n(n-1)/4 + c2*(n-1)",
+          "T_of_S_simplified": "2*c1 + c1*n + c1*(n-1) + c1*(n^2-n)/2 + c1*(n-1) + c3*(n^2-n)/2 + 3*c3*n(n-1)/4 + c1*n(n-1)/4 + c2*(n-1)",
+          "T_of_S_explanation": "En el caso promedio, el loop externo ejecuta aproximadamente n-1 pasadas completas (la salida temprana es poco frecuente). El loop interno ejecuta en promedio (n-1)*n/2 iteraciones totales. Las operaciones de intercambio (temp, A[j], A[j+1], intercambio) se ejecutan aproximadamente la mitad de las veces que se realiza la comparacion, es decir, n(n-1)/4 veces en promedio, ya que en un arreglo aleatorio aproximadamente la mitad de los pares estan invertidos.",
+          "P_of_S": "1",
+          "P_of_S_explanation": "El caso promedio representa la esperanza sobre todas las permutaciones posibles, por lo que engloba todos los escenarios con sus probabilidades respectivas",
+          "line_by_line_analysis": [
+            {
+              "line_number": 1,
+              "code": "int i, j, temp",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Declaracion de variables. Se ejecuta una sola vez al inicio del algoritmo."
+            },
+            {
+              "line_number": 2,
+              "code": "bool intercambio",
+              "C_op": "c1",
+              "Freq": "1",
+              "Total": "c1",
+              "explanation": "Declaracion de variable booleana. Se ejecuta una sola vez al inicio del algoritmo."
+            },
+            {
+              "line_number": 3,
+              "code": "for i <- 1 to n - 1 do",
+              "C_op": "c1",
+              "Freq": "n",
+              "Total": "c1*n",
+              "explanation": "Encabezado del loop externo. En caso promedio, ejecuta n iteraciones (n-1 del cuerpo + 1 verificacion final), ya que la salida temprana rara vez se activa."
+            },
+            {
+              "line_number": 4,
+              "code": "intercambio <- F",
+              "C_op": "c1",
+              "Freq": "n-1",
+              "Total": "c1*(n-1)",
+              "explanation": "Inicializacion de bandera en cada pasada. Se ejecuta n-1 veces (una por cada iteracion del loop externo)."
+            },
+            {
+              "line_number": 5,
+              "code": "for j <- 1 to n - i do",
+              "C_op": "c1",
+              "Freq": "(n-1)*n/2 + (n-1)",
+              "Total": "c1*((n-1)*n/2 + (n-1))",
+              "explanation": "Encabezado del loop interno. Suma de iteraciones: SUM(i=1 to n-1)(n-i+1) = SUM(k=1 to n-1)(k+1) = (n-1)*n/2 + (n-1). El +1 en cada termino es por la verificacion extra del encabezado."
+            },
+            {
+              "line_number": 6,
+              "code": "if (A[j] > A[j + 1]) then",
+              "C_op": "c3",
+              "Freq": "(n-1)*n/2",
+              "Total": "c3*(n-1)*n/2",
+              "explanation": "Comparacion de elementos adyacentes. Se ejecuta tantas veces como el cuerpo del loop interno: SUM(i=1 to n-1)(n-i) = (n-1)*n/2."
+            },
+            {
+              "line_number": 7,
+              "code": "temp <- A[j]",
+              "C_op": "c3",
+              "Freq": "n(n-1)/4",
+              "Total": "c3*n(n-1)/4",
+              "explanation": "Primera operacion del intercambio. En promedio, la mitad de las comparaciones resultan en intercambio (probabilidad 1/2 de inversion), por lo que se ejecuta aproximadamente (n-1)*n/2 * 1/2 = n(n-1)/4 veces."
+            },
+            {
+              "line_number": 8,
+              "code": "A[j] <- A[j + 1]",
+              "C_op": "c3",
+              "Freq": "n(n-1)/4",
+              "Total": "c3*n(n-1)/4",
+              "explanation": "Segunda operacion del intercambio. Se ejecuta la misma cantidad de veces que la linea anterior: n(n-1)/4."
+            },
+            {
+              "line_number": 9,
+              "code": "A[j + 1] <- temp",
+              "C_op": "c3",
+              "Freq": "n(n-1)/4",
+              "Total": "c3*n(n-1)/4",
+              "explanation": "Tercera operacion del intercambio. Se ejecuta la misma cantidad de veces que las lineas anteriores del intercambio: n(n-1)/4."
+            },
+            {
+              "line_number": 10,
+              "code": "intercambio <- T",
+              "C_op": "c1",
+              "Freq": "n(n-1)/4",
+              "Total": "c1*n(n-1)/4",
+              "explanation": "Actualizacion de bandera cuando hay intercambio. Se ejecuta la misma cantidad de veces que las operaciones de intercambio: n(n-1)/4."
+            },
+            {
+              "line_number": 11,
+              "code": "if (not intercambio) then",
+              "C_op": "c2",
+              "Freq": "n-1",
+              "Total": "c2*(n-1)",
+              "explanation": "Verificacion de salida temprana. Se ejecuta una vez por cada iteracion del loop externo: n-1 veces. En caso promedio, esta condicion rara vez es verdadera."
+            }
+          ],
+          "average_cost_simplified": "2*c1 + c1*n + c1*(n-1) + c1*(n^2-n)/2 + c1*(n-1) + c3*(n^2-n)/2 + 3*c3*n(n-1)/4 + c1*n(n-1)/4 + c2*(n-1)"
+        }
+      },
+      "best_case": {
+        "scenario_id": "S_best_case",
+        "semantic_id": "best_case",
+        "T": "c1 + c1 + c1*2 + c1 + c1*n + c3*(n-1) + c2 + c7",
+        "P": "1/n!",
+        "description": "Arreglo ya ordenado en orden ascendente. No se requiere ningun intercambio.",
+        "input_characteristics": {
+          "array_state": "ordenado ascendente",
+          "swaps_needed": "0",
+          "early_exit": "primera iteracion del loop externo"
+        }
+      },
+      "worst_case": {
+        "scenario_id": "S_worst_case",
+        "semantic_id": "worst_case",
+        "T": "c1 + c1 + c1*n + c1*(n-1) + c1*((n-1)*n/2 + (n-1)) + c3*(n-1)*n/2 + c3*(n-1)*n/2 + c3*(n-1)*n/2 + c3*(n-1)*n/2 + c1*(n-1)*n/2 + c2*(n-1)",
+        "P": "1/n!",
+        "description": "Array ordenado en orden inverso (descendente), lo que requiere el maximo numero de comparaciones e intercambios en cada pasada, y nunca se activa la salida temprana",
+        "input_characteristics": {
+          "array_order": "descending",
+          "early_exit": false,
+          "swaps_per_pass": "maximum"
+        }
+      },
+      "average_case": {
+        "scenario_id": "S_avg",
+        "semantic_id": "average_case",
+        "T_avg": "2*c1 + c1*n + c1*(n-1) + c1*(n^2-n)/2 + c1*(n-1) + c3*(n^2-n)/2 + 3*c3*n(n-1)/4 + c1*n(n-1)/4 + c2*(n-1)",
+        "formula": "E[T] = c1 + c1 + c1*n + c1*(n-1) + c1*((n-1)*n/2 + (n-1)) + c3*(n-1)*n/2 + c3*n(n-1)/4 + c3*n(n-1)/4 + c3*n(n-1)/4 + c1*n(n-1)/4 + c2*(n-1)",
+        "simplified": "2*c1 + c1*n + c1*(n-1) + c1*(n^2-n)/2 + c1*(n-1) + c3*(n^2-n)/2 + 3*c3*n(n-1)/4 + c1*n(n-1)/4 + c2*(n-1)",
+        "description": "Promedio sobre todas las permutaciones posibles del arreglo de entrada",
+        "scenarios_breakdown": [
+          {
+            "scenario_id": "S_avg",
+            "description": "Caso promedio: arreglo con inversiones aleatorias",
+            "T": "c1 + c1 + c1*n + c1*(n-1) + c1*((n-1)*n/2 + (n-1)) + c3*(n-1)*n/2 + c3*n(n-1)/4 + c3*n(n-1)/4 + c3*n(n-1)/4 + c1*n(n-1)/4 + c2*(n-1)",
+            "P": "1"
+          }
+        ]
+      }
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

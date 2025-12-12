@@ -56,6 +56,11 @@ class MathRepresentationResponse(BaseModel):
         default=False
     )
     
+    casos_base: Optional[List[str]] = Field(
+        default=None,
+        description="Casos base para algoritmos recursivos (ej: ['T(0) = c', 'T(1) = c'])"
+    )
+    
     tipo_analisis: str = Field(
         description="Tipo de análisis: 'iterativo_casos' o 'recursivo_uniforme'",
         default="iterativo_casos"

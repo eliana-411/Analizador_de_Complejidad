@@ -1,0 +1,297 @@
+{
+  "tabla_omega": {
+    "algorithm_name": "quickSort",
+    "scenarios": [
+      {
+        "id": "S_best_case",
+        "semantic_id": "best_case",
+        "condition": "El mejor caso para QuickSort ocurre cuando el pivote siempre divide el arreglo en dos mitades exactamente iguales (o lo mas cercano posible). Esto sucede cuando el arreglo ya esta ordenado de forma que el elemento elegido como pivote (el ultimo elemento en cada particion) resulta ser la mediana de esa particion.",
+        "state": "BEST_CASE",
+        "cost_T": "T(n) = 2*T(n/2) + 11*n + 15",
+        "probability_P": "1/n!"
+      },
+      {
+        "id": "S_worst_case_fallback",
+        "semantic_id": "worst_case_fallback",
+        "condition": "Peor caso (fallback heurístico)",
+        "state": "WORST_CASE",
+        "cost_T": "T(n) = T(n-1) + 1",
+        "probability_P": "1"
+      }
+    ],
+    "control_variables": [],
+    "metadata": {
+      "algorithm_type": "recursive",
+      "loop_count": 0,
+      "nesting_level": 0,
+      "parameters": {},
+      "llm_analysis": {
+        "best_case": {
+          "scenario_type": "best_case",
+          "input_description": "El mejor caso para QuickSort ocurre cuando el pivote siempre divide el arreglo en dos mitades exactamente iguales (o lo mas cercano posible). Esto sucede cuando el arreglo ya esta ordenado de forma que el elemento elegido como pivote (el ultimo elemento en cada particion) resulta ser la mediana de esa particion.",
+          "input_characteristics": {
+            "partition_balance": "n/2",
+            "pivot_position": "middle",
+            "array_state": "balanced partitions"
+          },
+          "is_iterative": false,
+          "line_by_line_analysis": [
+            {
+              "line_number": 1,
+              "code": "quickSort(int A[], int izq, int der)",
+              "C_op": 0,
+              "Freq": "T(n)",
+              "Total": "0",
+              "explanation": "Encabezado de funcion, no cuenta operaciones. Se ejecuta segun la recurrencia."
+            },
+            {
+              "line_number": 2,
+              "code": "begin",
+              "C_op": 0,
+              "Freq": "T(n)",
+              "Total": "0",
+              "explanation": "Estructura de bloque, no cuenta operaciones."
+            },
+            {
+              "line_number": 3,
+              "code": "int pivote",
+              "C_op": 0,
+              "Freq": "T(n)",
+              "Total": "0",
+              "explanation": "Declaracion de variable, no cuenta operaciones en este modelo."
+            },
+            {
+              "line_number": 4,
+              "code": "if (izq < der) then",
+              "C_op": 1,
+              "Freq": "T(n)",
+              "Total": "T(n)",
+              "explanation": "Comparacion (izq < der): 1 operacion. Se ejecuta en cada llamada recursiva."
+            },
+            {
+              "line_number": 5,
+              "code": "begin",
+              "C_op": 0,
+              "Freq": "T(n)",
+              "Total": "0",
+              "explanation": "Estructura de bloque, no cuenta operaciones."
+            },
+            {
+              "line_number": 6,
+              "code": "pivote <- CALL particionar(A[], izq, der)",
+              "C_op": 1,
+              "Freq": "T(n)",
+              "Total": "T(n) + C_particionar(n)",
+              "explanation": "CALL a particionar: 1 operacion base, mas el costo de particionar que es lineal en n. Asignacion incluida en el CALL."
+            },
+            {
+              "line_number": 7,
+              "code": "CALL quickSort(A[], izq, pivote - 1)",
+              "C_op": 2,
+              "Freq": "T(n)",
+              "Total": "2*T(n) + T(n/2)",
+              "explanation": "Operacion aritmetica (pivote - 1): 1 operacion. CALL recursivo: 1 operacion base mas T(n/2) por la mitad izquierda."
+            },
+            {
+              "line_number": 8,
+              "code": "CALL quickSort(A[], pivote + 1, der)",
+              "C_op": 2,
+              "Freq": "T(n)",
+              "Total": "2*T(n) + T(n/2)",
+              "explanation": "Operacion aritmetica (pivote + 1): 1 operacion. CALL recursivo: 1 operacion base mas T(n/2) por la mitad derecha."
+            },
+            {
+              "line_number": 9,
+              "code": "end",
+              "C_op": 0,
+              "Freq": "T(n)",
+              "Total": "0",
+              "explanation": "Estructura de bloque, no cuenta operaciones."
+            },
+            {
+              "line_number": 10,
+              "code": "end",
+              "C_op": 0,
+              "Freq": "T(n)",
+              "Total": "0",
+              "explanation": "Estructura de bloque, no cuenta operaciones."
+            },
+            {
+              "line_number": 11,
+              "code": "particionar(int A[], int izq, int der)",
+              "C_op": 0,
+              "Freq": "T(n)",
+              "Total": "0",
+              "explanation": "Encabezado de funcion, no cuenta operaciones."
+            },
+            {
+              "line_number": 12,
+              "code": "begin",
+              "C_op": 0,
+              "Freq": "T(n)",
+              "Total": "0",
+              "explanation": "Estructura de bloque, no cuenta operaciones."
+            },
+            {
+              "line_number": 13,
+              "code": "int pivote, i, j, temp",
+              "C_op": 0,
+              "Freq": "T(n)",
+              "Total": "0",
+              "explanation": "Declaracion de variables, no cuenta operaciones."
+            },
+            {
+              "line_number": 14,
+              "code": "pivote <- A[der]",
+              "C_op": 2,
+              "Freq": "T(n)",
+              "Total": "2*T(n)",
+              "explanation": "Acceso a array A[der]: 1 operacion. Asignacion: 1 operacion. Total: 2 operaciones por llamada."
+            },
+            {
+              "line_number": 15,
+              "code": "i <- izq - 1",
+              "C_op": 2,
+              "Freq": "T(n)",
+              "Total": "2*T(n)",
+              "explanation": "Operacion aritmetica (izq - 1): 1 operacion. Asignacion: 1 operacion. Total: 2 operaciones."
+            },
+            {
+              "line_number": 16,
+              "code": "for j <- izq to der - 1 do",
+              "C_op": 4,
+              "Freq": "n+1",
+              "Total": "4*n+4",
+              "explanation": "Encabezado de loop: asignacion inicial (j <- izq): 1 op, operacion aritmetica (der - 1): 1 op, comparacion (j <= der-1): 1 op, incremento (j++): 1 op. Total: 4 ops. Se ejecuta n+1 veces (n iteraciones + 1 verificacion final)."
+            },
+            {
+              "line_number": 17,
+              "code": "begin",
+              "C_op": 0,
+              "Freq": "n",
+              "Total": "0",
+              "explanation": "Estructura de bloque, no cuenta operaciones."
+            },
+            {
+              "line_number": 18,
+              "code": "if (A[j] <= pivote) then",
+              "C_op": 2,
+              "Freq": "n",
+              "Total": "2*n",
+              "explanation": "Acceso a array A[j]: 1 operacion. Comparacion (A[j] <= pivote): 1 operacion. Total: 2 ops, ejecutadas n veces."
+            },
+            {
+              "line_number": 19,
+              "code": "begin",
+              "C_op": 0,
+              "Freq": "n/2",
+              "Total": "0",
+              "explanation": "En el mejor caso balanceado, aproximadamente la mitad de elementos son menores o iguales al pivote."
+            },
+            {
+              "line_number": 20,
+              "code": "i <- i + 1",
+              "C_op": 2,
+              "Freq": "n/2",
+              "Total": "n",
+              "explanation": "Operacion aritmetica (i + 1): 1 operacion. Asignacion: 1 operacion. Ejecutado n/2 veces en promedio."
+            },
+            {
+              "line_number": 21,
+              "code": "temp <- A[i]",
+              "C_op": 2,
+              "Freq": "n/2",
+              "Total": "n",
+              "explanation": "Acceso a array A[i]: 1 operacion. Asignacion: 1 operacion. Ejecutado n/2 veces."
+            },
+            {
+              "line_number": 22,
+              "code": "A[i] <- A[j]",
+              "C_op": 2,
+              "Freq": "n/2",
+              "Total": "n",
+              "explanation": "Acceso a array A[j]: 1 operacion. Asignacion a A[i]: 1 operacion. Ejecutado n/2 veces."
+            },
+            {
+              "line_number": 23,
+              "code": "A[j] <- temp",
+              "C_op": 1,
+              "Freq": "n/2",
+              "Total": "n/2",
+              "explanation": "Asignacion a A[j]: 1 operacion. Ejecutado n/2 veces."
+            },
+            {
+              "line_number": 24,
+              "code": "end",
+              "C_op": 0,
+              "Freq": "n/2",
+              "Total": "0",
+              "explanation": "Estructura de bloque, no cuenta operaciones."
+            },
+            {
+              "line_number": 25,
+              "code": "end",
+              "C_op": 0,
+              "Freq": "n",
+              "Total": "0",
+              "explanation": "Estructura de bloque, no cuenta operaciones."
+            },
+            {
+              "line_number": 26,
+              "code": "temp <- A[i + 1]",
+              "C_op": 3,
+              "Freq": "T(n)",
+              "Total": "3*T(n)",
+              "explanation": "Operacion aritmetica (i + 1): 1 operacion. Acceso a array A[i+1]: 1 operacion. Asignacion: 1 operacion. Total: 3 ops."
+            },
+            {
+              "line_number": 27,
+              "code": "A[i + 1] <- A[der]",
+              "C_op": 3,
+              "Freq": "T(n)",
+              "Total": "3*T(n)",
+              "explanation": "Operacion aritmetica (i + 1): 1 operacion. Acceso a array A[der]: 1 operacion. Asignacion a A[i+1]: 1 operacion."
+            },
+            {
+              "line_number": 28,
+              "code": "A[der] <- temp",
+              "C_op": 1,
+              "Freq": "T(n)",
+              "Total": "T(n)",
+              "explanation": "Asignacion a A[der]: 1 operacion."
+            },
+            {
+              "line_number": 29,
+              "code": "return i + 1",
+              "C_op": 2,
+              "Freq": "T(n)",
+              "Total": "2*T(n)",
+              "explanation": "Operacion aritmetica (i + 1): 1 operacion. Return: 1 operacion. Total: 2 ops."
+            },
+            {
+              "line_number": 30,
+              "code": "end",
+              "C_op": 0,
+              "Freq": "T(n)",
+              "Total": "0",
+              "explanation": "Estructura de bloque, no cuenta operaciones."
+            }
+          ],
+          "total_cost_T": "T(n) = 2*T(n/2) + 11*n + 15",
+          "total_cost_explanation": "El costo de particionar es lineal: 4*n+4 (loop) + 2*n (comparaciones) + 3.5*n (swaps promedio) + 11 (operaciones constantes) = aproximadamente 11*n + 15. QuickSort hace dos llamadas recursivas sobre mitades: T(n/2) cada una. El costo de quickSort por nivel es: 1 (comparacion if) + 1 (call particionar) + 2 (aritmetica pivote-1) + 2 (aritmetica pivote+1) + costo_particionar(n). Simplificando: T(n) = 2*T(n/2) + 11*n + 15.",
+          "probability_P": "1/n!",
+          "probability_explanation": "El mejor caso ocurre cuando el pivote siempre cae en la posicion media, dividiendo el arreglo en mitades iguales. Esto depende de la permutacion especifica del arreglo de entrada. Entre todas las n! permutaciones posibles, solo algunas producen particiones perfectamente balanceadas en cada nivel recursivo. La probabilidad es muy baja, aproximadamente 1/n! para arreglos aleatorios.",
+          "recurrence_relation": "T(n) = 2*T(n/2) + 11*n + 15",
+          "base_case_cost": "1",
+          "base_case_condition": "izq >= der"
+        }
+      },
+      "best_case": {},
+      "worst_case": {},
+      "average_case": {}
+    }
+  },
+  "pseudocodigo": "quickSort(int A[], int izq, int der)\nbegin\n    int pivote\n\n    if (izq < der) then\n    begin\n        pivote 🡨 CALL particionar(A[], izq, der)\n        CALL quickSort(A[], izq, pivote - 1)\n        CALL quickSort(A[], pivote + 1, der)\n    end\nend\n\nparticionar(int A[], int izq, int der)\nbegin\n    int pivote, i, j, temp\n\n    pivote 🡨 A[der]\n    i 🡨 izq - 1\n\n    for j 🡨 izq to der - 1 do\n    begin\n        if (A[j] ≤ pivote) then\n        begin\n            i 🡨 i + 1\n            temp 🡨 A[i]\n            A[i] 🡨 A[j]\n            A[j] 🡨 temp\n        end\n    end\n\n    temp 🡨 A[i + 1]\n    A[i + 1] 🡨 A[der]\n    A[der] 🡨 temp\n\n    return i + 1\nend",
+  "algoritmo": "quickSort",
+  "tipo": "recursive"
+}
