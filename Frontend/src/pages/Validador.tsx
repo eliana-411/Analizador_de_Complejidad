@@ -12,6 +12,7 @@ import { mockPseudocode } from '../mock-data/validador';
 import { validatePseudocode, type ValidationResponse } from '../api/validator';
 import { analyzeCode, type AnalisisResponse } from '../api/analyzer';
 import type { ValidationStatus } from '../types';
+import { useAnalysis } from '../contexts/AnalysisContext';
 
 /**
  * Validador page - Pseudocode validation interface
@@ -19,10 +20,11 @@ import type { ValidationStatus } from '../types';
  */
 export default function Validador() {
   const navigate = useNavigate();
+  const { setAnalysisResult, setIsLoading: setGlobalLoading } = useAnalysis();
 
   const [macroalgorith, setMacroalgorith] = createSignal(mockPseudocode);
   const [validationResult, setValidationResult] = createSignal<ValidationResponse | null>(null);
-  const [analysisResult, setAnalysisResult] = createSignal<AnalisisResponse | null>(null);
+  const [analysisResult, setLocalAnalysisResult] = createSignal<AnalisisResponse | null>(null);
   const [isAnalyzing, setIsAnalyzing] = createSignal(false);
   const [errorModal, setErrorModal] = createSignal<{
     isOpen: boolean;
@@ -57,6 +59,7 @@ export default function Validador() {
 
   const handleAnalyze = async () => {
     setIsAnalyzing(true);
+    setGlobalLoading(true);
     try {
       console.log('Analyzing pseudocode...');
 
@@ -68,7 +71,12 @@ export default function Validador() {
       });
 
       console.log('Resultado de análisis:', resultado);
+
+      // Guardar en CONTEXTO GLOBAL (memoria compartida)
       setAnalysisResult(resultado);
+
+      // También guardar localmente para mostrar UI
+      setLocalAnalysisResult(resultado);
 
       // Extract validation data for UI (from validacion or validacion_inicial)
       const validacionData = resultado.validacion;
@@ -97,6 +105,7 @@ export default function Validador() {
       // TODO: Mostrar error al usuario con un toast/notification
     } finally {
       setIsAnalyzing(false);
+      setGlobalLoading(false);
     }
   };
 
@@ -190,9 +199,8 @@ export default function Validador() {
           <div class="flex justify-end mt-8">
             <button
               onClick={() => {
-                // Usar el pseudocódigo VALIDADO (y corregido si fue necesario), no el original
-                const pseudocodigoValidado = analysisResult()?.pseudocodigo_validado || macroalgorith();
-                navigate(`/analizador?pseudocodigo=${encodeURIComponent(pseudocodigoValidado)}`);
+                // Ya no pasamos pseudocódigo por URL - el contexto tiene TODO
+                navigate('/analizador');
               }}
               class="flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-white transition-all duration-200 shadow-md hover:shadow-lg"
               style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);"
