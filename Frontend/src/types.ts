@@ -66,8 +66,7 @@ export interface ScenarioRow {
 export interface BoundAnalysis {
   cota: string;
   escenario: string;
-  valor: string;
-  notacion: string;
+  ecuacion?: string;
   expanded: {
     analysis: string;
     formula: string;

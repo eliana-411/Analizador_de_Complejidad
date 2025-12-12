@@ -194,6 +194,8 @@ REGLAS CRÍTICAS:
 3. Preserva fracciones: (n/2)*C, (n/4)*C, etc.
 4. NO simplificar 2*n/2 a n, mantener como (n/2)
 5. Identifica el término DOMINANTE (mayor complejidad)
+6. ⚠️ SUMATORIAS: Cuando identifiques una sumatoria, SIEMPRE represéntala usando la notación "SUM"
+   Ejemplo: "SUM(i=1 to n) c*i" o "SUM(k=1 to n) k" o "SUM(i=1 to n/2) c"
 
 JERARQUÍA DE COMPLEJIDAD (menor a mayor):
 O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(n³) < O(2^n) < O(n!)
@@ -216,6 +218,12 @@ Output: {"ecuacion_sugerida": "K3 + n**3*C", "termino_dominante": "cubico", "exp
 
 Input: "n*log(n) + 5*n + 3"
 Output: {"ecuacion_sugerida": "K3 + n*log(n)*C", "termino_dominante": "lineal_logaritmico"}
+
+Input: "sum(k, 1, n)"
+Output: {"ecuacion_sugerida": "K2 + SUM(k=1 to n) c*k", "termino_dominante": "cuadratico", "explicacion": "Sumatoria representada con SUM"}
+
+Input: "1 + 2 + ... + n"
+Output: {"ecuacion_sugerida": "K2 + SUM(i=1 to n) c*i", "termino_dominante": "cuadratico", "explicacion": "Serie aritmética como sumatoria"}
 """
         else:
             ejemplo_estructura = """
@@ -232,6 +240,8 @@ REGLAS CRÍTICAS PARA RECURSIVOS:
 4. La 'n' es PARTE ESENCIAL de la relación de recurrencia
 5. Solo reemplaza constantes numéricas por 'c', pero PRESERVA la 'n'
 6. Identifica el TIPO de recursión (divide-conquista, decrementación, múltiple)
+7. ⚠️ SUMATORIAS: Cuando identifiques una sumatoria, SIEMPRE represéntala usando "SUM"
+   Ejemplo: "T(n) = T(n-1) + SUM(i=1 to n) c*i"
 
 TIPOS DE RECURSIÓN:
 - Divide y conquista: T(n) = aT(n/b) + f(n)
@@ -262,10 +272,14 @@ Output: {"ecuacion_sugerida": "2*T(n/2) + c", "termino_dominante": "divide_conqu
 Input: "T(n-1) + T(n-2) + 1"
 Output: {"ecuacion_sugerida": "T(n-1) + T(n-2) + c", "termino_dominante": "multiple_recursion", "explicacion": "Fibonacci - dos llamadas recursivas"}
 
+Input: "T(n-1) + sum(i, 1, n)"
+Output: {"ecuacion_sugerida": "T(n-1) + SUM(i=1 to n) c*i", "termino_dominante": "decrementacion_cuadratica", "explicacion": "Sumatoria representada con SUM"}
+
 EJEMPLOS INCORRECTOS (NO HACER):
 ❌ "2*T(n/2) + 3*n" → "2*T(n/2) + c" (eliminó la n - MAL)
 ❌ "T(n-1) + 7*n" → "T(n-1) + K" (eliminó la n - MAL)
 ❌ "T(n-1) + 2*n**2" → "T(n-1) + c" (eliminó n² - MAL)
+❌ "sum(k, 1, n)" → "n*k" (no usó SUM - MAL)
 """
         
         prompt = f"""Eres un asistente experto en análisis de complejidad algorítmica.

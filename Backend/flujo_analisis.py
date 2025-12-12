@@ -328,7 +328,17 @@ class FlujoAnalisis:
                         'peor_caso': math_response.peor_caso
                     }
                     
+                    # Guardar también ecuaciones matemáticas originales sin resolver
+                    ecuaciones_matematicas = {
+                        'mejor_caso': math_response.mejor_caso,
+                        'caso_promedio': math_response.caso_promedio,
+                        'peor_caso': math_response.peor_caso,
+                        'ecuaciones_iguales': math_response.ecuaciones_iguales,
+                        'casos_base': math_response.casos_base
+                    }
+                    
                     resultado['ecuaciones'] = ecuaciones
+                    resultado['ecuaciones_matematicas'] = ecuaciones_matematicas
                     resultado['ecuaciones_detalle'] = math_response.model_dump()
                     
                     self._log("[OK] Ecuaciones generadas exitosamente")
@@ -374,6 +384,15 @@ class FlujoAnalisis:
             complejidades['ecuaciones'] = ecuaciones
             complejidades['pasos_resolucion'] = pasos_resolucion
             complejidades['metodo_usado'] = complejidades.get('mejor_caso', {}).get('metodo_usado', 'No especificado')
+            complejidades['algorithm_name'] = algorithm_name
+            
+            # Agregar ecuaciones matemáticas originales (sin resolver) al resultado de complejidades
+            if 'ecuaciones_matematicas' in resultado:
+                complejidades['ecuaciones_matematicas'] = resultado['ecuaciones_matematicas']
+            
+            # Agregar derivación caso promedio si existe
+            if resultado.get('ecuaciones_detalle'):
+                complejidades['derivacion_caso_promedio'] = resultado['ecuaciones_detalle'].get('derivacion_caso_promedio', '')
             
             resultado['complejidades'] = complejidades
             resultado['fase_actual'] = 'resolucion_completada'
